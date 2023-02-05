@@ -7,8 +7,8 @@ struct App {
 }
 
 [''] // handle all messagess
-fn (app App) all_messages(message vtelegram.Message)!{
-	app.sendmessage(chat_id: message.chat.id, text: '$message.text')!
+fn (app App) all_messages(result vtelegram.Result)!{
+	app.sendmessage(chat_id: result.message.chat.id, text: '$result.message.text')!
 }
 
 fn main(){

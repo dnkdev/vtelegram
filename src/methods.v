@@ -34,7 +34,6 @@ pub struct GetUpdates {
 }
 // getupdates - getUpdates
 // Use this method to receive incoming updates using long polling (wiki). Returns an Array of Update objects.
-
 pub fn (b Bot) getupdates(params GetUpdates) ![]Update {
     resp := b.http_request('getUpdates', json.encode(params))!
     return return_data[[]Update](resp)

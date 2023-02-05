@@ -18,7 +18,7 @@ pub:
 	description string              
 }
 
-pub const(
+const(
     endpoint  = "https://api.telegram.org/bot"
 )
 
@@ -31,6 +31,7 @@ pub fn (b Bot) http_request(method string, _data string) !string {
 	else{
 		response_body := json.decode(ResponseNotOK,response.body)!
 		println('Error on ${method} ${time.now().str()}: Error Code: ${response_body.error_code}\nDescription: ${response_body.description}')
+		println('Data: ${_data}')
 	}
 	return response.body
 }
