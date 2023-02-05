@@ -1,6 +1,6 @@
 # VTelegram
 
-Telegram Bot API wrapper for V language. v 0.1.0
+Telegram Bot API wrapper for V language.
 <br>
 All methods are in lowercase instead of snakeCase: `getupdates` instead of `getUpdates`. Because in V you can't use snake case function names.
 <br>

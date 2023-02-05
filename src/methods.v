@@ -166,6 +166,7 @@ pub fn (b Bot) close(params Close) !bool {
 
 [params]
 pub struct SendMessage {
+mut:
     // chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
     chat_id i64
     // message_thread_id Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
@@ -1594,6 +1595,7 @@ pub fn (b Bot) getmydefaultadministratorrights(params GetMyDefaultAdministratorR
 
 [params]
 pub struct EditMessageText {
+mut:
     // chat_id Required if inline_message_id is not specified. Unique identifier for the target chat or username of the target channel (in the format @channelusername)
     chat_id i64
     // message_id Required if inline_message_id is not specified. Identifier of the message to edit
