@@ -27,7 +27,7 @@ fn handle_update[T](app T, update Update){
 		else if update.callback_query.data != ''{
 			if method.attrs[0] == 'callback'{
 				if method.attrs.len > 1 {
-					if method.attrs[1] == update.callback_query.data {
+					if update.callback_query.data in method.attrs {
 						app.$method(result)
 					}
 				}
