@@ -19,9 +19,6 @@ pub mut:
 	query CallbackQuery
 }
 
-// before_request aka middleware copied from vweb
-// calling in endless loop every time bot gets updates (each 0 - delay_time miliseconds (default 500))
-pub fn (bot Bot) before_request() {}
 
 fn handle_update[T](app T, update Update){
 	$for method in T.methods {
@@ -83,7 +80,6 @@ pub fn poll[T](app T,params BotPollParams)!{
 	mut last_offset := 0
 	println('Starting bot...')
 	for {
-		app.before_request()
 		updates := app.getupdates(offset: last_offset, limit: params.limit, timeout:params.timeout, allowed_updates:params.allowed_updates)!
 		for u in updates{
 			spawn handle_update(app,u)
