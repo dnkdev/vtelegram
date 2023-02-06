@@ -258,6 +258,10 @@ pub mut:
     invoice Invoice
     // successful_payment Optional. Message is a service message about a successful payment, information about the payment. More about payments »
     successful_payment SuccessfulPayment
+	// user_shared Optional. Service message: a user was shared with the bot
+	user_shared	UserShared
+	// chat_shared Optional. Service message: a chat was shared with the bot
+	chat_shared	ChatShared
     // connected_website Optional. The domain name of the website on which the user has logged in. More about Telegram Login »
     connected_website string
     // write_access_allowed Optional. Service message: the user allowed the bot added to the attachment menu to write messages
@@ -705,6 +709,10 @@ pub struct KeyboardButton {
 pub:
     // text Text of the button. If none of the optional fields are used, it will be sent as a message when the button is pressed
     text string
+	// request_user Optional. If specified, pressing the button will open a list of suitable users. Tapping on any user will send their identifier to the bot in a “user_shared” service message. Available in private chats only.
+	request_user KeyboardButtonRequestUser
+	// request_chat Optional. If specified, pressing the button will open a list of suitable chats. Tapping on a chat will send its identifier to the bot in a “chat_shared” service message. Available in private chats only.
+	request_chat KeyboardButtonRequestChat
     // request_contact Optional. If True, the user's phone number will be sent as a contact when the button is pressed. Available in private chats only.
     request_contact bool
     // request_location Optional. If True, the user's current location will be sent when the button is pressed. Available in private chats only.
@@ -751,7 +759,8 @@ pub:
     web_app WebAppInfo
     // login_url Optional. An HTTPS URL used to automatically authorize the user. Can be used as a replacement for the Telegram Login Widget.
     login_url LoginUrl
-    // switch_inline_query Optional. If set, pressing the button will prompt the user to select one of their chats, open that chat and insert the bot's username and the specified inline query in the input field. May be empty, in which case just the bot's username will be inserted.  Note: This offers an easy way for users to start using your bot in inline mode when they are currently in a private chat with it. Especially useful when combined with switch_pm… actions - in this case the user will be automatically returned to the chat they switched from, skipping the chat selection screen.
+    // switch_inline_query Optional. If set, pressing the button will prompt the user to select one of their chats, open that chat and insert the bot's username and the specified inline query in the input field. May be empty, in which case just the bot's username will be inserted.  Note: This offers an easy way for users to start using your bot in inline mode when they are currently in a private chat with it. 
+	// Especially useful when combined with switch_pm… actions - in this case the user will be automatically returned to the chat they switched from, skipping the chat selection screen.
     switch_inline_query string
     // switch_inline_query_current_chat Optional. If set, pressing the button will insert the bot's username and the specified inline query in the current chat's input field. May be empty, in which case only the bot's username will be inserted.  This offers a quick way for the user to open your bot in inline mode in the same chat - good for selecting something from multiple options.
     switch_inline_query_current_chat string
@@ -947,8 +956,18 @@ pub:
     can_manage_topics bool
     // can_send_messages True, if the user is allowed to send text messages, contacts, locations and venues
     can_send_messages bool
-    // can_send_media_messages True, if the user is allowed to send audios, documents, photos, videos, video notes and voice notes
-    can_send_media_messages bool
+	// can_send_audios	True, if the user is allowed to send audios
+	can_send_audios	bool
+	// can_send_documents	True, if the user is allowed to send documents
+	can_send_documents	bool
+	// can_send_photos	True, if the user is allowed to send photos
+	can_send_photos	bool
+	// can_send_videos	True, if the user is allowed to send videos
+	can_send_videos	bool
+	// can_send_video_notes	True, if the user is allowed to send video notes
+	can_send_video_notes bool
+	// can_send_voice_notes	True, if the user is allowed to send voice notes
+	can_send_voice_notes bool
     // can_send_polls True, if the user is allowed to send polls
     can_send_polls bool
     // can_send_other_messages True, if the user is allowed to send animations, games, stickers and use inline bots
@@ -1003,6 +1022,10 @@ pub:
     chat Chat
     // from User that sent the join request
     from User
+	// user_chat_id Identifier of a private chat with the user who sent the join request. This number may have more than 32 significant bits and some programming languages may have difficulty/silent defects in interpreting it. 
+	// But it has at most 52 significant bits, so a 64-bit integer or double-precision float type are safe for storing this identifier. 
+	// The bot can use this identifier for 24 hours to send messages until the join request is processed, assuming no other administrator contacted the user.
+	user_chat_id i64
     // date Date the request was sent in Unix time
     date int
     // bio Optional. Bio of the user.
@@ -1016,8 +1039,18 @@ pub struct ChatPermissions {
 pub:
     // can_send_messages Optional. True, if the user is allowed to send text messages, contacts, locations and venues
     can_send_messages bool
-    // can_send_media_messages Optional. True, if the user is allowed to send audios, documents, photos, videos, video notes and voice notes, implies can_send_messages
-    can_send_media_messages bool
+    // can_send_audios	Optional. True, if the user is allowed to send audios
+	can_send_audios	bool
+	// can_send_documents Optional. True, if the user is allowed to send documents
+	can_send_documents	bool
+	// can_send_photos	Optional. True, if the user is allowed to send photos
+	can_send_photos	bool
+	// can_send_videos	Optional. True, if the user is allowed to send videos
+	can_send_videos	bool
+	// can_send_video_notes	Optional. True, if the user is allowed to send video notes
+	can_send_video_notes bool
+	// can_send_voice_notes	Optional. True, if the user is allowed to send voice notes
+	can_send_voice_notes bool
     // can_send_polls Optional. True, if the user is allowed to send polls, implies can_send_messages
     can_send_polls bool
     // can_send_other_messages Optional. True, if the user is allowed to send animations, games, stickers and use inline bots, implies can_send_media_messages
@@ -1197,7 +1230,8 @@ pub:
     type_ string
     // media File to send. Pass a file_id to send a file that exists on the Telegram servers (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass “attach://<file_attach_name>” to upload a new one using multipart/form-data under <file_attach_name> name. More information on Sending Files »
     media string
-    // thumb Optional. Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. More information on Sending Files »
+    // thumb Optional. Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. 
+	// Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. More information on Sending Files »
     thumb string
     // caption Optional. Caption of the video to be sent, 0-1024 characters after entities parsing
     caption string
@@ -1224,7 +1258,8 @@ pub:
     type_ string
     // media File to send. Pass a file_id to send a file that exists on the Telegram servers (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass “attach://<file_attach_name>” to upload a new one using multipart/form-data under <file_attach_name> name. More information on Sending Files »
     media string
-    // thumb Optional. Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. More information on Sending Files »
+    // thumb Optional. Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. 
+	// A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. More information on Sending Files »
     thumb string
     // caption Optional. Caption of the animation to be sent, 0-1024 characters after entities parsing
     caption string
@@ -1249,7 +1284,8 @@ pub:
     type_ string
     // media File to send. Pass a file_id to send a file that exists on the Telegram servers (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass “attach://<file_attach_name>” to upload a new one using multipart/form-data under <file_attach_name> name. More information on Sending Files »
     media string
-    // thumb Optional. Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. More information on Sending Files »
+    // thumb Optional. Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. 
+	// Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. More information on Sending Files »
     thumb string
     // caption Optional. Caption of the audio to be sent, 0-1024 characters after entities parsing
     caption string
@@ -1272,7 +1308,8 @@ pub:
     type_ string
     // media File to send. Pass a file_id to send a file that exists on the Telegram servers (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass “attach://<file_attach_name>” to upload a new one using multipart/form-data under <file_attach_name> name. More information on Sending Files »
     media string
-    // thumb Optional. Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. More information on Sending Files »
+    // thumb Optional. Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. 
+	// Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. More information on Sending Files »
     thumb string
     // caption Optional. Caption of the document to be sent, 0-1024 characters after entities parsing
     caption string
@@ -2396,6 +2433,54 @@ pub:
     score int
 
 }
+
+// KeyboardButtonRequestUser This object defines the criteria used to request a suitable user. 
+// The identifier of the selected user will be shared with the bot when the corresponding button is pressed.
+pub struct KeyboardButtonRequestUser {
+pub:
+	// request_id Signed 32-bit identifier of the request, which will be received back in the UserShared object. Must be unique within the message
+	request_id int 
+	// user_is_bot Optional. Pass True to request a bot, pass False to request a regular user. If not specified, no additional restrictions are applied.
+	user_is_bot bool
+	// user_is_premium Optional. Pass True to request a premium user, pass False to request a non-premium user. If not specified, no additional restrictions are applied.
+	user_is_premium bool
+}
+// KeyboardButtonRequestChat This object defines the criteria used to request a suitable chat. 
+// The identifier of the selected chat will be shared with the bot when the corresponding button is pressed.
+pub struct KeyboardButtonRequestChat {
+pub: 
+	// request_id Signed 32-bit identifier of the request, which will be received back in the ChatShared object. Must be unique within the message
+	request_id	int 
+	// chat_is_channel Pass True to request a channel chat, pass False to request a group or a supergroup chat.
+	chat_is_channel	bool 
+	// chat_is_forum Optional. Pass True to request a forum supergroup, pass False to request a non-forum chat. If not specified, no additional restrictions are applied.
+	chat_is_forum	bool 
+	// chat_has_username Optional. Pass True to request a supergroup or a channel with a username, pass False to request a chat without a username. If not specified, no additional restrictions are applied.
+	chat_has_username	bool 
+	// chat_is_created Optional. Pass True to request a chat owned by the user. Otherwise, no additional restrictions are applied.
+	chat_is_created	bool 
+	 // chat_is_created Optional. A JSON-serialized object listing the required administrator rights of the user in the chat. The rights must be a superset of bot_administrator_rights. If not specified, no additional restrictions are applied.
+	user_administrator_rights ChatAdministratorRights
+	// bot_administrator_rights Optional. A JSON-serialized object listing the required administrator rights of the bot in the chat. The rights must be a subset of user_administrator_rights. If not specified, no additional restrictions are applied.
+	bot_administrator_rights ChatAdministratorRights 
+	// bot_is_member Optional. Pass True to request a chat with the bot as a member. Otherwise, no additional restrictions are applied.
+	bot_is_member bool 
+}
+// UserShared This object contains information about the user whose identifier was shared with the bot using a KeyboardButtonRequestUser button.
+pub struct UserShared {
+	// request_id Identifier of the request
+	request_id int
+	// user_id Identifier of the shared user. This number may have more than 32 significant bits and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a 64-bit integer or double-precision float type are safe for storing this identifier. The bot may not have access to the user and could be unable to use this identifier, unless the user is already known to the bot by some other means.
+	user_id	i64	
+}
+// ChatShared This object contains information about the chat whose identifier was shared with the bot using a KeyboardButtonRequestChat button.
+pub struct ChatShared {
+	// request_id Identifier of the request
+	request_id int
+	// chat_id Identifier of the shared user. This number may have more than 32 significant bits and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a 64-bit integer or double-precision float type are safe for storing this identifier. The bot may not have access to the chat and could be unable to use this identifier, unless the chat is already known to the bot by some other means.
+	chat_id	i64	
+}
+
 type ChatMember = ChatMemberOwner | ChatMemberAdministrator | ChatMemberMember | ChatMemberRestricted | ChatMemberLeft | ChatMemberBanned 
 type BotCommandScope = BotCommandScopeDefault | BotCommandScopeAllPrivateChats | BotCommandScopeAllGroupChats | BotCommandScopeAllChatAdministrators | BotCommandScopeChat | BotCommandScopeChatAdministrators | BotCommandScopeChatMember 
 type MenuButton = MenuButtonCommands | MenuButtonWebApp | MenuButtonDefault 
