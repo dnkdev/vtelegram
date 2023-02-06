@@ -10,7 +10,7 @@ mut:
 [params]
 pub struct BotPollParams{
 	GetUpdates
-	pausetime int = 500
+	delay_time int = 500
 	
 }
 pub struct Result {
@@ -18,6 +18,11 @@ pub mut:
 	message Message
 	query CallbackQuery
 }
+
+// before_request aka middleware copied from vweb
+// calling in endless loop every time bot gets updates (each 0 - delay_time miliseconds (default 500))
+pub fn (bot Bot) before_request() {}
+
 fn handle_update[T](app T, update Update){
 	$for method in T.methods {
 		if method.attrs.len == 0 {
@@ -78,12 +83,13 @@ pub fn poll[T](app T,params BotPollParams)!{
 	mut last_offset := 0
 	println('Starting bot...')
 	for {
-		updates := app.getupdates(offset: last_offset)!
+		app.before_request()
+		updates := app.getupdates(offset: last_offset, limit: params.limit, timeout:params.timeout, allowed_updates:params.allowed_updates)!
 		for u in updates{
 			spawn handle_update(app,u)
 			last_offset = u.update_id + 1
 		}
-		time.sleep(params.pausetime * time.millisecond)
+		time.sleep(params.delay_time * time.millisecond)
 	}
 }
 
