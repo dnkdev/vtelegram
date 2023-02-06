@@ -151,7 +151,7 @@ pub:
 }
 // Message This object represents a message.
 pub struct Message {
-pub:
+pub mut:
     // message_id Unique message identifier inside this chat
     message_id int
     // message_thread_id Optional. Unique identifier of a message thread to which the message belongs; for supergroups only

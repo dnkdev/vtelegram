@@ -20,6 +20,9 @@ pub mut:
 }
 fn handle_update[T](app T, update Update){
 	$for method in T.methods {
+		if method.attrs.len == 0 {
+			return 
+		}
 		mut result := Result{message: update.message, query: update.callback_query}
 		if method.attrs == [''] { //handling all messages
 			app.$method(result)
@@ -47,9 +50,24 @@ fn handle_update[T](app T, update Update){
 			}
 		}
 		else{
-			for m in method.attrs{
-				if update.message.text == m {
-					app.$method(result)
+			//&& method.attrs[0] == 'starts_with'{
+			match method.attrs[0]{
+				'starts_with'{
+					if method.attrs.len > 1 {
+						for i := 1;i<method.attrs.len;i++{
+							if update.message.text.starts_with(method.attrs[i]){
+								result.message.text = result.message.text.trim_string_left(method.attrs[i])
+								app.$method(result)
+							}
+						}
+					}
+				}
+				else{
+					for m in method.attrs{
+						if update.message.text == m {
+							app.$method(result)
+						}
+					}
 				}
 			}
 		}
