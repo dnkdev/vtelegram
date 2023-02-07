@@ -1,3 +1,16 @@
+### v 1.3.0
+- Major version is 1, because module is ready to use and has the all latest telegram bot API models and methods, you can do it just manually. Custom features in development. 
+- Added `time_event` feature, which calls function every specified time (in milliseconds). Time is specified after `:` 
+```v
+[time_event: 60_000]
+fn (app App) every_minute(){
+    println('Function call every 60 seconds')
+}
+```
+- Added function `call_time_event` just in case needs to call time_event function.
+```v
+vtelegram.call_time_event(app, 'function_name')
+```
 ### v 0.1.1
 - Added `starts_with` filter to `callback` handling mechanism
 - Added `starts_with` filter to message handling mechanism, and text in result is also without that is specified in attribute. Can be > 1 options

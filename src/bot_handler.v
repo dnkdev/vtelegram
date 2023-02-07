@@ -4,26 +4,25 @@ import time
 
 pub struct Bot{
 	token string
-mut:
+pub mut:
 	offset int = 1
 }
 [params]
 pub struct BotPollParams{
 	GetUpdates
 	delay_time int = 500
-	
 }
+
 pub struct Result {
 pub mut:
 	message Message
 	query CallbackQuery
 }
 
-
 fn handle_update[T](app T, update Update){
 	$for method in T.methods {
 		if method.attrs.len == 0 {
-			return 
+			return
 		}
 		mut result := Result{message: update.message, query: update.callback_query}
 		if method.attrs == [''] { //handling all messages
@@ -75,17 +74,55 @@ fn handle_update[T](app T, update Update){
 		}
 	}
 }
-
-pub fn poll[T](app T,params BotPollParams)!{
+pub fn call_time_event[T](app T, mname string){
+	$for method in T.methods {
+		if method.name == mname{
+			app.$method()
+		}
+	}
+}
+fn time_event[T](app T){
+	for{
+		$for method in T.methods{
+			for attr in method.attrs{
+				if attr.contains('time_event'){
+					mut iter := 60_000
+					mut a := attr.split(':')
+					if a.len >= 2{
+						for mut v in a{
+							v = v.replace(' ', '')
+							if v.int() != 0 {
+								iter = v.int()
+							}
+						}
+						app.$method()
+					}
+					time.sleep(iter*time.millisecond)
+				}
+			}
+		}
+	}
+}
+fn bot_poll[T](app T, params BotPollParams){
 	mut last_offset := 0
-	println('Starting bot...')
 	for {
-		updates := app.getupdates(offset: last_offset, limit: params.limit, timeout:params.timeout, allowed_updates:params.allowed_updates)!
+		updates := app.getupdates(offset: last_offset, limit: params.limit, timeout:params.timeout, allowed_updates:params.allowed_updates)or{
+			eprintln('Updates  not accepted\n$err')
+			[]Update{}
+		}
 		for u in updates{
 			spawn handle_update(app,u)
 			last_offset = u.update_id + 1
 		}
 		time.sleep(params.delay_time * time.millisecond)
 	}
+}
+
+pub fn poll[T](app T, params BotPollParams)!{
+	println('Starting bot...')
+	mut threads := []thread{}
+	threads << spawn time_event(app)
+	threads << spawn bot_poll(app,params)
+	threads.wait()
 }
 

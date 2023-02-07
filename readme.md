@@ -12,8 +12,10 @@ Already could be used at this moment.
 - [x] Message handling through attributes
 - [x] callback_query handling ( through attributes )
 - [ ] edited_message handling
-- [ ] channel_post handling
 - [ ] Sticker handling
+- [ ] channel_post handling
+- [ ] All event handling
+- [ ] Middlewares
 - [ ] Logging
 - [ ] more
 
