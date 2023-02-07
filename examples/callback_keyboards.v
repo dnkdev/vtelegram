@@ -5,12 +5,12 @@ import vtelegram {Bot, poll, Result, Message, InlineKeyboardButton, InlineKeyboa
 struct App {
 	Bot
 }
-[callback] // Handle all callbacks
+[callback_query] // Handle all callbacks
 fn (app App) all_callbacks(	result Result )!{
 	app.sendmessage(chat_id: result.query.from.id, text: 'You pressed: $result.query.data')!
 }
 
-[callback; 'totally']
+[callback_query: 'totally']
 fn (app App) keyboard_callback(	result Result )!{ 
 	app.sendmessage(chat_id: result.query.from.id, text: 'Wow, you are great.')!
 }

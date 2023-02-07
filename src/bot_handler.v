@@ -7,12 +7,14 @@ pub struct Bot{
 pub mut:
 	offset int = 1
 }
+
 [params]
 pub struct BotPollParams{
 	GetUpdates
 	delay_time int = 500
 }
 
+// Result struct is passed to all handlers, so it must be a parameter on receive function
 pub struct Result {
 pub mut:
 	message Message
@@ -20,9 +22,7 @@ pub mut:
 }
 fn handle_update[T](app T, update Update){
 	$for method in T.methods {
-		if method.attrs.len == 0 {
-			return
-		}
+		if method.attrs.len == 0 {return}
 		mut result := Result{message: update.message, query: update.callback_query}
 		if method.attrs == [''] { //handling all messages
 			app.$method(result)
@@ -42,6 +42,9 @@ fn handle_update[T](app T, update Update){
 					else if update.callback_query.data == value{
 						app.$method(result)
 					}
+				}
+				if attr == 'callback_query' { // for all callbacks: just [callback_query]
+					app.$method(result)
 				}
 			}
 		}
