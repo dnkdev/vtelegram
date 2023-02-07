@@ -18,7 +18,6 @@ pub mut:
 	message Message
 	query CallbackQuery
 }
-
 fn handle_update[T](app T, update Update){
 	$for method in T.methods {
 		if method.attrs.len == 0 {
@@ -28,47 +27,37 @@ fn handle_update[T](app T, update Update){
 		if method.attrs == [''] { //handling all messages
 			app.$method(result)
 		}
+		// callback_query process
 		else if update.callback_query.data != ''{
-			if method.attrs[0] == 'callback'{
-				if method.attrs.len > 1 {
-					if method.attrs[1] == 'starts_with'{
-						if method.attrs.len > 2{
-							for i := 2;i<method.attrs.len;i++{
-								if update.callback_query.data.starts_with(method.attrs[i]){
-									result.query.data = result.query.data.trim_string_left(method.attrs[i])
-									app.$method(result)
-								}
-							}
-						}
-					}
-					else if update.callback_query.data in method.attrs {
-						app.$method(result)
-					}
-				}
-				else if method.attrs.len == 1{
-					app.$method(result)
-				}
-			}
-		}
-		else{
-			//&& method.attrs[0] == 'starts_with'{
-			match method.attrs[0]{
-				'starts_with'{
-					if method.attrs.len > 1 {
-						for i := 1;i<method.attrs.len;i++{
-							if update.message.text.starts_with(method.attrs[i]){
-								result.message.text = result.message.text.trim_string_left(method.attrs[i])
-								app.$method(result)
-							}
-						}
-					}
-				}
-				else{
-					for m in method.attrs{
-						if update.message.text == m {
+			for attr in method.attrs{
+				if attr.contains('callback_query'){
+					mut a := attr.split(':')
+					value := a.last().trim_space() // callback:starts_with:value
+					if attr.contains('starts_with'){
+						if update.callback_query.data.starts_with(value){
+							result.query.data = result.query.data.trim_string_left(value)
 							app.$method(result)
 						}
 					}
+					else if update.callback_query.data == value{
+						app.$method(result)
+					}
+				}
+			}
+		}
+		//message process
+		else if update.message.message_id != 0{
+			for attr in method.attrs{
+				if attr.contains('starts_with'){
+					mut a := attr.split(':')
+					value := a.last().trim_space() // starts_with:value
+					if update.message.text.starts_with(value){
+						result.message.text = result.message.text.trim_string_left(value)
+						app.$method(result)
+					}
+				}
+				else if update.message.text == attr {
+					app.$method(result)
 				}
 			}
 		}

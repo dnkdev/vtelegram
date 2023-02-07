@@ -1,3 +1,27 @@
+### v 1.3.1
+- `callback_query` attribute instead of just `callback`
+- To assign value to attribute now used `:` instead of `;`
+```v
+[callback_query: 'key']
+fn (app App) handle_callbackquery(result Result){
+    //...
+}
+[starts_with: '/']
+fn (app App) handle_message(result Result) {
+
+}
+// to use few parameters or callback_query with starts_with do so:
+['callback_query: starts_with: key'] // all attribute must be like string
+fn (app App) handle_callbackquery(result Result){
+    //...
+}
+// and also
+['callback_query: key']         // Must be string too if attribute not single
+['callback_query: something']   //
+fn (app App) handle_callbackquery(result Result){
+    //...
+}
+```
 ### v 1.3.0
 - Major version is 1, because module is ready to use and has the all latest telegram bot API models and methods, you can do it just manually. Custom features in development. 
 - Added `time_event` feature, which calls function every specified time (in milliseconds). Time is specified after `:` 
