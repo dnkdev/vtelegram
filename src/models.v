@@ -710,6 +710,23 @@ pub:
     // text Text of the button. If none of the optional fields are used, it will be sent as a message when the button is pressed
     text string
 	// request_user Optional. If specified, pressing the button will open a list of suitable users. Tapping on any user will send their identifier to the bot in a “user_shared” service message. Available in private chats only.
+	//request_user KeyboardButtonRequestUser
+	// request_chat Optional. If specified, pressing the button will open a list of suitable chats. Tapping on a chat will send its identifier to the bot in a “chat_shared” service message. Available in private chats only.
+	//request_chat KeyboardButtonRequestChat
+    // request_contact Optional. If True, the user's phone number will be sent as a contact when the button is pressed. Available in private chats only.
+    //request_contact bool
+    // request_location Optional. If True, the user's current location will be sent when the button is pressed. Available in private chats only.
+    //request_location bool
+    // request_poll Optional. If specified, the user will be asked to create a poll and send it to the bot when the button is pressed. Available in private chats only.
+    //request_poll KeyboardButtonPollType
+    // web_app Optional. If specified, the described Web App will be launched when the button is pressed. The Web App will be able to send a “web_app_data” service message. Available in private chats only.
+    //web_app WebAppInfo
+}
+pub struct KeyboardButtonExt{
+pub:
+    // text Text of the button. If none of the optional fields are used, it will be sent as a message when the button is pressed
+    text string
+	// request_user Optional. If specified, pressing the button will open a list of suitable users. Tapping on any user will send their identifier to the bot in a “user_shared” service message. Available in private chats only.
 	request_user KeyboardButtonRequestUser
 	// request_chat Optional. If specified, pressing the button will open a list of suitable chats. Tapping on a chat will send its identifier to the bot in a “chat_shared” service message. Available in private chats only.
 	request_chat KeyboardButtonRequestChat
@@ -721,8 +738,25 @@ pub:
     request_poll KeyboardButtonPollType
     // web_app Optional. If specified, the described Web App will be launched when the button is pressed. The Web App will be able to send a “web_app_data” service message. Available in private chats only.
     web_app WebAppInfo
+}
+// ReplyKeyboardMarkup This object represents a custom keyboard with reply options (see Introduction to bots for details and examples).
+pub struct ReplyKeyboardMarkupExt {
+pub:
+    // keyboard Array of button rows, each represented by an Array of KeyboardButton objects
+    keyboard [][]KeyboardButtonExt
+    // is_persistent Optional. Requests clients to always show the keyboard when the regular keyboard is hidden. Defaults to false, in which case the custom keyboard can be hidden and opened with a keyboard icon.
+    is_persistent bool
+    // resize_keyboard Optional. Requests clients to resize the keyboard vertically for optimal fit (e.g., make the keyboard smaller if there are just two rows of buttons). Defaults to false, in which case the custom keyboard is always of the same height as the app's standard keyboard.
+    resize_keyboard bool
+    // one_time_keyboard Optional. Requests clients to hide the keyboard as soon as it's been used. The keyboard will still be available, but clients will automatically display the usual letter-keyboard in the chat - the user can press a special button in the input field to see the custom keyboard again. Defaults to false.
+    one_time_keyboard bool
+    // input_field_placeholder Optional. The placeholder to be shown in the input field when the keyboard is active; 1-64 characters
+    input_field_placeholder string
+    // selective Optional. Use this parameter if you want to show the keyboard to specific users only. Targets: 1) users that are @mentioned in the text of the Message object; 2) if the bot's message is a reply (has reply_to_message_id), sender of the original message.  Example: A user requests to change the bot's language, bot replies to the request with a keyboard to select the new language. Other users in the group don't see the keyboard.
+    selective bool
 
 }
+
 // KeyboardButtonPollType This object represents type of a poll, which is allowed to be created and sent when the corresponding button is pressed.
 pub struct KeyboardButtonPollType {
 pub:
