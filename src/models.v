@@ -94,7 +94,7 @@ pub:
     // id Unique identifier for this chat. This number mad some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this identify have more than 32 significant bits anier.
     id i64
     // type Type of chat, can be either “private”, “group”, “supergroup” or “channel”
-    //type_ string
+    //@type string
     // title Optional. Title, for supergroups, channels and group chats
     title string
     // username Optional. Username, for private chats, supergroups and channels if available
@@ -307,7 +307,7 @@ pub:
 pub struct MessageEntity {
 pub:
     // type Type of the entity. Currently, can be “mention” (@username), “hashtag” (#hashtag), “cashtag” ($USD), “bot_command” (/start@jobs_bot), “url” (https://telegram.org), “email” (do-not-reply@telegram.org), “phone_number” (+1-212-555-0123), “bold” (bold text), “italic” (italic text), “underline” (underlined text), “strikethrough” (strikethrough text), “spoiler” (spoiler message), “code” (monowidth string), “pre” (monowidth block), “text_link” (for clickable text URLs), “text_mention” (for users without usernames), “custom_emoji” (for inline custom emoji stickers)
-    type_ string
+    @type string
     // offset Offset in UTF-16 code units to the start of the entity
     offset int
     // length Length of the entity in UTF-16 code units
@@ -515,7 +515,7 @@ pub:
     // is_anonymous True, if the poll is anonymous
     is_anonymous bool
     // type Poll type, currently can be “regular” or “quiz”
-    type_ string
+    @type string
     // allows_multiple_answers True, if the poll allows multiple answers
     allows_multiple_answers bool
     // correct_option_id Optional. 0-based identifier of the correct answer option. Available only for polls in the quiz mode, which are closed, or was sent (not forwarded) by the bot or to the private chat with the bot.
@@ -727,7 +727,7 @@ pub:
 pub struct KeyboardButtonPollType {
 pub:
     // type Optional. If quiz is passed, the user will be allowed to create only polls in the quiz mode. If regular is passed, only regular polls will be allowed. Otherwise, the user will be allowed to create a poll of any type.
-    type_ string
+    @type string
 
 }
 // ReplyKeyboardRemove Upon receiving a message with this object, Telegram clients will remove the current custom keyboard and display the default letter-keyboard. By default, custom keyboards are displayed until a new keyboard is sent by a bot. An exception is made for one-time keyboards that are hidden immediately after the user presses a button (see ReplyKeyboardMarkup).
@@ -1102,35 +1102,35 @@ pub:
 pub struct BotCommandScopeDefault {
 pub:
     // type Scope type, must be default
-    type_ string
+    @type string
 
 }
 // BotCommandScopeAllPrivateChats Represents the scope of bot commands, covering all private chats.
 pub struct BotCommandScopeAllPrivateChats {
 pub:
     // type Scope type, must be all_private_chats
-    type_ string
+    @type string
 
 }
 // BotCommandScopeAllGroupChats Represents the scope of bot commands, covering all group and supergroup chats.
 pub struct BotCommandScopeAllGroupChats {
 pub:
     // type Scope type, must be all_group_chats
-    type_ string
+    @type string
 
 }
 // BotCommandScopeAllChatAdministrators Represents the scope of bot commands, covering all group and supergroup chat administrators.
 pub struct BotCommandScopeAllChatAdministrators {
 pub:
     // type Scope type, must be all_chat_administrators
-    type_ string
+    @type string
 
 }
 // BotCommandScopeChat Represents the scope of bot commands, covering a specific chat.
 pub struct BotCommandScopeChat {
 pub:
     // type Scope type, must be chat
-    type_ string
+    @type string
     // chat_id Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)
     chat_id string
 
@@ -1139,7 +1139,7 @@ pub:
 pub struct BotCommandScopeChatAdministrators {
 pub:
     // type Scope type, must be chat_administrators
-    type_ string
+    @type string
     // chat_id Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)
     chat_id string
 
@@ -1148,7 +1148,7 @@ pub:
 pub struct BotCommandScopeChatMember {
 pub:
     // type Scope type, must be chat_member
-    type_ string
+    @type string
     // chat_id Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)
     chat_id string
     // user_id Unique identifier of the target user
@@ -1159,14 +1159,14 @@ pub:
 pub struct MenuButtonCommands {
 pub:
     // type Type of the button, must be commands
-    type_ string
+    @type string
 
 }
 // MenuButtonWebApp Represents a menu button, which launches a Web App.
 pub struct MenuButtonWebApp {
 pub:
     // type Type of the button, must be web_app
-    type_ string
+    @type string
     // text Text on the button
     text string
     // web_app Description of the Web App that will be launched when the user presses the button. The Web App will be able to send an arbitrary message on behalf of the user using the method answerWebAppQuery.
@@ -1177,7 +1177,7 @@ pub:
 pub struct MenuButtonDefault {
 pub:
     // type Type of the button, must be default
-    type_ string
+    @type string
 
 }
 // ResponseParameters Describes why a request was unsuccessful.
@@ -1193,7 +1193,7 @@ pub:
 pub struct InputMedia {
 pub:
     // type Type of the result, must be photo
-    type_ string
+    @type string
     // media File to send. Pass a file_id to send a file that exists on the Telegram servers (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass “attach://<file_attach_name>” to upload a new one using multipart/form-data under <file_attach_name> name. More information on Sending Files »
     media string
     // caption Optional. Caption of the photo to be sent, 0-1024 characters after entities parsing
@@ -1210,7 +1210,7 @@ pub:
 pub struct InputMediaPhoto {
 pub:
     // type Type of the result, must be photo
-    type_ string
+    @type string
     // media File to send. Pass a file_id to send a file that exists on the Telegram servers (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass “attach://<file_attach_name>” to upload a new one using multipart/form-data under <file_attach_name> name. More information on Sending Files »
     media string
     // caption Optional. Caption of the photo to be sent, 0-1024 characters after entities parsing
@@ -1227,7 +1227,7 @@ pub:
 pub struct InputMediaVideo {
 pub:
     // type Type of the result, must be video
-    type_ string
+    @type string
     // media File to send. Pass a file_id to send a file that exists on the Telegram servers (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass “attach://<file_attach_name>” to upload a new one using multipart/form-data under <file_attach_name> name. More information on Sending Files »
     media string
     // thumb Optional. Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. 
@@ -1255,7 +1255,7 @@ pub:
 pub struct InputMediaAnimation {
 pub:
     // type Type of the result, must be animation
-    type_ string
+    @type string
     // media File to send. Pass a file_id to send a file that exists on the Telegram servers (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass “attach://<file_attach_name>” to upload a new one using multipart/form-data under <file_attach_name> name. More information on Sending Files »
     media string
     // thumb Optional. Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. 
@@ -1281,7 +1281,7 @@ pub:
 pub struct InputMediaAudio {
 pub:
     // type Type of the result, must be audio
-    type_ string
+    @type string
     // media File to send. Pass a file_id to send a file that exists on the Telegram servers (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass “attach://<file_attach_name>” to upload a new one using multipart/form-data under <file_attach_name> name. More information on Sending Files »
     media string
     // thumb Optional. Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. 
@@ -1305,7 +1305,7 @@ pub:
 pub struct InputMediaDocument {
 pub:
     // type Type of the result, must be document
-    type_ string
+    @type string
     // media File to send. Pass a file_id to send a file that exists on the Telegram servers (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass “attach://<file_attach_name>” to upload a new one using multipart/form-data under <file_attach_name> name. More information on Sending Files »
     media string
     // thumb Optional. Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. 
@@ -1356,7 +1356,7 @@ pub:
     // file_unique_id Unique identifier for this file, which is supposed to be the same over time and for different bots. Can't be used to download or reuse the file.
     file_unique_id string
     // type Type of the sticker, currently one of “regular”, “mask”, “custom_emoji”. The type of the sticker is independent from its format, which is determined by the fields is_animated and is_video.
-    type_ string
+    @type string
     // width Sticker width
     width int
     // height Sticker height
@@ -1434,7 +1434,7 @@ pub:
 pub struct InlineQueryResultArticle {
 pub:
     // type Type of the result, must be article
-    type_ string
+    @type string
     // id Unique identifier for this result, 1-64 Bytes
     id string
     // title Title of the result
@@ -1461,7 +1461,7 @@ pub:
 pub struct InlineQueryResultPhoto {
 pub:
     // type Type of the result, must be photo
-    type_ string
+    @type string
     // id Unique identifier for this result, 1-64 bytes
     id string
     // photo_url A valid URL of the photo. Photo must be in JPEG format. Photo size must not exceed 5MB
@@ -1492,7 +1492,7 @@ pub:
 pub struct InlineQueryResultGif {
 pub:
     // type Type of the result, must be gif
-    type_ string
+    @type string
     // id Unique identifier for this result, 1-64 bytes
     id string
     // gif_url A valid URL for the GIF file. File size must not exceed 1MB
@@ -1525,7 +1525,7 @@ pub:
 pub struct InlineQueryResultMpeg4Gif {
 pub:
     // type Type of the result, must be mpeg4_gif
-    type_ string
+    @type string
     // id Unique identifier for this result, 1-64 bytes
     id string
     // mpeg4_url A valid URL for the MPEG4 file. File size must not exceed 1MB
@@ -1558,7 +1558,7 @@ pub:
 pub struct InlineQueryResultVideo {
 pub:
     // type Type of the result, must be video
-    type_ string
+    @type string
     // id Unique identifier for this result, 1-64 bytes
     id string
     // video_url A valid URL for the embedded video player or video file
@@ -1593,7 +1593,7 @@ pub:
 pub struct InlineQueryResultAudio {
 pub:
     // type Type of the result, must be audio
-    type_ string
+    @type string
     // id Unique identifier for this result, 1-64 bytes
     id string
     // audio_url A valid URL for the audio file
@@ -1620,7 +1620,7 @@ pub:
 pub struct InlineQueryResultVoice {
 pub:
     // type Type of the result, must be voice
-    type_ string
+    @type string
     // id Unique identifier for this result, 1-64 bytes
     id string
     // voice_url A valid URL for the voice recording
@@ -1645,7 +1645,7 @@ pub:
 pub struct InlineQueryResultDocument {
 pub:
     // type Type of the result, must be document
-    type_ string
+    @type string
     // id Unique identifier for this result, 1-64 bytes
     id string
     // title Title for the result
@@ -1678,7 +1678,7 @@ pub:
 pub struct InlineQueryResultLocation {
 pub:
     // type Type of the result, must be location
-    type_ string
+    @type string
     // id Unique identifier for this result, 1-64 Bytes
     id string
     // latitude Location latitude in degrees
@@ -1711,7 +1711,7 @@ pub:
 pub struct InlineQueryResultVenue {
 pub:
     // type Type of the result, must be venue
-    type_ string
+    @type string
     // id Unique identifier for this result, 1-64 Bytes
     id string
     // latitude Latitude of the venue location in degrees
@@ -1746,7 +1746,7 @@ pub:
 pub struct InlineQueryResultContact {
 pub:
     // type Type of the result, must be contact
-    type_ string
+    @type string
     // id Unique identifier for this result, 1-64 Bytes
     id string
     // phone_number Contact's phone number
@@ -1773,7 +1773,7 @@ pub:
 pub struct InlineQueryResultGame {
 pub:
     // type Type of the result, must be game
-    type_ string
+    @type string
     // id Unique identifier for this result, 1-64 bytes
     id string
     // game_short_name Short name of the game
@@ -1786,7 +1786,7 @@ pub:
 pub struct InlineQueryResultCachedPhoto {
 pub:
     // type Type of the result, must be photo
-    type_ string
+    @type string
     // id Unique identifier for this result, 1-64 bytes
     id string
     // photo_file_id A valid file identifier of the photo
@@ -1811,7 +1811,7 @@ pub:
 pub struct InlineQueryResultCachedGif {
 pub:
     // type Type of the result, must be gif
-    type_ string
+    @type string
     // id Unique identifier for this result, 1-64 bytes
     id string
     // gif_file_id A valid file identifier for the GIF file
@@ -1834,7 +1834,7 @@ pub:
 pub struct InlineQueryResultCachedMpeg4Gif {
 pub:
     // type Type of the result, must be mpeg4_gif
-    type_ string
+    @type string
     // id Unique identifier for this result, 1-64 bytes
     id string
     // mpeg4_file_id A valid file identifier for the MPEG4 file
@@ -1857,7 +1857,7 @@ pub:
 pub struct InlineQueryResultCachedSticker {
 pub:
     // type Type of the result, must be sticker
-    type_ string
+    @type string
     // id Unique identifier for this result, 1-64 bytes
     id string
     // sticker_file_id A valid file identifier of the sticker
@@ -1872,7 +1872,7 @@ pub:
 pub struct InlineQueryResultCachedDocument {
 pub:
     // type Type of the result, must be document
-    type_ string
+    @type string
     // id Unique identifier for this result, 1-64 bytes
     id string
     // title Title for the result
@@ -1897,7 +1897,7 @@ pub:
 pub struct InlineQueryResultCachedVideo {
 pub:
     // type Type of the result, must be video
-    type_ string
+    @type string
     // id Unique identifier for this result, 1-64 bytes
     id string
     // video_file_id A valid file identifier for the video file
@@ -1922,7 +1922,7 @@ pub:
 pub struct InlineQueryResultCachedVoice {
 pub:
     // type Type of the result, must be voice
-    type_ string
+    @type string
     // id Unique identifier for this result, 1-64 bytes
     id string
     // voice_file_id A valid file identifier for the voice message
@@ -1945,7 +1945,7 @@ pub:
 pub struct InlineQueryResultCachedAudio {
 pub:
     // type Type of the result, must be audio
-    type_ string
+    @type string
     // id Unique identifier for this result, 1-64 bytes
     id string
     // audio_file_id A valid file identifier for the audio file
@@ -2235,7 +2235,7 @@ pub:
 pub struct EncryptedPassportElement {
 pub:
     // type Element type. One of “personal_details”, “passport”, “driver_license”, “identity_card”, “internal_passport”, “address”, “utility_bill”, “bank_statement”, “rental_agreement”, “passport_registration”, “temporary_registration”, “phone_number”, “email”.
-    type_ string
+    @type string
     // data Optional. Base64-encoded encrypted Telegram Passport element data provided by the user, available for “personal_details”, “passport”, “driver_license”, “identity_card”, “internal_passport” and “address” types. Can be decrypted and verified using the accompanying EncryptedCredentials.
     data string
     // phone_number Optional. User's verified phone number, available only for “phone_number” type
@@ -2273,7 +2273,7 @@ pub:
     // source Error source, must be data
     source string
     // type The section of the user's Telegram Passport which has the error, one of “personal_details”, “passport”, “driver_license”, “identity_card”, “internal_passport”, “address”
-    type_ string
+    @type string
     // field_name Name of the data field which has the error
     field_name string
     // data_hash Base64-encoded data hash
@@ -2288,7 +2288,7 @@ pub:
     // source Error source, must be front_side
     source string
     // type The section of the user's Telegram Passport which has the issue, one of “passport”, “driver_license”, “identity_card”, “internal_passport”
-    type_ string
+    @type string
     // file_hash Base64-encoded hash of the file with the front side of the document
     file_hash string
     // message Error message
@@ -2301,7 +2301,7 @@ pub:
     // source Error source, must be reverse_side
     source string
     // type The section of the user's Telegram Passport which has the issue, one of “driver_license”, “identity_card”
-    type_ string
+    @type string
     // file_hash Base64-encoded hash of the file with the reverse side of the document
     file_hash string
     // message Error message
@@ -2314,7 +2314,7 @@ pub:
     // source Error source, must be selfie
     source string
     // type The section of the user's Telegram Passport which has the issue, one of “passport”, “driver_license”, “identity_card”, “internal_passport”
-    type_ string
+    @type string
     // file_hash Base64-encoded hash of the file with the selfie
     file_hash string
     // message Error message
@@ -2327,7 +2327,7 @@ pub:
     // source Error source, must be file
     source string
     // type The section of the user's Telegram Passport which has the issue, one of “utility_bill”, “bank_statement”, “rental_agreement”, “passport_registration”, “temporary_registration”
-    type_ string
+    @type string
     // file_hash Base64-encoded file hash
     file_hash string
     // message Error message
@@ -2340,7 +2340,7 @@ pub:
     // source Error source, must be files
     source string
     // type The section of the user's Telegram Passport which has the issue, one of “utility_bill”, “bank_statement”, “rental_agreement”, “passport_registration”, “temporary_registration”
-    type_ string
+    @type string
     // file_hashes List of base64-encoded file hashes
     file_hashes []string
     // message Error message
@@ -2353,7 +2353,7 @@ pub:
     // source Error source, must be translation_file
     source string
     // type Type of element of the user's Telegram Passport which has the issue, one of “passport”, “driver_license”, “identity_card”, “internal_passport”, “utility_bill”, “bank_statement”, “rental_agreement”, “passport_registration”, “temporary_registration”
-    type_ string
+    @type string
     // file_hash Base64-encoded file hash
     file_hash string
     // message Error message
@@ -2366,7 +2366,7 @@ pub:
     // source Error source, must be translation_files
     source string
     // type Type of element of the user's Telegram Passport which has the issue, one of “passport”, “driver_license”, “identity_card”, “internal_passport”, “utility_bill”, “bank_statement”, “rental_agreement”, “passport_registration”, “temporary_registration”
-    type_ string
+    @type string
     // file_hashes List of base64-encoded file hashes
     file_hashes []string
     // message Error message
@@ -2379,7 +2379,7 @@ pub:
     // source Error source, must be unspecified
     source string
     // type Type of element of the user's Telegram Passport which has the issue
-    type_ string
+    @type string
     // element_hash Base64-encoded element hash
     element_hash string
     // message Error message

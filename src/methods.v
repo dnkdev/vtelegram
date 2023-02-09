@@ -16,7 +16,7 @@ fn return_bool(response string) bool{
 	}
 }
 fn return_data[T](response string) !T{
-	resp := json.decode(T, response)! 
+	resp := json.decode(T, response)!
 	return resp
 }
 
@@ -30,7 +30,7 @@ pub struct GetUpdates {
     timeout int
     // allowed_updates A JSON-serialized list of the update types you want your bot to receive. For example, specify [“message”, “edited_channel_post”, “callback_query”] to only receive updates of these types. See Update for a complete list of available update types. Specify an empty list to receive all update types except chat_member (default). If not specified, the previous setting will be used.
     // Please note that this parameter doesn't affect updates created before the call to the getUpdates, so unwanted updates may be received for a short period of time.
-    allowed_updates []string = ['message', 'edited_channel_post', 'callback_query'] 
+    allowed_updates []string = ['message', 'edited_channel_post', 'callback_query']
 }
 // getupdates - getUpdates
 // Use this method to receive incoming updates using long polling (wiki). Returns an Array of Update objects.
@@ -876,9 +876,9 @@ pub struct RestrictChatMember {
     user_id int
     // permissions A JSON-serialized object for new user permissions
     permissions ChatPermissions
-	// use_independent_chat_permissions Optional Pass True if chat permissions are set independently. 
+	// use_independent_chat_permissions Optional Pass True if chat permissions are set independently.
 	// Otherwise, the can_send_other_messages and can_add_web_page_previews permissions will imply the can_send_messages, can_send_audios, can_send_documents, can_send_photos, can_send_videos, can_send_video_notes, and can_send_voice_notes permissions; the can_send_polls permission will imply the can_send_messages permission.
-	use_independent_chat_permissions bool 
+	use_independent_chat_permissions bool
     // until_date Date when restrictions will be lifted for the user, unix time. If user is restricted for more than 366 days or less than 30 seconds from the current time, they are considered to be restricted forever
     until_date int
 }
@@ -982,9 +982,9 @@ pub struct SetChatPermissions {
     chat_id i64
     // permissions A JSON-serialized object for new default chat permissions
     permissions ChatPermissions
-	// use_independent_chat_permissions Optional Pass True if chat permissions are set independently. 
+	// use_independent_chat_permissions Optional Pass True if chat permissions are set independently.
 	// Otherwise, the can_send_other_messages and can_add_web_page_previews permissions will imply the can_send_messages, can_send_audios, can_send_documents, can_send_photos, can_send_videos, can_send_video_notes, and can_send_voice_notes permissions; the can_send_polls permission will imply the can_send_messages permission.
-	use_independent_chat_permissions bool 
+	use_independent_chat_permissions bool
 }
 // setchatpermissions - setChatPermissions
 // Use this method to set default chat permissions for all members. The bot must be an administrator in the group or a supergroup for this to work and must have the can_restrict_members administrator rights. Returns True on success.
@@ -1503,7 +1503,7 @@ pub fn (b Bot) answercallbackquery(params AnswerCallbackQuery) !bool {
 [params]
 pub struct SetMyCommands {
     // commands A JSON-serialized list of bot commands to be set as the list of the bot's commands. At most 100 commands can be specified.
-    commands []string
+    commands []BotCommand
     // scope A JSON-serialized object, describing scope of users for which the commands are relevant. Defaults to BotCommandScopeDefault.
     scope BotCommandScope
     // language_code A two-letter ISO 639-1 language code. If empty, commands will be applied to all users from the given scope, for whose language there are no dedicated commands
