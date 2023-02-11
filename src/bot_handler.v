@@ -1,17 +1,22 @@
 module vtelegram
 
 import time
+import log
 
 pub struct Bot{
 	token string
 pub mut:
-	offset int = 1
+	offset int
+	log log.Log
 }
 
 [params]
 pub struct BotPollParams{
 	GetUpdates
-	delay_time int = 500
+	// delay_time Time in milliseconds between getting updates
+	delay_time int = 1000
+	// dry_start If true then only last update will be processed (not which are received when bot was off earlier)
+	dry_start bool
 }
 
 // Result struct is passed to all handlers, so it must be a parameter on receive function
@@ -73,7 +78,7 @@ pub fn call_time_event[T](app T, mname string){
 		}
 	}
 }
-fn time_event[T](app T){
+fn time_event[T](mut bot T){
 	for{
 		$for method in T.methods{
 			for attr in method.attrs{
@@ -87,7 +92,7 @@ fn time_event[T](app T){
 								iter = v.int()
 							}
 						}
-						app.$method()
+						bot.$method()
 					}
 					time.sleep(iter*time.millisecond)
 				}
@@ -95,26 +100,33 @@ fn time_event[T](app T){
 		}
 	}
 }
-fn bot_poll[T](app T, params BotPollParams){
-	mut last_offset := 0
+fn bot_poll[T](mut bot T, params BotPollParams){
 	for {
-		updates := app.getupdates(offset: last_offset, limit: params.limit, timeout:params.timeout, allowed_updates:params.allowed_updates)or{
-			eprintln('Updates  not accepted\n$err')
+		updates := bot.getupdates(
+			offset: bot.offset, 
+			limit: params.limit, 
+			timeout:params.timeout, 
+			allowed_updates:params.allowed_updates
+		) or {
 			[]Update{}
 		}
+		bot.log.debug('Received ${updates.len} updates')
 		for u in updates{
-			spawn handle_update(app,u)
-			last_offset = u.update_id + 1
+			spawn handle_update(bot,u)
+			bot.offset = u.update_id + 1
 		}
 		time.sleep(params.delay_time * time.millisecond)
 	}
 }
 
-pub fn poll[T](app T, params BotPollParams)!{
+pub fn poll[T](mut bot T, params BotPollParams)!{
 	println('Starting bot...')
+	if params.dry_start {
+		bot.offset = -1
+	}
 	mut threads := []thread{}
-	threads << spawn time_event(app)
-	threads << spawn bot_poll(app,params)
+	threads << spawn time_event(mut bot)
+	threads << spawn bot_poll(mut bot,params)
 	threads.wait()
 }
 

@@ -722,6 +722,7 @@ pub:
     // web_app Optional. If specified, the described Web App will be launched when the button is pressed. The Web App will be able to send a “web_app_data” service message. Available in private chats only.
     //web_app WebAppInfo
 }
+// KeyboardButtonExt extends KeyboardButton and includes all other parameters
 pub struct KeyboardButtonExt{
 pub:
     // text Text of the button. If none of the optional fields are used, it will be sent as a message when the button is pressed
