@@ -16,7 +16,7 @@ Already could be used at this moment.
 - [ ] channel_post handling
 - [ ] All event handling
 - [ ] Middlewares
-- [ ] Logging
+- [x] Logging
 - [ ] more
 
 ## Install

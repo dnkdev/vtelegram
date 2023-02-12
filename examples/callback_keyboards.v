@@ -6,17 +6,17 @@ struct App {
 	Bot
 }
 [callback_query] // Handle all callbacks
-fn (app App) all_callbacks(	result Result )!{
+fn (mut app App) all_callbacks(	result Result )!{
 	app.sendmessage(chat_id: result.query.from.id, text: 'You pressed: $result.query.data')!
 }
 
 [callback_query: 'totally']
-fn (app App) keyboard_callback(	result Result )!{ 
+fn (mut app App) keyboard_callback(	result Result )!{ 
 	app.sendmessage(chat_id: result.query.from.id, text: 'Wow, you are great.')!
 }
 
 ['/start']
-fn (app App) start(result Result)!{
+fn (mut app App) start(result Result)!{
 	mut buttons := [][]InlineKeyboardButton{}
 	buttons << [
 		InlineKeyboardButton{text:"Yes", callback_data: "yes"}, 
@@ -32,8 +32,8 @@ fn (app App) start(result Result)!{
 }
 
 fn main(){
-	app := App{
+	mut app := App{
 		Bot{token: '5401623750:AAFWXZWx8V-SZIDQUI62AT7agCMs55aLIdU'}
 	}
-	poll(app)!
+	poll(mut app)
 }
