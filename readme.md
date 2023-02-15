@@ -8,12 +8,7 @@ It has Telegram Bot API 6.5 models.
 
 ## Roadmap
 
-- [x] Message handling through attributes
-- [x] callback_query handling ( through attributes )
-- [ ] edited_message handling
-- [ ] Sticker handling
-- [ ] channel_post handling
-- [ ] All event handling
+- [x] All updates handling through attributes
 - [ ] Middlewares
 - [x] Logging
 - [ ] more

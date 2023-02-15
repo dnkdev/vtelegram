@@ -1536,6 +1536,10 @@ pub fn (mut b Bot) deletemycommands(params DeleteMyCommands) !bool {
 
 [params]
 pub struct GetMyCommands {
+	//scope Optional	A JSON-serialized object, describing scope of users. Defaults to BotCommandScopeDefault.
+	scope BotCommandScope
+	// language_code Optional	A two-letter ISO 639-1 language code or an empty string
+	language_code string
 }
 // getmycommands - getMyCommands
 // Use this method to get the current list of the bot's commands for the given scope and user language. Returns an Array of BotCommand objects. If commands aren't set, an empty list is returned.

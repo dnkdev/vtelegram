@@ -1,11 +1,8 @@
 module vtelegram
 
-type ReplyMarkup = InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply
-type Media = InputMediaAudio | InputMediaDocument | InputMediaPhoto | InputMediaVideo
-
 // Update This object represents an incoming update. At most one of the optional parameters can be present in any given update.
 pub struct Update {
-pub:
+pub mut:
     // update_id The update's unique identifier. Update identifiers start from a certain positive number and increase sequentially. This ID becomes especially handy if you're using webhooks, since it allows you to ignore repeated updates or to restore the correct update sequence, should they get out of order. If there are no new updates for at least a week, then identifier of the next update will be chosen randomly instead of sequentially.
     update_id int
     // message Optional. New incoming message of any kind - text, photo, sticker, etc.
@@ -1033,6 +1030,122 @@ pub:
     until_date int
 
 }
+
+// ChatMember - combined structs of all member roles, so that the V's json package can decode it
+// can be handled by 'status' value 
+// This object contains information about one member of a chat. Currently, the following 6 types of chat members are supported:
+// ChatMemberOwner
+// ChatMemberAdministrator
+// ChatMemberMember
+// ChatMemberRestricted
+// ChatMemberLeft
+// ChatMemberBanned
+// https://core.telegram.org/bots/api#chatmember
+struct ChatMember {
+	//ChatMemberOwner
+    // status The member's status in the chat, always “creator”
+    status string
+    // user Information about the user
+    user User
+    // is_anonymous True, if the user's presence in the chat is hidden
+    is_anonymous bool
+    // custom_title Optional. Custom title for this user
+    custom_title string
+
+	//ChatMemberAdministrator
+    // status The member's status in the chat, always “administrator”
+    //status string
+    // user Information about the user
+    //user User
+    // can_be_edited True, if the bot is allowed to edit administrator privileges of that user
+    can_be_edited bool
+    // is_anonymous True, if the user's presence in the chat is hidden
+    //is_anonymous bool
+    // can_manage_chat True, if the administrator can access the chat event log, chat statistics, message statistics in channels, see channel members, see anonymous administrators in supergroups and ignore slow mode. Implied by any other administrator privilege
+    can_manage_chat bool
+    // can_delete_messages True, if the administrator can delete messages of other users
+    can_delete_messages bool
+    // can_manage_video_chats True, if the administrator can manage video chats
+    can_manage_video_chats bool
+    // can_restrict_members True, if the administrator can restrict, ban or unban chat members
+    can_restrict_members bool
+    // can_promote_members True, if the administrator can add new administrators with a subset of their own privileges or demote administrators that he has promoted, directly or indirectly (promoted by administrators that were appointed by the user)
+    can_promote_members bool
+    // can_change_info True, if the user is allowed to change the chat title, photo and other settings
+    can_change_info bool
+    // can_invite_users True, if the user is allowed to invite new users to the chat
+    can_invite_users bool
+    // can_post_messages Optional. True, if the administrator can post in the channel; channels only
+    can_post_messages bool
+    // can_edit_messages Optional. True, if the administrator can edit messages of other users and can pin messages; channels only
+    can_edit_messages bool
+    // can_pin_messages Optional. True, if the user is allowed to pin messages; groups and supergroups only
+    can_pin_messages bool
+    // can_manage_topics Optional. True, if the user is allowed to create, rename, close, and reopen forum topics; supergroups only
+    can_manage_topics bool
+    // custom_title Optional. Custom title for this user
+    //custom_title string
+
+	//ChatMemberMember
+    // status The member's status in the chat, always “member”
+   	// status string
+    // user Information about the user
+    //user User
+
+	//ChatMemberRestricted
+    // status The member's status in the chat, always “restricted”
+   	// status string
+    // user Information about the user
+    //user User
+    // is_member True, if the user is a member of the chat at the moment of the request
+    is_member bool
+    // can_change_info True, if the user is allowed to change the chat title, photo and other settings
+    //can_change_info bool
+    // can_invite_users True, if the user is allowed to invite new users to the chat
+    //can_invite_users bool
+    // can_pin_messages True, if the user is allowed to pin messages
+    //can_pin_messages bool
+    // can_manage_topics True, if the user is allowed to create forum topics
+    //can_manage_topics bool
+    // can_send_messages True, if the user is allowed to send text messages, contacts, locations and venues
+    can_send_messages bool
+	// can_send_audios	True, if the user is allowed to send audios
+	can_send_audios	bool
+	// can_send_documents	True, if the user is allowed to send documents
+	can_send_documents	bool
+	// can_send_photos	True, if the user is allowed to send photos
+	can_send_photos	bool
+	// can_send_videos	True, if the user is allowed to send videos
+	can_send_videos	bool
+	// can_send_video_notes	True, if the user is allowed to send video notes
+	can_send_video_notes bool
+	// can_send_voice_notes	True, if the user is allowed to send voice notes
+	can_send_voice_notes bool
+    // can_send_polls True, if the user is allowed to send polls
+    can_send_polls bool
+    // can_send_other_messages True, if the user is allowed to send animations, games, stickers and use inline bots
+    can_send_other_messages bool
+    // can_add_web_page_previews True, if the user is allowed to add web page previews to their messages
+    can_add_web_page_previews bool
+    // until_date Date when restrictions will be lifted for this user; unix time. If 0, then the user is restricted forever
+    //until_date int
+
+	//ChatMemberLeft
+    // status The member's status in the chat, always “left”
+    //status string
+    // user Information about the user
+    //user User
+
+	//ChatMemberBanned 
+    // status The member's status in the chat, always “kicked”
+   	// status string
+    // user Information about the user
+    //user User
+    // until_date Date when restrictions will be lifted for this user; unix time. If 0, then the user is banned forever
+    until_date int
+
+}
+
 // ChatMemberUpdated This object represents changes in the status of a chat member.
 pub struct ChatMemberUpdated {
 pub:
@@ -2516,9 +2629,12 @@ pub struct ChatShared {
 	chat_id	i64	
 }
 
-type ChatMember = ChatMemberOwner | ChatMemberAdministrator | ChatMemberMember | ChatMemberRestricted | ChatMemberLeft | ChatMemberBanned 
+//type ChatMember = ChatMemberOwner | ChatMemberAdministrator | ChatMemberMember | ChatMemberRestricted | ChatMemberLeft | ChatMemberBanned 
+
 type BotCommandScope = BotCommandScopeDefault | BotCommandScopeAllPrivateChats | BotCommandScopeAllGroupChats | BotCommandScopeAllChatAdministrators | BotCommandScopeChat | BotCommandScopeChatAdministrators | BotCommandScopeChatMember 
 type MenuButton = MenuButtonCommands | MenuButtonWebApp | MenuButtonDefault 
 type InlineQueryResult = InlineQueryResultCachedAudio | InlineQueryResultCachedDocument | InlineQueryResultCachedGif | InlineQueryResultCachedMpeg4Gif | InlineQueryResultCachedPhoto | InlineQueryResultCachedSticker | InlineQueryResultCachedVideo | InlineQueryResultCachedVoice | InlineQueryResultArticle | InlineQueryResultAudio | InlineQueryResultContact | InlineQueryResultGame | InlineQueryResultDocument | InlineQueryResultGif | InlineQueryResultLocation | InlineQueryResultMpeg4Gif | InlineQueryResultPhoto | InlineQueryResultVenue | InlineQueryResultVideo | InlineQueryResultVoice 
 type InputMessageContent = InputTextMessageContent | InputLocationMessageContent | InputVenueMessageContent | InputContactMessageContent | InputInvoiceMessageContent 
 type PassportElementError = PassportElementErrorDataField | PassportElementErrorFrontSide | PassportElementErrorReverseSide | PassportElementErrorSelfie | PassportElementErrorFile | PassportElementErrorFiles | PassportElementErrorTranslationFile | PassportElementErrorTranslationFiles | PassportElementErrorUnspecified 
+type ReplyMarkup = InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply
+type Media = InputMediaAudio | InputMediaDocument | InputMediaPhoto | InputMediaVideo
