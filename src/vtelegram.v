@@ -42,10 +42,11 @@ pub fn (mut b Bot) http_request(api_method string, _data string) !string {
 	} else {
 		response_body := json.decode(ResponseNotOK, response.body) or {
 			b.log.error('http_request $err')
-			return ''
+			return error('http_request $err')
 		}
-		println('Error on ${api_method} ${time.now().str()}: Error Code: ${response_body.error_code}\nDescription: ${response_body.description}')
-		println('Data: ${_data}')
+		b.log.error('Error on ${api_method} ${time.now().str()}: Error Code: ${response_body.error_code}\nDescription: ${response_body.description}')
+		b.log.error('Data: ${_data}')
+		return error('Error on ${api_method} ${time.now().str()}: Error Code: ${response_body.error_code}\nDescription: ${response_body.description}')
 	}
 	return response.body
 }

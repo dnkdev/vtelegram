@@ -75,38 +75,11 @@ fn handle_update[T](app T, update Update) {
 	}
 }
 
-pub fn call_time_event[T](app T, mname string) {
-	$for method in T.methods {
-		if method.name == mname {
-			app.$method()
-		}
+pub fn poll[T](mut bot T, params BotPollParams) {
+	println('Starting bot...')
+	if params.dry_start {
+		bot.offset = -1
 	}
-}
-
-fn time_event[T](mut bot T) {
-	for {
-		$for method in T.methods {
-			for attr in method.attrs {
-				if attr.contains('time_event') {
-					mut iter := 60_000
-					mut a := attr.split(':')
-					if a.len >= 2 {
-						for mut v in a {
-							v = v.replace(' ', '')
-							if v.int() != 0 {
-								iter = v.int()
-							}
-						}
-						bot.$method()
-					}
-					time.sleep(iter * time.millisecond)
-				}
-			}
-		}
-	}
-}
-
-fn bot_poll[T](mut bot T, params BotPollParams) {
 	for {
 		updates := bot.getupdates(
 			offset: bot.offset
@@ -121,15 +94,4 @@ fn bot_poll[T](mut bot T, params BotPollParams) {
 		}
 		time.sleep(params.delay_time * time.millisecond)
 	}
-}
-
-pub fn poll[T](mut bot T, params BotPollParams) ! {
-	println('Starting bot...')
-	if params.dry_start {
-		bot.offset = -1
-	}
-	mut threads := []thread{}
-	threads << spawn time_event(mut bot)
-	threads << spawn bot_poll(mut bot, params)
-	threads.wait()
 }
