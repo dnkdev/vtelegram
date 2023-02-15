@@ -1,3 +1,28 @@
+### v 1.5.0
+
+- `start_polling` instead of `poll`
+- `ChatMember` - Structs of all member roles combined, so that the V's json package can decode the updates it receives for `my_chat_member` and `chat_member`. can be handled by 'status' field
+- To handle messages, you need to specify the attribute 'message'
+- All updates handling through attributes
+  Available attributes:
+
+```v
+message
+edited_message
+channel_post
+edited_channel_post
+inline_query
+chosen_inline_result
+callback_query
+shipping_query
+pre_checkout_query
+poll
+poll_answer
+my_chat_member
+chat_member
+chat_join_request
+```
+
 ### v 1.4.0
 
 - `mut` to all bot methods
@@ -12,22 +37,22 @@
 
 ```v
 [callback_query: 'key']
-fn (app App) handle_callbackquery(result Result){
+fn (mut app App) handle_callbackquery(result Result){
     //...
 }
 [starts_with: '/']
-fn (app App) handle_message(result Result) {
+fn (mut app App) handle_message(result Result) {
 
 }
 // to use few parameters or callback_query with starts_with do so:
 ['callback_query: starts_with: key'] // all attribute must be like string
-fn (app App) handle_callbackquery(result Result){
+fn (mut app App) handle_callbackquery(result Result){
     //...
 }
 // and also
 ['callback_query: key']         // Must be string too if attribute not single
 ['callback_query: something']   //
-fn (app App) handle_callbackquery(result Result){
+fn (mut app App) handle_callbackquery(result Result){
     //...
 }
 ```
@@ -41,31 +66,7 @@ fn (app App) handle_callbackquery(result Result){
 - Added `starts_with` filter to `callback` handling mechanism
 - Added `starts_with` filter to message handling mechanism, and text in result is also without that is specified in attribute. Can be > 1 options
 
-```v
-[callback; starts_with; 'key'] // if callback_data == "keysomething" then result.query.data will be only "something" without "key"
-fn (app App) handle_callbackquery(result Result){
-    //...
-}
-[starts_with; '/'; '#'; '$'; 'key'] //
-fn (app App) handle_message(result Result){
-    //... if you enter /start command, then result.message.text == 'start' (without '/')
-}
-```
-
 ### v 0.1.0
 
 - Handling messages with attributes
 - Handling callback_query with attribute
-
-```v
-['/start'] // Must be Bot struct method or nested (in this case App is struct App{Bot})
-fn (app App) handle_callbackquery(result Result){
-    //...
-}
-[callback; 'key'] // handle InlineKeyboardButton press with callback_data == "key" // Must be Bot struct method or nested
-fn (app App) handle_start(result Result){
-    //...
-}
-```
-
-handled functions with attributes must accept Result as parameter
