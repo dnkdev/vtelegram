@@ -8,7 +8,7 @@ struct App {
 
 fn main(){
 	mut app := App{
-		Bot{token: '5401623750:AAFWXZWx8V-SZIDQUI62AT7agCMs55aLIdU'}
+		token: '5401623750:AAFWXZWx8V-SZIDQUI62AT7agCMs55aLIdU'
 	}
 	println('Starting bot...')
 	for {

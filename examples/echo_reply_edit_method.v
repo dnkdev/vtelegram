@@ -8,19 +8,17 @@ struct App {
 	vt.Bot
 }
 
-[message] // handle all messagess
-fn (mut app App) all_messages(result vt.Update)!{
-	message := result.message.reply(app, text: '$result.message.text' )!
-	time.sleep(1000*time.millisecond)
-	message.edit(app, text: 'new text ${rand.int()}')!
+// handle all messagess
+[message]
+fn (mut app App) all_messages(result vt.Update) ! {
+	message := result.message.reply(mut app, text: '${result.message.text}')!
+	time.sleep(1000 * time.millisecond)
+	message.edit(mut app, text: 'new text ${rand.int()}')!
 }
 
-
-fn main(){
-	app := App{
-		vt.Bot{
-			token: '5401623750:AAFWXZWx8V-SZIDQUI62AT7agCMs55aLIdU'
-		}
+fn main() {
+	mut app := App{
+		token: '5401623750:AAFWXZWx8V-SZIDQUI62AT7agCMs55aLIdU'
 	}
-	vt.start_polling(app)! //starting the bot
+	vt.start_polling(mut app) // starting the bot
 }
