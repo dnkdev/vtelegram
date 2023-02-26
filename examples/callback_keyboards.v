@@ -1,6 +1,6 @@
 module main
 
-import vtelegram { Bot, InlineKeyboardButton, InlineKeyboardMarkup, Update, start_polling }
+import vtelegram { Bot, InlineKeyboardButton, InlineKeyboardMarkup, Update, start_polling, PollingConfig, Regular }
 
 struct App {
 	Bot
@@ -51,5 +51,6 @@ fn main() {
 	mut app := App{
 		token: '5401623750:AAFWXZWx8V-SZIDQUI62AT7agCMs55aLIdU'
 	}
-	start_polling(mut app)
+	polling_config := PollingConfig[Regular]{}
+	start_polling(mut app,polling_config)
 }

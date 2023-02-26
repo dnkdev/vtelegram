@@ -20,5 +20,6 @@ fn main() {
 	mut app := App{
 		token: '5401623750:AAFWXZWx8V-SZIDQUI62AT7agCMs55aLIdU'
 	}
-	vt.start_polling(mut app) // starting the bot
+	polling_config := vtelegram.PollingConfig[vtelegram.Regular]{}
+	vt.start_polling(mut app,polling_config) // starting the bot
 }

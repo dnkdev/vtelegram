@@ -2,7 +2,7 @@ module vtelegram
 
 // delete message
 pub fn (message Message) delete[T](mut bot T) !bool {
-	r_delete := bot.deletemessage(chat_id: message.chat.id, message_id: message.message_id)!
+	r_delete := bot.delete_message(chat_id: message.chat.id, message_id: message.message_id)!
 	return r_delete
 }
 
@@ -12,7 +12,7 @@ pub fn (message Message) reply[T](mut bot T, params SendMessage) !Message {
 	mut newparams := params
 	newparams.chat_id = message.chat.id
 	newparams.reply_to_message_id = message.message_id
-	r_message := bot.sendmessage(newparams)!
+	r_message := bot.send_message(newparams)!
 	return r_message
 }
 
@@ -25,6 +25,6 @@ pub fn (message Message) edit[T](mut bot T, params EditMessageText) !Message {
 	if params.message_id == 0 && params.inline_message_id == '' {
 		newparams.message_id = message.message_id
 	}
-	r_message := bot.editmessagetext(newparams)!
+	r_message := bot.edit_message_text(newparams)!
 	return r_message
 }
