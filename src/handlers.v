@@ -21,7 +21,6 @@ const (
 fn is_handler_pass_filters(update Update, attrs []string) bool {
 	mut subs := map[string][]string
 	for attr in attrs {
-		println('attr $attr')
 		a := attr.split(':') // [message: starts_with: value]
 		if a.len < 2 {
 			//passing = false
@@ -57,7 +56,6 @@ fn is_method_relate_to_type(update Update, attrs []string) bool {
 }
 
 fn process_handler(update Update, subs map[string][]string) bool {
-	println('   subs ${subs}')
 	for key, values in subs {
 		for value_ in values {
 			value := value_.trim_space()
@@ -203,7 +201,6 @@ fn process_handler(update Update, subs map[string][]string) bool {
 }
 
 fn validate_handler_type(update Update, key string) bool {
-	// println('checking $key ${update.callback_query.data}')
 	match key {
 		'message' {
 			if update.message.message_id != 0{

@@ -10,7 +10,6 @@ pub struct Bot {
 pub mut:
 	offset      int
 	log         log.Log
-	//middleware  Middleware
 }
 
 pub struct ResponseOK {
@@ -71,11 +70,11 @@ pub struct PollingConfig[T] {
 
 pub struct Regular {}
 
-pub fn start_polling[T, R](mut bot T, argument_arr ...R) {
+pub fn start_polling[T, R](mut bot T, argument_arr R) {
 	println('Starting bot...')
 	bot.log.info('Starting bot...')
 	bot.log.flush()
-	args := argument_arr[0]
+	args := argument_arr
 	mut middleware := args.middleware_
 	for {
 		updates := bot.get_updates(
@@ -91,7 +90,6 @@ pub fn start_polling[T, R](mut bot T, argument_arr ...R) {
 			spawn handle_update(bot, mut &middleware, u)
 			bot.offset = u.update_id + 1
 		}
-		free_middleware_data(&middleware)
 		bot.log.flush()
 		time.sleep(args.delay_time * time.millisecond)
 	}

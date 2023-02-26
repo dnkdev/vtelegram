@@ -7,15 +7,16 @@ polling_config := vtelegram.PollingConfig[vtelegram.Regular]{}
 vtelegram.start_polling(mut app, polling_config)
 ```
 
-- Middlewares. <br>
+- Middlewares and Context Filters. <br>
   Simple middleware example:
 
 ```v
 struct MyMiddleware{} //initialize struct for handling middlewares
+
 struct App{
     vtelegram.Bot
 }
-[message]
+[message] // specifies which middleware type is
 fn (mw MyMidleware) my_message_middleware(mut update Update) bool{
     if update.message.from.id == 12345678{ // prevent update process from user with id 12345678
         return false
