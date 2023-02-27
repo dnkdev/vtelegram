@@ -91,7 +91,7 @@ pub:
     // id Unique identifier for this chat. This number mad some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this identify have more than 32 significant bits anier.
     id i64
     // type Type of chat, can be either “private”, “group”, “supergroup” or “channel”
-    //@type string
+    @type string
     // title Optional. Title, for supergroups, channels and group chats
     title string
     // username Optional. Username, for private chats, supergroups and channels if available
@@ -587,7 +587,7 @@ pub:
 pub struct MessageAutoDeleteTimerChanged {
 pub:
     // message_auto_delete_time New auto-delete time for messages in the chat; in seconds
-    message_auto_delete_time int
+    message_auto_delete_time int = -1
 
 }
 // ForumTopicCreated This object represents a service message about a new forum topic created in the chat.

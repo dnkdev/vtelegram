@@ -1,3 +1,44 @@
+## v 1.6.0
+
+- `start_polling` must include PollingConfig as second argument. `PollingConfig` is generic type structure, for passing your middleware struct or marking it as `Regular` (for skip middleware). In the PollingConfig you can specify same parameters as for getUpdates and polling config (delay_time)
+
+```v
+polling_config := vtelegram.PollingConfig[vtelegram.Regular]{}
+vtelegram.start_polling(mut app, polling_config)
+```
+
+- Middlewares and Context Filters. <br>
+
+  - `pub fn delete_middleware_data[T](mut middleware &T, key string)`
+  - `pub fn clear_middleware_data[T](mut middleware &T)`
+  - `pub fn get_middleware_data[T](middleware &T) map[string]string`
+
+  Simple middleware example:
+
+```v
+struct MyMiddleware{} //initialize struct for handling middlewares
+
+struct App{
+    vtelegram.Bot
+}
+[message] // specifies which middleware type is
+fn (mw MyMidleware) my_message_middleware(mut update Update) bool{
+    if update.message.from.id == 12345678{ // prevent update process from user with id 12345678
+        return false
+    }
+    return true
+}
+fn main(){
+    mut app := App{
+        token: 'BOT_TOKEN'
+    }
+
+    //passing middleware struct to PollingConfig for handling middleware methods
+    polling_config := vtelegram.PollingConfig[MyMiddleware]{}
+    vtelegram.start_polling(mut app, polling_config)
+}
+```
+
 ### v 1.5.0
 
 - `start_polling` instead of `poll`
@@ -28,7 +69,6 @@ chat_join_request
 - `mut` to all bot methods
 - Deleted `time_event`
 - `log` instance to Bot struct, which includes bot debugging
-- `dry_start` parameter to bot.poll() method ( on bot start will process only the last update when bot was off )
 
 ### v 1.3.1
 
@@ -64,7 +104,7 @@ fn (mut app App) handle_callbackquery(result Result){
 ### v 0.1.1
 
 - Added `starts_with` filter to `callback` handling mechanism
-- Added `starts_with` filter to message handling mechanism, and text in result is also without that is specified in attribute. Can be > 1 options
+- Added `starts_with` filter to message handling mechanism, Can be > 1 options
 
 ### v 0.1.0
 

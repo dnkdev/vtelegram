@@ -5,6 +5,13 @@ import net.http
 import time
 import log 
 
+pub struct Bot {
+	token string
+pub mut:
+	offset      int
+	log         log.Log
+}
+
 pub struct ResponseOK {
 pub:
 	ok          bool
@@ -19,12 +26,12 @@ pub:
 	description string
 }
 
-const (
+pub const (
 	endpoint = 'https://api.telegram.org/bot'
 )
 
 pub fn (mut b Bot) http_request(api_method string, _data string) !string {
-	b.log.debug('${api_method} ${_data} ${vtelegram.endpoint}${b.token}/${api_method}')
+	b.log.debug('${api_method} ${_data}')
 	if _data == '' {
 		return ''
 	}
@@ -33,6 +40,7 @@ pub fn (mut b Bot) http_request(api_method string, _data string) !string {
 		time.sleep(2000 * time.millisecond)
 		return ''
 	}
+	b.log.debug('Response: ${response.body}')
 	if response.status_code == 200 {
 		response_body := json.decode(ResponseOK, response.body) or {
 			b.log.error('http_request $err')
@@ -42,11 +50,46 @@ pub fn (mut b Bot) http_request(api_method string, _data string) !string {
 	} else {
 		response_body := json.decode(ResponseNotOK, response.body) or {
 			b.log.error('http_request $err')
+			b.log.flush()
 			return error('http_request $err')
 		}
-		b.log.error('Error on ${api_method} ${time.now().str()}: Error Code: ${response_body.error_code}\nDescription: ${response_body.description}')
-		b.log.error('Data: ${_data}')
-		return error('Error on ${api_method} ${time.now().str()}: Error Code: ${response_body.error_code}\nDescription: ${response_body.description}')
+		b.log.error('${api_method} response: Error Code: ${response_body.error_code} Description: ${response_body.description}')
+		b.log.error('${api_method} Data: ${_data}')
+		b.log.flush()
+		return error('${api_method} response: Error Code: ${response_body.error_code} Description: ${response_body.description}')
 	}
 	return response.body
+}
+
+[params]
+pub struct PollingConfig[T] {
+	GetUpdates // delay_time Time in milliseconds between getting updates
+	delay_time  int = 1000
+	middleware_ T
+}
+
+pub struct Regular {}
+
+pub fn start_polling[T, R](mut bot T, args R) {
+	println('Starting bot...')
+	bot.log.info('Starting bot...')
+	bot.log.flush()
+	mut middleware := args.middleware_
+	for {
+		updates := bot.get_updates(
+			offset: bot.offset
+			limit: args.limit
+			timeout: args.timeout
+			allowed_updates: args.allowed_updates
+		) or { []Update{} }
+		if updates.len > 0 {
+			bot.log.debug('Received ${updates.len} updates')
+		}
+		for u in updates {
+			spawn handle_update(bot, mut &middleware, u)
+			bot.offset = u.update_id + 1
+		}
+		bot.log.flush()
+		time.sleep(args.delay_time * time.millisecond)
+	}
 }
