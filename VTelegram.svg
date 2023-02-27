@@ -7,6 +7,9 @@
    id="svg242"
    sodipodi:docname="VTelegram.svg"
    inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   inkscape:export-filename="New Folder/VTelegram.png"
+   inkscape:export-xdpi="40"
+   inkscape:export-ydpi="40"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -23,9 +26,9 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#505050"
      showgrid="false"
-     inkscape:zoom="1"
-     inkscape:cx="111"
-     inkscape:cy="179"
+     inkscape:zoom="0.70710678"
+     inkscape:cx="-67.882251"
+     inkscape:cy="-18.384776"
      inkscape:window-width="1322"
      inkscape:window-height="739"
      inkscape:window-x="0"
@@ -40,10 +43,6 @@
        d="M 20,20 180,340 340,20 Z m 0,0"
        id="path141" />
     <path
-       style="display:inline;fill:none;stroke:#195eb3;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-opacity:1"
-       d="M 20,20 H 340"
-       id="path153" />
-    <path
        style="display:inline;fill:none;stroke:#ffffff;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-opacity:1"
        d="M 180,340 340,20"
        id="path177" />
@@ -52,7 +51,7 @@
        d="M 20,20 180,340"
        id="path209" />
     <path
-       style="display:inline;fill:none;stroke:#ffffff;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-opacity:1"
+       style="display:inline;fill:#ffffff;stroke:#ffffff;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-opacity:1;fill-opacity:1"
        d="M 20,20 H 340"
        id="path211" />
     <path
@@ -90,4 +89,8 @@
      style="fill:#ffffff;fill-rule:evenodd"
      d="M 20.85965,20.417708 179.60512,258.80108 338.88092,20.506097 180.66578,60.45763 Z"
      id="path1918" />
+  <path
+     style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke-width:0.0883883"
+     d="m 124.4066,19.975767 v -2.474874 h 52.59107 52.59106 v 2.474874 2.474873 H 176.99767 124.4066 Z"
+     id="path8328" />
 </svg>
