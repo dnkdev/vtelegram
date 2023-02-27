@@ -1,4 +1,8 @@
-## v 1.6.0
+## v 1.6.1
+
+- `sender_group` `sender_channel` `sender_user` `sender_bot` context filters for `message` type updates
+
+### v 1.6.0
 
 - `start_polling` must include PollingConfig as second argument. `PollingConfig` is generic type structure, for passing your middleware struct or marking it as `Regular` (for skip middleware). In the PollingConfig you can specify same parameters as for getUpdates and polling config (delay_time)
 

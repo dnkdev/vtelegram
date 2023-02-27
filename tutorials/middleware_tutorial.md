@@ -65,7 +65,7 @@ To define to which type of handlers middleware apply, set attribute on top of yo
 Middleware can be extended with [context filters](https://github.com/dnkdev/vtelegram/blob/master/tutorials/context_filters.md), which will expand the context of handled updates.<br>
 To pass data to handlers from your middleware, you need set `data` field to your middleware struct, which have `map[string]string` type.
 
-> Note! That you need to clear the data from middleware manually, otherwise data will be saved
+> **Note** That you need to clear the data from middleware manually, otherwise data will be saved
 
 ```v
 import vtelegram
