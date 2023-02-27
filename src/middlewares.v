@@ -1,21 +1,20 @@
 module vtelegram
 
 // get_middleware_data == middleware.data
+// Generic type function, to pass your middleware in function argument
+// get_middleware_data(your_middleware)
 pub fn get_middleware_data[T](middleware &T) map[string]string {
-	$for field in T.fields{
-		if field.name == 'data'{
-			return middleware.data
-		}
-	}
-	return map[string]string{}
+	return middleware.data
 }
 
 // delete_middleware_data delete one key from data
+// delete_middleware_data(your_middleware, 'key')
 pub fn delete_middleware_data[T](mut middleware &T, key string){
 	middleware.data.delete(key)
 }
 
-// free_middleware_data function for data manual delete, if stash_data == false (default) then this function is called every update handling circle 
+// clear_middleware_data function for data manual clear
+// clear_middleware_data(your_middleware)
 pub fn clear_middleware_data[T](mut middleware &T){
 	middleware.data.clear()
 	// $for field in T.fields{

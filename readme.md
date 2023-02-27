@@ -22,11 +22,39 @@ import vtelegram
 - [x] Middlewares `Test`
 - [x] Context Filters
 - [x] Logging
+- [ ] Separating one attribute values with comma `,`
 - [ ] more
 
-### Middleware and Context Filters
+## Quick start
 
-Context filters determine which update is relevant. For example, set `[context: 'private']` specifies that your methods will handle updates only in private chats. You can set a context filter both on top of middleware and on top of the handling function. That way you can handle updates and build logic very flexible.
+[Examples](https://github.com/dnkdev/vtelegram/tree/master/examples) of vtelegram use.<br>
+[Tutorials](https://github.com/dnkdev/vtelegram/tree/master/tutorials) with a bit broader explanation of key features.
+
+### Handler attributes
+
+Handlers are your _methods_ which are marked with the attributes which are listed below to indicate which update your method will handle.
+
+```v
+message
+edited_message
+channel_post
+edited_channel_post
+inline_query
+chosen_inline_result
+callback_query
+shipping_query
+pre_checkout_query
+poll
+poll_answer
+my_chat_member
+chat_member
+chat_join_request
+```
+
+### Context Filters and Middleware
+
+Context filters determine which update is relevant, works almost like an extension for handlers.<br>
+For example, set `[context: 'private']` specifies that your methods will handle updates only in private chats. You can set a context filter both on top of middleware and on top of the handling function. That way you can handle updates and build logic very flexible.
 
 Update handling flow can be defined as follows: <br>
 

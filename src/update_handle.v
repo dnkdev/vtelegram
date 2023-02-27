@@ -24,7 +24,7 @@ fn handle_update[T, R](app T, mut middleware R, update Update) {
 
 		if method.attrs.len > 0 {
 		
-			if is_method_relate_to_type(update_new, method.attrs) {
+			if is_handler_relate_to_type(update_new, method.attrs) {
 				if is_handler_pass_filters(update_new, method.attrs) {
 					app.$method(result)
 				}

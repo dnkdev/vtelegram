@@ -108,7 +108,6 @@
 - [Constants](#Constants)
 - [clear_middleware_data](#clear_middleware_data)
 - [delete_middleware_data](#delete_middleware_data)
-- [get_middleware_data](#get_middleware_data)
 - [start_polling](#start_polling)
 - [AddStickerToSet](#AddStickerToSet)
 - [Animation](#Animation)
@@ -377,7 +376,7 @@ const (
 fn clear_middleware_data[T](mut middleware T)
 ```
 
-free_middleware_data function for data manual delete, if stash_data == false (default) then this function is called every update handling circle
+clear_middleware_data function for data manual clear clear_middleware_data(your_middleware)
 
 [[Return to contents]](#Contents)
 
@@ -387,17 +386,7 @@ free_middleware_data function for data manual delete, if stash_data == false (de
 fn delete_middleware_data[T](mut middleware T, key string)
 ```
 
-delete_middleware_data delete one key from data
-
-[[Return to contents]](#Contents)
-
-## get_middleware_data
-
-```v
-fn get_middleware_data[T](middleware &T) map[string]string
-```
-
-get_middleware_data == middleware.data
+delete_middleware_data delete one key from data delete_middleware_data(your_middleware, 'key')
 
 [[Return to contents]](#Contents)
 
@@ -7099,4 +7088,4 @@ WriteAccessAllowed This object represents a service message about a user allowin
 
 [[Return to contents]](#Contents)
 
-#### Powered by vdoc. Generated on: 27 Feb 2023 00:16:31
+#### Powered by vdoc. Generated on: 27 Feb 2023 12:22:48

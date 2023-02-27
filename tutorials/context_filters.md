@@ -38,7 +38,7 @@ You can set a few context filters on one method:
 fn (mut app App) on_all_messages(result vtelegram.Result) ! {}
 ```
 
-> Notice! If you use a few attributes with the same name, you must put attributes into quotes, to not get compile time error
+> Notice! For now, if you use a few attributes with the same name, you must put attributes into quotes, to not get compile time error.
 
 Example above specifies handler, which will be executed on all messages which contains photo, video or voice
 
@@ -49,11 +49,13 @@ Be aware that some of filter + handler type combination no makes sense, cause me
 [context: 'channel'] // set context 'channel' is not make sense with message type
 ```
 
-in this case to handle channel you may use channel_post handler type
+in this case to handle channel you may use channel_post handler type. context 'channel' is needed for other use cases.
 
 ```v
 [channel_post]
 ```
+
+### Context Filter Types
 
 Available contexts at the moment are:
 

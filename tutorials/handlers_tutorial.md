@@ -8,7 +8,7 @@ Update handling flow can be defined as follows:
 Getting update -> Filters -> Middleware -> Filters -> Your Handling Function
 ```
 
-Handler Function is last that will be executed in an update handling chain.
+_Handler Function is last that will be executed in an update handling chain._
 'Handler function' (or handler method) should look like this:
 
 ```v
@@ -23,12 +23,14 @@ fn (mut app App) your_method_name(result vtelegram.Result) {
 
    - `Result` type in method argument at this moment contains:
 
-```v
-update Update // update which are passed to function
-data map[string]string // data which can be added on middlewares
-```
+   ```v
+   update Update // update which are passed to function
+   data map[string]string // data which can be added on middlewares
+   ```
 
-3. To specify handler types in method attributes, use the following attributes:
+3. To specify handler types in method attributes, use the attributes below.
+
+### Update Handler Types
 
 ```v
 message
@@ -50,11 +52,11 @@ chat_join_request
 Handler type refer to update type in [Telegram Bot API](https://core.telegram.org/bots/api#update).<br>
 Which handler type is set above the handler function, that update will apply to this function.
 
-You can set context types on handlers as well as on top of middlewares, to know more about what is context filters you can look into this [tutorial](https://github.com/dnkdev/vtelegram/blob/master/tutorials/context_filters.md)
+You can set context types on handlers as well as on top of middlewares, to know more about what is context filters you can look into this [tutorial](https://github.com/dnkdev/vtelegram/blob/master/tutorials/context_filters.md), as well as [middleware](https://github.com/dnkdev/vtelegram/blob/master/tutorials/middleware_tutorial.md) tutorial
 
 #### Simple example with context filters
 
-This method means that on users enters the /greetings command, bot will reply with greetings text, and this will only be in group chat (also bot should be admin of the group to get such updates)
+This method means that on users enters the /greetings command, bot will reply with greetings text, and this will only be in group chat (also bot should be admin of the group to get such updates or command should look like /greetings@your_bot_username_bot)
 
 ```v
 [message: '/greetings']

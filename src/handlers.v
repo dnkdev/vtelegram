@@ -44,7 +44,7 @@ fn is_handler_pass_filters(update Update, attrs []string) bool {
 	}
 	return false
 }
-fn is_method_relate_to_type(update Update, attrs []string) bool {
+fn is_handler_relate_to_type(update Update, attrs []string) bool {
 	for handler in handler_types {
 		if attrs.any(it.contains(handler)){
 			if validate_handler_type(update, handler){
