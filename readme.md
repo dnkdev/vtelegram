@@ -4,11 +4,14 @@
   <img width="170" height="170" src="https://github.com/dnkdev/vtelegram/blob/master/VTelegram.svg?raw=true">
 </p>
 
+<p align="center">
+<img src="https://img.shields.io/github/license/dnkdev/vtelegram">
+<img src="https://img.shields.io/static/v1?logo=telegram&label=Telegram Bot API&message=6.5&color=blue" alt="API version">
+</p>
+
 Library for building telegram bots in V language.
 <br>
 All methods are in snake_case instead of camelCase: `send_message` instead of `sendMessage`.
-
-Telegram Bot API 6.5 models and methods are present.
 <br>
 You can get acquainted with the Telegram Bot API [here](https://core.telegram.org/bots/api).
 
