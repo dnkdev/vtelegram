@@ -1,12 +1,9 @@
-# VTelegram
+<h1>VTelegram
+<img align="right" style="margin-top:15px;" src="https://img.shields.io/static/v1?logo=telegram&label=Telegram Bot API&message=6.5&labelColor=ffffff&color=blue" href="https://core.telegram.org/bots/api">
+</h1>
 
 <p align="center">
   <img width="170" height="170" src="https://github.com/dnkdev/vtelegram/blob/master/VTelegram.svg?raw=true">
-</p>
-
-<p align="center">
-<img src="https://img.shields.io/github/license/dnkdev/vtelegram">
-<img src="https://img.shields.io/static/v1?logo=telegram&label=Telegram Bot API&message=6.5&color=blue" alt="API version">
 </p>
 
 Library for building telegram bots in V language.
