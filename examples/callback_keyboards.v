@@ -1,6 +1,6 @@
 module main
 
-import vtelegram { Bot, InlineKeyboardButton, InlineKeyboardMarkup, Update, start_polling, PollingConfig, Regular }
+import vtelegram { Bot, InlineKeyboardButton, InlineKeyboardMarkup, Result, start_polling, PollingConfig, Regular }
 
 struct App {
 	Bot
@@ -8,20 +8,20 @@ struct App {
 
 // Handle all callbacks
 [callback_query]
-fn (mut app App) all_callbacks(update Update) ! {
-	app.sendmessage(
-		chat_id: update.callback_query.from.id
-		text: 'You pressed: ${update.callback_query.data}'
+fn (mut app App) all_callbacks(result Result) ! {
+	app.send_message(
+		chat_id: result.update.callback_query.from.id
+		text: 'You pressed: ${result.update.callback_query.data}'
 	)!
 }
 
 [callback_query: 'totally']
-fn (mut app App) keyboard_callback(update Update) ! {
-	app.sendmessage(chat_id: update.callback_query.from.id, text: 'Wow, you are great.')!
+fn (mut app App) keyboard_callback(result Result) ! {
+	app.send_message(chat_id: result.update.callback_query.from.id, text: 'Wow, you are great.')!
 }
 
 [message: '/start']
-fn (mut app App) start(update Update) ! {
+fn (mut app App) start(result Result) ! {
 	mut buttons := [][]InlineKeyboardButton{}
 	buttons << [
 		InlineKeyboardButton{
@@ -40,8 +40,8 @@ fn (mut app App) start(update Update) ! {
 		},
 	]
 	reply_markup := InlineKeyboardMarkup{buttons}
-	app.sendmessage(
-		chat_id: update.message.chat.id
+	app.send_message(
+		chat_id: result.update.message.chat.id
 		text: 'Are you here?'
 		reply_markup: reply_markup
 	)!

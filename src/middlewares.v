@@ -4,7 +4,12 @@ module vtelegram
 // Generic type function, to pass your middleware in function argument
 // get_middleware_data(your_middleware)
 pub fn get_middleware_data[T](middleware &T) map[string]string {
-	return middleware.data
+	$for field in T.fields{
+		if field.name == 'data'{
+			return middleware.data
+		}
+	}
+	return map[string]string{}
 }
 
 // delete_middleware_data delete one key from data

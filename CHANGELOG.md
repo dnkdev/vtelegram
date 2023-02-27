@@ -8,6 +8,11 @@ vtelegram.start_polling(mut app, polling_config)
 ```
 
 - Middlewares and Context Filters. <br>
+
+  - `pub fn delete_middleware_data[T](mut middleware &T, key string)`
+  - `pub fn clear_middleware_data[T](mut middleware &T)`
+  - `pub fn get_middleware_data[T](middleware &T) map[string]string`
+
   Simple middleware example:
 
 ```v

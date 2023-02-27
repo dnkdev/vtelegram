@@ -8,8 +8,8 @@ struct App {
 
 // handle all messagess
 [message]
-fn (mut app App) all_messages(result vtelegram.Update) ! {
-	app.sendmessage(chat_id: result.message.chat.id, text: '${result.message.text}')!
+fn (mut app App) all_messages(result vtelegram.Result) ! {
+	app.sendmessage(chat_id: result.update.message.chat.id, text: '${result.message.text}')!
 }
 
 fn main() {
