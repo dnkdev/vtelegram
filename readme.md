@@ -1,5 +1,9 @@
 # VTelegram
 
+<p align="center">
+  <img width="170" height="170" src="https://github.com/dnkdev/vtelegram/blob/master/VTelegram.svg?raw=true">
+</p>
+
 Library for building telegram bots in V language.
 <br>
 All methods are in snake_case instead of camelCase: `send_message` instead of `sendMessage`.

@@ -34,6 +34,7 @@ fn is_handler_pass_filters(update Update, attrs []string) bool {
 		}
 		subs[sub] << value
 		if sub == 'context' {
+			assert a.len >= 2, 'context attribute should contain value'
 			if !validate_filter(update, value) {
 				return false
 			}

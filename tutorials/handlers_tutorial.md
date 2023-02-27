@@ -19,7 +19,7 @@ fn (mut app App) your_method_name(result vtelegram.Result) {
 ```
 
 1. To get module to know which methods will be processed you need to set your function as method, in this example it is a method of `App` struct, which contains bot token and will be passed to `vtelegram.start_polling`
-2. Your bot methods must accept `Result` type argument or be without arguments, to not get compile time errors.
+2. Your bot methods must accept `Result` type argument to not get compile time errors.
 
    - `Result` type in method argument at this moment contains:
 
@@ -59,7 +59,7 @@ You can set context types on handlers as well as on top of middlewares, to know 
 This method means that on users enters the /greetings command, bot will reply with greetings text, and this will only be in group chat (also bot should be admin of the group to get such updates or command should look like /greetings@your_bot_username_bot)
 
 ```v
-[message: '/greetings']
+[message: '/greetings'] // or [message: '/greetings@your_bot_username_bot']
 [context: 'group']
 fn (mut app App) greetings(result vt.Result) ! {
 	result.update.message.reply(mut app, text: 'Hello, I\'m the Bot!')!

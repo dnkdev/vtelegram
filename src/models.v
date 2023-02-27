@@ -154,7 +154,7 @@ pub mut:
     // message_thread_id Optional. Unique identifier of a message thread to which the message belongs; for supergroups only
     message_thread_id int
     // from Optional. Sender of the message; empty for messages sent to channels. For backward compatibility, the field contains a fake sender user in non-channel chats, if the message was sent on behalf of a chat.
-    from Chat
+    from User
     // sender_chat Optional. Sender of the message, sent on behalf of a chat. For example, the channel itself for channel posts, the supergroup itself for messages from anonymous group administrators, the linked channel for messages automatically forwarded to the discussion group. For backward compatibility, the field from contains a fake sender user in non-channel chats, if the message was sent on behalf of a chat.
     sender_chat Chat
     // date Date the message was sent in Unix time

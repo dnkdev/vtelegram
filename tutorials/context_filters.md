@@ -38,7 +38,7 @@ You can set a few context filters on one method:
 fn (mut app App) on_all_messages(result vtelegram.Result) ! {}
 ```
 
-> Notice! For now, if you use a few attributes with the same name, you must put attributes into quotes, to not get compile time error.
+> **Note** For now, if you use a few attributes with the same name, you must put attributes into quotes, to not get compile time error. Should be `[context: 'photo, video, voice']` in the future.
 
 Example above specifies handler, which will be executed on all messages which contains photo, video or voice
 
@@ -62,7 +62,7 @@ Available contexts at the moment are:
 ```v
 // text filter relative to messages updates with text or caption
 text
-// forward filter relative to messages updates which are forwarded
+// forward filter relative to messages updates which are forwarded, apply to messages and channel_post
 forward
 // reply filter relative to messages updates which are replies to other messages
 reply
@@ -72,6 +72,14 @@ private
 group
 // channel filter relative to chat type, which is channel
 channel
+// if update.message.from.is_bot
+sender_bot
+// if update.message.from.is_bot == false
+sender_user
+// if update.message.sender_chat.@type == 'group' or 'supergroup'
+sender_group
+// if update.message.sender_chat.@type == 'channel'
+sender_channel
 // filters below relative to the relevant meaning in the Telegram Bot API
 entities
 animation
@@ -113,5 +121,7 @@ video_chat_ended
 video_chat_participants_invited
 web_app_data
 ```
+
+All filters logic is in [filters.v](https://github.com/dnkdev/vtelegram/blob/master/src/filters.v)
 
 More use cases you can find in [examples](https://github.com/dnkdev/vtelegram/tree/master/examples) directory.

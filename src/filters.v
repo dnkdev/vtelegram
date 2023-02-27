@@ -2,6 +2,29 @@ module vtelegram
 
 fn validate_filter(update Update, value string) bool{
 	match value {
+		'sender_bot'{
+			if update.message.from.is_bot {
+				return true
+			}
+		}
+		'sender_user'{
+			if !update.message.from.is_bot {
+				return true 
+			} 
+		}
+		'sender_channel' {
+			if update.message.sender_chat.@type == 'channel' //|| update.edited_message.sender_chat.@type  == 'channel'
+			{
+				return true
+			}
+		}
+		'sender_group' {
+			if update.message.sender_chat.@type == 'group' || //update.edited_message.sender_chat.@type  == 'group' ||
+			   update.message.sender_chat.@type == 'supergroup'  //|| update.edited_message.sender_chat.@type  == 'supergroup'
+			{
+				return true
+			}
+		}
 		'text' {
 			if update.message.text != '' || update.edited_message.text != '' ||
 			update.channel_post.text != '' || update.edited_channel_post.text != '' 
