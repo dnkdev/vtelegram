@@ -360,259 +360,6 @@
 - [WebhookInfo](#WebhookInfo)
 - [WriteAccessAllowed](#WriteAccessAllowed)
 
-## Constants
-
-```v
-const (
-	endpoint = 'https://api.telegram.org/bot'
-)
-```
-
-[[Return to contents]](#Contents)
-
-## clear_middleware_data
-
-```v
-fn clear_middleware_data[T](mut middleware T)
-```
-
-clear_middleware_data function for data manual clear clear_middleware_data(your_middleware)
-
-[[Return to contents]](#Contents)
-
-## delete_middleware_data
-
-```v
-fn delete_middleware_data[T](mut middleware T, key string)
-```
-
-delete_middleware_data delete one key from data delete_middleware_data(your_middleware, 'key')
-
-[[Return to contents]](#Contents)
-
-## start_polling
-
-```v
-fn start_polling[T, R](mut bot T, argument_arr R)
-```
-
-[[Return to contents]](#Contents)
-
-## AddStickerToSet
-
-```v
-struct AddStickerToSet {
-	// user_id User identifier of sticker set owner
-	user_id int
-	// name Sticker set name
-	name string
-	// png_sticker PNG image with the sticker, must be up to 512 kilobytes in size, dimensions must not exceed 512px, and either width or height must be exactly 512px. Pass a file_id as a String to send a file that already exists on the Telegram servers, pass an HTTP URL as a String for Telegram to get a file from the Internet, or upload a new one using multipart/form-data. More information on Sending Files »
-	png_sticker string
-	// tgs_sticker TGS animation with the sticker, uploaded using multipart/form-data. See https://core.telegram.org/stickers#animated-sticker-requirements for technical requirements
-	tgs_sticker string
-	// webm_sticker WEBM video with the sticker, uploaded using multipart/form-data. See https://core.telegram.org/stickers#video-sticker-requirements for technical requirements
-	webm_sticker string
-	// emojis One or more emoji corresponding to the sticker
-	emojis string
-	// mask_position A JSON-serialized object for position where the mask should be placed on faces
-	mask_position MaskPosition
-}
-```
-
-[[Return to contents]](#Contents)
-
-## Animation
-
-```v
-struct Animation {
-pub:
-	// file_id Identifier for this file, which can be used to download or reuse the file
-	file_id string
-	// file_unique_id Unique identifier for this file, which is supposed to be the same over time and for different bots. Can't be used to download or reuse the file.
-	file_unique_id string
-	// width Video width as defined by sender
-	width int
-	// height Video height as defined by sender
-	height int
-	// duration Duration of the video in seconds as defined by sender
-	duration int
-	// thumb Optional. Animation thumbnail as defined by sender
-	thumb PhotoSize
-	// file_name Optional. Original animation filename as defined by sender
-	file_name string
-	// mime_type Optional. MIME type of the file as defined by sender
-	mime_type string
-	// file_size Optional. File size in bytes. It can be bigger than 2^31 and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this value.
-	file_size i64
-}
-```
-
-Animation This object represents an animation file (GIF or H.264/MPEG-4 AVC video without sound).
-
-[[Return to contents]](#Contents)
-
-## AnswerCallbackQuery
-
-```v
-struct AnswerCallbackQuery {
-	// callback_query_id Unique identifier for the query to be answered
-	callback_query_id string
-	// text Text of the notification. If not specified, nothing will be shown to the user, 0-200 characters
-	text string
-	// show_alert If True, an alert will be shown by the client instead of a notification at the top of the chat screen. Defaults to false.
-	show_alert bool
-	// url URL that will be opened by the user's client. If you have created a Game and accepted the conditions via @BotFather, specify the URL that opens your game - note that this will only work if the query comes from a callback_game button.
-	// Otherwise, you may use links like t.me/your_bot?start=XXXX that open your bot with a parameter.
-	url string
-	// cache_time The maximum amount of time in seconds that the result of the callback query may be cached client-side. Telegram apps will support caching starting in version 3.14. Defaults to 0.
-	cache_time int
-}
-```
-
-[[Return to contents]](#Contents)
-
-## AnswerInlineQuery
-
-```v
-struct AnswerInlineQuery {
-	// inline_query_id Unique identifier for the answered query
-	inline_query_id string
-	// results A JSON-serialized array of results for the inline query
-	results []InlineQueryResult
-	// cache_time The maximum amount of time in seconds that the result of the inline query may be cached on the server. Defaults to 300.
-	cache_time int
-	// is_personal Pass True if results may be cached on the server side only for the user that sent the query. By default, results may be returned to any user who sends the same query
-	is_personal bool
-	// next_offset Pass the offset that a client should send in the next query with the same text to receive more results. Pass an empty string if there are no more results or if you don't support pagination. Offset length can't exceed 64 bytes.
-	next_offset string
-	// switch_pm_text If passed, clients will display a button with specified text that switches the user to a private chat with the bot and sends the bot a start message with the parameter switch_pm_parameter
-	switch_pm_text string
-	// switch_pm_parameter Deep-linking parameter for the /start message sent to the bot when user presses the switch button. 1-64 characters, only A-Z, a-z, 0-9, _ and - are allowed.
-	// Example: An inline bot that sends YouTube videos can ask the user to connect the bot to their YouTube account to adapt search results accordingly. To do this, it displays a 'Connect your YouTube account' button above the results, or even before showing any. The user presses the button, switches to a private chat with the bot and, in doing so, passes a start parameter that inpub structs the bot to return an OAuth link. Once done, the bot can offer a switch_inline button so that the user can easily return to the chat where they wanted to use the bot's inline capabilities.
-	switch_pm_parameter string
-}
-```
-
-[[Return to contents]](#Contents)
-
-## AnswerPreCheckoutQuery
-
-```v
-struct AnswerPreCheckoutQuery {
-	// pre_checkout_query_id Unique identifier for the query to be answered
-	pre_checkout_query_id string
-	// ok Specify True if everything is alright (goods are available, etc.) and the bot is ready to proceed with the order. Use False if there are any problems.
-	ok bool
-	// error_message Required if ok is False. Error message in human readable form that explains the reason for failure to proceed with the checkout (e.g. "Sorry, somebody just bought the last of our amazing black T-shirts while you were busy filling out your payment details. Please choose a different color or garment!"). Telegram will display this message to the user.
-	error_message string
-}
-```
-
-[[Return to contents]](#Contents)
-
-## AnswerShippingQuery
-
-```v
-struct AnswerShippingQuery {
-	// shipping_query_id Unique identifier for the query to be answered
-	shipping_query_id string
-	// ok Pass True if delivery to the specified address is possible and False if there are any problems (for example, if delivery to the specified address is not possible)
-	ok bool
-	// shipping_options Required if ok is True. A JSON-serialized array of available shipping options.
-	shipping_options []ShippingOption
-	// error_message Required if ok is False. Error message in human readable form that explains why it is impossible to complete the order (e.g. "Sorry, delivery to your desired address is unavailable'). Telegram will display this message to the user.
-	error_message string
-}
-```
-
-[[Return to contents]](#Contents)
-
-## AnswerWebAppQuery
-
-```v
-struct AnswerWebAppQuery {
-	// web_app_query_id Unique identifier for the query to be answered
-	web_app_query_id string
-	// result A JSON-serialized object describing the message to be sent
-	result InlineQueryResult
-}
-```
-
-[[Return to contents]](#Contents)
-
-## ApproveChatJoinRequest
-
-```v
-struct ApproveChatJoinRequest {
-	// chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
-	chat_id i64
-	// user_id Unique identifier of the target user
-	user_id int
-}
-```
-
-[[Return to contents]](#Contents)
-
-## Audio
-
-```v
-struct Audio {
-pub:
-	// file_id Identifier for this file, which can be used to download or reuse the file
-	file_id string
-	// file_unique_id Unique identifier for this file, which is supposed to be the same over time and for different bots. Can't be used to download or reuse the file.
-	file_unique_id string
-	// duration Duration of the audio in seconds as defined by sender
-	duration int
-	// performer Optional. Performer of the audio as defined by sender or by audio tags
-	performer string
-	// title Optional. Title of the audio as defined by sender or by audio tags
-	title string
-	// file_name Optional. Original filename as defined by sender
-	file_name string
-	// mime_type Optional. MIME type of the file as defined by sender
-	mime_type string
-	// file_size Optional. File size in bytes. It can be bigger than 2^31 and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this value.
-	file_size i64
-	// thumb Optional. Thumbnail of the album cover to which the music file belongs
-	thumb PhotoSize
-}
-```
-
-Audio This object represents an audio file to be treated as music by the Telegram clients.
-
-[[Return to contents]](#Contents)
-
-## BanChatMember
-
-```v
-struct BanChatMember {
-	// chat_id Unique identifier for the target group or username of the target supergroup or channel (in the format @channelusername)
-	chat_id i64
-	// user_id Unique identifier of the target user
-	user_id int
-	// until_date Date when the user will be unbanned, unix time. If user is banned for more than 366 days or less than 30 seconds from the current time they are considered to be banned forever. Applied for supergroups and channels only.
-	until_date int
-	// revoke_messages Pass True to delete all messages from the chat for the user that is being removed. If False, the user will be able to see messages in the group that were sent before the user was removed. Always True for supergroups and channels.
-	revoke_messages bool
-}
-```
-
-[[Return to contents]](#Contents)
-
-## BanChatSenderChat
-
-```v
-struct BanChatSenderChat {
-	// chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
-	chat_id i64
-	// sender_chat_id Unique identifier of the target sender chat
-	sender_chat_id int
-}
-```
-
-[[Return to contents]](#Contents)
-
 ## Bot
 
 ```v
@@ -1752,6 +1499,259 @@ fn (mut b Bot) upload_sticker_file(params UploadStickerFile) !File
 
 upload_sticker_file - uploadStickerFile
 Use this method to upload a .PNG file with a sticker for later use in createNewStickerSet and addStickerToSet methods (can be used multiple times). Returns the uploaded File on success.
+
+[[Return to contents]](#Contents)
+
+## Constants
+
+```v
+const (
+	endpoint = 'https://api.telegram.org/bot'
+)
+```
+
+[[Return to contents]](#Contents)
+
+## clear_middleware_data
+
+```v
+fn clear_middleware_data[T](mut middleware T)
+```
+
+clear_middleware_data function for data manual clear clear_middleware_data(your_middleware)
+
+[[Return to contents]](#Contents)
+
+## delete_middleware_data
+
+```v
+fn delete_middleware_data[T](mut middleware T, key string)
+```
+
+delete_middleware_data delete one key from data delete_middleware_data(your_middleware, 'key')
+
+[[Return to contents]](#Contents)
+
+## start_polling
+
+```v
+fn start_polling[T, R](mut bot T, argument_arr R)
+```
+
+[[Return to contents]](#Contents)
+
+## AddStickerToSet
+
+```v
+struct AddStickerToSet {
+	// user_id User identifier of sticker set owner
+	user_id int
+	// name Sticker set name
+	name string
+	// png_sticker PNG image with the sticker, must be up to 512 kilobytes in size, dimensions must not exceed 512px, and either width or height must be exactly 512px. Pass a file_id as a String to send a file that already exists on the Telegram servers, pass an HTTP URL as a String for Telegram to get a file from the Internet, or upload a new one using multipart/form-data. More information on Sending Files »
+	png_sticker string
+	// tgs_sticker TGS animation with the sticker, uploaded using multipart/form-data. See https://core.telegram.org/stickers#animated-sticker-requirements for technical requirements
+	tgs_sticker string
+	// webm_sticker WEBM video with the sticker, uploaded using multipart/form-data. See https://core.telegram.org/stickers#video-sticker-requirements for technical requirements
+	webm_sticker string
+	// emojis One or more emoji corresponding to the sticker
+	emojis string
+	// mask_position A JSON-serialized object for position where the mask should be placed on faces
+	mask_position MaskPosition
+}
+```
+
+[[Return to contents]](#Contents)
+
+## Animation
+
+```v
+struct Animation {
+pub:
+	// file_id Identifier for this file, which can be used to download or reuse the file
+	file_id string
+	// file_unique_id Unique identifier for this file, which is supposed to be the same over time and for different bots. Can't be used to download or reuse the file.
+	file_unique_id string
+	// width Video width as defined by sender
+	width int
+	// height Video height as defined by sender
+	height int
+	// duration Duration of the video in seconds as defined by sender
+	duration int
+	// thumb Optional. Animation thumbnail as defined by sender
+	thumb PhotoSize
+	// file_name Optional. Original animation filename as defined by sender
+	file_name string
+	// mime_type Optional. MIME type of the file as defined by sender
+	mime_type string
+	// file_size Optional. File size in bytes. It can be bigger than 2^31 and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this value.
+	file_size i64
+}
+```
+
+Animation This object represents an animation file (GIF or H.264/MPEG-4 AVC video without sound).
+
+[[Return to contents]](#Contents)
+
+## AnswerCallbackQuery
+
+```v
+struct AnswerCallbackQuery {
+	// callback_query_id Unique identifier for the query to be answered
+	callback_query_id string
+	// text Text of the notification. If not specified, nothing will be shown to the user, 0-200 characters
+	text string
+	// show_alert If True, an alert will be shown by the client instead of a notification at the top of the chat screen. Defaults to false.
+	show_alert bool
+	// url URL that will be opened by the user's client. If you have created a Game and accepted the conditions via @BotFather, specify the URL that opens your game - note that this will only work if the query comes from a callback_game button.
+	// Otherwise, you may use links like t.me/your_bot?start=XXXX that open your bot with a parameter.
+	url string
+	// cache_time The maximum amount of time in seconds that the result of the callback query may be cached client-side. Telegram apps will support caching starting in version 3.14. Defaults to 0.
+	cache_time int
+}
+```
+
+[[Return to contents]](#Contents)
+
+## AnswerInlineQuery
+
+```v
+struct AnswerInlineQuery {
+	// inline_query_id Unique identifier for the answered query
+	inline_query_id string
+	// results A JSON-serialized array of results for the inline query
+	results []InlineQueryResult
+	// cache_time The maximum amount of time in seconds that the result of the inline query may be cached on the server. Defaults to 300.
+	cache_time int
+	// is_personal Pass True if results may be cached on the server side only for the user that sent the query. By default, results may be returned to any user who sends the same query
+	is_personal bool
+	// next_offset Pass the offset that a client should send in the next query with the same text to receive more results. Pass an empty string if there are no more results or if you don't support pagination. Offset length can't exceed 64 bytes.
+	next_offset string
+	// switch_pm_text If passed, clients will display a button with specified text that switches the user to a private chat with the bot and sends the bot a start message with the parameter switch_pm_parameter
+	switch_pm_text string
+	// switch_pm_parameter Deep-linking parameter for the /start message sent to the bot when user presses the switch button. 1-64 characters, only A-Z, a-z, 0-9, _ and - are allowed.
+	// Example: An inline bot that sends YouTube videos can ask the user to connect the bot to their YouTube account to adapt search results accordingly. To do this, it displays a 'Connect your YouTube account' button above the results, or even before showing any. The user presses the button, switches to a private chat with the bot and, in doing so, passes a start parameter that inpub structs the bot to return an OAuth link. Once done, the bot can offer a switch_inline button so that the user can easily return to the chat where they wanted to use the bot's inline capabilities.
+	switch_pm_parameter string
+}
+```
+
+[[Return to contents]](#Contents)
+
+## AnswerPreCheckoutQuery
+
+```v
+struct AnswerPreCheckoutQuery {
+	// pre_checkout_query_id Unique identifier for the query to be answered
+	pre_checkout_query_id string
+	// ok Specify True if everything is alright (goods are available, etc.) and the bot is ready to proceed with the order. Use False if there are any problems.
+	ok bool
+	// error_message Required if ok is False. Error message in human readable form that explains the reason for failure to proceed with the checkout (e.g. "Sorry, somebody just bought the last of our amazing black T-shirts while you were busy filling out your payment details. Please choose a different color or garment!"). Telegram will display this message to the user.
+	error_message string
+}
+```
+
+[[Return to contents]](#Contents)
+
+## AnswerShippingQuery
+
+```v
+struct AnswerShippingQuery {
+	// shipping_query_id Unique identifier for the query to be answered
+	shipping_query_id string
+	// ok Pass True if delivery to the specified address is possible and False if there are any problems (for example, if delivery to the specified address is not possible)
+	ok bool
+	// shipping_options Required if ok is True. A JSON-serialized array of available shipping options.
+	shipping_options []ShippingOption
+	// error_message Required if ok is False. Error message in human readable form that explains why it is impossible to complete the order (e.g. "Sorry, delivery to your desired address is unavailable'). Telegram will display this message to the user.
+	error_message string
+}
+```
+
+[[Return to contents]](#Contents)
+
+## AnswerWebAppQuery
+
+```v
+struct AnswerWebAppQuery {
+	// web_app_query_id Unique identifier for the query to be answered
+	web_app_query_id string
+	// result A JSON-serialized object describing the message to be sent
+	result InlineQueryResult
+}
+```
+
+[[Return to contents]](#Contents)
+
+## ApproveChatJoinRequest
+
+```v
+struct ApproveChatJoinRequest {
+	// chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+	chat_id i64
+	// user_id Unique identifier of the target user
+	user_id int
+}
+```
+
+[[Return to contents]](#Contents)
+
+## Audio
+
+```v
+struct Audio {
+pub:
+	// file_id Identifier for this file, which can be used to download or reuse the file
+	file_id string
+	// file_unique_id Unique identifier for this file, which is supposed to be the same over time and for different bots. Can't be used to download or reuse the file.
+	file_unique_id string
+	// duration Duration of the audio in seconds as defined by sender
+	duration int
+	// performer Optional. Performer of the audio as defined by sender or by audio tags
+	performer string
+	// title Optional. Title of the audio as defined by sender or by audio tags
+	title string
+	// file_name Optional. Original filename as defined by sender
+	file_name string
+	// mime_type Optional. MIME type of the file as defined by sender
+	mime_type string
+	// file_size Optional. File size in bytes. It can be bigger than 2^31 and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this value.
+	file_size i64
+	// thumb Optional. Thumbnail of the album cover to which the music file belongs
+	thumb PhotoSize
+}
+```
+
+Audio This object represents an audio file to be treated as music by the Telegram clients.
+
+[[Return to contents]](#Contents)
+
+## BanChatMember
+
+```v
+struct BanChatMember {
+	// chat_id Unique identifier for the target group or username of the target supergroup or channel (in the format @channelusername)
+	chat_id i64
+	// user_id Unique identifier of the target user
+	user_id int
+	// until_date Date when the user will be unbanned, unix time. If user is banned for more than 366 days or less than 30 seconds from the current time they are considered to be banned forever. Applied for supergroups and channels only.
+	until_date int
+	// revoke_messages Pass True to delete all messages from the chat for the user that is being removed. If False, the user will be able to see messages in the group that were sent before the user was removed. Always True for supergroups and channels.
+	revoke_messages bool
+}
+```
+
+[[Return to contents]](#Contents)
+
+## BanChatSenderChat
+
+```v
+struct BanChatSenderChat {
+	// chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+	chat_id i64
+	// sender_chat_id Unique identifier of the target sender chat
+	sender_chat_id int
+}
+```
 
 [[Return to contents]](#Contents)
 
