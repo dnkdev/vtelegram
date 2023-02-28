@@ -32,7 +32,7 @@ import vtelegram
 ## Quick start
 
 [Examples](https://github.com/dnkdev/vtelegram/tree/master/examples) of vtelegram use.<br>
-[Tutorials](https://github.com/dnkdev/vtelegram/tree/master/tutorials) with a bit broader explanation of key features.
+[Tutorials](https://github.com/dnkdev/vtelegram/wiki/Tutorials) on wiki page, with a bit broader explanation of key features.
 
 ### Handler attributes
 

@@ -1,6 +1,6 @@
 ## v 1.6.1
 
-- `sender_group` `sender_channel` `sender_user` `sender_bot` context filters for `message` type updates
+- `sender_group` `sender_channel` `sender_user` `sender_bot` context filters for define sender_chat type, apply to all updates which contain sender_chat field
 
 ### v 1.6.0
 
