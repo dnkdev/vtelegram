@@ -3,31 +3,84 @@ module vtelegram
 fn validate_filter(update Update, value string) bool{
 	match value {
 		'sender_bot'{
-			if update.message.from.is_bot {
+			if update.message.from.is_bot ||
+			update.edited_message.from.is_bot ||
+			update.channel_post.from.is_bot ||
+			update.edited_channel_post.from.is_bot ||
+			update.inline_query.from.is_bot ||
+			update.chosen_inline_result.from.is_bot ||
+			update.callback_query.from.is_bot ||
+			update.shipping_query.from.is_bot ||
+			update.pre_checkout_query.from.is_bot ||
+			update.my_chat_member.from.is_bot ||
+			update.chat_member.from.is_bot ||
+			update.chat_join_request.from.is_bot 
+			{
 				return true
 			}
 		}
 		'sender_user'{
-			if !update.message.from.is_bot {
+			if update.message.from.language_code != '' ||
+			update.edited_message.from.language_code != '' ||
+			update.channel_post.from.language_code != '' ||
+			update.edited_channel_post.from.language_code != '' ||
+			update.inline_query.from.language_code != '' ||
+			update.chosen_inline_result.from.language_code != '' ||
+			update.callback_query.from.language_code != '' ||
+			update.shipping_query.from.language_code != '' ||
+			update.pre_checkout_query.from.language_code != '' ||
+			update.my_chat_member.from.language_code != '' ||
+			update.chat_member.from.language_code != '' ||
+			update.chat_join_request.from.language_code != '' //&&
+			// &&
+			// !update.message.from.is_bot || 
+			// !update.edited_message.from.is_bot ||
+			// !update.channel_post.from.is_bot ||
+			// !update.edited_channel_post.from.is_bot ||
+			// !update.inline_query.from.is_bot ||
+			// !update.chosen_inline_result.from.is_bot ||
+			// !update.callback_query.from.is_bot ||
+			// !update.shipping_query.from.is_bot ||
+			// !update.pre_checkout_query.from.is_bot ||
+			// !update.my_chat_member.from.is_bot ||
+			// !update.chat_member.from.is_bot ||
+			// !update.chat_join_request.from.is_bot  
+			{
 				return true 
 			} 
 		}
 		'sender_channel' {
-			if update.message.sender_chat.@type == 'channel' //|| update.edited_message.sender_chat.@type  == 'channel'
+			if update.message.sender_chat.@type == 'channel' || 
+			update.channel_post.sender_chat.@type == 'channel' || 
+			update.edited_channel_post.sender_chat.@type == 'channel' || 
+			update.edited_message.sender_chat.@type  == 'channel' ||
+			update.callback_query.message.sender_chat.@type  == 'channel' 
 			{
 				return true
 			}
 		}
 		'sender_group' {
-			if update.message.sender_chat.@type == 'group' || //update.edited_message.sender_chat.@type  == 'group' ||
-			   update.message.sender_chat.@type == 'supergroup'  //|| update.edited_message.sender_chat.@type  == 'supergroup'
+			    
+			if update.message.sender_chat.@type == 'group' || 
+			update.channel_post.sender_chat.@type == 'group' || 
+			update.edited_channel_post.sender_chat.@type == 'group' || 
+			update.edited_message.sender_chat.@type  == 'group' ||
+			update.callback_query.message.sender_chat.@type  == 'group' ||
+
+			update.message.sender_chat.@type == 'supergroup'  || 
+			update.channel_post.sender_chat.@type == 'supergroup' || 
+			update.edited_channel_post.sender_chat.@type == 'supergroup' || 
+			update.edited_message.sender_chat.@type  == 'supergroup' ||
+			update.callback_query.message.sender_chat.@type  == 'supergroup'
 			{
 				return true
 			}
 		}
 		'text' {
 			if update.message.text != '' || update.edited_message.text != '' ||
-			update.channel_post.text != '' || update.edited_channel_post.text != '' 
+			update.channel_post.text != '' || update.edited_channel_post.text != '' ||
+			update.message.caption != '' || update.edited_message.caption != '' ||
+			update.channel_post.caption != '' || update.edited_channel_post.caption != '' 
 			{
 				return true
 			}
@@ -48,21 +101,49 @@ fn validate_filter(update Update, value string) bool{
 			}
 		}
 		'private'{
-			if update.message.chat.@type == 'private' || update.edited_message.chat.@type  == 'private'
+			if 
+			update.message.chat.@type == 'private'  || 
+			update.channel_post.chat.@type == 'private' || 
+			update.edited_channel_post.chat.@type == 'private' || 
+			update.edited_message.chat.@type  == 'private' ||
+			update.callback_query.message.chat.@type  == 'private' ||
+			update.inline_query.chat_type == 'private' ||
+			update.my_chat_member.chat.@type  == 'private' ||
+			update.chat_member.chat.@type  == 'private' ||
+			update.chat_join_request.chat.@type  == 'private'
 			{
 				return true
 			}
 		}
 		'group'{
-			if update.message.chat.@type == 'group' || update.edited_message.chat.@type  == 'group' ||
-			   update.message.chat.@type == 'supergroup' || update.edited_message.chat.@type  == 'supergroup'
+			if 
+			update.chat_join_request.chat.@type == 'group' || 
+			update.chat_join_request.chat.@type == 'supergroup' || 
+			update.my_chat_member.chat.@type == 'group' || 
+			update.my_chat_member.chat.@type == 'supergroup' || 
+			update.chat_member.chat.@type == 'group' || 
+			update.chat_member.chat.@type == 'supergroup' || 
+			update.callback_query.message.chat.@type == 'group' || 
+			update.callback_query.message.chat.@type == 'supergroup' || 
+			update.inline_query.chat_type == 'group' ||
+			update.inline_query.chat_type == 'supergroup' ||
+			update.message.chat.@type == 'group' || update.edited_message.chat.@type  == 'group' ||
+			update.message.chat.@type == 'supergroup' || update.edited_message.chat.@type  == 'supergroup'
 			{
 				return true
 			}
 		}
 		'channel'{
-			if update.message.chat.@type == 'channel' || update.edited_message.chat.@type  == 'channel' ||
-			   update.channel_post.chat.@type == 'channel' || update.edited_channel_post.chat.@type  == 'channel'
+			if 
+			update.chat_join_request.chat.@type == 'channel' || 
+			update.my_chat_member.chat.@type == 'channel' || 
+			update.chat_member.chat.@type == 'channel' || 
+			update.callback_query.message.chat.@type == 'channel' ||
+			update.inline_query.chat_type == 'channel' ||
+			update.message.chat.@type == 'channel' || 
+			update.edited_message.chat.@type  == 'channel' ||
+			update.channel_post.chat.@type == 'channel' || 
+			update.edited_channel_post.chat.@type  == 'channel'
 			{
 				return true
 			}
@@ -321,6 +402,7 @@ fn validate_filter(update Update, value string) bool{
 				return true
 			}
 		}
+		//TODO
 		'video_chat_started'{
 
 		}

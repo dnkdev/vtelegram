@@ -51,6 +51,8 @@ fn main() {
 	mut app := App{
 		token: '5401623750:AAFWXZWx8V-SZIDQUI62AT7agCMs55aLIdU'
 	}
+	app.log.set_level(.debug)
+	app.log.set_full_logpath('./bot.log')
 	polling_config := PollingConfig[Regular]{}
 	start_polling(mut app,polling_config)
 }

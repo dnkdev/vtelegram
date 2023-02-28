@@ -168,10 +168,44 @@ fn process_handler(update Update, subs map[string][]string) bool {
 					}
 				}
 				'inline_query' {
-					return true
+					if value.contains('starts_with') {
+						val := value.split(':').last().trim_space()
+						if update.inline_query.query.starts_with(val) {
+							return true
+						}
+					} else if value.contains('contains') {
+						val := value.split(':').last().trim_space()
+						if update.inline_query.query.contains(val) {
+							return true
+						}
+					} else if value.contains('ends_with') {
+						val := value.split(':').last().trim_space()
+						if update.inline_query.query.ends_with(val) {
+							return true
+						}
+					} else if update.inline_query.query == value {
+						return true
+					}
 				}
 				'chosen_inline_result' {
-					return true
+					if value.contains('starts_with') {
+						val := value.split(':').last().trim_space()
+						if update.chosen_inline_result.query.starts_with(val) {
+							return true
+						}
+					} else if value.contains('contains') {
+						val := value.split(':').last().trim_space()
+						if update.chosen_inline_result.query.contains(val) {
+							return true
+						}
+					} else if value.contains('ends_with') {
+						val := value.split(':').last().trim_space()
+						if update.chosen_inline_result.query.ends_with(val) {
+							return true
+						}
+					} else if update.chosen_inline_result.query == value {
+						return true
+					}
 				}
 				'shipping_query' {
 					return true
