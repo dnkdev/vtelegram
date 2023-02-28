@@ -3,7 +3,7 @@
 </h1>
 
 <p align="center">
-  <img src="https://raw.github.com/dnkdev/vtelegram/blob/master/VTelegram.svg">
+  <img src="https://github.com/dnkdev/vtelegram/raw/master/VTelegram.svg">
 </p>
 
 Library for building telegram bots in V language.
