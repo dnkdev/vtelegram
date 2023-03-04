@@ -1,11 +1,9 @@
+<p align="center">
+  <img src="VTelegram.svg">
+</p>
 <h1>VTelegram
 <img align="right" style="margin-top:15px;" src="https://img.shields.io/static/v1?logo=telegram&label=Telegram Bot API&message=6.5&labelColor=ffffff&color=blue" href="https://core.telegram.org/bots/api">
 </h1>
-
-<p align="center">
-  <img src="https://github.com/dnkdev/vtelegram/raw/master/VTelegram.svg">
-</p>
-
 Library for building telegram bots in V language.
 <br>
 All methods are in snake_case instead of camelCase: `send_message` instead of `sendMessage`.
