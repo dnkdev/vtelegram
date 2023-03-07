@@ -1,5 +1,0 @@
-hello media
-2023-03-07 18:36:31 [ERROR] sendMediaGroup response: Error Code: 400 Description: 
-Bad Request: can't parse InputMedia: media not found
-2023-03-07 18:36:31 
-[ERROR] sendMediaGroup Data: {"chat_id":5604966948,"message_thread_id":0,"media":[{"type":"document","media":"attach://document.txt","thumb":"","caption":"","parse_mode":"","caption_entities":[],"disable_content_type_detection":false,"_type":"InputMediaDocument"}],"disable_notification":false,"protect_content":false,"reply_to_message_id":0,"allow_sending_without_reply":false}
