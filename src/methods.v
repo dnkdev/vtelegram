@@ -535,7 +535,7 @@ pub struct SendMediaGroup {
     // message_thread_id Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
     message_thread_id int
     // media A JSON-serialized array describing messages to be sent, must include 2-10 items
-    media []Media
+    media []InputMedia
     // disable_notification Sends messages silently. Users will receive a notification with no sound.
     disable_notification bool
     // protect_content Protects the contents of the sent messages from forwarding and saving

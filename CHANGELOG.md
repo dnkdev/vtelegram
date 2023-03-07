@@ -1,8 +1,8 @@
-## v 1.6.1
+## v 0.6.1
 
 - `sender_group` `sender_channel` `sender_user` `sender_bot` context filters for define sender_chat type, apply to all updates which contain sender_chat field
 
-### v 1.6.0
+### v 0.6.0
 
 - `start_polling` must include PollingConfig as second argument. `PollingConfig` is generic type structure, for passing your middleware struct or marking it as `Regular` (for skip middleware). In the PollingConfig you can specify same parameters as for getUpdates and polling config (delay_time)
 
@@ -43,7 +43,7 @@ fn main(){
 }
 ```
 
-### v 1.5.0
+### v 0.5.0
 
 - `start_polling` instead of `poll`
 - `ChatMember` - Structs of all member roles combined, so that the V's json package can decode the updates it receives for `my_chat_member` and `chat_member`. can be handled by 'status' field
@@ -68,13 +68,13 @@ chat_member
 chat_join_request
 ```
 
-### v 1.4.0
+### v 0.4.0
 
 - `mut` to all bot methods
 - Deleted `time_event`
 - `log` instance to Bot struct, which includes bot debugging
 
-### v 1.3.1
+### v 0.3.1
 
 - `callback_query` attribute instead of just `callback`
 - To assign value to attribute now used `:` instead of `;`
@@ -100,10 +100,6 @@ fn (mut app App) handle_callbackquery(result Result){
     //...
 }
 ```
-
-### v 1.3.0
-
-- Major version is 1, because module is ready to use and has the all latest telegram bot API models and methods, you can do it just manually. Custom features in development.
 
 ### v 0.1.1
 
