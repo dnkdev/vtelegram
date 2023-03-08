@@ -1,4 +1,8 @@
-## v 0.6.1
+## v 0.7
+
+- Single file upload: `animation`, `audio`, `document`, `photo`, `video_note`, `video`, `voice`
+
+### v 0.6.1
 
 - `sender_group` `sender_channel` `sender_user` `sender_bot` context filters for define sender_chat type, apply to all updates which contain sender_chat field
 

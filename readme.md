@@ -2,12 +2,12 @@
   <img src="VTelegram.svg">
 </div>
 
-<h1>VTelegram v0.6.1
+<h1>VTelegram 0.7.0
 <img align="right" style="margin-top:15px;" src="https://img.shields.io/static/v1?logo=telegram&label=Telegram Bot API&message=6.5&labelColor=ffffff&color=blue" href="https://core.telegram.org/bots/api">
 </h1>
 
 Library for building telegram bots in V language. <br><br>
-**Early stage**. Lack of media uploading and sending through multipart/form-data, and other telegram bot api features. In some cases, it does what should. Thanks to the V language, speed is fast.
+**Early stage**. In some cases, it does what should. Thanks to the V language, speed is fast. Updates are handled asynchronously. 
 <br>
 All methods are in snake_case instead of camelCase: `send_message` instead of `sendMessage`.
 <br>
@@ -28,7 +28,9 @@ import vtelegram
 - [x] Context Filters
 - [x] Logging
 - [ ] Separating one attribute values with comma `,`
-- [ ] Media uploading with multipart/form-data request
+- [x] multipart/form-data request
+- [x] Single files uploading
+- [ ] MediaGroup upload and send
 - [ ] more
 
 ## Quick start

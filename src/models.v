@@ -2638,4 +2638,4 @@ type InlineQueryResult = InlineQueryResultCachedAudio | InlineQueryResultCachedD
 type InputMessageContent = InputTextMessageContent | InputLocationMessageContent | InputVenueMessageContent | InputContactMessageContent | InputInvoiceMessageContent 
 type PassportElementError = PassportElementErrorDataField | PassportElementErrorFrontSide | PassportElementErrorReverseSide | PassportElementErrorSelfie | PassportElementErrorFile | PassportElementErrorFiles | PassportElementErrorTranslationFile | PassportElementErrorTranslationFiles | PassportElementErrorUnspecified 
 type ReplyMarkup = InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply
-type InputMedia = InputMediaAudio | InputMediaDocument | InputMediaPhoto | InputMediaVideo
+pub type InputMedia = InputMediaAudio | InputMediaDocument | InputMediaPhoto | InputMediaVideo

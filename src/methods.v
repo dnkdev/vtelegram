@@ -15,7 +15,7 @@ fn return_bool(response string) bool{
 		return false
 	}
 }
-fn return_data[T](response string) T{
+pub fn return_data[T](response string) T{
 	resp := json.decode(T, response) or {
 		return T{}
 	}
@@ -38,7 +38,7 @@ pub mut:
 // get_updates - getUpdates
 // Use this method to receive incoming updates using long polling (wiki). Returns an Array of Update objects.
 pub fn (mut b Bot) get_updates(params GetUpdates) ![]Update {
-    resp := b.http_request('getUpdates', json.encode(params))!
+    resp := b.api_request('getUpdates', json.encode(params))!
     return return_data[[]Update](resp)
 }
 
@@ -63,7 +63,7 @@ pub struct SetWebhook {
 // set_webhook - setWebhook
 // Use this method to specify a URL and receive incoming updates via an outgoing webhook. Whenever there is an update for the bot, we will send an HTTPS POST request to the specified URL, containing a JSON-serialized Update. In case of an unsuccessful request, we will give up after a reasonable amount of attempts. Returns True on success.
 pub fn (mut b Bot) set_webhook(params SetWebhook) !bool {
-    resp := b.http_request('setWebhook', json.encode(params))!
+    resp := b.api_request('setWebhook', json.encode(params))!
     // '
     return return_bool(resp)
 }
@@ -74,7 +74,7 @@ pub struct DeleteWebhook {
 // delete_webhook - deleteWebhook
 // Use this method to remove webhook integration if you decide to switch back to getUpdates. Returns True on success.
 pub fn (mut b Bot) delete_webhook(params DeleteWebhook) !bool {
-    resp := b.http_request('deleteWebhook', json.encode(params))!
+    resp := b.api_request('deleteWebhook', json.encode(params))!
     // '
     return return_bool(resp)
 }
@@ -85,7 +85,7 @@ pub struct GetWebhookInfo {
 // get_webhook_info - getWebhookInfo
 // Use this method to get current webhook status. Requires no parameters. On success, returns a WebhookInfo object. If the bot is using getUpdates, will return an object with the url field empty.
 pub fn (mut b Bot) get_webhook_info(params GetWebhookInfo) !WebhookInfo {
-    resp := b.http_request('getWebhookInfo', json.encode(params))!
+    resp := b.api_request('getWebhookInfo', json.encode(params))!
     // '
     return return_data[WebhookInfo](resp)
 }
@@ -96,7 +96,7 @@ pub struct GetMe {
 // get_me - getMe
 // A simple method for testing your bot's authentication token. Requires no parameters. Returns basic information about the bot in form of a User object.
 pub fn (mut b Bot) get_me(params GetMe) !User {
-    resp := b.http_request('getMe', json.encode(params))!
+    resp := b.api_request('getMe', json.encode(params))!
     // '
     return return_data[User](resp)
 }
@@ -129,7 +129,7 @@ pub struct LogOut {
 // log_out - logOut
 // Use this method to log out from the cloud Bot API server before launching the bot locally. You must log out the bot before running it locally, otherwise there is no guarantee that the bot will receive updates. After a successful call, you can immediately log in on a local server, but will not be able to log in back to the cloud Bot API server for 10 minutes. Returns True on success. Requires no parameters.
 pub fn (mut b Bot) log_out(params LogOut) !bool {
-    resp := b.http_request('logOut', json.encode(params))!
+    resp := b.api_request('logOut', json.encode(params))!
     // '
     return return_bool(resp)
 }
@@ -162,7 +162,7 @@ pub struct Close {
 // close - close
 // Use this method to close the bot instance before moving it from one local server to another. You need to delete the webhook before calling this method to ensure that the bot isn't launched again after server restart. The method will return error 429 in the first 10 minutes after the bot is launched. Returns True on success. Requires no parameters.
 pub fn (mut b Bot) close(params Close) !bool {
-    resp := b.http_request('close', json.encode(params))!
+    resp := b.api_request('close', json.encode(params))!
     // '
     return return_bool(resp)
 }
@@ -196,7 +196,7 @@ mut:
 // send_message - sendMessage
 // Use this method to send text messages. On success, the sent Message is returned.
 pub fn (mut b Bot) send_message(params SendMessage) !Message {
-    resp := b.http_request('sendMessage', json.encode(params))!
+    resp := b.api_request('sendMessage', json.encode(params))!
     //// '
     return return_data[Message](resp)
 }
@@ -219,7 +219,7 @@ pub struct ForwardMessage {
 // forward_message - forwardMessage
 // Use this method to forward messages of any kind. Service messages can't be forwarded. On success, the sent Message is returned.
 pub fn (mut b Bot) forward_message(params ForwardMessage) !Message {
-    resp := b.http_request('forwardMessage', json.encode(params))!
+    resp := b.api_request('forwardMessage', json.encode(params))!
     // '
     return return_data[Message](resp)
 }
@@ -254,7 +254,7 @@ pub struct CopyMessage {
 // copy_message - copyMessage
 // Use this method to copy messages of any kind. Service messages and invoice messages can't be copied. A quiz poll can be copied only if the value of the field correct_option_id is known to the bot. The method is analogous to the method forwardMessage, but the copied message doesn't have a link to the original message. Returns the MessageId of the sent message on success.
 pub fn (mut b Bot) copy_message(params CopyMessage) !MessageId {
-    resp := b.http_request('copyMessage', json.encode(params))!
+    resp := b.api_request('copyMessage', json.encode(params))!
     // '
     return return_data[MessageId](resp)
 }
@@ -289,7 +289,7 @@ pub struct SendPhoto {
 // send_photo - sendPhoto
 // Use this method to send photos. On success, the sent Message is returned.
 pub fn (mut b Bot) send_photo(params SendPhoto) !Message {
-    resp := b.http_request('sendPhoto', json.encode(params))!
+    resp := b.api_request('sendPhoto', json.encode(params))!
     // '
     return return_data[Message](resp)
 }
@@ -330,7 +330,7 @@ pub struct SendAudio {
 // send_audio - sendAudio
 // Use this method to send audio files, if you want Telegram clients to display them in the music player. Your audio must be in the .MP3 or .M4A format. On success, the sent Message is returned. Bots can currently send audio files of up to 50 MB in size, this limit may be changed in the future.
 pub fn (mut b Bot) send_audio(params SendAudio) !Message {
-    resp := b.http_request('sendAudio', json.encode(params))!
+    resp := b.api_request('sendAudio', json.encode(params))!
     // '
     return return_data[Message](resp)
 }
@@ -367,7 +367,7 @@ pub struct SendDocument {
 // send_document - sendDocument
 // Use this method to send general files. On success, the sent Message is returned. Bots can currently send files of any type of up to 50 MB in size, this limit may be changed in the future.
 pub fn (mut b Bot) send_document(params SendDocument) !Message {
-    resp := b.http_request('sendDocument', json.encode(params))!
+    resp := b.api_request('sendDocument', json.encode(params))!
     // '
     return return_data[Message](resp)
 }
@@ -412,7 +412,7 @@ pub struct SendVideo {
 // send_video - sendVideo
 // Use this method to send video files, Telegram clients support MPEG4 videos (other formats may be sent as Document). On success, the sent Message is returned. Bots can currently send video files of up to 50 MB in size, this limit may be changed in the future.
 pub fn (mut b Bot) send_video(params SendVideo) !Message {
-    resp := b.http_request('sendVideo', json.encode(params))!
+    resp := b.api_request('sendVideo', json.encode(params))!
     // '
     return return_data[Message](resp)
 }
@@ -455,7 +455,7 @@ pub struct SendAnimation {
 // send_animation - sendAnimation
 // Use this method to send animation files (GIF or H.264/MPEG-4 AVC video without sound). On success, the sent Message is returned. Bots can currently send animation files of up to 50 MB in size, this limit may be changed in the future.
 pub fn (mut b Bot) send_animation(params SendAnimation) !Message {
-    resp := b.http_request('sendAnimation', json.encode(params))!
+    resp := b.api_request('sendAnimation', json.encode(params))!
     // '
     return return_data[Message](resp)
 }
@@ -490,7 +490,7 @@ pub struct SendVoice {
 // send_voice - sendVoice
 // Use this method to send audio files, if you want Telegram clients to display the file as a playable voice message. For this to work, your audio must be in an .OGG file encoded with OPUS (other formats may be sent as Audio or Document). On success, the sent Message is returned. Bots can currently send voice messages of up to 50 MB in size, this limit may be changed in the future.
 pub fn (mut b Bot) send_voice(params SendVoice) !Message {
-    resp := b.http_request('sendVoice', json.encode(params))!
+    resp := b.api_request('sendVoice', json.encode(params))!
     // '
     return return_data[Message](resp)
 }
@@ -523,13 +523,14 @@ pub struct SendVideoNote {
 // send_video_note - sendVideoNote
 // As of v.4.0, Telegram clients support rounded square MPEG4 videos of up to 1 minute long. Use this method to send video messages. On success, the sent Message is returned.
 pub fn (mut b Bot) send_video_note(params SendVideoNote) !Message {
-    resp := b.http_request('sendVideoNote', json.encode(params))!
+    resp := b.api_request('sendVideoNote', json.encode(params))!
     // '
     return return_data[Message](resp)
 }
 
 [params]
 pub struct SendMediaGroup {
+pub mut:
     // chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
     chat_id i64
     // message_thread_id Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
@@ -548,7 +549,7 @@ pub struct SendMediaGroup {
 // send_media_group - sendMediaGroup
 // Use this method to send a group of photos, videos, documents or audios as an album. Documents and audio files can be only grouped in an album with messages of the same type. On success, an array of Messages that were sent is returned.
 pub fn (mut b Bot) send_media_group(params SendMediaGroup) ![]Message {
-    resp := b.http_request('sendMediaGroup', json.encode(params))!
+    resp := b.api_request('sendMediaGroup', json.encode(params))!
     // '
     return return_data[[]Message](resp)
 }
@@ -585,7 +586,7 @@ pub struct SendLocation {
 // send_location - sendLocation
 // Use this method to send point on the map. On success, the sent Message is returned.
 pub fn (mut b Bot) send_location(params SendLocation) !Message {
-    resp := b.http_request('sendLocation', json.encode(params))!
+    resp := b.api_request('sendLocation', json.encode(params))!
     // '
     return return_data[Message](resp)
 }
@@ -614,7 +615,7 @@ pub struct EditMessageLiveLocation {
 // edit_message_live_location - editMessageLiveLocation
 // Use this method to edit live location messages. A location can be edited until its live_period expires or editing is explicitly disabled by a call to stopMessageLiveLocation. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned.
 pub fn (mut b Bot) edit_message_live_location(params EditMessageLiveLocation) !Message {
-    resp := b.http_request('editMessageLiveLocation', json.encode(params))!
+    resp := b.api_request('editMessageLiveLocation', json.encode(params))!
     // '
     return return_data[Message](resp)
 }
@@ -633,7 +634,7 @@ pub struct StopMessageLiveLocation {
 // stop_message_live_location - stopMessageLiveLocation
 // Use this method to stop updating a live location message before live_period expires. On success, if the message is not an inline message, the edited Message is returned, otherwise True is returned.
 pub fn (mut b Bot) stop_message_live_location(params StopMessageLiveLocation) !Message {
-    resp := b.http_request('stopMessageLiveLocation', json.encode(params))!
+    resp := b.api_request('stopMessageLiveLocation', json.encode(params))!
     // '
     return return_data[Message](resp)
 }
@@ -674,7 +675,7 @@ pub struct SendVenue {
 // send_venue - sendVenue
 // Use this method to send information about a venue. On success, the sent Message is returned.
 pub fn (mut b Bot) send_venue(params SendVenue) !Message {
-    resp := b.http_request('sendVenue', json.encode(params))!
+    resp := b.api_request('sendVenue', json.encode(params))!
     // '
     return return_data[Message](resp)
 }
@@ -707,7 +708,7 @@ pub struct SendContact {
 // send_contact - sendContact
 // Use this method to send phone contacts. On success, the sent Message is returned.
 pub fn (mut b Bot) send_contact(params SendContact) !Message {
-    resp := b.http_request('sendContact', json.encode(params))!
+    resp := b.api_request('sendContact', json.encode(params))!
     // '
     return return_data[Message](resp)
 }
@@ -756,7 +757,7 @@ pub struct SendPoll {
 // send_poll - sendPoll
 // Use this method to send a native poll. On success, the sent Message is returned.
 pub fn (mut b Bot) send_poll(params SendPoll) !Message {
-    resp := b.http_request('sendPoll', json.encode(params))!
+    resp := b.api_request('sendPoll', json.encode(params))!
     // '
     return return_data[Message](resp)
 }
@@ -783,7 +784,7 @@ pub struct SendDice {
 // send_dice - sendDice
 // Use this method to send an animated emoji that will display a random value. On success, the sent Message is returned.
 pub fn (mut b Bot) send_dice(params SendDice) !Message {
-    resp := b.http_request('sendDice', json.encode(params))!
+    resp := b.api_request('sendDice', json.encode(params))!
     // '
     return return_data[Message](resp)
 }
@@ -800,7 +801,7 @@ pub struct SendChatAction {
 // send_chat_action - sendChatAction
 // Use this method when you need to tell the user that something is happening on the bot's side. The status is set for 5 seconds or less (when a message arrives from your bot, Telegram clients clear its typing status). Returns True on success.
 pub fn (mut b Bot) send_chat_action(params SendChatAction) !bool {
-    resp := b.http_request('sendChatAction', json.encode(params))!
+    resp := b.api_request('sendChatAction', json.encode(params))!
     // '
     return return_bool(resp)
 }
@@ -817,7 +818,7 @@ pub struct GetUserProfilePhotos {
 // get_user_profile_photos - getUserProfilePhotos
 // Use this method to get a list of profile pictures for a user. Returns a UserProfilePhotos object.
 pub fn (mut b Bot) get_user_profile_photos(params GetUserProfilePhotos) !UserProfilePhotos {
-    resp := b.http_request('getUserProfilePhotos', json.encode(params))!
+    resp := b.api_request('getUserProfilePhotos', json.encode(params))!
     // '
     return return_data[UserProfilePhotos](resp)
 }
@@ -830,7 +831,7 @@ pub struct GetFile {
 // get_file - getFile
 // Use this method to get basic information about a file and prepare it for downloading. For the moment, bots can download files of up to 20MB in size. On success, a File object is returned. The file can then be downloaded via the link https://api.telegram.org/file/bot<token>/<file_path>, where <file_path> is taken from the response. It is guaranteed that the link will be valid for at least 1 hour. When the link expires, a new one can be requested by calling getFile again.
 pub fn (mut b Bot) get_file(params GetFile) !File {
-    resp := b.http_request('getFile', json.encode(params))!
+    resp := b.api_request('getFile', json.encode(params))!
     // '
     return return_data[File](resp)
 }
@@ -849,7 +850,7 @@ pub struct BanChatMember {
 // ban_chat_member - banChatMember
 // Use this method to ban a user in a group, a supergroup or a channel. In the case of supergroups and channels, the user will not be able to return to the chat on their own using invite links, etc., unless unbanned first. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns True on success.
 pub fn (mut b Bot) ban_chat_member(params BanChatMember) !bool {
-    resp := b.http_request('banChatMember', json.encode(params))!
+    resp := b.api_request('banChatMember', json.encode(params))!
     // '
     return return_bool(resp)
 }
@@ -866,7 +867,7 @@ pub struct UnbanChatMember {
 // unban_chat_member - unbanChatMember
 // Use this method to unban a previously banned user in a supergroup or channel. The user will not return to the group or channel automatically, but will be able to join via link, etc. The bot must be an administrator for this to work. By default, this method guarantees that after the call the user is not a member of the chat, but will be able to join it. So if the user is a member of the chat they will also be removed from the chat. If you don't want this, use the parameter only_if_banned. Returns True on success.
 pub fn (mut b Bot) unban_chat_member(params UnbanChatMember) !bool {
-    resp := b.http_request('unbanChatMember', json.encode(params))!
+    resp := b.api_request('unbanChatMember', json.encode(params))!
     // '
     return return_bool(resp)
 }
@@ -888,7 +889,7 @@ pub struct RestrictChatMember {
 // restrict_chat_member - restrictChatMember
 // Use this method to restrict a user in a supergroup. The bot must be an administrator in the supergroup for this to work and must have the appropriate administrator rights. Pass True for all permissions to lift restrictions from a user. Returns True on success.
 pub fn (mut b Bot) restrict_chat_member(params RestrictChatMember) !bool {
-    resp := b.http_request('restrictChatMember', json.encode(params))!
+    resp := b.api_request('restrictChatMember', json.encode(params))!
     // '
     return return_bool(resp)
 }
@@ -927,7 +928,7 @@ pub struct PromoteChatMember {
 // promote_chat_member - promoteChatMember
 // Use this method to promote or demote a user in a supergroup or a channel. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Pass False for all boolean parameters to demote a user. Returns True on success.
 pub fn (mut b Bot) promote_chat_member(params PromoteChatMember) !bool {
-    resp := b.http_request('promoteChatMember', json.encode(params))!
+    resp := b.api_request('promoteChatMember', json.encode(params))!
     // '
     return return_bool(resp)
 }
@@ -944,7 +945,7 @@ pub struct SetChatAdministratorCustomTitle {
 // set_chat_administrator_custom_title - setChatAdministratorCustomTitle
 // Use this method to set a custom title for an administrator in a supergroup promoted by the bot. Returns True on success.
 pub fn (mut b Bot) set_chat_administrator_custom_title(params SetChatAdministratorCustomTitle) !bool {
-    resp := b.http_request('setChatAdministratorCustomTitle', json.encode(params))!
+    resp := b.api_request('setChatAdministratorCustomTitle', json.encode(params))!
     // '
     return return_bool(resp)
 }
@@ -959,7 +960,7 @@ pub struct BanChatSenderChat {
 // ban_chat_sender_chat - banChatSenderChat
 // Use this method to ban a channel chat in a supergroup or a channel. Until the chat is unbanned, the owner of the banned chat won't be able to send messages on behalf of any of their channels. The bot must be an administrator in the supergroup or channel for this to work and must have the appropriate administrator rights. Returns True on success.
 pub fn (mut b Bot) ban_chat_sender_chat(params BanChatSenderChat) !bool {
-    resp := b.http_request('banChatSenderChat', json.encode(params))!
+    resp := b.api_request('banChatSenderChat', json.encode(params))!
     // '
     return return_bool(resp)
 }
@@ -974,7 +975,7 @@ pub struct UnbanChatSenderChat {
 // unban_chat_sender_chat - unbanChatSenderChat
 // Use this method to unban a previously banned channel chat in a supergroup or channel. The bot must be an administrator for this to work and must have the appropriate administrator rights. Returns True on success.
 pub fn (mut b Bot) unban_chat_sender_chat(params UnbanChatSenderChat) !bool {
-    resp := b.http_request('unbanChatSenderChat', json.encode(params))!
+    resp := b.api_request('unbanChatSenderChat', json.encode(params))!
     // '
     return return_bool(resp)
 }
@@ -992,7 +993,7 @@ pub struct SetChatPermissions {
 // set_chat_permissions - setChatPermissions
 // Use this method to set default chat permissions for all members. The bot must be an administrator in the group or a supergroup for this to work and must have the can_restrict_members administrator rights. Returns True on success.
 pub fn (mut b Bot) set_chat_permissions(params SetChatPermissions) !bool {
-    resp := b.http_request('setChatPermissions', json.encode(params))!
+    resp := b.api_request('setChatPermissions', json.encode(params))!
     // '
     return return_bool(resp)
 }
@@ -1005,7 +1006,7 @@ pub struct ExportChatInviteLink {
 // export_chat_invite_link - exportChatInviteLink
 // Use this method to generate a new primary invite link for a chat; any previously generated primary link is revoked. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns the new invite link as String on success.
 pub fn (mut b Bot) export_chat_invite_link(params ExportChatInviteLink) !string {
-    resp := b.http_request('exportChatInviteLink', json.encode(params))!
+    resp := b.api_request('exportChatInviteLink', json.encode(params))!
     // '
     return return_string(resp)
 }
@@ -1026,7 +1027,7 @@ pub struct CreateChatInviteLink {
 // create_chat_invite_link - createChatInviteLink
 // Use this method to create an additional invite link for a chat. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. The link can be revoked using the method revokeChatInviteLink. Returns the new invite link as ChatInviteLink object.
 pub fn (mut b Bot) create_chat_invite_link(params CreateChatInviteLink) !ChatInviteLink {
-    resp := b.http_request('createChatInviteLink', json.encode(params))!
+    resp := b.api_request('createChatInviteLink', json.encode(params))!
     // '
     return return_data[ChatInviteLink](resp)
 }
@@ -1049,7 +1050,7 @@ pub struct EditChatInviteLink {
 // edit_chat_invite_link - editChatInviteLink
 // Use this method to edit a non-primary invite link created by the bot. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns the edited invite link as a ChatInviteLink object.
 pub fn (mut b Bot) edit_chat_invite_link(params EditChatInviteLink) !ChatInviteLink {
-    resp := b.http_request('editChatInviteLink', json.encode(params))!
+    resp := b.api_request('editChatInviteLink', json.encode(params))!
     // '
     return return_data[ChatInviteLink](resp)
 }
@@ -1064,7 +1065,7 @@ pub struct RevokeChatInviteLink {
 // revoke_chat_invite_link - revokeChatInviteLink
 // Use this method to revoke an invite link created by the bot. If the primary link is revoked, a new link is automatically generated. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns the revoked invite link as ChatInviteLink object.
 pub fn (mut b Bot) revoke_chat_invite_link(params RevokeChatInviteLink) !ChatInviteLink {
-    resp := b.http_request('revokeChatInviteLink', json.encode(params))!
+    resp := b.api_request('revokeChatInviteLink', json.encode(params))!
     // '
     return return_data[ChatInviteLink](resp)
 }
@@ -1079,7 +1080,7 @@ pub struct ApproveChatJoinRequest {
 // approve_chat_join_request - approveChatJoinRequest
 // Use this method to approve a chat join request. The bot must be an administrator in the chat for this to work and must have the can_invite_users administrator right. Returns True on success.
 pub fn (mut b Bot) approve_chat_join_request(params ApproveChatJoinRequest) !bool {
-    resp := b.http_request('approveChatJoinRequest', json.encode(params))!
+    resp := b.api_request('approveChatJoinRequest', json.encode(params))!
     // '
     return return_bool(resp)
 }
@@ -1094,7 +1095,7 @@ pub struct DeclineChatJoinRequest {
 // decline_chat_join_request - declineChatJoinRequest
 // Use this method to decline a chat join request. The bot must be an administrator in the chat for this to work and must have the can_invite_users administrator right. Returns True on success.
 pub fn (mut b Bot) decline_chat_join_request(params DeclineChatJoinRequest) !bool {
-    resp := b.http_request('declineChatJoinRequest', json.encode(params))!
+    resp := b.api_request('declineChatJoinRequest', json.encode(params))!
     // '
     return return_bool(resp)
 }
@@ -1109,7 +1110,7 @@ pub struct SetChatPhoto {
 // set_chat_photo - setChatPhoto
 // Use this method to set a new profile photo for the chat. Photos can't be changed for private chats. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns True on success.
 pub fn (mut b Bot) set_chat_photo(params SetChatPhoto) !bool {
-    resp := b.http_request('setChatPhoto', json.encode(params))!
+    resp := b.api_request('setChatPhoto', json.encode(params))!
     // '
     return return_bool(resp)
 }
@@ -1122,7 +1123,7 @@ pub struct DeleteChatPhoto {
 // delete_chat_photo - deleteChatPhoto
 // Use this method to delete a chat photo. Photos can't be changed for private chats. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns True on success.
 pub fn (mut b Bot) delete_chat_photo(params DeleteChatPhoto) !bool {
-    resp := b.http_request('deleteChatPhoto', json.encode(params))!
+    resp := b.api_request('deleteChatPhoto', json.encode(params))!
     // '
     return return_bool(resp)
 }
@@ -1137,7 +1138,7 @@ pub struct SetChatTitle {
 // set_chat_title - setChatTitle
 // Use this method to change the title of a chat. Titles can't be changed for private chats. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns True on success.
 pub fn (mut b Bot) set_chat_title(params SetChatTitle) !bool {
-    resp := b.http_request('setChatTitle', json.encode(params))!
+    resp := b.api_request('setChatTitle', json.encode(params))!
     // '
     return return_bool(resp)
 }
@@ -1152,7 +1153,7 @@ pub struct SetChatDescription {
 // set_chat_description - setChatDescription
 // Use this method to change the description of a group, a supergroup or a channel. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns True on success.
 pub fn (mut b Bot) set_chat_description(params SetChatDescription) !bool {
-    resp := b.http_request('setChatDescription', json.encode(params))!
+    resp := b.api_request('setChatDescription', json.encode(params))!
     // '
     return return_bool(resp)
 }
@@ -1169,7 +1170,7 @@ pub struct PinChatMessage {
 // pin_chat_message - pinChatMessage
 // Use this method to add a message to the list of pinned messages in a chat. If the chat is not a private chat, the bot must be an administrator in the chat for this to work and must have the 'can_pin_messages' administrator right in a supergroup or 'can_edit_messages' administrator right in a channel. Returns True on success.
 pub fn (mut b Bot) pin_chat_message(params PinChatMessage) !bool {
-    resp := b.http_request('pinChatMessage', json.encode(params))!
+    resp := b.api_request('pinChatMessage', json.encode(params))!
     // '
     return return_bool(resp)
 }
@@ -1184,7 +1185,7 @@ pub struct UnpinChatMessage {
 // unpin_chat_message - unpinChatMessage
 // Use this method to remove a message from the list of pinned messages in a chat. If the chat is not a private chat, the bot must be an administrator in the chat for this to work and must have the 'can_pin_messages' administrator right in a supergroup or 'can_edit_messages' administrator right in a channel. Returns True on success.
 pub fn (mut b Bot) unpin_chat_message(params UnpinChatMessage) !bool {
-    resp := b.http_request('unpinChatMessage', json.encode(params))!
+    resp := b.api_request('unpinChatMessage', json.encode(params))!
     // '
     return return_bool(resp)
 }
@@ -1197,7 +1198,7 @@ pub struct UnpinAllChatMessages {
 // unpin_all_chat_messages - unpinAllChatMessages
 // Use this method to clear the list of pinned messages in a chat. If the chat is not a private chat, the bot must be an administrator in the chat for this to work and must have the 'can_pin_messages' administrator right in a supergroup or 'can_edit_messages' administrator right in a channel. Returns True on success.
 pub fn (mut b Bot) unpin_all_chat_messages(params UnpinAllChatMessages) !bool {
-    resp := b.http_request('unpinAllChatMessages', json.encode(params))!
+    resp := b.api_request('unpinAllChatMessages', json.encode(params))!
     // '
     return return_bool(resp)
 }
@@ -1210,7 +1211,7 @@ pub struct LeaveChat {
 // leave_chat - leaveChat
 // Use this method for your bot to leave a group, supergroup or channel. Returns True on success.
 pub fn (mut b Bot) leave_chat(params LeaveChat) !bool {
-    resp := b.http_request('leaveChat', json.encode(params))!
+    resp := b.api_request('leaveChat', json.encode(params))!
     // '
     return return_bool(resp)
 }
@@ -1223,7 +1224,7 @@ pub struct GetChat {
 // get_chat - getChat
 // Use this method to get up to date information about the chat (current name of the user for one-on-one conversations, current username of a user, group or channel, etc.). Returns a Chat object on success.
 pub fn (mut b Bot) get_chat(params GetChat) !Chat {
-    resp := b.http_request('getChat', json.encode(params))!
+    resp := b.api_request('getChat', json.encode(params))!
     // '
     return return_data[Chat](resp)
 }
@@ -1236,7 +1237,7 @@ pub struct GetChatAdministrators {
 // get_chat_administrators - getChatAdministrators
 // Use this method to get a list of administrators in a chat, which aren't bots. Returns an Array of ChatMember objects.
 pub fn (mut b Bot) get_chat_administrators(params GetChatAdministrators) ![]ChatMember {
-    resp := b.http_request('getChatAdministrators', json.encode(params))!
+    resp := b.api_request('getChatAdministrators', json.encode(params))!
     // '
     return return_data[[]ChatMember](resp)
 }
@@ -1249,7 +1250,7 @@ pub struct GetChatMemberCount {
 // get_chat_member_count - getChatMemberCount
 // Use this method to get the number of members in a chat. Returns Int on success.
 pub fn (mut b Bot) get_chat_member_count(params GetChatMemberCount) !int {
-    resp := b.http_request('getChatMemberCount', json.encode(params))!
+    resp := b.api_request('getChatMemberCount', json.encode(params))!
     // '
     return return_int(resp)
 }
@@ -1264,7 +1265,7 @@ pub struct GetChatMember {
 // get_chat_member - getChatMember
 // Use this method to get information about a member of a chat. The method is guaranteed to work only if the bot is an administrator in the chat. Returns a ChatMember object on success.
 pub fn (mut b Bot) get_chat_member(params GetChatMember) !ChatMember {
-    resp := b.http_request('getChatMember', json.encode(params))!
+    resp := b.api_request('getChatMember', json.encode(params))!
     // '
     return return_data[ChatMember](resp)
 }
@@ -1279,7 +1280,7 @@ pub struct SetChatStickerSet {
 // set_chat_sticker_set - setChatStickerSet
 // Use this method to set a new group sticker set for a supergroup. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Use the field can_set_sticker_set optionally returned in getChat requests to check if the bot can use this method. Returns True on success.
 pub fn (mut b Bot) set_chat_sticker_set(params SetChatStickerSet) !bool {
-    resp := b.http_request('setChatStickerSet', json.encode(params))!
+    resp := b.api_request('setChatStickerSet', json.encode(params))!
     // '
     return return_bool(resp)
 }
@@ -1292,7 +1293,7 @@ pub struct DeleteChatStickerSet {
 // delete_chat_sticker_set - deleteChatStickerSet
 // Use this method to delete a group sticker set from a supergroup. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Use the field can_set_sticker_set optionally returned in getChat requests to check if the bot can use this method. Returns True on success.
 pub fn (mut b Bot) delete_chat_sticker_set(params DeleteChatStickerSet) !bool {
-    resp := b.http_request('deleteChatStickerSet', json.encode(params))!
+    resp := b.api_request('deleteChatStickerSet', json.encode(params))!
     // '
     return return_bool(resp)
 }
@@ -1311,7 +1312,7 @@ pub struct GetForumTopicIconStickers {
 // get_forum_topic_icon_stickers - getForumTopicIconStickers
 // Use this method to get custom emoji stickers, which can be used as a forum topic icon by any user. Requires no parameters. Returns an Array of Sticker objects.
 pub fn (mut b Bot) get_forum_topic_icon_stickers(params GetForumTopicIconStickers) ![]Sticker {
-    resp := b.http_request('getForumTopicIconStickers', json.encode(params))!
+    resp := b.api_request('getForumTopicIconStickers', json.encode(params))!
     // '
     return return_data[[]Sticker](resp)
 }
@@ -1330,7 +1331,7 @@ pub struct CreateForumTopic {
 // create_forum_topic - createForumTopic
 // Use this method to create a topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the can_manage_topics administrator rights. Returns information about the created topic as a ForumTopic object.
 pub fn (mut b Bot) create_forum_topic(params CreateForumTopic) !ForumTopic {
-    resp := b.http_request('createForumTopic', json.encode(params))!
+    resp := b.api_request('createForumTopic', json.encode(params))!
     // '
     return return_data[ForumTopic](resp)
 }
@@ -1349,7 +1350,7 @@ pub struct EditForumTopic {
 // edit_forum_topic - editForumTopic
 // Use this method to edit name and icon of a topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have can_manage_topics administrator rights, unless it is the creator of the topic. Returns True on success.
 pub fn (mut b Bot) edit_forum_topic(params EditForumTopic) !bool {
-    resp := b.http_request('editForumTopic', json.encode(params))!
+    resp := b.api_request('editForumTopic', json.encode(params))!
     // '
     return return_bool(resp)
 }
@@ -1364,7 +1365,7 @@ pub struct CloseForumTopic {
 // close_forum_topic - closeForumTopic
 // Use this method to close an open topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the can_manage_topics administrator rights, unless it is the creator of the topic. Returns True on success.
 pub fn (mut b Bot) close_forum_topic(params CloseForumTopic) !bool {
-    resp := b.http_request('closeForumTopic', json.encode(params))!
+    resp := b.api_request('closeForumTopic', json.encode(params))!
     // '
     return return_bool(resp)
 }
@@ -1379,7 +1380,7 @@ pub struct ReopenForumTopic {
 // reopen_forum_topic - reopenForumTopic
 // Use this method to reopen a closed topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the can_manage_topics administrator rights, unless it is the creator of the topic. Returns True on success.
 pub fn (mut b Bot) reopen_forum_topic(params ReopenForumTopic) !bool {
-    resp := b.http_request('reopenForumTopic', json.encode(params))!
+    resp := b.api_request('reopenForumTopic', json.encode(params))!
     // '
     return return_bool(resp)
 }
@@ -1394,7 +1395,7 @@ pub struct DeleteForumTopic {
 // delete_forum_topic - deleteForumTopic
 // Use this method to delete a forum topic along with all its messages in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the can_delete_messages administrator rights. Returns True on success.
 pub fn (mut b Bot) delete_forum_topic(params DeleteForumTopic) !bool {
-    resp := b.http_request('deleteForumTopic', json.encode(params))!
+    resp := b.api_request('deleteForumTopic', json.encode(params))!
     // '
     return return_bool(resp)
 }
@@ -1409,7 +1410,7 @@ pub struct UnpinAllForumTopicMessages {
 // unpin_all_forum_topic_messages - unpinAllForumTopicMessages
 // Use this method to clear the list of pinned messages in a forum topic. The bot must be an administrator in the chat for this to work and must have the can_pin_messages administrator right in the supergroup. Returns True on success.
 pub fn (mut b Bot) unpin_all_forum_topic_messages(params UnpinAllForumTopicMessages) !bool {
-    resp := b.http_request('unpinAllForumTopicMessages', json.encode(params))!
+    resp := b.api_request('unpinAllForumTopicMessages', json.encode(params))!
     // '
     return return_bool(resp)
 }
@@ -1424,7 +1425,7 @@ pub struct EditGeneralForumTopic {
 // edit_general_forum_topic - editGeneralForumTopic
 // Use this method to edit the name of the 'General' topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have can_manage_topics administrator rights. Returns True on success.
 pub fn (mut b Bot) edit_general_forum_topic(params EditGeneralForumTopic) !bool {
-    resp := b.http_request('editGeneralForumTopic', json.encode(params))!
+    resp := b.api_request('editGeneralForumTopic', json.encode(params))!
     // '
     return return_bool(resp)
 }
@@ -1437,7 +1438,7 @@ pub struct CloseGeneralForumTopic {
 // close_general_forum_topic - closeGeneralForumTopic
 // Use this method to close an open 'General' topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the can_manage_topics administrator rights. Returns True on success.
 pub fn (mut b Bot) close_general_forum_topic(params CloseGeneralForumTopic) !bool {
-    resp := b.http_request('closeGeneralForumTopic', json.encode(params))!
+    resp := b.api_request('closeGeneralForumTopic', json.encode(params))!
     // '
     return return_bool(resp)
 }
@@ -1450,7 +1451,7 @@ pub struct ReopenGeneralForumTopic {
 // reopen_general_forum_topic - reopenGeneralForumTopic
 // Use this method to reopen a closed 'General' topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the can_manage_topics administrator rights. The topic will be automatically unhidden if it was hidden. Returns True on success.
 pub fn (mut b Bot) reopen_general_forum_topic(params ReopenGeneralForumTopic) !bool {
-    resp := b.http_request('reopenGeneralForumTopic', json.encode(params))!
+    resp := b.api_request('reopenGeneralForumTopic', json.encode(params))!
     // '
     return return_bool(resp)
 }
@@ -1463,7 +1464,7 @@ pub struct HideGeneralForumTopic {
 // hide_general_forum_topic - hideGeneralForumTopic
 // Use this method to hide the 'General' topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the can_manage_topics administrator rights. The topic will be automatically closed if it was open. Returns True on success.
 pub fn (mut b Bot) hide_general_forum_topic(params HideGeneralForumTopic) !bool {
-    resp := b.http_request('hideGeneralForumTopic', json.encode(params))!
+    resp := b.api_request('hideGeneralForumTopic', json.encode(params))!
     // '
     return return_bool(resp)
 }
@@ -1476,7 +1477,7 @@ pub struct UnhideGeneralForumTopic {
 // unhide_general_forum_topic - unhideGeneralForumTopic
 // Use this method to unhide the 'General' topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the can_manage_topics administrator rights. Returns True on success.
 pub fn (mut b Bot) unhide_general_forum_topic(params UnhideGeneralForumTopic) !bool {
-    resp := b.http_request('unhideGeneralForumTopic', json.encode(params))!
+    resp := b.api_request('unhideGeneralForumTopic', json.encode(params))!
     // '
     return return_bool(resp)
 }
@@ -1498,7 +1499,7 @@ pub struct AnswerCallbackQuery {
 // answer_callback_query - answerCallbackQuery
 // Use this method to send answers to callback queries sent from inline keyboards. The answer will be displayed to the user as a notification at the top of the chat screen or as an alert. On success, True is returned.
 pub fn (mut b Bot) answer_callback_query(params AnswerCallbackQuery) !bool {
-    resp := b.http_request('answerCallbackQuery', json.encode(params))!
+    resp := b.api_request('answerCallbackQuery', json.encode(params))!
     // '
     return return_bool(resp)
 }
@@ -1515,7 +1516,7 @@ pub struct SetMyCommands {
 // set_my_commands - setMyCommands
 // Use this method to change the list of the bot's commands. See this manual for more details about bot commands. Returns True on success.
 pub fn (mut b Bot) set_my_commands(params SetMyCommands) !bool {
-    resp := b.http_request('setMyCommands', json.encode(params))!
+    resp := b.api_request('setMyCommands', json.encode(params))!
     // '
     return return_bool(resp)
 }
@@ -1530,7 +1531,7 @@ pub struct DeleteMyCommands {
 // delete_my_commands - deleteMyCommands
 // Use this method to delete the list of the bot's commands for the given scope and user language. After deletion, higher level commands will be shown to affected users. Returns True on success.
 pub fn (mut b Bot) delete_my_commands(params DeleteMyCommands) !bool {
-    resp := b.http_request('deleteMyCommands', json.encode(params))!
+    resp := b.api_request('deleteMyCommands', json.encode(params))!
     // '
     return return_bool(resp)
 }
@@ -1545,7 +1546,7 @@ pub struct GetMyCommands {
 // get_my_commands - getMyCommands
 // Use this method to get the current list of the bot's commands for the given scope and user language. Returns an Array of BotCommand objects. If commands aren't set, an empty list is returned.
 pub fn (mut b Bot) get_my_commands(params GetMyCommands) ![]BotCommand {
-    resp := b.http_request('getMyCommands', json.encode(params))!
+    resp := b.api_request('getMyCommands', json.encode(params))!
     // '
     return return_data[[]BotCommand](resp)
 }
@@ -1560,7 +1561,7 @@ pub struct SetChatMenuButton {
 // set_chat_menu_button - setChatMenuButton
 // Use this method to change the bot's menu button in a private chat, or the default menu button. Returns True on success.
 pub fn (mut b Bot) set_chat_menu_button(params SetChatMenuButton) !bool {
-    resp := b.http_request('setChatMenuButton', json.encode(params))!
+    resp := b.api_request('setChatMenuButton', json.encode(params))!
     // '
     return return_bool(resp)
 }
@@ -1573,7 +1574,7 @@ pub struct GetChatMenuButton {
 // get_chat_menu_button - getChatMenuButton
 // Use this method to get the current value of the bot's menu button in a private chat, or the default menu button. Returns MenuButton on success.
 pub fn (mut b Bot) get_chat_menu_button(params GetChatMenuButton) !MenuButton {
-    resp := b.http_request('getChatMenuButton', json.encode(params))!
+    resp := b.api_request('getChatMenuButton', json.encode(params))!
     // '
     return return_data[MenuButton](resp)
 }
@@ -1588,7 +1589,7 @@ pub struct SetMyDefaultAdministratorRights {
 // set_my_default_administrator_rights - setMyDefaultAdministratorRights
 // Use this method to change the default administrator rights requested by the bot when it's added as an administrator to groups or channels. These rights will be suggested to users, but they are are free to modify the list before adding the bot. Returns True on success.
 pub fn (mut b Bot) set_my_default_administrator_rights(params SetMyDefaultAdministratorRights) !bool {
-    resp := b.http_request('setMyDefaultAdministratorRights', json.encode(params))!
+    resp := b.api_request('setMyDefaultAdministratorRights', json.encode(params))!
     // '
     return return_bool(resp)
 }
@@ -1601,7 +1602,7 @@ pub struct GetMyDefaultAdministratorRights {
 // get_my_default_administrator_rights - getMyDefaultAdministratorRights
 // Use this method to get the current default administrator rights of the bot. Returns ChatAdministratorRights on success.
 pub fn (mut b Bot) get_my_default_administrator_rights(params GetMyDefaultAdministratorRights) !ChatAdministratorRights {
-    resp := b.http_request('getMyDefaultAdministratorRights', json.encode(params))!
+    resp := b.api_request('getMyDefaultAdministratorRights', json.encode(params))!
     // '
     return return_data[ChatAdministratorRights](resp)
 }
@@ -1629,7 +1630,7 @@ mut:
 // edit_message_text - editMessageText
 // Use this method to edit text and game messages. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned.
 pub fn (mut b Bot) edit_message_text(params EditMessageText) !Message {
-    resp := b.http_request('editMessageText', json.encode(params))!
+    resp := b.api_request('editMessageText', json.encode(params))!
     // '
     return return_data[Message](resp)
 }
@@ -1654,7 +1655,7 @@ pub struct EditMessageCaption {
 // edit_message_caption - editMessageCaption
 // Use this method to edit captions of messages. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned.
 pub fn (mut b Bot) edit_message_caption(params EditMessageCaption) !Message {
-    resp := b.http_request('editMessageCaption', json.encode(params))!
+    resp := b.api_request('editMessageCaption', json.encode(params))!
     // '
     return return_data[Message](resp)
 }
@@ -1675,7 +1676,7 @@ pub struct EditMessageMedia {
 // edit_message_media - editMessageMedia
 // Use this method to edit animation, audio, document, photo, or video messages. If a message is part of a message album, then it can be edited only to an audio for audio albums, only to a document for document albums and to a photo or a video otherwise. When an inline message is edited, a new file can't be uploaded; use a previously uploaded file via its file_id or specify a URL. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned.
 pub fn (mut b Bot) edit_message_media(params EditMessageMedia) !Message {
-    resp := b.http_request('editMessageMedia', json.encode(params))!
+    resp := b.api_request('editMessageMedia', json.encode(params))!
     // '
     return return_data[Message](resp)
 }
@@ -1694,7 +1695,7 @@ pub struct EditMessageReplyMarkup {
 // edit_message_reply_markup - editMessageReplyMarkup
 // Use this method to edit only the reply markup of messages. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned.
 pub fn (mut b Bot) edit_message_reply_markup(params EditMessageReplyMarkup) !Message {
-    resp := b.http_request('editMessageReplyMarkup', json.encode(params))!
+    resp := b.api_request('editMessageReplyMarkup', json.encode(params))!
     // '
     return return_data[Message](resp)
 }
@@ -1711,7 +1712,7 @@ pub struct StopPoll {
 // stop_poll - stopPoll
 // Use this method to stop a poll which was sent by the bot. On success, the stopped Poll is returned.
 pub fn (mut b Bot) stop_poll(params StopPoll) !Poll {
-    resp := b.http_request('stopPoll', json.encode(params))!
+    resp := b.api_request('stopPoll', json.encode(params))!
     // '
     return return_data[Poll](resp)
 }
@@ -1735,7 +1736,7 @@ pub struct DeleteMessage {
 // - If the bot has can_delete_messages permission in a supergroup or a channel, it can delete any message there.
 // Returns True on success.
 pub fn (mut b Bot) delete_message(params DeleteMessage) !bool {
-    resp := b.http_request('deleteMessage', json.encode(params))!
+    resp := b.api_request('deleteMessage', json.encode(params))!
     // '
     return return_bool(resp)
 }
@@ -1762,7 +1763,7 @@ pub struct SendSticker {
 // send_sticker - sendSticker
 // Use this method to send static .WEBP, animated .TGS, or video .WEBM stickers. On success, the sent Message is returned.
 pub fn (mut b Bot) send_sticker(params SendSticker) !Message {
-    resp := b.http_request('sendSticker', json.encode(params))!
+    resp := b.api_request('sendSticker', json.encode(params))!
     // '
     return return_data[Message](resp)
 }
@@ -1775,7 +1776,7 @@ pub struct GetStickerSet {
 // get_sticker_set - getStickerSet
 // Use this method to get a sticker set. On success, a StickerSet object is returned.
 pub fn (mut b Bot) get_sticker_set(params GetStickerSet) !StickerSet {
-    resp := b.http_request('getStickerSet', json.encode(params))!
+    resp := b.api_request('getStickerSet', json.encode(params))!
     // '
     return return_data[StickerSet](resp)
 }
@@ -1788,7 +1789,7 @@ pub struct GetCustomEmojiStickers {
 // get_custom_emoji_stickers - getCustomEmojiStickers
 // Use this method to get information about custom emoji stickers by their identifiers. Returns an Array of Sticker objects.
 pub fn (mut b Bot) get_custom_emoji_stickers(params GetCustomEmojiStickers) ![]string {
-    resp := b.http_request('getCustomEmojiStickers', json.encode(params))!
+    resp := b.api_request('getCustomEmojiStickers', json.encode(params))!
     // '
     return return_data[[]string](resp)
 }
@@ -1803,7 +1804,7 @@ pub struct UploadStickerFile {
 // upload_sticker_file - uploadStickerFile
 // Use this method to upload a .PNG file with a sticker for later use in createNewStickerSet and addStickerToSet methods (can be used multiple times). Returns the uploaded File on success.
 pub fn (mut b Bot) upload_sticker_file(params UploadStickerFile) !File {
-    resp := b.http_request('uploadStickerFile', json.encode(params))!
+    resp := b.api_request('uploadStickerFile', json.encode(params))!
     // '
     return return_data[File](resp)
 }
@@ -1832,7 +1833,7 @@ pub struct CreateNewStickerSet {
 // create_new_sticker_set - createNewStickerSet
 // Use this method to create a new sticker set owned by a user. The bot will be able to edit the sticker set thus created. You must use exactly one of the fields png_sticker, tgs_sticker, or webm_sticker. Returns True on success.
 pub fn (mut b Bot) create_new_sticker_set(params CreateNewStickerSet) !bool {
-    resp := b.http_request('createNewStickerSet', json.encode(params))!
+    resp := b.api_request('createNewStickerSet', json.encode(params))!
     // '
     return return_bool(resp)
 }
@@ -1857,7 +1858,7 @@ pub struct AddStickerToSet {
 // add_sticker_to_set - addStickerToSet
 // Use this method to add a new sticker to a set created by the bot. You must use exactly one of the fields png_sticker, tgs_sticker, or webm_sticker. Animated stickers can be added to animated sticker sets and only to them. Animated sticker sets can have up to 50 stickers. Static sticker sets can have up to 120 stickers. Returns True on success.
 pub fn (mut b Bot) add_sticker_to_set(params AddStickerToSet) !bool {
-    resp := b.http_request('addStickerToSet', json.encode(params))!
+    resp := b.api_request('addStickerToSet', json.encode(params))!
     // '
     return return_bool(resp)
 }
@@ -1872,7 +1873,7 @@ pub struct SetStickerPositionInSet {
 // set_sticker_position_in_set - setStickerPositionInSet
 // Use this method to move a sticker in a set created by the bot to a specific position. Returns True on success.
 pub fn (mut b Bot) set_sticker_position_in_set(params SetStickerPositionInSet) !bool {
-    resp := b.http_request('setStickerPositionInSet', json.encode(params))!
+    resp := b.api_request('setStickerPositionInSet', json.encode(params))!
     // '
     return return_bool(resp)
 }
@@ -1885,7 +1886,7 @@ pub struct DeleteStickerFromSet {
 // delete_sticker_from_set - deleteStickerFromSet
 // Use this method to delete a sticker from a set created by the bot. Returns True on success.
 pub fn (mut b Bot) delete_sticker_from_set(params DeleteStickerFromSet) !bool {
-    resp := b.http_request('deleteStickerFromSet', json.encode(params))!
+    resp := b.api_request('deleteStickerFromSet', json.encode(params))!
     // '
     return return_bool(resp)
 }
@@ -1902,7 +1903,7 @@ pub struct SetStickerSetThumb {
 // set_sticker_set_thumb - setStickerSetThumb
 // Use this method to set the thumbnail of a sticker set. Animated thumbnails can be set for animated sticker sets only. Video thumbnails can be set only for video sticker sets only. Returns True on success.
 pub fn (mut b Bot) set_sticker_set_thumb(params SetStickerSetThumb) !bool {
-    resp := b.http_request('setStickerSetThumb', json.encode(params))!
+    resp := b.api_request('setStickerSetThumb', json.encode(params))!
     // '
     return return_bool(resp)
 }
@@ -1929,7 +1930,7 @@ pub struct AnswerInlineQuery {
 // Use this method to send answers to an inline query. On success, True is returned.
 // No more than 50 results per query are allowed.
 pub fn (mut b Bot) answer_inline_query(params AnswerInlineQuery) !bool {
-    resp := b.http_request('answerInlineQuery', json.encode(params))!
+    resp := b.api_request('answerInlineQuery', json.encode(params))!
     // '
     return return_bool(resp)
 }
@@ -1944,7 +1945,7 @@ pub struct AnswerWebAppQuery {
 // answer_web_app_query - answerWebAppQuery
 // Use this method to set the result of an interaction with a Web App and send a corresponding message on behalf of the user to the chat from which the query originated. On success, a SentWebAppMessage object is returned.
 pub fn (mut b Bot) answer_web_app_query(params AnswerWebAppQuery) !SentWebAppMessage {
-    resp := b.http_request('answerWebAppQuery', json.encode(params))!
+    resp := b.api_request('answerWebAppQuery', json.encode(params))!
     // '
     return return_data[SentWebAppMessage](resp)
 }
@@ -2011,7 +2012,7 @@ pub struct SendInvoice {
 // send_invoice - sendInvoice
 // Use this method to send invoices. On success, the sent Message is returned.
 pub fn (mut b Bot) send_invoice(params SendInvoice) !Message {
-    resp := b.http_request('sendInvoice', json.encode(params))!
+    resp := b.api_request('sendInvoice', json.encode(params))!
     // '
     return return_data[Message](resp)
 }
@@ -2062,7 +2063,7 @@ pub struct CreateInvoiceLink {
 // create_invoice_link - createInvoiceLink
 // Use this method to create a link for an invoice. Returns the created invoice link as String on success.
 pub fn (mut b Bot) create_invoice_link(params CreateInvoiceLink) !string {
-    resp := b.http_request('createInvoiceLink', json.encode(params))!
+    resp := b.api_request('createInvoiceLink', json.encode(params))!
     // '
     return return_string(resp)
 }
@@ -2081,7 +2082,7 @@ pub struct AnswerShippingQuery {
 // answer_shipping_query - answerShippingQuery
 // If you sent an invoice requesting a shipping address and the parameter is_flexible was specified, the Bot API will send an Update with a shipping_query field to the bot. Use this method to reply to shipping queries. On success, True is returned.
 pub fn (mut b Bot) answer_shipping_query(params AnswerShippingQuery) !bool {
-    resp := b.http_request('answerShippingQuery', json.encode(params))!
+    resp := b.api_request('answerShippingQuery', json.encode(params))!
     // '
     return return_bool(resp)
 }
@@ -2098,7 +2099,7 @@ pub struct AnswerPreCheckoutQuery {
 // answer_pre_checkout_query - answerPreCheckoutQuery
 // Once the user has confirmed their payment and shipping details, the Bot API sends the final confirmation in the form of an Update with the field pre_checkout_query. Use this method to respond to such pre-checkout queries. On success, True is returned. Note: The Bot API must receive an answer within 10 seconds after the pre-checkout query was sent.
 pub fn (mut b Bot) answer_pre_checkout_query(params AnswerPreCheckoutQuery) !bool {
-    resp := b.http_request('answerPreCheckoutQuery', json.encode(params))!
+    resp := b.api_request('answerPreCheckoutQuery', json.encode(params))!
     // '
     return return_bool(resp)
 }
@@ -2113,7 +2114,7 @@ pub struct SetPassportDataErrors {
 // set_passport_data_errors - setPassportDataErrors
 // Informs a user that some of the Telegram Passport elements they provided contains errors. The user will not be able to re-submit their Passport to you until the errors are fixed (the contents of the field for which you returned the error must change). Returns True on success.
 pub fn (mut b Bot) set_passport_data_errors(params SetPassportDataErrors) !bool {
-    resp := b.http_request('setPassportDataErrors', json.encode(params))!
+    resp := b.api_request('setPassportDataErrors', json.encode(params))!
     // '
     return return_bool(resp)
 }
@@ -2140,7 +2141,7 @@ pub struct SendGame {
 // send_game - sendGame
 // Use this method to send a game. On success, the sent Message is returned.
 pub fn (mut b Bot) send_game(params SendGame) !Message {
-    resp := b.http_request('sendGame', json.encode(params))!
+    resp := b.api_request('sendGame', json.encode(params))!
     // '
     return return_data[Message](resp)
 }
@@ -2165,7 +2166,7 @@ pub struct SetGameScore {
 // set_game_score - setGameScore
 // Use this method to set the score of the specified user in a game message. On success, if the message is not an inline message, the Message is returned, otherwise True is returned. Returns an error, if the new score is not greater than the user's current score in the chat and force is False.
 pub fn (mut b Bot) set_game_score(params SetGameScore) !Message {
-    resp := b.http_request('setGameScore', json.encode(params))!
+    resp := b.api_request('setGameScore', json.encode(params))!
     // '
     return return_data[Message](resp)
 }
@@ -2184,7 +2185,7 @@ pub struct GetGameHighScores {
 // get_game_high_scores - getGameHighScores
 // Use this method to get data for high score tables. Will return the score of the specified user and several of their neighbors in a game. Returns an Array of GameHighScore objects.
 pub fn (mut b Bot) get_game_high_scores(params GetGameHighScores) ![]GameHighScore {
-    resp := b.http_request('getGameHighScores', json.encode(params))!
+    resp := b.api_request('getGameHighScores', json.encode(params))!
     // '
     return return_data[[]GameHighScore](resp)
 }
