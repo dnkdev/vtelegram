@@ -8,16 +8,10 @@ mut:
 	path string
 }
 
-pub fn new_animation() AnimationUpload {
-	return AnimationUpload{}
-}
-
-pub fn (mut d AnimationUpload) upload(path string) !{
-	if d.path != '' {
-		println('Failed to upload ${path}')
-		return error('Animation already uploaded, use sendMediaGroup method for sending a few animations')
+pub fn new_animation(path string) AnimationUpload {
+	return AnimationUpload{
+		path: path
 	}
-	d.path = path
 }
 
 pub fn (mut d AnimationUpload) send[T](mut app T, params SendAnimation) !Message {

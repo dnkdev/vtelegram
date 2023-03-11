@@ -12,8 +12,7 @@ fn (mut app App) send(result vt.Result) ! {
 	
 	println('sending...')
 
-	mut doc := vtm.new_document()
-	doc.upload('./VTelegram.svg')!
+	mut doc := vtm.new_document('./VTelegram.svg')
 	doc.send(
 		mut app,
 		chat_id: result.update.message.chat.id
@@ -24,8 +23,7 @@ fn (mut app App) send(result vt.Result) ! {
 		return 
 	}
 
-	mut photo := vtm.new_photo()
-	photo.upload('./path_to.png')!
+	mut photo := vtm.new_photo('./VTelegram.png')
 	photo.send(
 		mut app,
 		chat_id: result.update.message.chat.id

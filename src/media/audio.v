@@ -8,16 +8,10 @@ mut:
 	path string
 }
 
-pub fn new_audio() AudioUpload {
-	return AudioUpload{}
-}
-
-pub fn (mut d AudioUpload) upload(path string) !{
-	if d.path != '' {
-		println('Failed to upload ${path}')
-		return error('Audio already uploaded, use sendMediaGroup method for sending a few audios')
+pub fn new_audio(path string) AudioUpload {
+	return AudioUpload{
+		path:path
 	}
-	d.path = path
 }
 
 pub fn (mut d AudioUpload) send[T](mut app T, params SendAudio) !Message {

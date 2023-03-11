@@ -8,16 +8,10 @@ mut:
 	path string
 }
 
-pub fn new_voice() VoiceUpload {
-	return VoiceUpload{}
-}
-
-pub fn (mut d VoiceUpload) upload(path string) !{
-	if d.path != '' {
-		println('Failed to upload ${path}')
-		return error('Voice already uploaded, use sendMediaGroup method for sending a few voices')
+pub fn new_voice(path string) VoiceUpload {
+	return VoiceUpload{
+		path:path
 	}
-	d.path = path
 }
 
 pub fn (mut d VoiceUpload) send[T](mut app T, params SendVoice) !Message {

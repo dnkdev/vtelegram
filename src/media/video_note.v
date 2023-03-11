@@ -8,16 +8,10 @@ mut:
 	path string
 }
 
-pub fn new_video_note() VideoNoteUpload {
-	return VideoNoteUpload{}
-}
-
-pub fn (mut d VideoNoteUpload) upload(path string) !{
-	if d.path != '' {
-		println('Failed to upload ${path}')
-		return error('VideoNote already uploaded, use sendMediaGroup method for sending a few video_notes')
+pub fn new_video_note(path string) VideoNoteUpload {
+	return VideoNoteUpload{
+		path:path
 	}
-	d.path = path
 }
 
 pub fn (mut d VideoNoteUpload) send[T](mut app T, params SendVideoNote) !Message {

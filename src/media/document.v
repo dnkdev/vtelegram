@@ -8,16 +8,10 @@ pub mut:
 	path string
 }
 
-pub fn new_document() DocumentUpload {
-	return DocumentUpload{}
-}
-
-pub fn (mut d DocumentUpload) upload(path string) !{
-	if d.path != '' {
-		println('Failed to upload ${path}')
-		return error('Document already uploaded, use sendMediaGroup method for sending a few documents')
+pub fn new_document(path string) DocumentUpload {
+	return DocumentUpload{
+		path:path
 	}
-	d.path = path
 }
 
 pub fn (mut d DocumentUpload) send[T](mut app T, params SendDocument) !Message {

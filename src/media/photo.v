@@ -8,16 +8,10 @@ mut:
 	path string
 }
 
-pub fn new_photo() PhotoUpload {
-	return PhotoUpload{}
-}
-
-pub fn (mut d PhotoUpload) upload(path string) !{
-	if d.path != '' {
-		println('Failed to upload ${path}')
-		return error('Photo already uploaded, use sendMediaGroup method for sending a few photos')
+pub fn new_photo(path string) PhotoUpload {
+	return PhotoUpload{
+		path:path
 	}
-	d.path = path
 }
 
 pub fn (mut d PhotoUpload) send[T](mut app T, params SendPhoto) !Message {

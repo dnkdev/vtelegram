@@ -8,16 +8,10 @@ mut:
 	path string
 }
 
-pub fn new_video() VideoUpload {
-	return VideoUpload{}
-}
-
-pub fn (mut d VideoUpload) upload(path string) !{
-	if d.path != '' {
-		println('Failed to upload ${path}')
-		return error('Video already uploaded, use sendMediaGroup method for sending a few videos')
+pub fn new_video(path string) VideoUpload {
+	return VideoUpload{
+		path:path
 	}
-	d.path = path
 }
 
 pub fn (mut d VideoUpload) send[T](mut app T, params SendVideo) !Message {
