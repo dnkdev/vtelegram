@@ -94,7 +94,7 @@ pub fn (mut b Bot) api_request(api_method string, _data string) !string {
 	return response.body
 }
 
-pub fn (mut b Bot) api_multipart_form_request[T, R](api_method string, _data T, ufiles R) !string {
+pub fn (mut b Bot) api_multipart_form_request[T](api_method string, _data T, ufiles map[string][]http.FileData) !string {
 
 	mut form := map[string]string{}
 	$for field in T.fields {
@@ -104,20 +104,11 @@ pub fn (mut b Bot) api_multipart_form_request[T, R](api_method string, _data T, 
 		}
 	}
 
-	mut files_to_send := map[string][]http.FileData{} 
-	$for field in R.fields {
-		$if field.name == 'key_name' {
-			files_to_send = prepare_files(ufiles.key_name, [ufiles.path]) or {
-				return error('${ufiles.key_name}: ${err}')
-			}
-		}
-	}
-
 	mut header := http.new_header()
 	header.set(.content_type, 'multipart/form-data')
 	conf := http.PostMultipartFormConfig{
 		form:form
-		files: files_to_send
+		files: ufiles
 		header: header
 	}
 	b.log.debug('multipart/form-data request: $api_method ${conf.form} Files count: ${conf.files.len}')

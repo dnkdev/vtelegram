@@ -1,4 +1,4 @@
-module vtelegram
+module media
 
 import net.http
 import net.http.mime

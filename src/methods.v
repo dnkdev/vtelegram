@@ -1815,11 +1815,11 @@ pub fn (mut b Bot) upload_sticker_file(params UploadStickerFile) !File {
 
 [params]
 pub struct CreateNewStickerSet {
-    // User identifier of created sticker set owner
+    // user_id User identifier of created sticker set owner
     user_id int
-    // Short name of sticker set, to be used in t.me/addstickers/ URLs (e.g., animals). Can contain only English letters, digits and underscores. Must begin with a letter, can't contain consecutive underscores and must end in "_by_<bot_username>". <bot_username> is case insensitive. 1-64 characters.
+    // name Short name of sticker set, to be used in t.me/addstickers/ URLs (e.g., animals). Can contain only English letters, digits and underscores. Must begin with a letter, can't contain consecutive underscores and must end in "_by_<bot_username>". <bot_username> is case insensitive. 1-64 characters.
     name string 
-    // Sticker set title, 1-64 characters
+    // title Sticker set title, 1-64 characters
     title string
     // stickers A JSON-serialized list of 1-50 initial stickers to be added to the sticker set
     stickers []InputSticker
@@ -1892,9 +1892,9 @@ pub struct SetStickerSetThumbnail {
     // thumbnail A PNG image with the thumbnail, must be up to 128 kilobytes in size and have width and height exactly 100px, or a TGS animation with the thumbnail up to 32 kilobytes in size; see https://core.telegram.org/stickers#animated-sticker-requirements for animated sticker technical requirements, or a WEBM video with the thumbnail up to 32 kilobytes in size; see https://core.telegram.org/stickers#video-sticker-requirements for video sticker technical requirements. Pass a file_id as a String to send a file that already exists on the Telegram servers, pass an HTTP URL as a String for Telegram to get a file from the Internet, or upload a new one using multipart/form-data. More information on Sending Files ». Animated sticker set thumbnails can't be uploaded via HTTP URL.
     thumbnail string
 }
-// set_sticker_set_thumb - setStickerSetThumbnail
+// set_sticker_set_thumbnail - setStickerSetThumbnail
 // Use this method to set the thumbnail of a sticker set. Animated thumbnails can be set for animated sticker sets only. Video thumbnails can be set only for video sticker sets only. Returns True on success.
-pub fn (mut b Bot) set_sticker_set_thumb(params SetStickerSetThumbnail) !bool {
+pub fn (mut b Bot) set_sticker_set_thumbnail(params SetStickerSetThumbnail) !bool {
     resp := b.api_request('setStickerSetThumbnail', json.encode(params))!
     // '
     return return_bool(resp)

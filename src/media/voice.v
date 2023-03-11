@@ -3,8 +3,9 @@ module media
 import vtelegram { return_data, Message, SendVoice }
 
 pub struct VoiceUpload{
+pub:
 	key_name string = 'voice'
-mut:
+pub mut:
 	path string
 }
 
@@ -15,7 +16,7 @@ pub fn new_voice(path string) VoiceUpload {
 }
 
 pub fn (d VoiceUpload) send[T](mut app T, params SendVoice) !Message {
-	resp := app.api_multipart_form_request('sendVoice', params, d) or{
+	resp := send_media(mut app, 'sendVoice', params, d) or{
 		app.log.error('Voice not sent: ${err}')
 		return error('Voice not sent: ${err}')
 	}

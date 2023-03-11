@@ -1363,13 +1363,13 @@ pub:
     // media File to send. Pass a file_id to send a file that exists on the Telegram servers (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass “attach://<file_attach_name>” to upload a new one using multipart/form-data under <file_attach_name> name. More information on Sending Files »
     media string
     // caption Optional. Caption of the photo to be sent, 0-1024 characters after entities parsing
-    caption string
+    caption ?string
     // parse_mode Optional. Mode for parsing entities in the photo caption. See formatting options for more details.
-    parse_mode string
+    parse_mode ?string
     // caption_entities Optional. List of special entities that appear in the caption, which can be specified instead of parse_mode
     caption_entities []MessageEntity
     // has_spoiler Optional. Pass True if the photo needs to be covered with a spoiler animation
-    has_spoiler bool
+    has_spoiler ?bool
 
 }
 // InputMediaVideo Represents a video to be sent.
@@ -1381,23 +1381,23 @@ pub:
     media string
     // thumbnail Optional. Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. 
 	// Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. More information on Sending Files »
-    thumbnail string
+    thumbnail ?string
     // caption Optional. Caption of the video to be sent, 0-1024 characters after entities parsing
-    caption string
+    caption ?string
     // parse_mode Optional. Mode for parsing entities in the video caption. See formatting options for more details.
-    parse_mode string
+    parse_mode ?string
     // caption_entities Optional. List of special entities that appear in the caption, which can be specified instead of parse_mode
     caption_entities []MessageEntity
     // width Optional. Video width
-    width int
+    width ?int
     // height Optional. Video height
-    height int
+    height ?int
     // duration Optional. Video duration in seconds
-    duration int
+    duration ?int
     // supports_streaming Optional. Pass True if the uploaded video is suitable for streaming
-    supports_streaming bool
+    supports_streaming ?bool
     // has_spoiler Optional. Pass True if the video needs to be covered with a spoiler animation
-    has_spoiler bool
+    has_spoiler ?bool
 
 }
 // InputMediaAnimation Represents an animation file (GIF or H.264/MPEG-4 AVC video without sound) to be sent.
@@ -1409,21 +1409,21 @@ pub:
     media string
     // thumbnail Optional. Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. 
 	// A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. More information on Sending Files »
-    thumbnail string
+    thumbnail ?string
     // caption Optional. Caption of the animation to be sent, 0-1024 characters after entities parsing
-    caption string
+    caption ?string
     // parse_mode Optional. Mode for parsing entities in the animation caption. See formatting options for more details.
-    parse_mode string
+    parse_mode ?string
     // caption_entities Optional. List of special entities that appear in the caption, which can be specified instead of parse_mode
     caption_entities []MessageEntity
     // width Optional. Animation width
-    width int
+    width ?int
     // height Optional. Animation height
-    height int
+    height ?int
     // duration Optional. Animation duration in seconds
-    duration int
+    duration ?int
     // has_spoiler Optional. Pass True if the animation needs to be covered with a spoiler animation
-    has_spoiler bool
+    has_spoiler ?bool
 
 }
 // InputMediaAudio Represents an audio file to be treated as music to be sent.
@@ -1435,19 +1435,19 @@ pub:
     media string
     // thumbnail Optional. Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. 
 	// Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. More information on Sending Files »
-    thumbnail string
+    thumbnail ?string
     // caption Optional. Caption of the audio to be sent, 0-1024 characters after entities parsing
-    caption string
+    caption ?string
     // parse_mode Optional. Mode for parsing entities in the audio caption. See formatting options for more details.
-    parse_mode string
+    parse_mode ?string
     // caption_entities Optional. List of special entities that appear in the caption, which can be specified instead of parse_mode
     caption_entities []MessageEntity
     // duration Optional. Duration of the audio in seconds
-    duration int
+    duration ?int
     // performer Optional. Performer of the audio
-    performer string
+    performer ?string
     // title Optional. Title of the audio
-    title string
+    title ?string
 
 }
 // InputMediaDocument Represents a general file to be sent.
@@ -1459,15 +1459,15 @@ pub:
     media string
     // thumbnail Optional. Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. 
 	// Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. More information on Sending Files »
-    thumbnail string
+    thumbnail ?string
     // caption Optional. Caption of the document to be sent, 0-1024 characters after entities parsing
-    caption string
+    caption ?string
     // parse_mode Optional. Mode for parsing entities in the document caption. See formatting options for more details.
-    parse_mode string
+    parse_mode ?string
     // caption_entities Optional. List of special entities that appear in the caption, which can be specified instead of parse_mode
     caption_entities []MessageEntity
     // disable_content_type_detection Optional. Disables automatic server-side content type detection for files uploaded using multipart/form-data. Always True, if the document is sent as part of an album.
-    disable_content_type_detection bool
+    disable_content_type_detection ?bool
 
 }
 // InputFile This object represents the contents of a file to be uploaded. Must be posted using multipart/form-data in the usual way that files are uploaded via the browser.
@@ -2665,4 +2665,4 @@ type InlineQueryResult = InlineQueryResultCachedAudio | InlineQueryResultCachedD
 type InputMessageContent = InputTextMessageContent | InputLocationMessageContent | InputVenueMessageContent | InputContactMessageContent | InputInvoiceMessageContent 
 type PassportElementError = PassportElementErrorDataField | PassportElementErrorFrontSide | PassportElementErrorReverseSide | PassportElementErrorSelfie | PassportElementErrorFile | PassportElementErrorFiles | PassportElementErrorTranslationFile | PassportElementErrorTranslationFiles | PassportElementErrorUnspecified 
 type ReplyMarkup = InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply
-pub type InputMedia = InputMediaAudio | InputMediaDocument | InputMediaPhoto | InputMediaVideo
+pub type InputMedia = InputMediaAudio | InputMediaDocument | InputMediaPhoto | InputMediaVideo | InputMediaAnimation

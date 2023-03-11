@@ -3,8 +3,9 @@ module media
 import vtelegram { return_data, Message, SendDocument }
 
 pub struct DocumentUpload{
-pub mut:
+pub:
 	key_name string = 'document'
+pub mut:
 	path string
 }
 
@@ -15,7 +16,7 @@ pub fn new_document(path string) DocumentUpload {
 }
 
 pub fn (d DocumentUpload) send[T](mut app T, params SendDocument) !Message {
-	resp := app.api_multipart_form_request('sendDocument', params, d) or{
+	resp := send_media(mut app, 'sendDocument', params, d) or{
 		app.log.error('Document not sent: ${err}')
 		return error('Document not sent: ${err}')
 	}
