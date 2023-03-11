@@ -14,7 +14,7 @@ pub fn new_photo(path string) PhotoUpload {
 	}
 }
 
-pub fn (mut d PhotoUpload) send[T](mut app T, params SendPhoto) !Message {
+pub fn (d PhotoUpload) send[T](mut app T, params SendPhoto) !Message {
 	resp := app.api_multipart_form_request('sendPhoto', params, d) or{
 		app.log.error('Photo not sent: ${err}')
 		return error('Photo not sent: ${err}')

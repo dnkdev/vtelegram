@@ -14,7 +14,7 @@ pub fn new_audio(path string) AudioUpload {
 	}
 }
 
-pub fn (mut d AudioUpload) send[T](mut app T, params SendAudio) !Message {
+pub fn (d AudioUpload) send[T](mut app T, params SendAudio) !Message {
 	resp := app.api_multipart_form_request('sendAudio', params, d) or{
 		app.log.error('Audio not sent: ${err}')
 		return error('Audio not sent: ${err}')

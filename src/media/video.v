@@ -14,7 +14,7 @@ pub fn new_video(path string) VideoUpload {
 	}
 }
 
-pub fn (mut d VideoUpload) send[T](mut app T, params SendVideo) !Message {
+pub fn (d VideoUpload) send[T](mut app T, params SendVideo) !Message {
 	resp := app.api_multipart_form_request('sendVideo', params, d) or{
 		app.log.error('Video not sent: ${err}')
 		return error('Video not sent: ${err}')

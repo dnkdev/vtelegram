@@ -14,7 +14,7 @@ pub fn new_voice(path string) VoiceUpload {
 	}
 }
 
-pub fn (mut d VoiceUpload) send[T](mut app T, params SendVoice) !Message {
+pub fn (d VoiceUpload) send[T](mut app T, params SendVoice) !Message {
 	resp := app.api_multipart_form_request('sendVoice', params, d) or{
 		app.log.error('Voice not sent: ${err}')
 		return error('Voice not sent: ${err}')

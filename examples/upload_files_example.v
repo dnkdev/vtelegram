@@ -12,27 +12,34 @@ fn (mut app App) send(result vt.Result) ! {
 	
 	println('sending...')
 
-	mut doc := vtm.new_document('./VTelegram.svg')
+	// Document upload
+	doc := vtm.new_document('./VTelegram.svg')
 	doc.send(
 		mut app,
 		chat_id: result.update.message.chat.id
-	 	caption:'here is document'
+	 	caption:'here is the document'
 	) or {
 		println('Failed: ${err}')
 		app.log.error('Failed: ${err}')
-		return 
 	}
 
-	mut photo := vtm.new_photo('./VTelegram.png')
+	// Photo upload
+	photo := vtm.new_photo('./VTelegram.png')
 	photo.send(
 		mut app,
 		chat_id: result.update.message.chat.id
-	 	caption:'here is photo'
+	 	caption:'here is a photo'
 	) or {
 		println('Failed: ${err}')
 		app.log.error('Failed: ${err}')
-		return 
 	}
+
+	// Video upload
+	video := vtm.new_video('/home/dan/Videos/ny.mp4')
+	video.send(mut app, chat_id: result.update.message.chat.id, caption: 'This is a video example') or {
+		println('Failed: ${err}')
+	}
+	
 }
 
 fn main() {

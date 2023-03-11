@@ -120,7 +120,7 @@ pub fn (mut b Bot) api_multipart_form_request[T, R](api_method string, _data T, 
 		files: files_to_send
 		header: header
 	}
-	b.log.debug('multipart/form-data request: $api_method ${conf}')
+	b.log.debug('multipart/form-data request: $api_method ${conf.form} Files count: ${conf.files.len}')
 	response := http.post_multipart_form('${vtelegram.endpoint}${b.token}/${api_method}', conf)or {
 		return error('Request Failed: ${err}')
 	}

@@ -14,7 +14,7 @@ pub fn new_animation(path string) AnimationUpload {
 	}
 }
 
-pub fn (mut d AnimationUpload) send[T](mut app T, params SendAnimation) !Message {
+pub fn (d AnimationUpload) send[T](mut app T, params SendAnimation) !Message {
 	resp := app.api_multipart_form_request('sendAnimation', params, d) or{
 		app.log.error('Animation not sent: ${err}')
 		return error('Animation not sent: ${err}')

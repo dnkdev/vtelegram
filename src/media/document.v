@@ -14,7 +14,7 @@ pub fn new_document(path string) DocumentUpload {
 	}
 }
 
-pub fn (mut d DocumentUpload) send[T](mut app T, params SendDocument) !Message {
+pub fn (d DocumentUpload) send[T](mut app T, params SendDocument) !Message {
 	resp := app.api_multipart_form_request('sendDocument', params, d) or{
 		app.log.error('Document not sent: ${err}')
 		return error('Document not sent: ${err}')
