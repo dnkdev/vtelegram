@@ -1,6 +1,6 @@
 module media
 
-import vtelegram { prepare_files, return_data, Message, SendVoice }
+import vtelegram { return_data, Message, SendVoice }
 
 pub struct VoiceUpload{
 	key_name string = 'voice'

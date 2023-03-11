@@ -1,6 +1,6 @@
 module media
 
-import vtelegram { prepare_files, return_data, Message, SendPhoto }
+import vtelegram { return_data, Message, SendPhoto }
 
 pub struct PhotoUpload{
 	key_name string = 'photo'

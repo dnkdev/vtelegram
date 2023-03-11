@@ -1,6 +1,6 @@
 module media
 
-import vtelegram { prepare_files, return_data, Message, SendAnimation }
+import vtelegram { return_data, Message, SendAnimation }
 
 pub struct AnimationUpload{
 	key_name string = 'animation'

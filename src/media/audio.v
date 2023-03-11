@@ -1,6 +1,6 @@
 module media
 
-import vtelegram { prepare_files, return_data, Message, SendAudio }
+import vtelegram { return_data, Message, SendAudio }
 
 pub struct AudioUpload{
 	key_name string = 'audio'

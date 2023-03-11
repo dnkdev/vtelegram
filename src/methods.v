@@ -314,8 +314,8 @@ pub struct SendAudio {
     performer string
     // title Track name
     title string
-    // thumb Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. More information on Sending Files »
-    thumb string
+    // thumbnail Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. More information on Sending Files »
+    thumbnail string
     // disable_notification Sends the message silently. Users will receive a notification with no sound.
     disable_notification bool
     // protect_content Protects the contents of the sent message from forwarding and saving
@@ -343,8 +343,8 @@ pub struct SendDocument {
     message_thread_id int
     // document File to send. Pass a file_id as String to send a file that exists on the Telegram servers (recommended), pass an HTTP URL as a String for Telegram to get a file from the Internet, or upload a new one using multipart/form-data. More information on Sending Files »
     document string
-    // thumb Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. More information on Sending Files »
-    thumb string
+    // thumbnail Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. More information on Sending Files »
+    thumbnail string
     // caption Document caption (may also be used when resending documents by file_id), 0-1024 characters after entities parsing
     caption string
     // parse_mode Mode for parsing entities in the document caption. See formatting options for more details.
@@ -386,8 +386,8 @@ pub struct SendVideo {
     width int
     // height Video height
     height int
-    // thumb Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. More information on Sending Files »
-    thumb string
+    // thumbnail Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. More information on Sending Files »
+    thumbnail string
     // caption Video caption (may also be used when resending videos by file_id), 0-1024 characters after entities parsing
     caption string
     // parse_mode Mode for parsing entities in the video caption. See formatting options for more details.
@@ -431,8 +431,8 @@ pub struct SendAnimation {
     width int
     // height Animation height
     height int
-    // thumb Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. More information on Sending Files »
-    thumb string
+    // thumbnail Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. More information on Sending Files »
+    thumbnail string
     // caption Animation caption (may also be used when resending animation by file_id), 0-1024 characters after entities parsing
     caption string
     // parse_mode Mode for parsing entities in the animation caption. See formatting options for more details.
@@ -507,8 +507,8 @@ pub struct SendVideoNote {
     duration int
     // length Video width and height, i.e. diameter of the video message
     length int
-    // thumb Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. More information on Sending Files »
-    thumb string
+    // thumbnail Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. More information on Sending Files »
+    thumbnail string
     // disable_notification Sends the message silently. Users will receive a notification with no sound.
     disable_notification bool
     // protect_content Protects the contents of the sent message from forwarding and saving
@@ -1749,6 +1749,8 @@ pub struct SendSticker {
     message_thread_id int
     // sticker Sticker to send. Pass a file_id as String to send a file that exists on the Telegram servers (recommended), pass an HTTP URL as a String for Telegram to get a .WEBP file from the Internet, or upload a new one using multipart/form-data. More information on Sending Files »
     sticker string
+    // emoji Optional Emoji associated with the sticker; only for just uploaded stickers
+    emoji string
     // disable_notification Sends the message silently. Users will receive a notification with no sound.
     disable_notification bool
     // protect_content Protects the contents of the sent message from forwarding and saving
@@ -1798,11 +1800,13 @@ pub fn (mut b Bot) get_custom_emoji_stickers(params GetCustomEmojiStickers) ![]s
 pub struct UploadStickerFile {
     // user_id User identifier of sticker file owner
     user_id int
-    // png_sticker PNG image with the sticker, must be up to 512 kilobytes in size, dimensions must not exceed 512px, and either width or height must be exactly 512px. More information on Sending Files »
-    png_sticker string
+    // sticker A file with the sticker in .WEBP, .PNG, .TGS, or .WEBM format. See https://core.telegram.org/stickers for technical requirements. More information on Sending Files »
+    sticker InputFile
+    // sticker_format Format of the sticker, must be one of “static”, “animated”, “video”
+    sticker_format string
 }
 // upload_sticker_file - uploadStickerFile
-// Use this method to upload a .PNG file with a sticker for later use in createNewStickerSet and addStickerToSet methods (can be used multiple times). Returns the uploaded File on success.
+// Use this method to upload a file with a sticker for later use in the createNewStickerSet and addStickerToSet methods (the file can be used multiple times). Returns the uploaded File on success.
 pub fn (mut b Bot) upload_sticker_file(params UploadStickerFile) !File {
     resp := b.api_request('uploadStickerFile', json.encode(params))!
     // '
@@ -1811,24 +1815,20 @@ pub fn (mut b Bot) upload_sticker_file(params UploadStickerFile) !File {
 
 [params]
 pub struct CreateNewStickerSet {
-    // user_id User identifier of created sticker set owner
+    // User identifier of created sticker set owner
     user_id int
-    // name Short name of sticker set, to be used in t.me/addstickers/ URLs (e.g., animals). Can contain only English letters, digits and underscores. Must begin with a letter, can't contain consecutive underscores and must end in "_by_<bot_username>". <bot_username> is case insensitive. 1-64 characters.
-    name string
-    // title Sticker set title, 1-64 characters
+    // Short name of sticker set, to be used in t.me/addstickers/ URLs (e.g., animals). Can contain only English letters, digits and underscores. Must begin with a letter, can't contain consecutive underscores and must end in "_by_<bot_username>". <bot_username> is case insensitive. 1-64 characters.
+    name string 
+    // Sticker set title, 1-64 characters
     title string
-    // png_sticker PNG image with the sticker, must be up to 512 kilobytes in size, dimensions must not exceed 512px, and either width or height must be exactly 512px. Pass a file_id as a String to send a file that already exists on the Telegram servers, pass an HTTP URL as a String for Telegram to get a file from the Internet, or upload a new one using multipart/form-data. More information on Sending Files »
-    png_sticker string
-    // tgs_sticker TGS animation with the sticker, uploaded using multipart/form-data. See https://core.telegram.org/stickers#animated-sticker-requirements for technical requirements
-    tgs_sticker string
-    // webm_sticker WEBM video with the sticker, uploaded using multipart/form-data. See https://core.telegram.org/stickers#video-sticker-requirements for technical requirements
-    webm_sticker string
-    // sticker_type Type of stickers in the set, pass “regular” or “mask”. Custom emoji sticker sets can't be created via the Bot API at the moment. By default, a regular sticker set is created.
-    sticker_type string
-    // emojis One or more emoji corresponding to the sticker
-    emojis string
-    // mask_position A JSON-serialized object for position where the mask should be placed on faces
-    mask_position MaskPosition
+    // stickers A JSON-serialized list of 1-50 initial stickers to be added to the sticker set
+    stickers []InputSticker
+    // sticker_format Format of stickers in the set, must be one of “static”, “animated”, “video”
+    sticker_format string   
+    // sticker_type Type of stickers in the set, pass “regular”, “mask”, or “custom_emoji”. By default, a regular sticker set is created.
+    sticker_type string // Optional
+    // needs_repainting Pass True if stickers in the sticker set must be repainted to the color of text when used in messages, the accent color if used as emoji status, white on chat photos, or another appropriate color based on context; for custom emoji sticker sets only
+    needs_repainting bool // Optional
 }
 // create_new_sticker_set - createNewStickerSet
 // Use this method to create a new sticker set owned by a user. The bot will be able to edit the sticker set thus created. You must use exactly one of the fields png_sticker, tgs_sticker, or webm_sticker. Returns True on success.
@@ -1844,16 +1844,8 @@ pub struct AddStickerToSet {
     user_id int
     // name Sticker set name
     name string
-    // png_sticker PNG image with the sticker, must be up to 512 kilobytes in size, dimensions must not exceed 512px, and either width or height must be exactly 512px. Pass a file_id as a String to send a file that already exists on the Telegram servers, pass an HTTP URL as a String for Telegram to get a file from the Internet, or upload a new one using multipart/form-data. More information on Sending Files »
-    png_sticker string
-    // tgs_sticker TGS animation with the sticker, uploaded using multipart/form-data. See https://core.telegram.org/stickers#animated-sticker-requirements for technical requirements
-    tgs_sticker string
-    // webm_sticker WEBM video with the sticker, uploaded using multipart/form-data. See https://core.telegram.org/stickers#video-sticker-requirements for technical requirements
-    webm_sticker string
-    // emojis One or more emoji corresponding to the sticker
-    emojis string
-    // mask_position A JSON-serialized object for position where the mask should be placed on faces
-    mask_position MaskPosition
+    // sticker A JSON-serialized object with information about the added sticker. If exactly the same sticker had already been added to the set, then the set isn't changed.
+    sticker InputSticker
 }
 // add_sticker_to_set - addStickerToSet
 // Use this method to add a new sticker to a set created by the bot. You must use exactly one of the fields png_sticker, tgs_sticker, or webm_sticker. Animated stickers can be added to animated sticker sets and only to them. Animated sticker sets can have up to 50 stickers. Static sticker sets can have up to 120 stickers. Returns True on success.
@@ -1892,18 +1884,18 @@ pub fn (mut b Bot) delete_sticker_from_set(params DeleteStickerFromSet) !bool {
 }
 
 [params]
-pub struct SetStickerSetThumb {
+pub struct SetStickerSetThumbnail {
     // name Sticker set name
     name string
     // user_id User identifier of the sticker set owner
     user_id int
-    // thumb A PNG image with the thumbnail, must be up to 128 kilobytes in size and have width and height exactly 100px, or a TGS animation with the thumbnail up to 32 kilobytes in size; see https://core.telegram.org/stickers#animated-sticker-requirements for animated sticker technical requirements, or a WEBM video with the thumbnail up to 32 kilobytes in size; see https://core.telegram.org/stickers#video-sticker-requirements for video sticker technical requirements. Pass a file_id as a String to send a file that already exists on the Telegram servers, pass an HTTP URL as a String for Telegram to get a file from the Internet, or upload a new one using multipart/form-data. More information on Sending Files ». Animated sticker set thumbnails can't be uploaded via HTTP URL.
-    thumb string
+    // thumbnail A PNG image with the thumbnail, must be up to 128 kilobytes in size and have width and height exactly 100px, or a TGS animation with the thumbnail up to 32 kilobytes in size; see https://core.telegram.org/stickers#animated-sticker-requirements for animated sticker technical requirements, or a WEBM video with the thumbnail up to 32 kilobytes in size; see https://core.telegram.org/stickers#video-sticker-requirements for video sticker technical requirements. Pass a file_id as a String to send a file that already exists on the Telegram servers, pass an HTTP URL as a String for Telegram to get a file from the Internet, or upload a new one using multipart/form-data. More information on Sending Files ». Animated sticker set thumbnails can't be uploaded via HTTP URL.
+    thumbnail string
 }
-// set_sticker_set_thumb - setStickerSetThumb
+// set_sticker_set_thumb - setStickerSetThumbnail
 // Use this method to set the thumbnail of a sticker set. Animated thumbnails can be set for animated sticker sets only. Video thumbnails can be set only for video sticker sets only. Returns True on success.
-pub fn (mut b Bot) set_sticker_set_thumb(params SetStickerSetThumb) !bool {
-    resp := b.api_request('setStickerSetThumb', json.encode(params))!
+pub fn (mut b Bot) set_sticker_set_thumb(params SetStickerSetThumbnail) !bool {
+    resp := b.api_request('setStickerSetThumbnail', json.encode(params))!
     // '
     return return_bool(resp)
 }
@@ -2188,4 +2180,152 @@ pub fn (mut b Bot) get_game_high_scores(params GetGameHighScores) ![]GameHighSco
     resp := b.api_request('getGameHighScores', json.encode(params))!
     // '
     return return_data[[]GameHighScore](resp)
+}
+
+[params]
+pub struct SetMyDescription {
+pub mut:
+    // description Optional 
+    // New bot description; 0-512 characters. Pass an empty string to remove the dedicated description for the given language.
+    description ?string
+    // language_code Optional 
+    // A two-letter ISO 639-1 language code. If empty, the description will be applied to all users for whose language there is no dedicated description.
+    language_code ?string
+}
+// set_my_description - setMyDescription 
+// Use this method to change the bot's description, which is shown in the chat with the bot if the chat is empty. Returns True on success.
+pub fn (mut b Bot) set_my_description(params SetMyDescription) !bool {
+    resp := b.api_request('setMyDescription', json.encode(params))!
+    return return_bool(resp)
+}
+
+[params]
+pub struct GetMyDescription {
+pub mut: 
+    // language_code Optional A two-letter ISO 639-1 language code or an empty string
+    language_code ?string
+}
+// get_my_description - getMyDescription
+// Use this method to get the current bot description for the given user language. Returns BotDescription on success.
+pub fn (mut b Bot) get_my_description(params GetMyDescription) !BotDescription {
+    resp := b.api_request('getMyDescription', json.encode(params))!
+    return return_data[BotDescription](resp)
+}
+
+[params]
+pub struct SetMyShortDescription {
+pub mut:
+    // short_description Optional 
+    // New short description for the bot; 0-120 characters. Pass an empty string to remove the dedicated short description for the given language.
+    short_description ?string
+    // language_code Optional 
+    // A two-letter ISO 639-1 language code. If empty, the short description will be applied to all users for whose language there is no dedicated short description.
+    language_code ?string
+}
+// set_my_short_description - setMyShortDescription 
+// Use this method to change the bot's short description, which is shown on the bot's profile page and is sent together with the link when users share the bot. Returns True on success.
+pub fn (mut b Bot) set_my_short_description(params SetMyShortDescription) !bool {
+    resp := b.api_request('setMyShortDescription', json.encode(params))!
+    return return_bool(resp)
+}
+
+[params]
+pub struct GetMyShortDescription {
+pub mut: 
+    // language_code Optional A two-letter ISO 639-1 language code or an empty string
+    language_code ?string
+}
+// get_my_short_description - getMyShortDescription
+// Use this method to get the current bot short description for the given user language. Returns BotShortDescription on success.
+pub fn (mut b Bot) get_my_short_description(params GetMyShortDescription) !BotShortDescription {
+    resp := b.api_request('getMyShortDescription', json.encode(params))!
+    return return_data[BotShortDescription](resp)
+}
+
+[params]
+pub struct SetCustomEmojiStickerSetThumbnail {
+pub mut:
+    // Sticker set name
+    name    string
+    // Custom emoji identifier of a sticker from the sticker set; pass an empty string to drop the thumbnail and use the first sticker as the thumbnail.
+    custom_emoji_id	?string
+}
+// set_custom_emoji_sticker_set_thumbnail - setCustomEmojiStickerSetThumbnail
+// Use this method to set the thumbnail of a custom emoji sticker set. Returns True on success.
+pub fn (mut b Bot) set_custom_emoji_sticker_set_thumbnail(params SetCustomEmojiStickerSetThumbnail) !bool {
+    resp := b.api_request('setCustomEmojiStickerSetThumbnail', json.encode(params))!
+    return return_bool(resp)
+}
+
+[params]
+pub struct  SetStickerSetTitle {
+pub mut:
+    // name Sticker set name
+    name	string	
+    // title Sticker set title, 1-64 characters
+    title	string
+}
+// set_sticker_set_title - setStickerSetTitle
+// Use this method to set the title of a created sticker set. Returns True on success.
+pub fn (mut b Bot) set_sticker_set_title(params SetStickerSetTitle) !bool {
+    resp := b.api_request('setStickerSetTitle', json.encode(params))!
+    return return_bool(resp)
+}
+
+[params]
+pub struct  DeleteStickerSet {
+pub mut:
+    // name Sticker set name
+    name	string	
+}
+// delete_sticker_set - deleteStickerSet
+// Use this method to delete a sticker set that was created by the bot. Returns True on success.
+pub fn (mut b Bot) delete_sticker_set(params DeleteStickerSet) !bool {
+    resp := b.api_request('deleteStickerSet', json.encode(params))!
+    return return_bool(resp)
+}
+
+[params]
+pub struct  SetStickerEmojiList {
+pub mut:
+    // sticker File identifier of the sticker
+    sticker	string	
+    // emoji_list A JSON-serialized list of 1-20 emoji associated with the sticker
+    emoji_list	[]string
+}
+// set_sticker_emoji_list - setStickerEmojiList
+// Use this method to change the list of emoji assigned to a regular or custom emoji sticker. The sticker must belong to a sticker set created by the bot. Returns True on success.
+pub fn (mut b Bot) set_sticker_emoji_list(params SetStickerEmojiList) !bool {
+    resp := b.api_request('setStickerEmojiList', json.encode(params))!
+    return return_bool(resp)
+}
+
+[params]
+pub struct SetStickerKeywords {
+pub mut:
+    // sticker File identifier of the sticker
+    sticker	string	
+    // keywords Optional A JSON-serialized list of 0-20 search keywords for the sticker with total length of up to 64 characters
+    keywords []string
+}
+// set_sticker_keywords - setStickerKeywords
+// Use this method to change search keywords assigned to a regular or custom emoji sticker. The sticker must belong to a sticker set created by the bot. Returns True on success.
+pub fn (mut b Bot) set_sticker_keywords(params SetStickerKeywords) !bool {
+    resp := b.api_request('setStickerKeywords', json.encode(params))!
+    return return_bool(resp)
+}
+
+[params]
+pub struct SetStickerMaskPosition {
+pub mut:
+    // sticker File identifier of the sticker
+    sticker	string	
+    // mask_position Optional A JSON-serialized object with the position where the mask should be placed on faces. Omit the parameter to remove the mask position.
+    mask_position MaskPosition
+}
+// set_sticker_mask_position - setStickerMaskPosition
+// Use this method to change the mask position of a mask sticker. The sticker must belong to a sticker set that was created by the bot. Returns True on success.
+pub fn (mut b Bot) set_sticker_mask_position(params SetStickerMaskPosition) !bool {
+    resp := b.api_request('setStickerMaskPosition', json.encode(params))!
+    return return_bool(resp)
 }

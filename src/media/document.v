@@ -1,6 +1,6 @@
 module media
 
-import vtelegram { prepare_files, return_data, Message, SendDocument }
+import vtelegram { return_data, Message, SendDocument }
 
 pub struct DocumentUpload{
 pub mut:

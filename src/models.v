@@ -347,8 +347,8 @@ pub:
     height int
     // duration Duration of the video in seconds as defined by sender
     duration int
-    // thumb Optional. Animation thumbnail as defined by sender
-    thumb PhotoSize
+    // thumbnail Optional. Animation thumbnail as defined by sender
+    thumbnail PhotoSize
     // file_name Optional. Original animation filename as defined by sender
     file_name string
     // mime_type Optional. MIME type of the file as defined by sender
@@ -376,8 +376,8 @@ pub:
     mime_type string
     // file_size Optional. File size in bytes. It can be bigger than 2^31 and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this value.
     file_size i64
-    // thumb Optional. Thumbnail of the album cover to which the music file belongs
-    thumb PhotoSize
+    // thumbnail Optional. Thumbnail of the album cover to which the music file belongs
+    thumbnail PhotoSize
 
 }
 // Document This object represents a general file (as opposed to photos, voice messages and audio files).
@@ -387,8 +387,8 @@ pub:
     file_id string
     // file_unique_id Unique identifier for this file, which is supposed to be the same over time and for different bots. Can't be used to download or reuse the file.
     file_unique_id string
-    // thumb Optional. Document thumbnail as defined by sender
-    thumb PhotoSize
+    // thumbnail Optional. Document thumbnail as defined by sender
+    thumbnail PhotoSize
     // file_name Optional. Original filename as defined by sender
     file_name string
     // mime_type Optional. MIME type of the file as defined by sender
@@ -410,8 +410,8 @@ pub:
     height int
     // duration Duration of the video in seconds as defined by sender
     duration int
-    // thumb Optional. Video thumbnail
-    thumb PhotoSize
+    // thumbnail Optional. Video thumbnail
+    thumbnail PhotoSize
     // file_name Optional. Original filename as defined by sender
     file_name string
     // mime_type Optional. MIME type of the file as defined by sender
@@ -431,8 +431,8 @@ pub:
     length int
     // duration Duration of the video in seconds as defined by sender
     duration int
-    // thumb Optional. Video thumbnail
-    thumb PhotoSize
+    // thumbnail Optional. Video thumbnail
+    thumbnail PhotoSize
     // file_size Optional. File size in bytes
     file_size int
 
@@ -1379,9 +1379,9 @@ pub:
     @type string
     // media File to send. Pass a file_id to send a file that exists on the Telegram servers (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass “attach://<file_attach_name>” to upload a new one using multipart/form-data under <file_attach_name> name. More information on Sending Files »
     media string
-    // thumb Optional. Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. 
+    // thumbnail Optional. Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. 
 	// Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. More information on Sending Files »
-    thumb string
+    thumbnail string
     // caption Optional. Caption of the video to be sent, 0-1024 characters after entities parsing
     caption string
     // parse_mode Optional. Mode for parsing entities in the video caption. See formatting options for more details.
@@ -1407,9 +1407,9 @@ pub:
     @type string
     // media File to send. Pass a file_id to send a file that exists on the Telegram servers (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass “attach://<file_attach_name>” to upload a new one using multipart/form-data under <file_attach_name> name. More information on Sending Files »
     media string
-    // thumb Optional. Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. 
+    // thumbnail Optional. Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. 
 	// A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. More information on Sending Files »
-    thumb string
+    thumbnail string
     // caption Optional. Caption of the animation to be sent, 0-1024 characters after entities parsing
     caption string
     // parse_mode Optional. Mode for parsing entities in the animation caption. See formatting options for more details.
@@ -1433,9 +1433,9 @@ pub:
     @type string
     // media File to send. Pass a file_id to send a file that exists on the Telegram servers (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass “attach://<file_attach_name>” to upload a new one using multipart/form-data under <file_attach_name> name. More information on Sending Files »
     media string
-    // thumb Optional. Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. 
+    // thumbnail Optional. Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. 
 	// Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. More information on Sending Files »
-    thumb string
+    thumbnail string
     // caption Optional. Caption of the audio to be sent, 0-1024 characters after entities parsing
     caption string
     // parse_mode Optional. Mode for parsing entities in the audio caption. See formatting options for more details.
@@ -1457,9 +1457,9 @@ pub:
     @type string
     // media File to send. Pass a file_id to send a file that exists on the Telegram servers (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass “attach://<file_attach_name>” to upload a new one using multipart/form-data under <file_attach_name> name. More information on Sending Files »
     media string
-    // thumb Optional. Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. 
+    // thumbnail Optional. Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. 
 	// Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. More information on Sending Files »
-    thumb string
+    thumbnail string
     // caption Optional. Caption of the document to be sent, 0-1024 characters after entities parsing
     caption string
     // parse_mode Optional. Mode for parsing entities in the document caption. See formatting options for more details.
@@ -1514,8 +1514,8 @@ pub:
     is_animated bool
     // is_video True, if the sticker is a video sticker
     is_video bool
-    // thumb Optional. Sticker thumbnail in the .WEBP or .JPG format
-    thumb PhotoSize
+    // thumbnail Optional. Sticker thumbnail in the .WEBP or .JPG format
+    thumbnail PhotoSize
     // emoji Optional. Emoji associated with the sticker
     emoji string
     // set_name Optional. Name of the sticker set to which the sticker belongs
@@ -1526,6 +1526,9 @@ pub:
     mask_position MaskPosition
     // custom_emoji_id Optional. For custom emoji stickers, unique identifier of the custom emoji
     custom_emoji_id string
+    // needs_repainting Optional. 
+    // True, if the sticker must be repainted to a text color in messages, the color of the Telegram Premium badge in emoji status, white color on chat photos, or another appropriate color in other places
+    needs_repainting bool
     // file_size Optional. File size in bytes
     file_size int
 
@@ -1545,8 +1548,8 @@ pub:
     is_video bool
     // stickers List of all set stickers
     stickers []Sticker
-    // thumb Optional. Sticker set thumbnail in the .WEBP, .TGS, or .WEBM format
-    thumb PhotoSize
+    // thumbnail Optional. Sticker set thumbnail in the .WEBP, .TGS, or .WEBM format
+    thumbnail PhotoSize
 
 }
 // MaskPosition This object describes the position on faces where a mask should be placed by default.
@@ -1598,12 +1601,12 @@ pub:
     hide_url bool
     // description Optional. Short description of the result
     description string
-    // thumb_url Optional. Url of the thumbnail for the result
-    thumb_url string
-    // thumb_width Optional. Thumbnail width
-    thumb_width int
-    // thumb_height Optional. Thumbnail height
-    thumb_height int
+    // thumbnail_url Optional. Url of the thumbnail for the result
+    thumbnail_url string
+    // thumbnail_width Optional. Thumbnail width
+    thumbnail_width int
+    // thumbnail_height Optional. Thumbnail height
+    thumbnail_height int
 
 }
 // InlineQueryResultPhoto Represents a link to a photo. By default, this photo will be sent by the user with optional caption. Alternatively, you can use input_message_content to send a message with the specified content instead of the photo.
@@ -1615,8 +1618,8 @@ pub:
     id string
     // photo_url A valid URL of the photo. Photo must be in JPEG format. Photo size must not exceed 5MB
     photo_url string
-    // thumb_url URL of the thumbnail for the photo
-    thumb_url string
+    // thumbnail_url URL of the thumbnail for the photo
+    thumbnail_url string
     // photo_width Optional. Width of the photo
     photo_width int
     // photo_height Optional. Height of the photo
@@ -1652,10 +1655,10 @@ pub:
     gif_height int
     // gif_duration Optional. Duration of the GIF in seconds
     gif_duration int
-    // thumb_url URL of the static (JPEG or GIF) or animated (MPEG4) thumbnail for the result
-    thumb_url string
-    // thumb_mime_type Optional. MIME type of the thumbnail, must be one of “image/jpeg”, “image/gif”, or “video/mp4”. Defaults to “image/jpeg”
-    thumb_mime_type string
+    // thumbnail_url URL of the static (JPEG or GIF) or animated (MPEG4) thumbnail for the result
+    thumbnail_url string
+    // thumbnail_mime_type Optional. MIME type of the thumbnail, must be one of “image/jpeg”, “image/gif”, or “video/mp4”. Defaults to “image/jpeg”
+    thumbnail_mime_type string
     // title Optional. Title for the result
     title string
     // caption Optional. Caption of the GIF file to be sent, 0-1024 characters after entities parsing
@@ -1685,10 +1688,10 @@ pub:
     mpeg4_height int
     // mpeg4_duration Optional. Video duration in seconds
     mpeg4_duration int
-    // thumb_url URL of the static (JPEG or GIF) or animated (MPEG4) thumbnail for the result
-    thumb_url string
-    // thumb_mime_type Optional. MIME type of the thumbnail, must be one of “image/jpeg”, “image/gif”, or “video/mp4”. Defaults to “image/jpeg”
-    thumb_mime_type string
+    // thumbnail_url URL of the static (JPEG or GIF) or animated (MPEG4) thumbnail for the result
+    thumbnail_url string
+    // thumbnail_mime_type Optional. MIME type of the thumbnail, must be one of “image/jpeg”, “image/gif”, or “video/mp4”. Defaults to “image/jpeg”
+    thumbnail_mime_type string
     // title Optional. Title for the result
     title string
     // caption Optional. Caption of the MPEG-4 file to be sent, 0-1024 characters after entities parsing
@@ -1714,8 +1717,8 @@ pub:
     video_url string
     // mime_type MIME type of the content of the video URL, “text/html” or “video/mp4”
     mime_type string
-    // thumb_url URL of the thumbnail (JPEG only) for the video
-    thumb_url string
+    // thumbnail_url URL of the thumbnail (JPEG only) for the video
+    thumbnail_url string
     // title Title for the result
     title string
     // caption Optional. Caption of the video to be sent, 0-1024 characters after entities parsing
@@ -1815,12 +1818,12 @@ pub:
     reply_markup InlineKeyboardMarkup
     // input_message_content Optional. Content of the message to be sent instead of the file
     input_message_content InputMessageContent
-    // thumb_url Optional. URL of the thumbnail (JPEG only) for the file
-    thumb_url string
-    // thumb_width Optional. Thumbnail width
-    thumb_width int
-    // thumb_height Optional. Thumbnail height
-    thumb_height int
+    // thumbnail_url Optional. URL of the thumbnail (JPEG only) for the file
+    thumbnail_url string
+    // thumbnail_width Optional. Thumbnail width
+    thumbnail_width int
+    // thumbnail_height Optional. Thumbnail height
+    thumbnail_height int
 
 }
 // InlineQueryResultLocation Represents a location on a map. By default, the location will be sent by the user. Alternatively, you can use input_message_content to send a message with the specified content instead of the location.
@@ -1848,12 +1851,12 @@ pub:
     reply_markup InlineKeyboardMarkup
     // input_message_content Optional. Content of the message to be sent instead of the location
     input_message_content InputMessageContent
-    // thumb_url Optional. Url of the thumbnail for the result
-    thumb_url string
-    // thumb_width Optional. Thumbnail width
-    thumb_width int
-    // thumb_height Optional. Thumbnail height
-    thumb_height int
+    // thumbnail_url Optional. Url of the thumbnail for the result
+    thumbnail_url string
+    // thumbnail_width Optional. Thumbnail width
+    thumbnail_width int
+    // thumbnail_height Optional. Thumbnail height
+    thumbnail_height int
 
 }
 // InlineQueryResultVenue Represents a venue. By default, the venue will be sent by the user. Alternatively, you can use input_message_content to send a message with the specified content instead of the venue.
@@ -1883,12 +1886,12 @@ pub:
     reply_markup InlineKeyboardMarkup
     // input_message_content Optional. Content of the message to be sent instead of the venue
     input_message_content InputMessageContent
-    // thumb_url Optional. Url of the thumbnail for the result
-    thumb_url string
-    // thumb_width Optional. Thumbnail width
-    thumb_width int
-    // thumb_height Optional. Thumbnail height
-    thumb_height int
+    // thumbnail_url Optional. Url of the thumbnail for the result
+    thumbnail_url string
+    // thumbnail_width Optional. Thumbnail width
+    thumbnail_width int
+    // thumbnail_height Optional. Thumbnail height
+    thumbnail_height int
 
 }
 // InlineQueryResultContact Represents a contact with a phone number. By default, this contact will be sent by the user. Alternatively, you can use input_message_content to send a message with the specified content instead of the contact.
@@ -1910,12 +1913,12 @@ pub:
     reply_markup InlineKeyboardMarkup
     // input_message_content Optional. Content of the message to be sent instead of the contact
     input_message_content InputMessageContent
-    // thumb_url Optional. Url of the thumbnail for the result
-    thumb_url string
-    // thumb_width Optional. Thumbnail width
-    thumb_width int
-    // thumb_height Optional. Thumbnail height
-    thumb_height int
+    // thumbnail_url Optional. Url of the thumbnail for the result
+    thumbnail_url string
+    // thumbnail_width Optional. Thumbnail width
+    thumbnail_width int
+    // thumbnail_height Optional. Thumbnail height
+    thumbnail_height int
 
 }
 // InlineQueryResultGame Represents a Game.
@@ -2628,6 +2631,30 @@ pub struct ChatShared {
 	request_id int
 	// chat_id Identifier of the shared user. This number may have more than 32 significant bits and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a 64-bit integer or double-precision float type are safe for storing this identifier. The bot may not have access to the chat and could be unable to use this identifier, unless the chat is already known to the bot by some other means.
 	chat_id	i64	
+}
+
+// BotDescription This object represents the bot's description.
+pub struct BotDescription {
+    // description	The bot's description
+    description	string
+}
+
+// BotShortDescription This object represents the bot's short description.
+pub struct BotShortDescription {
+    // description	The bot's short description
+    short_description	string
+}
+
+// InputSticker This object describes a sticker to be added to a sticker set.
+pub struct InputSticker {
+    // sticker The added sticker. Pass a file_id as a String to send a file that already exists on the Telegram servers, pass an HTTP URL as a String for Telegram to get a file from the Internet, or upload a new one using multipart/form-data. Animated and video stickers can't be uploaded via HTTP URL. More information on Sending Files »
+    sticker string
+    // emoji_list List of 1-20 emoji associated with the sticker
+    emoji_list []string
+    // mask_position Optional. Position where the mask should be placed on faces. For “mask” stickers only.
+    mask_position MaskPosition
+    // keywords Optional. List of 0-20 search keywords for the sticker with total length of up to 64 characters. For “regular” and “custom_emoji” stickers only.
+    keywords []string
 }
 
 //type ChatMember = ChatMemberOwner | ChatMemberAdministrator | ChatMemberMember | ChatMemberRestricted | ChatMemberLeft | ChatMemberBanned 
