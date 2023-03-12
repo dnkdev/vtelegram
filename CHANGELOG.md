@@ -1,4 +1,18 @@
-## v 0.7
+## v 0.8
+
+- Media Group upload
+    - In order for the Telegram Bot API to accept a request, one media group must contain >= 2 elements and contain only one media type.
+```v
+    pub fn new_media_group() MediaGroupUpload
+    pub fn (mut group MediaGroupUpload) add_audio(path string, _audio InputMediaAudio)
+    pub fn (mut group MediaGroupUpload) add_animation(path string, _anim InputMediaAnimation)
+    pub fn (mut group MediaGroupUpload) add_video(path string, _video InputMediaVideo)
+    pub fn (mut group MediaGroupUpload) add_photo(path string, _photo InputMediaPhoto)
+    pub fn (mut group MediaGroupUpload) add_document(path string, _doc InputMediaDocument)
+    pub fn (mut group MediaGroupUpload) send[T](mut app T, params SendMediaGroup)
+```
+
+### v 0.7
 
 - Single file upload: `animation`, `audio`, `document`, `photo`, `video_note`, `video`, `voice`
 

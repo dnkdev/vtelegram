@@ -1,8 +1,8 @@
 <div align="center">
-  <img src="VTelegram.svg">
+  <img src="https://raw.githubusercontent.com/dnkdev/vtelegram/master/VTelegram.svg">
 </div>
 
-<h1>VTelegram 0.7.0
+<h1>VTelegram 0.8.0
 <img align="right" style="margin-top:15px;" src="https://img.shields.io/static/v1?logo=telegram&label=Telegram Bot API&message=6.6&labelColor=ffffff&color=blue" href="https://core.telegram.org/bots/api">
 </h1>
 
@@ -30,7 +30,8 @@ import vtelegram
 - [ ] Separating one attribute values with comma `,`
 - [x] multipart/form-data request
 - [x] Single files uploading
-- [ ] MediaGroup upload and send
+- [x] MediaGroup upload and send
+- [ ] Sticker manipulations
 - [ ] more
 
 ## Quick start

@@ -94,24 +94,28 @@ pub fn (mut b Bot) api_request(api_method string, _data string) !string {
 	return response.body
 }
 
-pub fn (mut b Bot) api_multipart_form_request[T](api_method string, _data T, ufiles map[string][]http.FileData) !string {
+pub fn (mut b Bot) api_multipart_form_request(api_method string, _data map[string]string, ufiles map[string][]http.FileData) !string {
 
-	mut form := map[string]string{}
-	$for field in T.fields {
-		form[field.name] = _data.$(field.name).str()
-		$if field.name == 'reply_markup'{
-			form['reply_markup'] = json.encode(_data.$(field.name))
-		}
-	}
-
+	//mut form := map[string]string{}
+	// $for field in T.fields {
+	// 	form[field.name] =  _data.$(field.name).str() 
+	// 	$if field.name == 'reply_markup'{
+	// 		form['reply_markup'] = json.encode(_data.$(field.name))
+	// 	}
+		
+	// 	$if field.typ == 'media' {
+	// 		form['media'] = json.encode(_data.media)
+	// 	}
+	// }
+	//println(form)
 	mut header := http.new_header()
 	header.set(.content_type, 'multipart/form-data')
 	conf := http.PostMultipartFormConfig{
-		form:form
+		form:_data
 		files: ufiles
 		header: header
 	}
-	b.log.debug('multipart/form-data request: $api_method ${conf.form} Files count: ${conf.files.len}')
+	b.log.debug('multipart/form-data request: $api_method ${conf.form} Files: ${conf.files}')
 	response := http.post_multipart_form('${vtelegram.endpoint}${b.token}/${api_method}', conf)or {
 		return error('Request Failed: ${err}')
 	}

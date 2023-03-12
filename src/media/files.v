@@ -4,7 +4,7 @@ import net.http
 import net.http.mime
 import os
 
-pub fn prepare_files(key_name string, f_paths []string) !map[string][]http.FileData{
+fn prepare_files(key_name string, f_paths []string) !map[string][]http.FileData{
 	mut files := map[string][]http.FileData{}
 	for path in f_paths {
 		files[key_name] << prepare_file(path)!

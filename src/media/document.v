@@ -9,12 +9,14 @@ pub mut:
 	path string
 }
 
+// new_document only for single document uploading and sending
 pub fn new_document(path string) DocumentUpload {
 	return DocumentUpload{
 		path:path
 	}
 }
 
+// send sends a single document
 pub fn (d DocumentUpload) send[T](mut app T, params SendDocument) !Message {
 	resp := send_media(mut app, 'sendDocument', params, d) or{
 		app.log.error('Document not sent: ${err}')
