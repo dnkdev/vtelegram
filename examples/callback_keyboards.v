@@ -54,5 +54,5 @@ fn main() {
 	app.log.set_level(.debug)
 	app.log.set_full_logpath('./bot.log')
 	polling_config := PollingConfig[Regular]{}
-	start_polling(mut app,polling_config)
+	start_polling(mut app, polling_config)
 }

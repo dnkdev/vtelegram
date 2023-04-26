@@ -24,7 +24,7 @@ import vtelegram
 ## Roadmap
 
 - [x] All updates handling through attributes
-- [x] Middlewares `Test`
+- [ ] Middlewares [need rework]
 - [x] Context Filters
 - [x] Logging
 - [ ] Separating one attribute values with comma `,`

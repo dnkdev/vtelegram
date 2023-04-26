@@ -43,7 +43,7 @@ pub fn start_polling[T, R](mut bot T, args R) {
 	println('Starting bot...')
 	bot.log.info('Starting bot...')
 	bot.log.flush()
-	mut middleware := args.middleware_
+	//mut middleware := args.middleware_
 	for {
 		updates := bot.get_updates(
 			offset: bot.offset
@@ -55,7 +55,7 @@ pub fn start_polling[T, R](mut bot T, args R) {
 			bot.log.debug('Received ${updates.len} updates')
 		}
 		for u in updates {
-			spawn handle_update(bot, mut &middleware, u)
+			spawn handle_update(bot, u)
 			bot.offset = u.update_id + 1
 		}
 		bot.log.flush()
