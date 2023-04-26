@@ -1552,6 +1552,35 @@ pub fn (mut b Bot) get_my_commands(params GetMyCommands) ![]BotCommand {
 }
 
 [params]
+pub struct SetMyName {
+    // name Optional	New bot name; 0-64 characters. Pass an empty string to remove the dedicated name for the given language.
+    name	string	
+    // language_code Optional	A two-letter ISO 639-1 language code. If empty, the name will be shown to all users for whose language there is no dedicated name.
+    language_code	string	
+}
+// set_my_name - setMyName 
+// Use this method to change the bot's name. Returns True on success.
+pub fn (mut b Bot) set_my_name(params SetMyName) !bool {
+    resp := b.api_request('setMyName', json.encode(params))!
+    // '
+    return return_bool(resp)
+}
+
+
+[params]
+pub struct GetMyName {
+    // language_code Optional	A two-letter ISO 639-1 language code or an empty string
+    language_code	string	
+}
+// get_my_name - getMyName
+// Use this method to get the current bot name for the given user language. Returns BotName on success.
+pub fn (mut b Bot) get_my_name(params GetMyName) ![]BotName {
+    resp := b.api_request('getMyName', json.encode(params))!
+    // '
+    return return_data[[]BotName](resp)
+}
+
+[params]
 pub struct SetChatMenuButton {
     // chat_id Unique identifier for the target private chat. If not specified, default bot's menu button will be changed
     chat_id i64
@@ -1912,11 +1941,8 @@ pub struct AnswerInlineQuery {
     is_personal bool
     // next_offset Pass the offset that a client should send in the next query with the same text to receive more results. Pass an empty string if there are no more results or if you don't support pagination. Offset length can't exceed 64 bytes.
     next_offset string
-    // switch_pm_text If passed, clients will display a button with specified text that switches the user to a private chat with the bot and sends the bot a start message with the parameter switch_pm_parameter
-    switch_pm_text string
-    // switch_pm_parameter Deep-linking parameter for the /start message sent to the bot when user presses the switch button. 1-64 characters, only A-Z, a-z, 0-9, _ and - are allowed.
-    // Example: An inline bot that sends YouTube videos can ask the user to connect the bot to their YouTube account to adapt search results accordingly. To do this, it displays a 'Connect your YouTube account' button above the results, or even before showing any. The user presses the button, switches to a private chat with the bot and, in doing so, passes a start parameter that inpub structs the bot to return an OAuth link. Once done, the bot can offer a switch_inline button so that the user can easily return to the chat where they wanted to use the bot's inline capabilities.
-    switch_pm_parameter string
+    // button Optional	A JSON-serialized object describing a button to be shown above inline query results
+    button InlineQueryResultsButton
 }
 // answer_inline_query - answerInlineQuery
 // Use this method to send answers to an inline query. On success, True is returned.

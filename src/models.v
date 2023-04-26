@@ -628,7 +628,9 @@ pub struct GeneralForumTopicUnhidden {
 }
 // WriteAccessAllowed This object represents a service message about a user allowing a bot added to the attachment menu to write messages. Currently holds no information.
 pub struct WriteAccessAllowed {
-
+pub:
+    // web_app_name Optional. Name of the Web App which was launched from a link
+    web_app_name string
 }
 // VideoChatScheduled This object represents a service message about a video chat scheduled in the chat.
 pub struct VideoChatScheduled {
@@ -796,12 +798,29 @@ pub:
     switch_inline_query string
     // switch_inline_query_current_chat Optional. If set, pressing the button will insert the bot's username and the specified inline query in the current chat's input field. May be empty, in which case only the bot's username will be inserted.  This offers a quick way for the user to open your bot in inline mode in the same chat - good for selecting something from multiple options.
     switch_inline_query_current_chat string
+    // switch_inline_query_chosen_chat Optional. If set, pressing the button will prompt the user to select one of their chats of the specified type, open that chat and insert the bot's username and the specified inline query in the input field
+    switch_inline_query_chosen_chat SwitchInlineQueryChosenChat
     // callback_game Optional. Description of the game that will be launched when the user presses the button.  NOTE: This type of button must always be the first button in the first row.
     callback_game CallbackGame
     // pay Optional. Specify True, to send a Pay button.  NOTE: This type of button must always be the first button in the first row and can only be used in invoice messages.
     pay bool
 
 }
+
+// SwitchInlineQueryChosenChat This object represents an inline button that switches the current user to inline mode in a chosen chat, with an optional default inline query.
+pub struct SwitchInlineQueryChosenChat {
+    // query Optional. The default inline query to be inserted in the input field. If left empty, only the bot's username will be inserted
+    query	string	
+    // allow_user_chats Optional. True, if private chats with users can be chosen
+    allow_user_chats	bool	
+    // allow_bot_chats Optional. True, if private chats with bots can be chosen
+    allow_bot_chats	bool
+    // allow_group_chats Optional. True, if group and supergroup chats can be chosen
+    allow_group_chats	bool	
+    // allow_channel_chats Optional. True, if channel chats can be chosen
+    allow_channel_chats	bool	
+}
+
 // LoginUrl This object represents a parameter of the inline keyboard button used to automatically authorize a user. Serves as a great replacement for the Telegram Login Widget when the user is coming from Telegram. All the user needs to do is tap/click a button and confirm that they want to log in:
 pub struct LoginUrl {
 pub:
@@ -1161,6 +1180,8 @@ pub:
     new_chat_member ChatMember
     // invite_link Optional. Chat invite link, which was used by the user to join the chat; for joining by invite link events only.
     invite_link ChatInviteLink
+    // via_chat_folder_invite_link Optional. True, if the user joined the chat via a chat folder invite link
+    via_chat_folder_invite_link bool 
 
 }
 // ChatJoinRequest Represents a join request sent to a chat.
@@ -1570,6 +1591,19 @@ pub:
     scale f32
 
 }
+
+// This object represents a button to be shown above inline query results. You must use exactly one of the optional fields.
+pub struct InlineQueryResultsButton {
+pub:
+    // text Label text on the button
+    text	string	
+    // web_app Optional. Description of the Web App that will be launched when the user presses the button. The Web App will be able to switch back to the inline mode using the method switchInlineQuery inside the Web App.
+    web_app	WebAppInfo	
+    // start_parameter Optional. Deep-linking parameter for the /start message sent to the bot when a user presses the button. 1-64 characters, only A-Z, a-z, 0-9, _ and - are allowed.
+    // Example: An inline bot that sends YouTube videos can ask the user to connect the bot to their YouTube account to adapt search results accordingly. To do this, it displays a 'Connect your YouTube account' button above the results, or even before showing any. The user presses the button, switches to a private chat with the bot and, in doing so, passes a start parameter that instructs the bot to return an OAuth link. Once done, the bot can offer a switch_inline button so that the user can easily return to the chat where they wanted to use the bot's inline capabilities.
+    start_parameter	string	
+}
+
 // InlineQuery This object represents an incoming inline query. When the user sends an empty query, your bot could return some default or trending results.
 pub struct InlineQuery {
 pub:
@@ -2625,6 +2659,7 @@ pub:
 }
 // UserShared This object contains information about the user whose identifier was shared with the bot using a KeyboardButtonRequestUser button.
 pub struct UserShared {
+pub:
 	// request_id Identifier of the request
 	request_id int
 	// user_id Identifier of the shared user. This number may have more than 32 significant bits and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a 64-bit integer or double-precision float type are safe for storing this identifier. The bot may not have access to the user and could be unable to use this identifier, unless the user is already known to the bot by some other means.
@@ -2632,26 +2667,37 @@ pub struct UserShared {
 }
 // ChatShared This object contains information about the chat whose identifier was shared with the bot using a KeyboardButtonRequestChat button.
 pub struct ChatShared {
+pub:
 	// request_id Identifier of the request
 	request_id int
 	// chat_id Identifier of the shared user. This number may have more than 32 significant bits and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a 64-bit integer or double-precision float type are safe for storing this identifier. The bot may not have access to the chat and could be unable to use this identifier, unless the chat is already known to the bot by some other means.
 	chat_id	i64	
 }
 
+// BotName This object represents the bot's name.
+pub struct BotName {
+pub:
+    // name The bot's name
+    name	string	
+}
+
 // BotDescription This object represents the bot's description.
 pub struct BotDescription {
+pub:
     // description	The bot's description
     description	string
 }
 
 // BotShortDescription This object represents the bot's short description.
 pub struct BotShortDescription {
+pub:
     // description	The bot's short description
     short_description	string
 }
 
 // InputSticker This object describes a sticker to be added to a sticker set.
 pub struct InputSticker {
+pub:
     // sticker The added sticker. Pass a file_id as a String to send a file that already exists on the Telegram servers, pass an HTTP URL as a String for Telegram to get a file from the Internet, or upload a new one using multipart/form-data. Animated and video stickers can't be uploaded via HTTP URL. More information on Sending Files »
     sticker string
     // emoji_list List of 1-20 emoji associated with the sticker
