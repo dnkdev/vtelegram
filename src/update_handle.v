@@ -7,17 +7,19 @@ pub mut:
 	data map[string]string
 }
 
-fn handle_update[T](app T, update Update) {
+fn handle_update[T,N](app T, mut middleware N, update Update) {
 	mut update_new := update
-	// middlewares
-	// $if N !is Regular {
-	// 	if !aggregate_middlewares(mut middleware, mut update_new) {
-	// 		return
-	// 	}
-	// }
+
+	// middleware
+	$if N !is Regular {
+		if !aggregate_middlewares(mut middleware, mut update_new) {
+			return
+		}
+	}
+	
 	result := Result{
 		update: update_new
-		data: map[string]string{}//get_middleware_data(&middleware)
+		data: get_middleware_data(&middleware)
 	}
 	$for method in T.methods {
 

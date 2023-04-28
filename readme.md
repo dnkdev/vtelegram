@@ -24,14 +24,14 @@ import vtelegram
 ## Roadmap
 
 - [x] All updates handling through attributes
-- [ ] Middlewares [need rework]
+- [x] Middlewares `Test`
 - [x] Context Filters
 - [x] Logging
 - [ ] Separating one attribute values with comma `,`
 - [x] multipart/form-data request
 - [x] Single files uploading
 - [x] MediaGroup upload and send
-- [ ] Sticker manipulations
+- [ ] Sticker upload
 - [ ] more
 
 ## Quick start

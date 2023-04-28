@@ -1,0 +1,42 @@
+import vtelegram
+
+// define main middleware struct
+struct MyBaseMiddleware{
+mut:
+    data map[string]string
+}
+
+// define your app struct, Bot module struct must be nested
+struct App{
+    vtelegram.Bot
+}
+
+// message middleware
+[message]
+fn (mut mw MyBaseMiddleware) my_message_middleware(mut update vtelegram.Update) bool {
+	println('1. Middleware first, set data...')
+    mw.data['test'] = 'test'
+    return true // true means the middleware approves passing the update to handlers
+}
+
+[message]
+fn (mut app App) all_messages(result vtelegram.Result) ! {
+	println('2. Handler after middleware')
+    println(result.data)
+	app.send_message(chat_id: result.update.message.chat.id, text: '${result.update.message.text}')!
+}
+
+fn main(){
+    mut app := App{
+        token: '5401623750:AAFWXZWx8V-SZIDQUI62AT7agCMs55aLIdU'
+    }
+	app.log.set_level(.debug)
+	app.log.set_full_logpath('./bot.log')
+	//app.log.log_to_console_too()
+
+    polling_config := vtelegram.PollingConfig[MyBaseMiddleware]{
+        delay_time: 2000
+	}
+    // starting your bot app with middleware in polling config
+    vtelegram.start_polling(mut app, polling_config)
+}

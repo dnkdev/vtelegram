@@ -5,7 +5,11 @@ module vtelegram
 // get_middleware_data(your_middleware)
 pub fn get_middleware_data[T](middleware &T) map[string]string {
 	$if T !is Regular {
-		return middleware.data
+		$for field in T.fields{ // compile time check if user middleware have 'data' field
+			$if field.name == 'data'{
+				return middleware.data
+			}
+		}
 	}
 	return map[string]string{}
 }

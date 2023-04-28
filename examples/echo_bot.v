@@ -6,7 +6,7 @@ struct App {
 	vtelegram.Bot
 }
 
-// handle all messagess
+// handle all messages
 [message]
 fn (mut app App) all_messages(result vtelegram.Result) ! {
 	app.send_message(chat_id: result.update.message.chat.id, text: '${result.update.message.text}')!
