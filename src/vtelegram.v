@@ -3,7 +3,7 @@ module vtelegram
 import json
 import net.http
 import time
-import log 
+import log
 
 pub const (
 	endpoint = 'https://api.telegram.org/bot'
@@ -98,11 +98,11 @@ pub fn (mut b Bot) api_multipart_form_request(api_method string, _data map[strin
 
 	//mut form := map[string]string{}
 	// $for field in T.fields {
-	// 	form[field.name] =  _data.$(field.name).str() 
+	// 	form[field.name] =  _data.$(field.name).str()
 	// 	$if field.name == 'reply_markup'{
 	// 		form['reply_markup'] = json.encode(_data.$(field.name))
 	// 	}
-		
+
 	// 	$if field.typ == 'media' {
 	// 		form['media'] = json.encode(_data.media)
 	// 	}
@@ -115,10 +115,24 @@ pub fn (mut b Bot) api_multipart_form_request(api_method string, _data map[strin
 		files: ufiles
 		header: header
 	}
-	b.log.debug('multipart/form-data request: $api_method ${conf.form} Files: ${conf.files}')
+	b.log.debug('multipart/form-data request: ${api_method} ${conf.form} Files: ${conf.files.len}')
 	response := http.post_multipart_form('${vtelegram.endpoint}${b.token}/${api_method}', conf)or {
 		return error('Request Failed: ${err}')
 	}
-	b.log.debug('Response: ${response.body}')
+	if response.status_code == 200 {
+		b.log.debug('multipart/form-data Response: ${api_method} ${response.body}')
+		response_body := json.decode(ResponseOK, response.body) or {
+			b.log.error('multipart_form_request $err')
+			return err
+		}
+		return response_body.result
+	}
+	else{
+		response_body := json.decode(ResponseNotOK, response.body) or {
+			b.log.error('multipart_form_request $err')
+			return err
+		}
+		return error('Error occured: ${response_body.error_code} ${response_body.description}')
+	}
 	return response.body
 }
