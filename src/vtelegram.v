@@ -10,6 +10,7 @@ pub const (
 )
 
 pub struct Bot {
+pub:
 	token string
 pub mut:
 	offset      int
@@ -50,7 +51,10 @@ pub fn start_polling[T,N](mut bot T, args N) {
 			limit: args.limit
 			timeout: args.timeout
 			allowed_updates: args.allowed_updates
-		) or { []Update{} }
+		) or {
+			time.sleep(3000 * time.millisecond)
+			[]Update{}
+		}
 		if updates.len > 0 {
 			bot.log.debug('Received ${updates.len} updates')
 		}
@@ -69,44 +73,31 @@ pub fn (mut b Bot) api_request(api_method string, _data string) !string {
 		return ''
 	}
 	response := http.post_json('${vtelegram.endpoint}${b.token}/${api_method}', _data) or {
-		b.log.error('${err}')
+		//b.log.error('api_request post_json ${api_method}: ${err} ${_data}')
 		time.sleep(2000 * time.millisecond)
-		return ''
+		return error('api_request post_json ${api_method}: ${err} ${_data}')
 	}
 	b.log.debug('Response: ${response.body}')
 	if response.status_code == 200 {
 		response_body := json.decode(ResponseOK, response.body) or {
-			b.log.error('http_request $err')
+			b.log.error('api_request ${err}')
 			return ''
 		}
 		return response_body.result
 	} else {
 		response_body := json.decode(ResponseNotOK, response.body) or {
-			b.log.error('http_request $err')
+			b.log.error('api_request ${err}')
 			b.log.flush()
-			return error('http_request $err')
+			return error('api_request ${err}')
 		}
-		b.log.error('${api_method} response: Error Code: ${response_body.error_code} Description: ${response_body.description}')
-		b.log.error('${api_method} Data: ${_data}')
+		b.log.error('${api_method} Error occured: ${response_body.error_code} Description: ${response_body.description}\nData: ${_data}')
 		b.log.flush()
-		return error('${api_method} response: Error Code: ${response_body.error_code} Description: ${response_body.description}')
+		return error('${api_method} Error occured: ${response_body.error_code} Description: ${response_body.description}')
 	}
 	return response.body
 }
 
 pub fn (mut b Bot) api_multipart_form_request(api_method string, _data map[string]string, ufiles map[string][]http.FileData) !string {
-
-	//mut form := map[string]string{}
-	// $for field in T.fields {
-	// 	form[field.name] =  _data.$(field.name).str()
-	// 	$if field.name == 'reply_markup'{
-	// 		form['reply_markup'] = json.encode(_data.$(field.name))
-	// 	}
-
-	// 	$if field.typ == 'media' {
-	// 		form['media'] = json.encode(_data.media)
-	// 	}
-	// }
 	//println(form)
 	mut header := http.new_header()
 	header.set(.content_type, 'multipart/form-data')
@@ -117,22 +108,22 @@ pub fn (mut b Bot) api_multipart_form_request(api_method string, _data map[strin
 	}
 	b.log.debug('multipart/form-data request: ${api_method} ${conf.form} Files: ${conf.files.len}')
 	response := http.post_multipart_form('${vtelegram.endpoint}${b.token}/${api_method}', conf)or {
-		return error('Request Failed: ${err}')
+		return error('${api_method} Request Failed: ${err}')
 	}
 	if response.status_code == 200 {
 		b.log.debug('multipart/form-data Response: ${api_method} ${response.body}')
 		response_body := json.decode(ResponseOK, response.body) or {
-			b.log.error('multipart_form_request $err')
+			b.log.error('multipart_form_request ${api_method} ${err}')
 			return err
 		}
 		return response_body.result
 	}
 	else{
 		response_body := json.decode(ResponseNotOK, response.body) or {
-			b.log.error('multipart_form_request $err')
+			b.log.error('multipart_form_request ${api_method} ${err}')
 			return err
 		}
-		return error('Error occured: ${response_body.error_code} ${response_body.description}')
+		return error('${api_method} Error occured: ${response_body.error_code} ${response_body.description}')
 	}
 	return response.body
 }
