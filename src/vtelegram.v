@@ -70,7 +70,7 @@ pub fn start_polling[T,N](mut bot T, args N) {
 pub fn (mut b Bot) api_request(api_method string, _data string) !string {
 	b.log.debug('${api_method} ${_data}')
 	if _data == '' {
-		return ''
+		return error('api_request ${api_method}: _data is empty')
 	}
 	response := http.post_json('${vtelegram.endpoint}${b.token}/${api_method}', _data) or {
 		//b.log.error('api_request post_json ${api_method}: ${err} ${_data}')
@@ -81,7 +81,7 @@ pub fn (mut b Bot) api_request(api_method string, _data string) !string {
 	if response.status_code == 200 {
 		response_body := json.decode(ResponseOK, response.body) or {
 			b.log.error('api_request ${err}')
-			return ''
+			return error('api_request ${err}')
 		}
 		return response_body.result
 	} else {

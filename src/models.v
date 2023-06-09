@@ -777,14 +777,15 @@ pub:
 
 // InlineKeyboardMarkup This object represents an inline keyboard that appears right next to the message it belongs to.
 pub struct InlineKeyboardMarkup {
-pub:
+pub mut:
 	// inline_keyboard Array of button rows, each represented by an Array of InlineKeyboardButton objects
 	inline_keyboard [][]InlineKeyboardButton
 }
 
 // InlineKeyboardButton This object represents one button of an inline keyboard. You must use exactly one of the optional fields.
+[params]
 pub struct InlineKeyboardButton {
-pub:
+pub mut:
 	// text Label text on the button
 	text string
 	// url Optional. HTTP or tg:// URL to be opened when the button is pressed. Links tg://user?id=<user_id> can be used to mention a user by their ID without using a username, if this is allowed by their privacy settings.

@@ -1,4 +1,21 @@
-## v 0.8
+## v 0.8.1
+
+- inline keyboard builder. 2 functions: `new_reply_markup` `new_inline_button`
+```v
+    import vtelegram as vt
+
+    reply_markup := vt.new_reply_markup(
+        // array for buttons in one row
+		[
+            vt.new_inline_button(text: 'Test', callback_data: '1'),
+            vt.new_inline_button(text: 'Test2', callback_data: '2')
+		],
+        // next row button
+        vt.new_inline_button(text: 'Button3', callback_data: '3')
+	)
+```
+
+### v 0.8
 
 - Media Group upload
     - In order for the Telegram Bot API to accept a request, one media group must contain >= 2 elements and contain only one media type.
