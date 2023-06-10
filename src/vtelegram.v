@@ -40,11 +40,36 @@ pub struct PollingConfig[T] {
 
 pub struct Regular {}
 
+fn register_middleware_db[T,N](bot T, mut mw N) {
+	$for field in N.fields{
+		$if field.name == 'db' {
+			mw.$(field.name) = bot.$(field.name)
+		}
+	}
+}
+fn register_middleware_log[T,N](bot T, mut mw N) {
+	$for field in T.fields {
+		$if field.is_struct {
+			$if field.name == 'Bot'{
+				$if field.Bot.name == 'log' {
+					$for mw_field in N.fields {
+						$if mw_field.name == 'log'{
+							mw.$(mw_field.name) = bot.Bot.log
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
 pub fn start_polling[T,N](mut bot T, args N) {
 	println('Starting bot...')
 	bot.log.info('Starting bot...')
 	bot.log.flush()
 	mut middleware := args.middleware_
+	register_middleware_db(bot, mut &middleware)
+	register_middleware_log(bot, mut &middleware)
 	for {
 		updates := bot.get_updates(
 			offset: bot.offset

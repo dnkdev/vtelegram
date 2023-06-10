@@ -1,18 +1,32 @@
-## v 0.8.1
+## v 0.8.2
 
+- single database in your Bot and Middleware structs. must be only `db` field name for now to synchronize! 
+    - single `log` field also, if you want log from Middleware functions (Bot has it by default, in Middleware struct you have to declare if you need it)
+```v
+pub struct App {
+    vt.Bot
+pub:
+    db Database
+}
+struct MyBaseMiddleware{
+pub mut:
+    log log.Log
+    db Database
+}
+```
 - inline keyboard builder. 2 functions: `new_reply_markup` `new_inline_button`
 ```v
-    import vtelegram as vt
+import vtelegram as vt
 
-    reply_markup := vt.new_reply_markup(
-        // array for buttons in one row
-		[
-            vt.new_inline_button(text: 'Test', callback_data: '1'),
-            vt.new_inline_button(text: 'Test2', callback_data: '2')
-		],
-        // next row button
-        vt.new_inline_button(text: 'Button3', callback_data: '3')
-	)
+reply_markup := vt.new_reply_markup(
+    // array for buttons in one row
+    [
+    vt.new_inline_button(text: 'Test', callback_data: '1'),
+    vt.new_inline_button(text: 'Test2', callback_data: '2')
+    ],
+    // next row button
+    vt.new_inline_button(text: 'Button3', callback_data: '3')
+)
 ```
 
 ### v 0.8
@@ -77,6 +91,10 @@ fn main(){
     vtelegram.start_polling(mut app, polling_config)
 }
 ```
+<hr>
+
+<details>
+  <summary>Archive</summary>
 
 ### v 0.5.0
 
@@ -145,3 +163,5 @@ fn (mut app App) handle_callbackquery(result Result){
 
 - Handling messages with attributes
 - Handling callback_query with attribute
+
+</details>
