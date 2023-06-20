@@ -1061,7 +1061,8 @@ pub:
 // ChatMemberLeft
 // ChatMemberBanned
 // https://core.telegram.org/bots/api#chatmember
-struct ChatMember {
+pub struct ChatMember {
+pub:
 	// ChatMemberOwner
 	// status The member's status in the chat, always “creator”
 	status string

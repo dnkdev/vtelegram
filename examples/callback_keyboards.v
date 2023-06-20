@@ -1,6 +1,6 @@
 module main
 
-import vtelegram { Bot, InlineKeyboardButton, InlineKeyboardMarkup, Result, start_polling, PollingConfig, Regular }
+import vtelegram { Bot, Result, start_polling, PollingConfig, Regular }
 
 struct App {
 	Bot
@@ -22,24 +22,15 @@ fn (mut app App) keyboard_callback(result Result) ! {
 
 [message: '/start']
 fn (mut app App) start(result Result) ! {
-	mut buttons := [][]InlineKeyboardButton{}
-	buttons << [
-		InlineKeyboardButton{
-			text: 'Yes'
-			callback_data: 'yes'
-		},
-		InlineKeyboardButton{
-			text: 'No'
-			callback_data: 'no'
-		},
-	]
-	buttons << [
-		InlineKeyboardButton{
-			text: 'Totally'
-			callback_data: 'totally'
-		},
-	]
-	reply_markup := InlineKeyboardMarkup{buttons}
+	
+	reply_markup := vtelegram.new_reply_markup(
+		[
+		vtelegram.new_inline_button(text:'Yes', callback_data: 'yes')
+		vtelegram.new_inline_button(text:'No', callback_data: 'no')
+		],
+		vtelegram.new_inline_button(text:'Totally', callback_data: 'totally')
+	)
+
 	app.send_message(
 		chat_id: result.update.message.chat.id
 		text: 'Are you here?'
