@@ -84,7 +84,7 @@ pub fn start_polling[T,N](mut bot T, args N) {
 			bot.log.debug('Received ${updates.len} updates')
 		}
 		for u in updates {
-			spawn handle_update(bot, mut &middleware, u)
+			spawn handle_update(mut bot, mut &middleware, u)
 			bot.offset = u.update_id + 1
 		}
 		bot.log.flush()
@@ -102,7 +102,7 @@ pub fn (mut b Bot) api_request(api_method string, _data string) !string {
 		time.sleep(2000 * time.millisecond)
 		return error('api_request post_json ${api_method}: ${err} ${_data}')
 	}
-	b.log.debug('Response: ${response.body}')
+	b.log.debug('Response ${api_method}: ${response.body}')
 	if response.status_code == 200 {
 		response_body := json.decode(ResponseOK, response.body) or {
 			b.log.error('api_request ${err}')

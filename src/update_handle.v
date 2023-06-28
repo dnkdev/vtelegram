@@ -7,7 +7,7 @@ pub mut:
 	data map[string]string
 }
 
-fn handle_update[T,N](app T, mut middleware N, update Update) {
+fn handle_update[T,N](mut app T, mut middleware N, update Update) {
 	mut update_new := update
 
 	// middleware
@@ -27,7 +27,9 @@ fn handle_update[T,N](app T, mut middleware N, update Update) {
 		
 			if is_handler_relate_to_type(update_new, method.attrs) {
 				if is_handler_pass_filters(update_new, method.attrs) {
-					app.$method(result)
+					app.$method(result) or {
+						app.log.error('# ${method.name}: ${err}')
+					}
 				}
 			}
 

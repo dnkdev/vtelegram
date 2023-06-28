@@ -7,13 +7,26 @@
 </h1>
 
 Library for building telegram bots in V language. <br><br>
-**Early stage**. In some cases, it does what should. Thanks to the V language, speed is fast. Updates are handled asynchronously. 
-<br>
+**Early stage**. In some cases, it does what should.<br><br>
 All methods are in snake_case instead of camelCase: `send_message` instead of `sendMessage`.
 <br>
 You can get acquainted with the Telegram Bot API [here](https://core.telegram.org/bots/api).
 
-## Install
+## Important Note
+
+This library was primarily developed for personal use, and while it provides some functionality, it may lack comprehensive knowledge of best practices and advanced features. Additionally, it has not been tested in real-life high-pressure projects. However, this library may have further evolving, at the moment based on my needs and preferences.
+
+So to be transparent about the state of this library:
+
+- The library may not follow best practices.
+- Gaps in the features of the Telegram Bot API.
+- Real-life high-pressure testing has not been conducted.
+- It is worth consider the state of the V language
+
+### Contributing
+Contributions to this library are highly welcome. If you have suggestions for improvements, bug fixes, or additional features, please feel free to open an issue or submit a PR.
+
+## Installation
 
 ```
 v install https://github.com/dnkdev/vtelegram
@@ -76,8 +89,3 @@ For now middlewares can:
 - Prevent update for passing to handlers ( middleware methods must return bool, `false` for prevent update )
 - Transform update
 - Pass data in `map[string]string` type to handlers
-
-### WIP
-
-All Telegram Bot API features is not tested yet.
-If you encounter some issues or want to contribute, you are very welcome, please just open issue or PR.
