@@ -14,7 +14,7 @@ fn validate_filter(update Update, value string) bool{
 			update.pre_checkout_query.from.is_bot ||
 			update.my_chat_member.from.is_bot ||
 			update.chat_member.from.is_bot ||
-			update.chat_join_request.from.is_bot 
+			update.chat_join_request.from.is_bot
 			{
 				return true
 			}
@@ -33,7 +33,7 @@ fn validate_filter(update Update, value string) bool{
 			update.chat_member.from.language_code != '' ||
 			update.chat_join_request.from.language_code != '' //&&
 			// &&
-			// !update.message.from.is_bot || 
+			// !update.message.from.is_bot ||
 			// !update.edited_message.from.is_bot ||
 			// !update.channel_post.from.is_bot ||
 			// !update.edited_channel_post.from.is_bot ||
@@ -44,32 +44,32 @@ fn validate_filter(update Update, value string) bool{
 			// !update.pre_checkout_query.from.is_bot ||
 			// !update.my_chat_member.from.is_bot ||
 			// !update.chat_member.from.is_bot ||
-			// !update.chat_join_request.from.is_bot  
+			// !update.chat_join_request.from.is_bot
 			{
-				return true 
-			} 
+				return true
+			}
 		}
 		'sender_channel' {
-			if update.message.sender_chat.@type == 'channel' || 
-			update.channel_post.sender_chat.@type == 'channel' || 
-			update.edited_channel_post.sender_chat.@type == 'channel' || 
+			if update.message.sender_chat.@type == 'channel' ||
+			update.channel_post.sender_chat.@type == 'channel' ||
+			update.edited_channel_post.sender_chat.@type == 'channel' ||
 			update.edited_message.sender_chat.@type  == 'channel' ||
-			update.callback_query.message.sender_chat.@type  == 'channel' 
+			update.callback_query.message.sender_chat.@type  == 'channel'
 			{
 				return true
 			}
 		}
 		'sender_group' {
-			    
-			if update.message.sender_chat.@type == 'group' || 
-			update.channel_post.sender_chat.@type == 'group' || 
-			update.edited_channel_post.sender_chat.@type == 'group' || 
+
+			if update.message.sender_chat.@type == 'group' ||
+			update.channel_post.sender_chat.@type == 'group' ||
+			update.edited_channel_post.sender_chat.@type == 'group' ||
 			update.edited_message.sender_chat.@type  == 'group' ||
 			update.callback_query.message.sender_chat.@type  == 'group' ||
 
-			update.message.sender_chat.@type == 'supergroup'  || 
-			update.channel_post.sender_chat.@type == 'supergroup' || 
-			update.edited_channel_post.sender_chat.@type == 'supergroup' || 
+			update.message.sender_chat.@type == 'supergroup'  ||
+			update.channel_post.sender_chat.@type == 'supergroup' ||
+			update.edited_channel_post.sender_chat.@type == 'supergroup' ||
 			update.edited_message.sender_chat.@type  == 'supergroup' ||
 			update.callback_query.message.sender_chat.@type  == 'supergroup'
 			{
@@ -80,31 +80,31 @@ fn validate_filter(update Update, value string) bool{
 			if update.message.text != '' || update.edited_message.text != '' ||
 			update.channel_post.text != '' || update.edited_channel_post.text != '' ||
 			update.message.caption != '' || update.edited_message.caption != '' ||
-			update.channel_post.caption != '' || update.edited_channel_post.caption != '' 
+			update.channel_post.caption != '' || update.edited_channel_post.caption != ''
 			{
 				return true
 			}
 		}
 		'forward'{
-			if update.message.forward_date != 0 || 
+			if update.message.forward_date != 0 ||
 			update.channel_post.forward_date != 0 ||
-			update.message.forward_from_chat.id != 0 || 
-			update.channel_post.forward_from_chat.id != 0  
+			update.message.forward_from_chat.id != 0 ||
+			update.channel_post.forward_from_chat.id != 0
 			{
 				return true
 			}
 		}
 		'reply'{
-			if update.message.reply_to_message.message_id != 0 
+			if update.message.reply_to_message.message_id != 0
 			{
 				return true
 			}
 		}
 		'private'{
-			if 
-			update.message.chat.@type == 'private'  || 
-			update.channel_post.chat.@type == 'private' || 
-			update.edited_channel_post.chat.@type == 'private' || 
+			if
+			update.message.chat.@type == 'private'  ||
+			update.channel_post.chat.@type == 'private' ||
+			update.edited_channel_post.chat.@type == 'private' ||
 			update.edited_message.chat.@type  == 'private' ||
 			update.callback_query.message.chat.@type  == 'private' ||
 			update.inline_query.chat_type == 'private' ||
@@ -116,15 +116,15 @@ fn validate_filter(update Update, value string) bool{
 			}
 		}
 		'group'{
-			if 
-			update.chat_join_request.chat.@type == 'group' || 
-			update.chat_join_request.chat.@type == 'supergroup' || 
-			update.my_chat_member.chat.@type == 'group' || 
-			update.my_chat_member.chat.@type == 'supergroup' || 
-			update.chat_member.chat.@type == 'group' || 
-			update.chat_member.chat.@type == 'supergroup' || 
-			update.callback_query.message.chat.@type == 'group' || 
-			update.callback_query.message.chat.@type == 'supergroup' || 
+			if
+			update.chat_join_request.chat.@type == 'group' ||
+			update.chat_join_request.chat.@type == 'supergroup' ||
+			update.my_chat_member.chat.@type == 'group' ||
+			update.my_chat_member.chat.@type == 'supergroup' ||
+			update.chat_member.chat.@type == 'group' ||
+			update.chat_member.chat.@type == 'supergroup' ||
+			update.callback_query.message.chat.@type == 'group' ||
+			update.callback_query.message.chat.@type == 'supergroup' ||
 			update.inline_query.chat_type == 'group' ||
 			update.inline_query.chat_type == 'supergroup' ||
 			update.message.chat.@type == 'group' || update.edited_message.chat.@type  == 'group' ||
@@ -134,28 +134,28 @@ fn validate_filter(update Update, value string) bool{
 			}
 		}
 		'channel'{
-			if 
-			update.chat_join_request.chat.@type == 'channel' || 
-			update.my_chat_member.chat.@type == 'channel' || 
-			update.chat_member.chat.@type == 'channel' || 
+			if
+			update.chat_join_request.chat.@type == 'channel' ||
+			update.my_chat_member.chat.@type == 'channel' ||
+			update.chat_member.chat.@type == 'channel' ||
 			update.callback_query.message.chat.@type == 'channel' ||
 			update.inline_query.chat_type == 'channel' ||
-			update.message.chat.@type == 'channel' || 
+			update.message.chat.@type == 'channel' ||
 			update.edited_message.chat.@type  == 'channel' ||
-			update.channel_post.chat.@type == 'channel' || 
+			update.channel_post.chat.@type == 'channel' ||
 			update.edited_channel_post.chat.@type  == 'channel'
 			{
 				return true
 			}
 		}
 		'entities'{
-			if update.poll.explanation_entities.len > 0 || 
+			if update.poll.explanation_entities.len > 0 ||
 			update.message.entities.len > 0 || update.message.caption_entities.len > 0 ||
 			update.message.poll.explanation_entities.len > 0 ||
-			
+
 			update.edited_message.entities.len > 0 || update.edited_message.caption_entities.len > 0 ||
 			update.edited_message.poll.explanation_entities.len > 0 ||
-			
+
 			update.channel_post.entities.len > 0 || update.channel_post.caption_entities.len > 0 ||
 			update.channel_post.poll.explanation_entities.len > 0 ||
 
@@ -169,7 +169,7 @@ fn validate_filter(update Update, value string) bool{
 			if update.message.animation.file_id != '' ||
 			update.edited_message.animation.file_id != '' ||
 			update.channel_post.animation.file_id != '' ||
-			update.edited_channel_post.animation.file_id != '' 
+			update.edited_channel_post.animation.file_id != ''
 			{
 				return true
 			}
@@ -178,7 +178,7 @@ fn validate_filter(update Update, value string) bool{
 			if update.message.audio.file_id != '' ||
 			update.edited_message.audio.file_id != '' ||
 			update.channel_post.audio.file_id != '' ||
-			update.edited_channel_post.audio.file_id != '' 
+			update.edited_channel_post.audio.file_id != ''
 			{
 				return true
 			}
@@ -188,7 +188,7 @@ fn validate_filter(update Update, value string) bool{
 			if update.message.document.file_id != '' ||
 			update.edited_message.document.file_id != '' ||
 			update.channel_post.document.file_id != '' ||
-			update.edited_channel_post.document.file_id != '' 
+			update.edited_channel_post.document.file_id != ''
 			{
 				return true
 			}
@@ -197,7 +197,7 @@ fn validate_filter(update Update, value string) bool{
 			if update.message.photo.len > 0 ||
 			update.edited_message.photo.len > 0 ||
 			update.channel_post.photo.len > 0 ||
-			update.edited_channel_post.photo.len > 0 
+			update.edited_channel_post.photo.len > 0
 			{
 				return true
 			}
@@ -206,7 +206,7 @@ fn validate_filter(update Update, value string) bool{
 			if update.message.sticker.file_id != '' ||
 			update.edited_message.sticker.file_id != '' ||
 			update.channel_post.sticker.file_id != '' ||
-			update.edited_channel_post.sticker.file_id != '' 
+			update.edited_channel_post.sticker.file_id != ''
 			{
 				return true
 			}
@@ -215,7 +215,7 @@ fn validate_filter(update Update, value string) bool{
 			if update.message.video.file_id != '' ||
 			update.edited_message.video.file_id != '' ||
 			update.channel_post.video.file_id != '' ||
-			update.edited_channel_post.video.file_id != '' 
+			update.edited_channel_post.video.file_id != ''
 			{
 				return true
 			}
@@ -224,7 +224,7 @@ fn validate_filter(update Update, value string) bool{
 			if update.message.video_note.file_id != '' ||
 			update.edited_message.video_note.file_id != '' ||
 			update.channel_post.video_note.file_id != '' ||
-			update.edited_channel_post.video_note.file_id != '' 
+			update.edited_channel_post.video_note.file_id != ''
 			{
 				return true
 			}
@@ -233,7 +233,7 @@ fn validate_filter(update Update, value string) bool{
 			if update.message.voice.file_id != '' ||
 			update.edited_message.voice.file_id != '' ||
 			update.channel_post.voice.file_id != '' ||
-			update.edited_channel_post.voice.file_id != '' 
+			update.edited_channel_post.voice.file_id != ''
 			{
 				return true
 			}
@@ -242,7 +242,7 @@ fn validate_filter(update Update, value string) bool{
 			if update.message.contact.phone_number != '' ||
 			update.edited_message.contact.phone_number != '' ||
 			update.channel_post.contact.phone_number != '' ||
-			update.edited_channel_post.contact.phone_number != '' 
+			update.edited_channel_post.contact.phone_number != ''
 			{
 				return true
 			}
@@ -251,7 +251,7 @@ fn validate_filter(update Update, value string) bool{
 			if update.message.dice.emoji != '' ||
 			update.edited_message.dice.emoji != '' ||
 			update.channel_post.dice.emoji != '' ||
-			update.edited_channel_post.dice.emoji != '' 
+			update.edited_channel_post.dice.emoji != ''
 			{
 				return true
 			}
@@ -260,7 +260,7 @@ fn validate_filter(update Update, value string) bool{
 			if update.message.game.title != '' ||
 			update.edited_message.game.title != '' ||
 			update.channel_post.game.title != '' ||
-			update.edited_channel_post.game.title != '' 
+			update.edited_channel_post.game.title != ''
 			{
 				return true
 			}
@@ -269,7 +269,7 @@ fn validate_filter(update Update, value string) bool{
 			if update.message.poll.id != '' ||
 			update.edited_message.poll.id != '' ||
 			update.channel_post.poll.id != '' ||
-			update.edited_channel_post.poll.id != '' 
+			update.edited_channel_post.poll.id != ''
 			{
 				return true
 			}
@@ -278,7 +278,7 @@ fn validate_filter(update Update, value string) bool{
 			if update.message.venue.title != '' ||
 			update.edited_message.venue.title != '' ||
 			update.channel_post.venue.title != '' ||
-			update.edited_channel_post.venue.title != '' 
+			update.edited_channel_post.venue.title != ''
 			{
 				return true
 			}
@@ -334,6 +334,7 @@ fn validate_filter(update Update, value string) bool{
 				return true
 			}
 		}
+		//TODO: add is_forum filter, for all message handling only in forums. Now with is_topic_message, some messages can be missed (General forum topic)
 		'is_topic_message'{
 			return update.message.is_topic_message
 		}
@@ -341,19 +342,19 @@ fn validate_filter(update Update, value string) bool{
 			if update.message.pinned_message.text != '' ||
 			update.channel_post.pinned_message.text != '' ||
 			update.message.pinned_message.caption != '' ||
-			update.channel_post.pinned_message.caption != '' 
+			update.channel_post.pinned_message.caption != ''
 			{
 				return true
 			}
 		}
 		'invoice'{
-			if update.message.invoice.title != '' 
+			if update.message.invoice.title != ''
 			{
 				return true
 			}
 		}
 		'successful_payment'{
-			if update.message.successful_payment.currency != '' 
+			if update.message.successful_payment.currency != ''
 			{
 				return true
 			}
@@ -383,7 +384,7 @@ fn validate_filter(update Update, value string) bool{
 		// 	}
 		// }
 		'passport_data'{
-			if update.message.passport_data.data.len > 0 || 
+			if update.message.passport_data.data.len > 0 ||
 			update.channel_post.passport_data.data.len > 0
 			{
 				return true
@@ -396,7 +397,7 @@ fn validate_filter(update Update, value string) bool{
 			}
 		}
 		'video_chat_scheduled'{
-			if update.message.video_chat_scheduled.start_date != 0 || 
+			if update.message.video_chat_scheduled.start_date != 0 ||
 			update.channel_post.video_chat_scheduled.start_date > 0
 			{
 				return true
@@ -407,14 +408,14 @@ fn validate_filter(update Update, value string) bool{
 
 		}
 		'video_chat_ended'{
-			if update.message.video_chat_ended.duration != 0 || 
+			if update.message.video_chat_ended.duration != 0 ||
 			update.channel_post.video_chat_ended.duration != 0
 			{
 				return true
 			}
 		}
 		'video_chat_participants_invited'{
-			if update.message.video_chat_participants_invited.users.len > 0 || 
+			if update.message.video_chat_participants_invited.users.len > 0 ||
 			update.channel_post.video_chat_participants_invited.users.len > 0
 			{
 				return true

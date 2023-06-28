@@ -1,9 +1,9 @@
 module main
 
-import vtelegram {Bot, Update, Message, InlineKeyboardButton, InlineKeyboardMarkup}
+import vtelegram as vt
 
 struct App {
-	Bot
+	vt.Bot
 }
 
 fn main(){
@@ -12,30 +12,30 @@ fn main(){
 	}
 	println('Starting bot...')
 	for {
-		updates := app.getupdates(offset: app.offset) or {
+		updates := app.get_updates(offset: app.offset) or {
 			println(err)
-			[]Update{}
+			[]vt.Update{}
 		}
 		for u in updates{
 			if u.message.text == '/start'{
-				app.sendchataction(
+				app.send_chat_action(
 					chat_id: u.message.from.id,
 					action: "typing"
 				)!
-				app.sendmessage(
+				app.send_message(
 					chat_id: u.message.from.id,
 					text: 'Hello, $u.message.from.first_name\nHow is your day?'
-					reply_markup: InlineKeyboardMarkup{get_buttons()}
+					reply_markup: get_buttons()
 				)!
 			}
 			if u.callback_query.data == 'good' {
-				app.sendmessage(
+				app.send_message(
 					chat_id: u.callback_query.from.id,
 					text: 'Happy to hear that!'
 				)!
 			}
 			else if u.callback_query.data == 'bad' {
-				app.sendmessage(
+				app.send_message(
 					chat_id: u.callback_query.from.id,
 					text: 'Don\'t worry be happy!'
 				)!
@@ -45,9 +45,9 @@ fn main(){
 	}
 }
 
-fn get_buttons() [][]InlineKeyboardButton {
-	mut buttons := [][]InlineKeyboardButton{}
-	buttons << 	[InlineKeyboardButton{text:"Good", callback_data: "good"}]
-	buttons <<	[InlineKeyboardButton{text:"Bad", callback_data: "bad"}]
-	return buttons
+fn get_buttons() vt.InlineKeyboardMarkup {
+	return vt.new_reply_markup(
+		vt.new_inline_button(text:"Good", callback_data: "good"),
+		vt.new_inline_button(text:"Bad", callback_data: "bad")
+	)
 }

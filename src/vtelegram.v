@@ -93,7 +93,6 @@ pub fn start_polling[T,N](mut bot T, args N) {
 }
 
 pub fn (mut b Bot) api_request(api_method string, _data string) !string {
-	b.log.debug('${api_method} ${_data}')
 	if _data == '' {
 		return error('api_request ${api_method}: _data is empty')
 	}
@@ -102,7 +101,7 @@ pub fn (mut b Bot) api_request(api_method string, _data string) !string {
 		time.sleep(2000 * time.millisecond)
 		return error('api_request post_json ${api_method}: ${err} ${_data}')
 	}
-	b.log.debug('Response ${api_method}: ${response.body}')
+	b.log.debug('${api_method} ${_data} Response: ${response.body}')
 	if response.status_code == 200 {
 		response_body := json.decode(ResponseOK, response.body) or {
 			b.log.error('api_request ${err}')
@@ -131,12 +130,12 @@ pub fn (mut b Bot) api_multipart_form_request(api_method string, _data map[strin
 		files: ufiles
 		header: header
 	}
-	b.log.debug('multipart/form-data request: ${api_method} ${conf.form} Files: ${conf.files.len}')
-	response := http.post_multipart_form('${vtelegram.endpoint}${b.token}/${api_method}', conf)or {
+	response := http.post_multipart_form('${vtelegram.endpoint}${b.token}/${api_method}', conf) or {
+		b.log.error('api_multipart_form_request: ${api_method} ${err}')
 		return error('${api_method} Request Failed: ${err}')
 	}
+	b.log.debug('multipart/form-data request: ${api_method} ${conf.form} Files: ${conf.files.len}\nResponse: ${response.body}')
 	if response.status_code == 200 {
-		b.log.debug('multipart/form-data Response: ${api_method} ${response.body}')
 		response_body := json.decode(ResponseOK, response.body) or {
 			b.log.error('multipart_form_request ${api_method} ${err}')
 			return err
