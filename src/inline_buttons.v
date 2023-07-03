@@ -1,6 +1,6 @@
 module vtelegram
 
-type InlineKeyboardButtonSum = InlineKeyboardButton | []InlineKeyboardButton
+type InlineKeyboardButtonSum = InlineKeyboardButton | []InlineKeyboardButton | [][]InlineKeyboardButton
 
 pub fn new_reply_markup(buttons_r ...InlineKeyboardButtonSum) InlineKeyboardMarkup {
 	mut buttons := [][]InlineKeyboardButton{}
@@ -11,6 +11,9 @@ pub fn new_reply_markup(buttons_r ...InlineKeyboardButtonSum) InlineKeyboardMark
 			}
 			[]InlineKeyboardButton {
 				buttons << [br]
+			}
+			[][]InlineKeyboardButton {
+				buttons << br
 			}
 		}
 	}
