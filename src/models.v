@@ -108,6 +108,8 @@ pub:
 	active_usernames []string
 	// emoji_status_custom_emoji_id Optional. Custom emoji identifier of emoji status of the other party in a private chat. Returned only in getChat.
 	emoji_status_custom_emoji_id string
+	// emoji_status_expiration_date Optional. Expiration date of the emoji status of the other party in a private chat, if any. Returned only in getChat.
+	emoji_status_expiration_date int
 	// bio Optional. Bio of the other party in a private chat. Returned only in getChat.
 	bio string
 	// has_private_forwards Optional. True, if privacy settings of the other party in the private chat allows to use tg://user?id=<user_id> links only in chats with the user. Returned only in getChat.
@@ -203,6 +205,8 @@ pub mut:
 	photo []PhotoSize
 	// sticker Optional. Message is a sticker, information about the sticker
 	sticker Sticker
+	// story Optional. Message is a forwarded story
+	story Story
 	// video Optional. Message is a video, information about the video
 	video Video
 	// video_note Optional. Message is a video note, information about the video message
@@ -490,7 +494,9 @@ pub struct PollAnswer {
 pub:
 	// poll_id Unique poll identifier
 	poll_id string
-	// user The user, who changed the answer to the poll
+	// voter_chat Optional. The chat that changed the answer to the poll, if the voter is anonymous
+	voter_chat Chat
+	// Optional. user The user, who changed the answer to the poll
 	user User
 	// option_ids 0-based identifiers of answer options, chosen by the user. May be empty if the user retracted their vote.
 	option_ids []int
@@ -1517,6 +1523,10 @@ pub:
 	allow_sending_without_reply bool
 	// reply_markup Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove reply keyboard or to force a reply from the user.
 	reply_markup ForceReply
+}
+
+// Story 
+pub struct Story {
 }
 
 // Sticker This object represents a sticker.

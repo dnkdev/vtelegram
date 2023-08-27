@@ -3,7 +3,7 @@
 </div>
 
 <h1>VTelegram 0.8
-<img align="right" style="margin-top:15px;" src="https://img.shields.io/static/v1?logo=telegram&label=Telegram Bot API&message=6.7&labelColor=ffffff&color=blue" href="https://core.telegram.org/bots/api">
+<img align="right" style="margin-top:15px;" src="https://img.shields.io/static/v1?logo=telegram&label=Telegram Bot API&message=6.8&labelColor=ffffff&color=blue" href="https://core.telegram.org/bots/api">
 </h1>
 
 Library for building telegram bots in V language. <br><br>
@@ -22,6 +22,11 @@ So to be transparent about the state of this library:
 - Gaps in the features of the Telegram Bot API.
 - Real-life high-pressure testing has not been conducted.
 - It is worth consider the state of the V language
+
+<b>* V language need to have proper concurrency in next 0.5 release to work smoothly... existed `spawn` is making lower level threads and overhead of them could lead to unexpected behavior.</b>
+
+TODO: 
+chat_id fields in all models that should accept `Integer or String` atm accept only `Integer`, make it right.
 
 ### Contributing
 Contributions to this library are highly welcome. If you have suggestions for improvements, bug fixes, or additional features, please feel free to open an issue or submit a PR.
