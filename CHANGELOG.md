@@ -1,4 +1,9 @@
-## v 0.8.2
+## v 0.9
+
+- delete `log` field and entire vlib logging library from the vtelegram
+- add a `vtelegram_debug` flag, to run the bot in debug mod, which will print the debug messages to console (`v -d vtelegram_debug run .`)
+
+### v 0.8.2
 
 - single database in your Bot and Middleware structs. must be only `db` field name for now to synchronize! 
     - single `log` field also, if you want log from Middleware functions (Bot has it by default, in Middleware struct you have to declare if you need it)
