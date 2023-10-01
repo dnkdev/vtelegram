@@ -12,7 +12,7 @@ pub struct Bot {
 pub:
 	token string
 pub mut:
-	offset      int
+	offset int
 }
 
 pub struct ResponseOK {
@@ -31,23 +31,22 @@ pub:
 
 [params]
 pub struct PollingConfig[T] {
-	GetUpdates 
-	// delay_time Time in milliseconds between getting updates
-	delay_time  int = 1000
+	GetUpdates
+	delay_time  int = 1000 // delay_time Time in milliseconds between getting updates
 	middleware_ T
 }
 
 pub struct Regular {}
 
-fn register_middleware_db[T,N](bot T, mut mw N) {
-	$for field in N.fields{
+fn register_middleware_db[T, N](bot T, mut mw N) {
+	$for field in N.fields {
 		$if field.name == 'db' {
 			mw.$(field.name) = bot.$(field.name)
 		}
 	}
 }
 
-pub fn start_polling[T,N](mut bot T, args N) {
+pub fn start_polling[T, N](mut bot T, args N) {
 	println('${time.now()} Starting bot...')
 	mut middleware := args.middleware_
 	register_middleware_db(bot, mut &middleware)
@@ -79,7 +78,7 @@ pub fn (mut b Bot) api_request(api_method string, _data string) !string {
 		return error('api_request ${api_method}: _data is empty')
 	}
 	response := http.post_json('${vtelegram.endpoint}${b.token}/${api_method}', _data) or {
-		$if vtelegram_debug ? {	
+		$if vtelegram_debug ? {
 			eprintln('api_request post_json ${api_method}: ${err} ${_data}')
 		}
 		return error('api_request post_json ${api_method}: ${err} ${_data}')
@@ -87,8 +86,7 @@ pub fn (mut b Bot) api_request(api_method string, _data string) !string {
 
 	if response.status_code == 200 {
 		response_body := json.decode(ResponseOK, response.body) or {
-
-			$if vtelegram_debug ? {	
+			$if vtelegram_debug ? {
 				eprintln('${time.now()} api_request json.decode: ${err}')
 			}
 			return error('api_request ${err}')
@@ -101,7 +99,6 @@ pub fn (mut b Bot) api_request(api_method string, _data string) !string {
 		return response_body.result
 	} else {
 		response_body := json.decode(ResponseNotOK, response.body) or {
-			
 			$if vtelegram_debug ? {
 				eprintln('${time.now()} api_request json.decode: ${err}')
 			}
@@ -117,39 +114,36 @@ pub fn (mut b Bot) api_request(api_method string, _data string) !string {
 }
 
 pub fn (mut b Bot) api_multipart_form_request(api_method string, _data map[string]string, ufiles map[string][]http.FileData) !string {
-	//println(form)
+	// println(form)
 	mut header := http.new_header()
 	header.set(.content_type, 'multipart/form-data')
 	conf := http.PostMultipartFormConfig{
-		form:_data
+		form: _data
 		files: ufiles
 		header: header
 	}
-	response := http.post_multipart_form('${vtelegram.endpoint}${b.token}/${api_method}', conf) or {
-		
+	response := http.post_multipart_form('${vtelegram.endpoint}${b.token}/${api_method}',
+		conf) or {
 		$if vtelegram_debug ? {
 			eprintln('${time.now()} api_multipart_form_request: ${api_method} ${err}')
-		}		
+		}
 		return error('${api_method} Request Failed: ${err}')
 	}
 
 	$if vtelegram_debug ? {
 		eprintln('${time.now()} multipart/form-data request: ${api_method} ${conf.form} Files: ${conf.files.len}\nResponse: ${response.body}')
 	}
-	
+
 	if response.status_code == 200 {
 		response_body := json.decode(ResponseOK, response.body) or {
-
 			$if vtelegram_debug ? {
 				eprintln('${time.now()} multipart_form_request json.decode: ${api_method} ${err}')
 			}
 			return err
 		}
 		return response_body.result
-	}
-	else{
+	} else {
 		response_body := json.decode(ResponseNotOK, response.body) or {
-
 			$if vtelegram_debug ? {
 				eprintln('${time.now()} multipart_form_request json.decode: ${api_method} ${err}')
 			}

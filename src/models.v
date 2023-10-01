@@ -635,8 +635,12 @@ pub struct GeneralForumTopicUnhidden {
 // WriteAccessAllowed This object represents a service message about a user allowing a bot added to the attachment menu to write messages. Currently holds no information.
 pub struct WriteAccessAllowed {
 pub:
+	// from_request Optional. True, if the access was granted after the user accepted an explicit request from a Web App sent by the method requestWriteAccess
+	from_request bool
 	// web_app_name Optional. Name of the Web App which was launched from a link
 	web_app_name string
+	// from_attachment_menu Optional. True, if the access was granted when the bot was added to the attachment or side menu
+	from_attachment_menu bool 
 }
 
 // VideoChatScheduled This object represents a service message about a video chat scheduled in the chat.
@@ -933,6 +937,12 @@ pub:
 	can_edit_messages bool
 	// can_pin_messages Optional. True, if the user is allowed to pin messages; groups and supergroups only
 	can_pin_messages bool
+	// can_post_stories Optional. True, if the administrator can post stories in the channel; channels only
+	can_post_stories bool
+	// can_edit_stories Optional. True, if the administrator can edit stories posted by other users; channels only
+	can_edit_stories bool 
+	// can_delete_stories Optional. True, if the administrator can delete stories posted by other users; channels only
+	can_delete_stories bool 
 	// can_manage_topics Optional. True, if the user is allowed to create, rename, close, and reopen forum topics; supergroups only
 	can_manage_topics bool
 }
@@ -981,6 +991,12 @@ pub:
 	can_edit_messages bool
 	// can_pin_messages Optional. True, if the user is allowed to pin messages; groups and supergroups only
 	can_pin_messages bool
+	// can_post_stories Optional. True, if the administrator can post stories in the channel; channels only
+	can_post_stories bool
+	// can_edit_stories Optional. True, if the administrator can edit stories posted by other users; channels only
+	can_edit_stories bool 
+	// can_delete_stories Optional. True, if the administrator can delete stories posted by other users; channels only
+	can_delete_stories bool 
 	// can_manage_topics Optional. True, if the user is allowed to create, rename, close, and reopen forum topics; supergroups only
 	can_manage_topics bool
 	// custom_title Optional. Custom title for this user

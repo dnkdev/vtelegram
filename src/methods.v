@@ -922,6 +922,12 @@ pub struct PromoteChatMember {
     can_invite_users bool
     // can_pin_messages Pass True if the administrator can pin messages, supergroups only
     can_pin_messages bool
+	// can_post_stories Optional. Pass True if the administrator can post stories in the channel; channels only
+	can_post_stories bool
+	// can_edit_stories Optional. Pass True if the administrator can edit stories posted by other users; channels only
+	can_edit_stories bool 
+	// can_delete_stories Optional. Pass True if the administrator can delete stories posted by other users; channels only
+	can_delete_stories bool 
     // can_manage_topics Pass True if the user is allowed to create, rename, close, and reopen forum topics, supergroups only
     can_manage_topics bool
 }
