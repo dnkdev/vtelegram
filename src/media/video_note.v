@@ -19,7 +19,6 @@ pub fn new_video_note(path string) VideoNoteUpload {
 // send sends a single video note
 pub fn (d VideoNoteUpload) send[T](mut app T, params SendVideoNote) !Message {
 	resp := send_media(mut app, 'sendVideoNote', params, d) or{
-		app.log.error('VideoNote not sent: ${err}')
 		return error('VideoNote not sent: ${err}')
 	}
 	return return_data[Message](resp)

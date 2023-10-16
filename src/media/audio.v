@@ -19,7 +19,6 @@ pub fn new_audio(path string) AudioUpload {
 // send sends single audio
 pub fn (d AudioUpload) send[T](mut app T, params SendAudio) !Message {
 	resp := send_media(mut app, 'sendAudio', params, d) or{
-		app.log.error('Audio not sent: ${err}')
 		return error('Audio not sent: ${err}')
 	}
 	return return_data[Message](resp)

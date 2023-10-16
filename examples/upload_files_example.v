@@ -20,7 +20,6 @@ fn (mut app App) send(result vt.Result) ! {
 	 	caption:'here is the document'
 	) or {
 		println('Failed: ${err}')
-		app.log.error('Failed: ${err}')
 	}
 
 	// Photo upload
@@ -31,7 +30,6 @@ fn (mut app App) send(result vt.Result) ! {
 	 	caption:'here is a photo'
 	) or {
 		println('Failed: ${err}')
-		app.log.error('Failed: ${err}')
 	}
 
 	// Video upload
@@ -46,8 +44,6 @@ fn main() {
 	mut app := App{
 		token: '5401623750:AAFWXZWx8V-SZIDQUI62AT7agCMs55aLIdU'
 	}
-	app.log.set_level(.debug)
-	app.log.set_full_logpath('./bot.log')
 	polling_config := vt.PollingConfig[vt.Regular]{}
 	vt.start_polling(mut app,polling_config) // starting the bot
 }

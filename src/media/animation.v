@@ -19,7 +19,6 @@ pub fn new_animation(path string) AnimationUpload {
 // send sends single animation
 pub fn (d AnimationUpload) send[T](mut app T, params SendAnimation) !Message {
 	resp := send_media(mut app, 'sendAnimation', params, d) or{
-		app.log.error('Animation not sent: ${err}')
 		return error('Animation not sent: ${err}')
 	}
 	return return_data[Message](resp)

@@ -32,7 +32,7 @@ pub:
 [params]
 pub struct PollingConfig[T] {
 	GetUpdates
-	delay_time  int = 1000 // delay_time Time in milliseconds between getting updates
+	delay_time  int = 1000 // Time in milliseconds between getting updates
 	middleware_ T
 }
 

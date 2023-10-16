@@ -19,7 +19,6 @@ pub fn new_document(path string) DocumentUpload {
 // send sends a single document
 pub fn (d DocumentUpload) send[T](mut app T, params SendDocument) !Message {
 	resp := send_media(mut app, 'sendDocument', params, d) or{
-		app.log.error('Document not sent: ${err}')
 		return error('Document not sent: ${err}')
 	}
 	return return_data[Message](resp)
