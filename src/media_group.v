@@ -7,7 +7,7 @@ pub type InputMedia = InputMediaAnimation
 	| InputMediaDocument
 	| InputMediaPhoto
 	| InputMediaVideo
-	
+
 // InputMediaPhoto Represents a photo to be sent.
 [params]
 pub struct InputMediaPhoto {
@@ -168,11 +168,15 @@ pub fn InputMediaDocument.new(input InputMediaDocument) !InputMediaDocument {
 	return input
 }
 
+// new_media_group create media group of type you want (media group can be 1 type only).
+// Telegram will complain if you mix things - adding file_id with uploading or adding url-
+// Or use upload, or add with file_id, or add with http url
 [inline]
 pub fn new_media_group[T]() SendMediaGroup[T] {
 	return SendMediaGroup[T]{}
 }
 
+// add one media with file_id or url only
 pub fn (mut group SendMediaGroup[T]) add[T](input T) {
 	mut a := input
 	$if T is InputMediaAnimation {
@@ -190,6 +194,7 @@ pub fn (mut group SendMediaGroup[T]) add[T](input T) {
 	group.media << a
 }
 
+// upload one media from disk
 pub fn (mut group SendMediaGroup[T]) upload[T](input T) ! {
 	mut u := input
 	$if T is InputMediaAnimation {
