@@ -4,7 +4,7 @@ import net.http
 import net.http.mime
 import os
 
-pub type InputFileOrStringType = InputFile | string
+type InputFileOrStringType = InputFile | string
 
 // InputFile This object represents the contents of a file to be uploaded. Must be posted using multipart/form-data in the usual way that files are uploaded via the browser.
 pub struct InputFile {
@@ -13,6 +13,7 @@ pub:
 	file_content string
 }
 
+// InputFile.new - for thumbnail and single file uploading and sending with `send_document`, `send_photo`, `send_voice`, `send_video`, `send_video_note`, `send_animation`
 [inline]
 pub fn InputFile.new(path string) !InputFile {
 	return InputFile{
