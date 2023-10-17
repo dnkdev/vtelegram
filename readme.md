@@ -2,7 +2,7 @@
   <img src="https://raw.githubusercontent.com/dnkdev/vtelegram/master/VTelegram.svg">
 </div>
 
-<h1>VTelegram 0.9
+<h1>VTelegram 0.10
 <img align="right" style="margin-top:15px;" src="https://img.shields.io/static/v1?logo=telegram&label=Telegram Bot API&message=6.9&labelColor=ffffff&color=blue" href="https://core.telegram.org/bots/api">
 </h1>
 

@@ -1,6 +1,20 @@
 module vtelegram
 import json
 
+fn struct_to_map[T](params T) map[string]string {
+	mut data := map[string]string{}
+	$for field in T.fields {
+		data[field.name] =  params.$(field.name).str()
+		$if field.name == 'reply_markup'{
+			data['reply_markup'] = json.encode(params.$(field.name))
+		}
+		$if field.name == 'media' {
+			data['media'] = json.encode(params.$(field.name))
+		}
+	}
+	return data
+}
+
 fn return_int(response string) int{
 	return response.int()
 }
@@ -266,7 +280,7 @@ pub struct SendPhoto {
     // message_thread_id Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
     message_thread_id int
     // photo Photo to send. Pass a file_id as String to send a photo that exists on the Telegram servers (recommended), pass an HTTP URL as a String for Telegram to get a photo from the Internet, or upload a new photo using multipart/form-data. The photo must be at most 10 MB in size. The photo's width and height must not exceed 10000 in total. Width and height ratio must be at most 20. More information on Sending Files »
-    photo string
+    photo InputFileOrStringType
     // caption Photo caption (may also be used when resending photos by file_id), 0-1024 characters after entities parsing
     caption string
     // parse_mode Mode for parsing entities in the photo caption. See formatting options for more details.
@@ -289,9 +303,19 @@ pub struct SendPhoto {
 // send_photo - sendPhoto
 // Use this method to send photos. On success, the sent Message is returned.
 pub fn (mut b Bot) send_photo(params SendPhoto) !Message {
-    resp := b.api_request('sendPhoto', json.encode(params))!
-    // '
-    return return_data[Message](resp)
+	if params.photo is InputFile {
+		mut data := struct_to_map(params)
+		mut files := [params.photo as InputFile]
+		files_to_send := prepare_files(files)
+		data['photo'] = 'attach://${params.photo.file_name}'
+		
+		resp := b.api_multipart_form_request('sendPhoto', data, files_to_send)!
+    	return return_data[Message](resp)
+	}
+	else {
+		resp := b.api_request('sendPhoto', json.encode(params))!
+		return return_data[Message](resp)
+	}
 }
 
 [params]
@@ -301,7 +325,7 @@ pub struct SendAudio {
     // message_thread_id Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
     message_thread_id int
     // audio Audio file to send. Pass a file_id as String to send an audio file that exists on the Telegram servers (recommended), pass an HTTP URL as a String for Telegram to get an audio file from the Internet, or upload a new one using multipart/form-data. More information on Sending Files »
-    audio string
+    audio InputFileOrStringType
     // caption Audio caption, 0-1024 characters after entities parsing
     caption string
     // parse_mode Mode for parsing entities in the audio caption. See formatting options for more details.
@@ -315,7 +339,7 @@ pub struct SendAudio {
     // title Track name
     title string
     // thumbnail Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. More information on Sending Files »
-    thumbnail string
+    thumbnail InputFileOrStringType
     // disable_notification Sends the message silently. Users will receive a notification with no sound.
     disable_notification bool
     // protect_content Protects the contents of the sent message from forwarding and saving
@@ -330,9 +354,24 @@ pub struct SendAudio {
 // send_audio - sendAudio
 // Use this method to send audio files, if you want Telegram clients to display them in the music player. Your audio must be in the .MP3 or .M4A format. On success, the sent Message is returned. Bots can currently send audio files of up to 50 MB in size, this limit may be changed in the future.
 pub fn (mut b Bot) send_audio(params SendAudio) !Message {
-    resp := b.api_request('sendAudio', json.encode(params))!
-    // '
-    return return_data[Message](resp)
+	if params.audio is InputFile {
+		mut data := struct_to_map(params)
+		mut files := [params.audio as InputFile]
+		if params.thumbnail is InputFile {
+			files << params.thumbnail
+			data['thumbnail'] = 'attach://${params.thumbnail.file_name}'
+		
+		}
+		files_to_send := prepare_files(files)
+		data['audio'] = 'attach://${params.audio.file_name}'
+		
+		resp := b.api_multipart_form_request('sendAudio', data, files_to_send)!
+    	return return_data[Message](resp)
+	}
+	else {
+		resp := b.api_request('sendAudio', json.encode(params))!
+		return return_data[Message](resp)
+	}
 }
 
 [params]
@@ -342,9 +381,9 @@ pub struct SendDocument {
     // message_thread_id Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
     message_thread_id int
     // document File to send. Pass a file_id as String to send a file that exists on the Telegram servers (recommended), pass an HTTP URL as a String for Telegram to get a file from the Internet, or upload a new one using multipart/form-data. More information on Sending Files »
-    document string
+    document InputFileOrStringType
     // thumbnail Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. More information on Sending Files »
-    thumbnail string
+    thumbnail InputFileOrStringType
     // caption Document caption (may also be used when resending documents by file_id), 0-1024 characters after entities parsing
     caption string
     // parse_mode Mode for parsing entities in the document caption. See formatting options for more details.
@@ -367,9 +406,24 @@ pub struct SendDocument {
 // send_document - sendDocument
 // Use this method to send general files. On success, the sent Message is returned. Bots can currently send files of any type of up to 50 MB in size, this limit may be changed in the future.
 pub fn (mut b Bot) send_document(params SendDocument) !Message {
-    resp := b.api_request('sendDocument', json.encode(params))!
-    // '
-    return return_data[Message](resp)
+	if params.document is InputFile {
+		mut data := struct_to_map(params)
+		mut files := [params.document as InputFile]
+		if params.thumbnail is InputFile {
+			files << params.thumbnail
+			data['thumbnail'] = 'attach://${params.thumbnail.file_name}'
+		
+		}
+		files_to_send := prepare_files(files)
+		data['document'] = 'attach://${params.document.file_name}'
+		
+		resp := b.api_multipart_form_request('sendDocument', data, files_to_send)!
+    	return return_data[Message](resp)
+	}
+	else {
+    	resp := b.api_request('sendDocument', json.encode(params))!
+    	return return_data[Message](resp)
+	}
 }
 
 [params]
@@ -379,7 +433,7 @@ pub struct SendVideo {
     // message_thread_id Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
     message_thread_id int
     // video Video to send. Pass a file_id as String to send a video that exists on the Telegram servers (recommended), pass an HTTP URL as a String for Telegram to get a video from the Internet, or upload a new video using multipart/form-data. More information on Sending Files »
-    video string
+    video InputFileOrStringType
     // duration Duration of sent video in seconds
     duration int
     // width Video width
@@ -387,7 +441,7 @@ pub struct SendVideo {
     // height Video height
     height int
     // thumbnail Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. More information on Sending Files »
-    thumbnail string
+    thumbnail InputFileOrStringType
     // caption Video caption (may also be used when resending videos by file_id), 0-1024 characters after entities parsing
     caption string
     // parse_mode Mode for parsing entities in the video caption. See formatting options for more details.
@@ -412,9 +466,24 @@ pub struct SendVideo {
 // send_video - sendVideo
 // Use this method to send video files, Telegram clients support MPEG4 videos (other formats may be sent as Document). On success, the sent Message is returned. Bots can currently send video files of up to 50 MB in size, this limit may be changed in the future.
 pub fn (mut b Bot) send_video(params SendVideo) !Message {
-    resp := b.api_request('sendVideo', json.encode(params))!
-    // '
-    return return_data[Message](resp)
+	if params.video is InputFile {
+		mut data := struct_to_map(params)
+		mut files := [params.video as InputFile]
+		if params.thumbnail is InputFile {
+			files << params.thumbnail
+			data['thumbnail'] = 'attach://${params.thumbnail.file_name}'
+		
+		}
+		files_to_send := prepare_files(files)
+		data['video'] = 'attach://${params.video.file_name}'
+		
+		resp := b.api_multipart_form_request('sendVideo', data, files_to_send)!
+    	return return_data[Message](resp)
+	}
+	else {
+		resp := b.api_request('sendVideo', json.encode(params))!
+		return return_data[Message](resp)
+	}
 }
 
 [params]
@@ -424,7 +493,7 @@ pub struct SendAnimation {
     // message_thread_id Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
     message_thread_id int
     // animation Animation to send. Pass a file_id as String to send an animation that exists on the Telegram servers (recommended), pass an HTTP URL as a String for Telegram to get an animation from the Internet, or upload a new animation using multipart/form-data. More information on Sending Files »
-    animation string
+    animation InputFileOrStringType
     // duration Duration of sent animation in seconds
     duration int
     // width Animation width
@@ -432,7 +501,7 @@ pub struct SendAnimation {
     // height Animation height
     height int
     // thumbnail Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. More information on Sending Files »
-    thumbnail string
+    thumbnail InputFileOrStringType
     // caption Animation caption (may also be used when resending animation by file_id), 0-1024 characters after entities parsing
     caption string
     // parse_mode Mode for parsing entities in the animation caption. See formatting options for more details.
@@ -455,9 +524,24 @@ pub struct SendAnimation {
 // send_animation - sendAnimation
 // Use this method to send animation files (GIF or H.264/MPEG-4 AVC video without sound). On success, the sent Message is returned. Bots can currently send animation files of up to 50 MB in size, this limit may be changed in the future.
 pub fn (mut b Bot) send_animation(params SendAnimation) !Message {
-    resp := b.api_request('sendAnimation', json.encode(params))!
-    // '
-    return return_data[Message](resp)
+	if params.animation is InputFile {
+		mut data := struct_to_map(params)
+		mut files := [params.animation as InputFile]
+		if params.thumbnail is InputFile {
+			files << params.thumbnail
+			data['thumbnail'] = 'attach://${params.thumbnail.file_name}'
+		
+		}
+		files_to_send := prepare_files(files)
+		data['animation'] = 'attach://${params.animation.file_name}'
+		
+		resp := b.api_multipart_form_request('sendAnimation', data, files_to_send)!
+    	return return_data[Message](resp)
+	}
+	else {
+		resp := b.api_request('sendAnimation', json.encode(params))!
+		return return_data[Message](resp)
+	}
 }
 
 [params]
@@ -467,7 +551,7 @@ pub struct SendVoice {
     // message_thread_id Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
     message_thread_id int
     // voice Audio file to send. Pass a file_id as String to send a file that exists on the Telegram servers (recommended), pass an HTTP URL as a String for Telegram to get a file from the Internet, or upload a new one using multipart/form-data. More information on Sending Files »
-    voice string
+    voice InputFileOrStringType
     // caption Voice message caption, 0-1024 characters after entities parsing
     caption string
     // parse_mode Mode for parsing entities in the voice message caption. See formatting options for more details.
@@ -490,9 +574,19 @@ pub struct SendVoice {
 // send_voice - sendVoice
 // Use this method to send audio files, if you want Telegram clients to display the file as a playable voice message. For this to work, your audio must be in an .OGG file encoded with OPUS (other formats may be sent as Audio or Document). On success, the sent Message is returned. Bots can currently send voice messages of up to 50 MB in size, this limit may be changed in the future.
 pub fn (mut b Bot) send_voice(params SendVoice) !Message {
-    resp := b.api_request('sendVoice', json.encode(params))!
-    // '
-    return return_data[Message](resp)
+	if params.voice is InputFile {
+		mut data := struct_to_map(params)
+		mut files := [params.voice as InputFile]
+		files_to_send := prepare_files(files)
+		data['voice'] = 'attach://${params.voice.file_name}'
+		
+		resp := b.api_multipart_form_request('sendVoice', data, files_to_send)!
+    	return return_data[Message](resp)
+	}
+	else {
+		resp := b.api_request('sendVoice', json.encode(params))!
+		return return_data[Message](resp)
+	}
 }
 
 [params]
@@ -502,13 +596,13 @@ pub struct SendVideoNote {
     // message_thread_id Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
     message_thread_id int
     // video_note Video note to send. Pass a file_id as String to send a video note that exists on the Telegram servers (recommended) or upload a new video using multipart/form-data. More information on Sending Files ». Sending video notes by a URL is currently unsupported
-    video_note string
+    video_note InputFileOrStringType
     // duration Duration of sent video in seconds
     duration int
     // length Video width and height, i.e. diameter of the video message
     length int
     // thumbnail Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. More information on Sending Files »
-    thumbnail string
+    thumbnail InputFileOrStringType
     // disable_notification Sends the message silently. Users will receive a notification with no sound.
     disable_notification bool
     // protect_content Protects the contents of the sent message from forwarding and saving
@@ -523,20 +617,52 @@ pub struct SendVideoNote {
 // send_video_note - sendVideoNote
 // As of v.4.0, Telegram clients support rounded square MPEG4 videos of up to 1 minute long. Use this method to send video messages. On success, the sent Message is returned.
 pub fn (mut b Bot) send_video_note(params SendVideoNote) !Message {
-    resp := b.api_request('sendVideoNote', json.encode(params))!
-    // '
-    return return_data[Message](resp)
+	if params.video_note is InputFile {
+		mut data := struct_to_map(params)
+		mut files := [params.video_note as InputFile]
+		if params.thumbnail is InputFile {
+			files << params.thumbnail
+			data['thumbnail'] = 'attach://${params.thumbnail.file_name}'
+		
+		}
+		files_to_send := prepare_files(files)
+		data['video_note'] = 'attach://${params.video_note.file_name}'
+		
+		resp := b.api_multipart_form_request('sendVideoNote', data, files_to_send)!
+    	return return_data[Message](resp)
+	}
+	else {
+		resp := b.api_request('sendVideoNote', json.encode(params))!
+		return return_data[Message](resp)
+	}
 }
 
+// SendMediaGroupParams struct only for named parameters in send_media_group 
 [params]
-pub struct SendMediaGroup {
+pub struct SendMediaGroupParams {
+pub mut:
+    // chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+    chat_id i64
+    // message_thread_id Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
+    message_thread_id int
+   	// disable_notification Sends messages silently. Users will receive a notification with no sound.
+    disable_notification bool
+    // protect_content Protects the contents of the sent messages from forwarding and saving
+    protect_content bool
+    // reply_to_message_id If the messages are a reply, ID of the original message
+    reply_to_message_id int
+    // allow_sending_without_reply Pass True if the message should be sent even if the specified replied-to message is not found
+    allow_sending_without_reply bool
+}
+
+pub struct SendMediaGroup[T] {
 pub mut:
     // chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
     chat_id i64
     // message_thread_id Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
     message_thread_id int
     // media A JSON-serialized array describing messages to be sent, must include 2-10 items
-    media []InputMedia
+    media []T
     // disable_notification Sends messages silently. Users will receive a notification with no sound.
     disable_notification bool
     // protect_content Protects the contents of the sent messages from forwarding and saving
@@ -547,11 +673,59 @@ pub mut:
     allow_sending_without_reply bool
 }
 // send_media_group - sendMediaGroup
+// TODO: Known bug: if files have same name, then multipart-form request won't be able to parse files properly.
+// avoid files with one name or there need to make a fix (never will) in building a query (prepare_files func 'files[KEY]' and 'attach://KEY' string in query should match).
 // Use this method to send a group of photos, videos, documents or audios as an album. Documents and audio files can be only grouped in an album with messages of the same type. On success, an array of Messages that were sent is returned.
-pub fn (mut b Bot) send_media_group(params SendMediaGroup) ![]Message {
-    resp := b.api_request('sendMediaGroup', json.encode(params))!
-    // '
-    return return_data[[]Message](resp)
+pub fn (mut b Bot) send_media_group[T](media_group SendMediaGroup[T], params SendMediaGroupParams) ![]Message {
+	mut params_new := SendMediaGroup[T] {
+		chat_id: params.chat_id
+		message_thread_id: params.message_thread_id
+		disable_notification: params.disable_notification
+		protect_content: params.protect_content
+		reply_to_message_id: params.reply_to_message_id
+		allow_sending_without_reply: params.allow_sending_without_reply
+	}
+	mut is_multipart_form_req := false
+	for m in media_group.media {
+		if m.file_name != ''{
+			is_multipart_form_req = true
+			break
+		}
+	}
+
+	if is_multipart_form_req {
+		mut media_group_new := media_group
+		mut files := []InputFile{}
+		for mut m in media_group_new.media {
+			$if T !is InputMediaPhoto {
+				if mut m.thumbnail is InputFile {
+					files << InputFile {
+						file_name: m.thumbnail.file_name
+						file_content: m.thumbnail.file_content
+					}
+					m.thumbnail = 'attach://${m.thumbnail.file_name}'
+				}
+				else {
+					m.thumbnail = '' as string
+				}
+			}
+			files << InputFile {
+				file_name: m.file_name
+				file_content: m.file_content
+			}
+			params_new.media << m
+		}
+		files_to_send := prepare_files(files)
+		mut data := struct_to_map(params_new)
+		
+		resp := b.api_multipart_form_request('sendMediaGroup', data, files_to_send)!
+		return return_data[[]Message](resp)
+	}
+	else {
+		params_new.media = media_group.media
+		resp := b.api_request('sendMediaGroup', json.encode(params_new))!
+		return return_data[[]Message](resp)
+	}
 }
 
 [params]

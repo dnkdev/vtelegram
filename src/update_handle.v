@@ -30,10 +30,7 @@ fn handle_update[T,N](mut app T, mut middleware N, update Update) {
 			if is_handler_relate_to_type(update_new, method.attrs) {
 				if is_handler_pass_filters(update_new, method.attrs) {
 					app.$method(result) or {
-
-						$if vtelegram_debug ? {
-							eprintln('${time.now()} # ${method.name}: ${err}')
-						}
+						eprintln('${time.now()} Error # ${method.name}: ${err}')
 					}
 				}
 			}
