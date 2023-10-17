@@ -32,7 +32,7 @@ pub:
 [params]
 pub struct PollingConfig[T] {
 	GetUpdates
-	delay_time  int = 1000 // delay_time Time in milliseconds between getting updates
+	delay_time  int = 1000 // Time in milliseconds between getting updates
 	middleware_ T
 }
 
@@ -137,7 +137,7 @@ pub fn (mut b Bot) api_multipart_form_request(api_method string, _data map[strin
 	if response.status_code == 200 {
 		response_body := json.decode(ResponseOK, response.body) or {
 			$if vtelegram_debug ? {
-				eprintln('${time.now()} multipart_form_request json.decode: ${api_method} ${err}')
+				eprintln('${time.now()} multipart_form_request ResponseOK json.decode: ${api_method} ${err}')
 			}
 			return err
 		}
@@ -145,11 +145,11 @@ pub fn (mut b Bot) api_multipart_form_request(api_method string, _data map[strin
 	} else {
 		response_body := json.decode(ResponseNotOK, response.body) or {
 			$if vtelegram_debug ? {
-				eprintln('${time.now()} multipart_form_request json.decode: ${api_method} ${err}')
+				eprintln('${time.now()} multipart_form_request ResponseNotOK json.decode: ${response.status_msg} ${api_method} ${err}')
 			}
 			return err
 		}
-		return error('${api_method} Error occured: ${response_body.error_code} ${response_body.description}')
+		return error('${api_method} ${response_body.error_code} ${response_body.description}')
 	}
 	return response.body
 }

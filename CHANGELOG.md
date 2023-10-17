@@ -1,7 +1,20 @@
-## v 0.9
+## v 0.10
+
+- Single file upload rework
+- Media Group upload rework
+- thumbnail upload
+
+Examples in `examples` folder.
+
+### v 0.9
 
 - delete `log` field and entire vlib logging library from the vtelegram
 - add a `vtelegram_debug` flag, to run the bot in debug mod, which will print the debug messages to console (`v -d vtelegram_debug run .`)
+
+<hr>
+
+<details>
+  <summary>Archive</summary>
 
 ### v 0.8.2
 
@@ -38,15 +51,6 @@ reply_markup := vt.new_reply_markup(
 
 - Media Group upload
     - In order for the Telegram Bot API to accept a request, one media group must contain >= 2 elements and contain only one media type.
-```v
-    pub fn new_media_group() MediaGroupUpload
-    pub fn (mut group MediaGroupUpload) add_audio(path string, _audio InputMediaAudio)
-    pub fn (mut group MediaGroupUpload) add_animation(path string, _anim InputMediaAnimation)
-    pub fn (mut group MediaGroupUpload) add_video(path string, _video InputMediaVideo)
-    pub fn (mut group MediaGroupUpload) add_photo(path string, _photo InputMediaPhoto)
-    pub fn (mut group MediaGroupUpload) add_document(path string, _doc InputMediaDocument)
-    pub fn (mut group MediaGroupUpload) send[T](mut app T, params SendMediaGroup)
-```
 
 ### v 0.7
 
@@ -96,10 +100,6 @@ fn main(){
     vtelegram.start_polling(mut app, polling_config)
 }
 ```
-<hr>
-
-<details>
-  <summary>Archive</summary>
 
 ### v 0.5.0
 

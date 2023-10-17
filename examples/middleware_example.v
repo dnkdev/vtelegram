@@ -30,10 +30,6 @@ fn main(){
     mut app := App{
         token: '5401623750:AAFWXZWx8V-SZIDQUI62AT7agCMs55aLIdU'
     }
-	app.log.set_level(.debug)
-	app.log.set_full_logpath('./bot.log')
-	//app.log.log_to_console_too()
-
     polling_config := vtelegram.PollingConfig[MyBaseMiddleware]{
         delay_time: 2000
 	}

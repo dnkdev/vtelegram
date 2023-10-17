@@ -1,7 +1,6 @@
 module main
 
 import vtelegram as vt
-import vtelegram.src.media as vtm
 
 struct App {
 	vt.Bot
@@ -12,42 +11,49 @@ fn (mut app App) send(result vt.Result) ! {
 	
 	println('sending...')
 
-	// Document upload
-	doc := vtm.new_document('./VTelegram.svg')
-	doc.send(
-		mut app,
+	doc := vt.InputFile.new('./VTelegram.svg')!
+	app.send_document(
 		chat_id: result.update.message.chat.id
 	 	caption:'here is the document'
-	) or {
-		println('Failed: ${err}')
-		app.log.error('Failed: ${err}')
-	}
+		document: doc
+	)!
 
-	// Photo upload
-	photo := vtm.new_photo('./VTelegram.png')
-	photo.send(
-		mut app,
+	app.send_document(
 		chat_id: result.update.message.chat.id
-	 	caption:'here is a photo'
-	) or {
-		println('Failed: ${err}')
-		app.log.error('Failed: ${err}')
-	}
+	 	caption: 'here is the gif via url'
+		document: 'https://raw.githubusercontent.com/vvo/gifify/master/22.gif'
+	)!
 
-	// Video upload
-	video := vtm.new_video('/home/dan/Videos/ny.mp4')
-	video.send(mut app, chat_id: result.update.message.chat.id, caption: 'This is a video example') or {
-		println('Failed: ${err}')
-	}
+	photo := vt.InputFile.new('./examples/1.jpg')!
+	app.send_photo(
+		chat_id: result.update.message.chat.id
+	 	caption:'here is the photo'
+		photo: photo
+	)!
 	
+	audio := vt.InputFile.new('./examples/1.mp3')!
+	thumb := vt.InputFile.new('./examples/1.jpg')!
+	app.send_audio(
+		chat_id: result.update.message.chat.id
+	 	caption:'here is the audio'
+		audio: audio
+		thumbnail:thumb
+	)!
+	
+	// video := vt.InputFile.new('/home/dan/Videos/ny.mp4')!
+	// thumb := vt.InputFile.new('./examples/1.jpg')!
+	// app.send_video(
+	// 	chat_id: result.update.message.chat.id
+	// 	caption:'here is the video'
+	// 	photo: video
+	// 	thumbnail:thumb
+	// )!
 }
 
 fn main() {
 	mut app := App{
 		token: '5401623750:AAFWXZWx8V-SZIDQUI62AT7agCMs55aLIdU'
 	}
-	app.log.set_level(.debug)
-	app.log.set_full_logpath('./bot.log')
 	polling_config := vt.PollingConfig[vt.Regular]{}
 	vt.start_polling(mut app,polling_config) // starting the bot
 }
