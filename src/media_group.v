@@ -144,27 +144,27 @@ pub mut:
 }
 
 [inline]
-pub fn InputMediaAnimation.new(input InputMediaAnimation) !InputMediaAnimation {
+pub fn InputMediaAnimation.new(input InputMediaAnimation) InputMediaAnimation {
 	return input
 }
 
 [inline]
-pub fn InputMediaAudio.new(input InputMediaAudio) !InputMediaAudio {
+pub fn InputMediaAudio.new(input InputMediaAudio) InputMediaAudio {
 	return input
 }
 
 [inline]
-pub fn InputMediaPhoto.new(input InputMediaPhoto) !InputMediaPhoto {
+pub fn InputMediaPhoto.new(input InputMediaPhoto) InputMediaPhoto {
 	return input
 }
 
 [inline]
-pub fn InputMediaVideo.new(input InputMediaVideo) !InputMediaVideo {
+pub fn InputMediaVideo.new(input InputMediaVideo) InputMediaVideo {
 	return input
 }
 
 [inline]
-pub fn InputMediaDocument.new(input InputMediaDocument) !InputMediaDocument {
+pub fn InputMediaDocument.new(input InputMediaDocument) InputMediaDocument {
 	return input
 }
 
