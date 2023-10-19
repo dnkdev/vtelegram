@@ -1,0 +1,25 @@
+name: MacOS Tests
+
+on: 
+    push:
+        branches: 
+            - master
+    pull_request:
+        branches:
+            - master
+jobs:
+    test-macos:
+        runs-on: macOS-latest
+        steps:
+        - uses: actions/checkout@v4
+          with:
+            repository: vlang/v
+        - uses: actions/checkout@v4
+          with:
+            path: vtelegram
+        - run: make
+        - run: ./v -stats test vtelegram
+        - run: |
+            mkdir ~/.vmodules/
+            cp -r vtelegram ~/.vmodules/vtelegram
+            ./v should-compile-all ~/.vmodules/vtelegram/examples
