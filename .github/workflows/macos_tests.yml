@@ -20,6 +20,5 @@ jobs:
         - run: make
         - run: ./v -stats test vtelegram
         - run: |
-            mkdir ~/.vmodules/
             cp -r vtelegram ~/.vmodules/vtelegram
             ./v should-compile-all ~/.vmodules/vtelegram/examples
