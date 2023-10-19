@@ -106,9 +106,9 @@ pub fn (mut b Bot) api_request(api_method string, _data string) !string {
 		}
 
 		$if vtelegram_debug ? {
-			eprintln('${time.now()} ${api_method} Error occured: ${response_body.error_code} Description: ${response_body.description}\nData: ${_data}')
+			eprintln('${time.now()} ${api_method} ${response_body.error_code} Description: ${response_body.description}\nData: ${_data}')
 		}
-		return error('${api_method} Error occured: ${response_body.error_code} Description: ${response_body.description}')
+		return error('${api_method} ${response_body.error_code} Description: ${response_body.description}')
 	}
 	return response.body
 }

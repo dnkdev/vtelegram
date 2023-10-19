@@ -125,7 +125,7 @@ pub:
 	// invite_link Optional. Primary invite link, for groups, supergroups and channel chats. Returned only in getChat.
 	invite_link string
 	// pinned_message Optional. The most recent pinned message (by sending date). Returned only in getChat.
-	pinned_message &Message
+	pinned_message &Message = unsafe {nil}
 	// permissions Optional. Default chat member permissions, for groups and supergroups. Returned only in getChat.
 	permissions ChatPermissions
 	// slow_mode_delay Optional. For supergroups, the minimum allowed delay between consecutive messages sent by each unpriviledged user; in seconds. Returned only in getChat.
@@ -180,7 +180,7 @@ pub mut:
 	// is_automatic_forward Optional. True, if the message is a channel post that was automatically forwarded to the connected discussion group
 	is_automatic_forward bool
 	// reply_to_message Optional. For replies, the original message. Note that the Message object in this field will not contain further reply_to_message fields even if it itself is a reply.
-	reply_to_message &Message
+	reply_to_message &Message = unsafe {nil}
 	// via_bot Optional. Bot through which the message was sent
 	via_bot User
 	// edit_date Optional. Date the message was last edited in Unix time
@@ -254,7 +254,7 @@ pub mut:
 	// migrate_from_chat_id Optional. The supergroup has been migrated from a group with the specified identifier. This number may have more than 32 significant bits and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this identifier.
 	migrate_from_chat_id i64
 	// pinned_message Optional. Specified message was pinned. Note that the Message object in this field will not contain further reply_to_message fields even if it is itself a reply.
-	pinned_message &Message
+	pinned_message &Message = unsafe {nil}
 	// invoice Optional. Message is an invoice for a payment, information about the invoice. More about payments »
 	invoice Invoice
 	// successful_payment Optional. Message is a service message about a successful payment, information about the payment. More about payments »
