@@ -1,0 +1,23 @@
+name: Generate Docs
+
+on: 
+    push:
+        branches:
+            - master
+jobs:
+    gen-doc:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+              with:
+                repository: vlang/v
+            - uses: actions/checkout@v4
+              with:
+                path: vtelegram
+            - run: make
+            - run: ./v doc -m -f html -readme ./vtelegram/src
+            - uses: peaceiris/actions-gh-pages@v3
+              with:
+                github_token: ${{ secrets.GITHUB_TOKEN }}
+                publish_dir: ./vtelegram/src/_docs
+       
