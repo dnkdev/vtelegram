@@ -1,15 +1,33 @@
 module vtelegram
 import json
+import x.json2
 
+// tricky things with json modules, cause each json module works halfway (for me)
 fn struct_to_map[T](params T) map[string]string {
 	mut data := map[string]string{}
 	$for field in T.fields {
-		data[field.name] =  params.$(field.name).str()
 		$if field.name == 'reply_markup'{
-			data['reply_markup'] = json.encode(params.$(field.name))
+			data['reply_markup'] = json.encode(params.reply_markup)
 		}
-		$if field.name == 'media' {
-			data['media'] = json.encode(params.$(field.name))
+		$else $if field.name == 'media' {
+			$if field.typ is []InputMediaDocument {
+				data['media'] = json2.encode[[]InputMediaDocument](params.media)
+			}
+			$else $if field.typ is []InputMediaPhoto {
+				data['media'] = json2.encode[[]InputMediaPhoto](params.media)
+			}
+			$else $if field.typ is []InputMediaVideo {
+				data['media'] = json2.encode[[]InputMediaVideo](params.media)
+			}
+			$else $if field.typ is []InputMediaAnimation {
+				data['media'] = json2.encode[[]InputMediaAnimation](params.media)
+			}
+			$else $if field.typ is []InputMediaAudio {
+				data['media'] = json2.encode[[]InputMediaAudio](params.media)
+			}
+		}
+		$else {
+			data[field.name] =  params.$(field.name).str()
 		}
 	}
 	return data
@@ -674,56 +692,58 @@ pub mut:
 }
 // send_media_group - sendMediaGroup
 // TODO: Known bug: if files have same name, then multipart-form request won't be able to parse files properly.
-// avoid files with one name or there need to make a fix (never will) in building a query (prepare_files func 'files[KEY]' and 'attach://KEY' string in query should match).
+// avoid files with one name or there need to make a fix in building a query (prepare_files func 'files[KEY]' and 'attach://KEY' string in query should match).
 // Use this method to send a group of photos, videos, documents or audios as an album. Documents and audio files can be only grouped in an album with messages of the same type. On success, an array of Messages that were sent is returned.
-pub fn (mut b Bot) send_media_group[T](media_group SendMediaGroup[T], params SendMediaGroupParams) ![]Message {
-	mut params_new := SendMediaGroup[T] {
-		chat_id: params.chat_id
-		message_thread_id: params.message_thread_id
-		disable_notification: params.disable_notification
-		protect_content: params.protect_content
-		reply_to_message_id: params.reply_to_message_id
-		allow_sending_without_reply: params.allow_sending_without_reply
-	}
+pub fn (mut b Bot) send_media_group[T](params_ SendMediaGroup[T]) ![]Message {
+	// mut params_new := SendMediaGroup[T] {
+	// 	chat_id: params.chat_id
+	// 	message_thread_id: params.message_thread_id
+	// 	disable_notification: params.disable_notification
+	// 	protect_content: params.protect_content
+	// 	reply_to_message_id: params.reply_to_message_id
+	// 	allow_sending_without_reply: params.allow_sending_without_reply
+	// }
+	mut params := params_
 	mut is_multipart_form_req := false
-	for m in media_group.media {
-		if m.file_name != ''{
+	for m in params.media {
+		if m.media is InputFile {
 			is_multipart_form_req = true
 			break
 		}
 	}
-
 	if is_multipart_form_req {
-		mut media_group_new := media_group
 		mut files := []InputFile{}
-		for mut m in media_group_new.media {
-			$if T !is InputMediaPhoto {
-				if mut m.thumbnail is InputFile {
-					files << InputFile {
-						file_name: m.thumbnail.file_name
-						file_content: m.thumbnail.file_content
-					}
-					m.thumbnail = 'attach://${m.thumbnail.file_name}'
+
+		$if T !is InputMediaPhoto {
+			for mut m in params.media {
+				if m.media is InputFile {
+					files << m.media
+					m.media = 'attach://${m.media.file_name}' as string
+				}
+				if m.thumbnail is InputFile {
+					files << m.thumbnail
+					m.thumbnail = 'attach://${m.thumbnail.file_name}' as string
 				}
 				else {
 					m.thumbnail = '' as string
 				}
 			}
-			files << InputFile {
-				file_name: m.file_name
-				file_content: m.file_content
+		}
+		$else {
+			for mut m in params.media {
+				if m.media is InputFile {
+					files << m.media
+					m.media = 'attach://${m.media.file_name}' as string
+				}
 			}
-			params_new.media << m
 		}
 		files_to_send := prepare_files(files)
-		mut data := struct_to_map(params_new)
-		
+		mut data := struct_to_map(params)
 		resp := b.api_multipart_form_request('sendMediaGroup', data, files_to_send)!
 		return return_data[[]Message](resp)
 	}
 	else {
-		params_new.media = media_group.media
-		resp := b.api_request('sendMediaGroup', json.encode(params_new))!
+		resp := b.api_request('sendMediaGroup', json.encode(params))!
 		return return_data[[]Message](resp)
 	}
 }
