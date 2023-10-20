@@ -19,7 +19,8 @@ jobs:
             path: vtelegram
         - run: make
         - run: ./v -stats test vtelegram
-        - run: |
+        - name: Compile Examples
+          run: |
             cp -r vtelegram ~/.vmodules/vtelegram
             ./v should-compile-all ~/.vmodules/vtelegram/examples
             
