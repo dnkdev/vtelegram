@@ -10,40 +10,36 @@ struct App {
 fn (mut app App) send(result vt.Result) ! {
 	println('sending...')
 
-	// if you upload files, then use `upload` method,
-	// if you add http url or file_id, then use `add` method
-
-	mut media_group_http := vt.new_media_group[vt.InputMediaDocument]()
-	media_group_http.add(vt.InputMediaDocument.new(
-		media: 'https://raw.githubusercontent.com/tpn/pdfs/master/C%20Cheat%20Sheet%20(ashlyn-black_c-reference).pdf'
-	))
-	media_group_http.add(vt.InputMediaDocument.new(
-		media: 'https://raw.githubusercontent.com/tpn/pdfs/master/Compiler%20Design%20In%20C.pdf'
-	))
-	media_group_http.add(vt.InputMediaDocument.new(
-		media: 'https://raw.githubusercontent.com/tpn/pdfs/master/ChatGPT%20Cheat%20Sheet.pdf'
-	))
-
-	app.send_media_group[vt.InputMediaDocument](media_group_http,
+	mut mg := vt.new_media_group[vt.InputMediaDocument]()
+	mg.add(media: 'https://raw.githubusercontent.com/tpn/pdfs/master/C%20Cheat%20Sheet%20(ashlyn-black_c-reference).pdf')
+	mg.add(media: 'https://raw.githubusercontent.com/tpn/pdfs/master/Compiler%20Design%20In%20C.pdf')
+	mg.add(media: 'https://raw.githubusercontent.com/tpn/pdfs/master/ChatGPT%20Cheat%20Sheet.pdf')
+	app.send_media_group(
 		chat_id: result.update.message.chat.id
+		media: mg
 	)!
 
 	mut media_group := vt.new_media_group[vt.InputMediaDocument]()
-	thumbnail := vt.InputFile.new('./examples/1.jpg')!
-	media_group.upload(vt.InputMediaDocument.new(media: './VTelegram.svg', caption: 'logo'))!
-	media_group.upload(vt.InputMediaDocument.new(
-		media: './examples/1.pdf'
-		thumbnail: thumbnail
-		caption: 'pdf'
-	))!
+	doc1 := vt.InputFile.new('./VTelegram.svg')!
 
-	app.send_media_group[vt.InputMediaDocument](media_group,
+	media_group.add(
+		media: 'https://raw.githubusercontent.com/tpn/pdfs/master/A%20Compilation%20Target%20for%20Probabilistic%20Programming%20Languages%20-%202014%20(paige14).pdf'
+	)
+	media_group.add(
+		media: doc1
+	)
+	app.send_media_group(
 		chat_id: result.update.message.chat.id
+		media: media_group
 	)!
 
-	// media_group.add(
-	// 	vt.InputMediaDocument.new(media: 'https://raw.githubusercontent.com/vvo/gifify/master/22.gif')!
-	// )
+	mut mg_photo := vt.new_media_group[vt.InputMediaPhoto]()
+	jpg := vt.InputFile.new('./examples/1.jpg')!
+	mg_photo.add(media: jpg)
+	app.send_media_group(
+		chat_id: result.update.message.chat.id
+		media: mg_photo
+	)!
 }
 
 fn main() {

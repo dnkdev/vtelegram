@@ -22,7 +22,7 @@ pub fn InputFile.new(path string) !InputFile {
 	}
 }
 
-fn prepare_files[T](inputs []T) map[string][]http.FileData {
+fn prepare_files(inputs []InputFile) map[string][]http.FileData {
 	mut files := map[string][]http.FileData{}
 	for input in inputs {
 		files[input.file_name] << prepare_file(input)
@@ -30,7 +30,7 @@ fn prepare_files[T](inputs []T) map[string][]http.FileData {
 	return files
 }
 
-fn prepare_file[T](input T) http.FileData {
+fn prepare_file(input InputFile) http.FileData {
 	mime_type := mime.get_mime_type(input.file_name.all_after_last('.'))
 	return http.FileData{
 		filename: input.file_name

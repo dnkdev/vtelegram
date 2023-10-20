@@ -1,7 +1,5 @@
 module vtelegram
 
-import os
-
 pub type InputMedia = InputMediaAnimation
 	| InputMediaAudio
 	| InputMediaDocument
@@ -11,14 +9,11 @@ pub type InputMedia = InputMediaAnimation
 // InputMediaPhoto Represents a photo to be sent.
 [params]
 pub struct InputMediaPhoto {
-mut:
-	file_name    string [json: '-']
-	file_content string [json: '-'; str: skip]
 pub mut:
 	// type Type of the result, must be photo
 	@type string
 	// media File to send. Pass a file_id to send a file that exists on the Telegram servers (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass “attach://<file_attach_name>” to upload a new one using multipart/form-data under <file_attach_name> name. More information on Sending Files »
-	media string
+	media InputFileOrStringType
 	// caption Optional. Caption of the photo to be sent, 0-1024 characters after entities parsing
 	caption string
 	// parse_mode Optional. Mode for parsing entities in the photo caption. See formatting options for more details.
@@ -32,14 +27,11 @@ pub mut:
 // InputMediaVideo Represents a video to be sent.
 [params]
 pub struct InputMediaVideo {
-mut:
-	file_name    string [json: '-']
-	file_content string [json: '-'; str: skip]
 pub mut:
 	// type Type of the result, must be video
 	@type string
 	// media File to send. Pass a file_id to send a file that exists on the Telegram servers (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass “attach://<file_attach_name>” to upload a new one using multipart/form-data under <file_attach_name> name. More information on Sending Files »
-	media string
+	media InputFileOrStringType
 	// thumbnail Optional. Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data.
 	// Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. More information on Sending Files »
 	thumbnail InputFileOrStringType
@@ -64,14 +56,11 @@ pub mut:
 // InputMediaAnimation Represents an animation file (GIF or H.264/MPEG-4 AVC video without sound) to be sent.
 [params]
 pub struct InputMediaAnimation {
-mut:
-	file_name    string [json: '-']
-	file_content string [json: '-'; str: skip]
 pub mut:
 	// type Type of the result, must be animation
 	@type string
 	// media File to send. Pass a file_id to send a file that exists on the Telegram servers (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass “attach://<file_attach_name>” to upload a new one using multipart/form-data under <file_attach_name> name. More information on Sending Files »
-	media string
+	media InputFileOrStringType
 	// thumbnail Optional. Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size.
 	// A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. More information on Sending Files »
 	thumbnail InputFileOrStringType
@@ -94,14 +83,11 @@ pub mut:
 // InputMediaAudio Represents an audio file to be treated as music to be sent.
 [params]
 pub struct InputMediaAudio {
-mut:
-	file_name    string [json: '-']
-	file_content string [json: '-'; str: skip]
 pub mut:
 	// type Type of the result, must be audio
 	@type string
 	// media File to send. Pass a file_id to send a file that exists on the Telegram servers (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass “attach://<file_attach_name>” to upload a new one using multipart/form-data under <file_attach_name> name. More information on Sending Files »
-	media string
+	media InputFileOrStringType
 	// thumbnail Optional. Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data.
 	// Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. More information on Sending Files »
 	thumbnail InputFileOrStringType
@@ -122,14 +108,11 @@ pub mut:
 // InputMediaDocument Represents a general file to be sent.
 [params]
 pub struct InputMediaDocument {
-mut:
-	file_name    string [json: '-']
-	file_content string [json: '-'; str: skip]
 pub mut:
 	// type Type of the result, must be document
 	@type string
 	// media File to send. Pass a file_id to send a file that exists on the Telegram servers (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass “attach://<file_attach_name>” to upload a new one using multipart/form-data under <file_attach_name> name. More information on Sending Files »
-	media string
+	media InputFileOrStringType
 	// thumbnail Optional. Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data.
 	// Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. More information on Sending Files »
 	thumbnail InputFileOrStringType
@@ -169,47 +152,36 @@ pub fn InputMediaDocument.new(input InputMediaDocument) InputMediaDocument {
 }
 
 // new_media_group create media group of type you want (media group can be 1 type only).
-// Telegram will complain if you mix things - adding file_id with uploading or adding url-
-// Or use upload, or add with file_id, or add with http url
 [inline]
-pub fn new_media_group[T]() SendMediaGroup[T] {
-	return SendMediaGroup[T]{}
+pub fn new_media_group[T]() []T {
+	return []T{}
 }
 
-// add one media with file_id or url only
-pub fn (mut group SendMediaGroup[T]) add[T](input T) {
+pub fn (mut group []InputMediaDocument) add(input InputMediaDocument) {
 	mut a := input
-	$if T is InputMediaAnimation {
-		a.@type = 'animation'
-	} $else $if T is InputMediaAudio {
-		a.@type = 'audio'
-	} $else $if T is InputMediaPhoto {
-		a.@type = 'photo'
-	} $else $if T is InputMediaVideo {
-		a.@type = 'video'
-	} $else {
-		a.@type = 'document'
+	a.@type = 'document'
+	if a.thumbnail !is InputFile {
+		a.thumbnail = '' as string
 	}
-	a.thumbnail = '' as string
-	group.media << a
+	group << a
 }
-
-// upload one media from disk
-pub fn (mut group SendMediaGroup[T]) upload[T](input T) ! {
-	mut u := input
-	$if T is InputMediaAnimation {
-		u.@type = 'animation'
-	} $else $if T is InputMediaAudio {
-		u.@type = 'audio'
-	} $else $if T is InputMediaPhoto {
-		u.@type = 'photo'
-	} $else $if T is InputMediaVideo {
-		u.@type = 'video'
-	} $else {
-		u.@type = 'document'
-	}
-	u.file_name = os.file_name(input.media)
-	u.file_content = os.read_file(input.media)!
-	u.media = 'attach://${u.file_name}'
-	group.media << u
+pub fn (mut group []InputMediaAnimation) add(input InputMediaAnimation) {
+	mut a := input
+	a.@type = 'animation'
+	group << a
+}
+pub fn (mut group []InputMediaAudio) add(input InputMediaAudio) {
+	mut a := input
+	a.@type = 'audio'
+	group << a
+}
+pub fn (mut group []InputMediaPhoto) add(input InputMediaPhoto) {
+	mut a := input
+	a.@type = 'photo'
+	group << a
+}
+pub fn (mut group []InputMediaVideo) add(input InputMediaVideo) {
+	mut a := input
+	a.@type = 'video'
+	group << a
 }
