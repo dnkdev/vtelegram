@@ -175,9 +175,8 @@ For example, set <code>[context: 'private']</code> specifies that your methods w
 
 </section>
 		<section id="new_media_group" class="doc-node">
-			<div class="title"><h2>fn new_media_group <a href="#new_media_group">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> new_media_group<span class="token punctuation">[</span><span class="token builtin">T</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token punctuation">)</span> SendMediaGroup<span class="token punctuation">[</span><span class="token builtin">T</span><span class="token punctuation">]</span></code></pre>
-<p>new_media_group create media group of type you want (media group can be 1 type only).<br>
-Telegram will complain if you mix things - adding file_id with uploading or adding url- Or use upload, or add with file_id, or add with http url</p>
+			<div class="title"><h2>fn new_media_group <a href="#new_media_group">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> new_media_group<span class="token punctuation">[</span><span class="token builtin">T</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">T</span></code></pre>
+<p>new_media_group create media group of type you want (media group can be 1 type only).</p>
 
 </section>
 		<section id="new_reply_markup" class="doc-node">
@@ -195,6 +194,31 @@ Telegram will complain if you mix things - adding file_id with uploading or addi
 
 
 </section>
+		<section id="[]InputMediaAnimation.add" class="doc-node">
+			<div class="title"><h2>fn ([]InputMediaAnimation) add <a href="#[]InputMediaAnimation.add">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> group <span class="token punctuation">[</span><span class="token punctuation">]</span>InputMediaAnimation<span class="token punctuation">)</span> <span class="token function">add</span><span class="token punctuation">(</span>input InputMediaAnimation<span class="token punctuation">)</span></code></pre>
+
+
+</section>
+		<section id="[]InputMediaAudio.add" class="doc-node">
+			<div class="title"><h2>fn ([]InputMediaAudio) add <a href="#[]InputMediaAudio.add">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> group <span class="token punctuation">[</span><span class="token punctuation">]</span>InputMediaAudio<span class="token punctuation">)</span> <span class="token function">add</span><span class="token punctuation">(</span>input InputMediaAudio<span class="token punctuation">)</span></code></pre>
+
+
+</section>
+		<section id="[]InputMediaDocument.add" class="doc-node">
+			<div class="title"><h2>fn ([]InputMediaDocument) add <a href="#[]InputMediaDocument.add">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> group <span class="token punctuation">[</span><span class="token punctuation">]</span>InputMediaDocument<span class="token punctuation">)</span> <span class="token function">add</span><span class="token punctuation">(</span>input InputMediaDocument<span class="token punctuation">)</span></code></pre>
+
+
+</section>
+		<section id="[]InputMediaPhoto.add" class="doc-node">
+			<div class="title"><h2>fn ([]InputMediaPhoto) add <a href="#[]InputMediaPhoto.add">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> group <span class="token punctuation">[</span><span class="token punctuation">]</span>InputMediaPhoto<span class="token punctuation">)</span> <span class="token function">add</span><span class="token punctuation">(</span>input InputMediaPhoto<span class="token punctuation">)</span></code></pre>
+
+
+</section>
+		<section id="[]InputMediaVideo.add" class="doc-node">
+			<div class="title"><h2>fn ([]InputMediaVideo) add <a href="#[]InputMediaVideo.add">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> group <span class="token punctuation">[</span><span class="token punctuation">]</span>InputMediaVideo<span class="token punctuation">)</span> <span class="token function">add</span><span class="token punctuation">(</span>input InputMediaVideo<span class="token punctuation">)</span></code></pre>
+
+
+</section>
 		<section id="InputMedia" class="doc-node">
 			<div class="title"><h2>type InputMedia <a href="#InputMedia">#</a></h2></div><pre class="signature"><code><span class="token keyword">type</span> InputMedia <span class="token operator">=</span> InputMediaAnimation
 	<span class="token operator">|</span> InputMediaAudio
@@ -202,16 +226,6 @@ Telegram will complain if you mix things - adding file_id with uploading or addi
 	<span class="token operator">|</span> InputMediaPhoto
 	<span class="token operator">|</span> InputMediaVideo</code></pre>
 
-
-</section>
-		<section id="SendMediaGroup[T].add" class="doc-node">
-			<div class="title"><h2>fn (SendMediaGroup[T]) add <a href="#SendMediaGroup[T].add">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> group SendMediaGroup<span class="token punctuation">[</span><span class="token builtin">T</span><span class="token punctuation">]</span><span class="token punctuation">)</span> add<span class="token punctuation">[</span><span class="token builtin">T</span><span class="token punctuation">]</span><span class="token punctuation">(</span>input <span class="token builtin">T</span><span class="token punctuation">)</span></code></pre>
-<p>add one media with file_id or url only</p>
-
-</section>
-		<section id="SendMediaGroup[T].upload" class="doc-node">
-			<div class="title"><h2>fn (SendMediaGroup[T]) upload <a href="#SendMediaGroup[T].upload">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> group SendMediaGroup<span class="token punctuation">[</span><span class="token builtin">T</span><span class="token punctuation">]</span><span class="token punctuation">)</span> upload<span class="token punctuation">[</span><span class="token builtin">T</span><span class="token punctuation">]</span><span class="token punctuation">(</span>input <span class="token builtin">T</span><span class="token punctuation">)</span> <span class="token operator">!</span></code></pre>
-<p>upload one media from disk</p>
 
 </section>
 		<section id="AddStickerToSet" class="doc-node">
@@ -851,10 +865,10 @@ Use this method to send point on the map. On success, the sent Message is return
 
 </section>
 		<section id="Bot.send_media_group" class="doc-node">
-			<div class="title"><h2>fn (Bot) send_media_group <a href="#Bot.send_media_group">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> send_media_group<span class="token punctuation">[</span><span class="token builtin">T</span><span class="token punctuation">]</span><span class="token punctuation">(</span>media_group SendMediaGroup<span class="token punctuation">[</span><span class="token builtin">T</span><span class="token punctuation">]</span><span class="token punctuation">,</span> params SendMediaGroupParams<span class="token punctuation">)</span> <span class="token operator">!</span><span class="token punctuation">[</span><span class="token punctuation">]</span>Message</code></pre>
+			<div class="title"><h2>fn (Bot) send_media_group <a href="#Bot.send_media_group">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> send_media_group<span class="token punctuation">[</span><span class="token builtin">T</span><span class="token punctuation">]</span><span class="token punctuation">(</span>params_ SendMediaGroup<span class="token punctuation">[</span><span class="token builtin">T</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">!</span><span class="token punctuation">[</span><span class="token punctuation">]</span>Message</code></pre>
 <p>send_media_group - sendMediaGroup
 TODO: Known bug: if files have same name, then multipart-form request won't be able to parse files properly.<br>
-avoid files with one name or there need to make a fix (never will) in building a query (prepare_files func 'files[KEY]' and 'attach://KEY' string in query should match).<br>
+avoid files with one name or there need to make a fix in building a query (prepare_files func 'files[KEY]' and 'attach://KEY' string in query should match).<br>
 Use this method to send a group of photos, videos, documents or audios as an album. Documents and audio files can be only grouped in an album with messages of the same type. On success, an array of Messages that were sent is returned.</p>
 
 </section>
@@ -3298,14 +3312,11 @@ Use this method to upload a file with a sticker for later use in the createNewSt
 </section>
 		<section id="InputMediaAnimation" class="doc-node">
 			<div class="title"><h2>struct InputMediaAnimation <a href="#InputMediaAnimation">#</a></h2></div><pre class="signature"><code><span class="token keyword">struct</span> <span class="token symbol">InputMediaAnimation</span> <span class="token punctuation">{</span>
-<span class="token keyword">mut</span><span class="token punctuation">:</span>
-	file_name    <span class="token builtin">string</span> <span class="token punctuation">[</span>json<span class="token punctuation">:</span> <span class="token string">'-'</span><span class="token punctuation">]</span>
-	file_content <span class="token builtin">string</span> <span class="token punctuation">[</span>json<span class="token punctuation">:</span> <span class="token string">'-'</span><span class="token punctuation">;</span> str<span class="token punctuation">:</span> skip<span class="token punctuation">]</span>
 <span class="token keyword">pub</span> <span class="token keyword">mut</span><span class="token punctuation">:</span>
 	<span class="token comment">// type Type of the result, must be animation</span>
 	@type <span class="token builtin">string</span>
 	<span class="token comment">// media File to send. Pass a file_id to send a file that exists on the Telegram servers (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass “attach://<file_attach_name>” to upload a new one using multipart/form-data under <file_attach_name> name. More information on Sending Files »</span>
-	media <span class="token builtin">string</span>
+	media InputFileOrStringType
 	<span class="token comment">// thumbnail Optional. Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size.</span>
 	<span class="token comment">// A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. More information on Sending Files »</span>
 	thumbnail InputFileOrStringType
@@ -3334,14 +3345,11 @@ Use this method to upload a file with a sticker for later use in the createNewSt
 </section>
 		<section id="InputMediaAudio" class="doc-node">
 			<div class="title"><h2>struct InputMediaAudio <a href="#InputMediaAudio">#</a></h2></div><pre class="signature"><code><span class="token keyword">struct</span> <span class="token symbol">InputMediaAudio</span> <span class="token punctuation">{</span>
-<span class="token keyword">mut</span><span class="token punctuation">:</span>
-	file_name    <span class="token builtin">string</span> <span class="token punctuation">[</span>json<span class="token punctuation">:</span> <span class="token string">'-'</span><span class="token punctuation">]</span>
-	file_content <span class="token builtin">string</span> <span class="token punctuation">[</span>json<span class="token punctuation">:</span> <span class="token string">'-'</span><span class="token punctuation">;</span> str<span class="token punctuation">:</span> skip<span class="token punctuation">]</span>
 <span class="token keyword">pub</span> <span class="token keyword">mut</span><span class="token punctuation">:</span>
 	<span class="token comment">// type Type of the result, must be audio</span>
 	@type <span class="token builtin">string</span>
 	<span class="token comment">// media File to send. Pass a file_id to send a file that exists on the Telegram servers (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass “attach://<file_attach_name>” to upload a new one using multipart/form-data under <file_attach_name> name. More information on Sending Files »</span>
-	media <span class="token builtin">string</span>
+	media InputFileOrStringType
 	<span class="token comment">// thumbnail Optional. Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data.</span>
 	<span class="token comment">// Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. More information on Sending Files »</span>
 	thumbnail InputFileOrStringType
@@ -3368,14 +3376,11 @@ Use this method to upload a file with a sticker for later use in the createNewSt
 </section>
 		<section id="InputMediaDocument" class="doc-node">
 			<div class="title"><h2>struct InputMediaDocument <a href="#InputMediaDocument">#</a></h2></div><pre class="signature"><code><span class="token keyword">struct</span> <span class="token symbol">InputMediaDocument</span> <span class="token punctuation">{</span>
-<span class="token keyword">mut</span><span class="token punctuation">:</span>
-	file_name    <span class="token builtin">string</span> <span class="token punctuation">[</span>json<span class="token punctuation">:</span> <span class="token string">'-'</span><span class="token punctuation">]</span>
-	file_content <span class="token builtin">string</span> <span class="token punctuation">[</span>json<span class="token punctuation">:</span> <span class="token string">'-'</span><span class="token punctuation">;</span> str<span class="token punctuation">:</span> skip<span class="token punctuation">]</span>
 <span class="token keyword">pub</span> <span class="token keyword">mut</span><span class="token punctuation">:</span>
 	<span class="token comment">// type Type of the result, must be document</span>
 	@type <span class="token builtin">string</span>
 	<span class="token comment">// media File to send. Pass a file_id to send a file that exists on the Telegram servers (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass “attach://<file_attach_name>” to upload a new one using multipart/form-data under <file_attach_name> name. More information on Sending Files »</span>
-	media <span class="token builtin">string</span>
+	media InputFileOrStringType
 	<span class="token comment">// thumbnail Optional. Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data.</span>
 	<span class="token comment">// Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. More information on Sending Files »</span>
 	thumbnail InputFileOrStringType
@@ -3398,14 +3403,11 @@ Use this method to upload a file with a sticker for later use in the createNewSt
 </section>
 		<section id="InputMediaPhoto" class="doc-node">
 			<div class="title"><h2>struct InputMediaPhoto <a href="#InputMediaPhoto">#</a></h2></div><pre class="signature"><code><span class="token keyword">struct</span> <span class="token symbol">InputMediaPhoto</span> <span class="token punctuation">{</span>
-<span class="token keyword">mut</span><span class="token punctuation">:</span>
-	file_name    <span class="token builtin">string</span> <span class="token punctuation">[</span>json<span class="token punctuation">:</span> <span class="token string">'-'</span><span class="token punctuation">]</span>
-	file_content <span class="token builtin">string</span> <span class="token punctuation">[</span>json<span class="token punctuation">:</span> <span class="token string">'-'</span><span class="token punctuation">;</span> str<span class="token punctuation">:</span> skip<span class="token punctuation">]</span>
 <span class="token keyword">pub</span> <span class="token keyword">mut</span><span class="token punctuation">:</span>
 	<span class="token comment">// type Type of the result, must be photo</span>
 	@type <span class="token builtin">string</span>
 	<span class="token comment">// media File to send. Pass a file_id to send a file that exists on the Telegram servers (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass “attach://<file_attach_name>” to upload a new one using multipart/form-data under <file_attach_name> name. More information on Sending Files »</span>
-	media <span class="token builtin">string</span>
+	media InputFileOrStringType
 	<span class="token comment">// caption Optional. Caption of the photo to be sent, 0-1024 characters after entities parsing</span>
 	caption <span class="token builtin">string</span>
 	<span class="token comment">// parse_mode Optional. Mode for parsing entities in the photo caption. See formatting options for more details.</span>
@@ -3425,14 +3427,11 @@ Use this method to upload a file with a sticker for later use in the createNewSt
 </section>
 		<section id="InputMediaVideo" class="doc-node">
 			<div class="title"><h2>struct InputMediaVideo <a href="#InputMediaVideo">#</a></h2></div><pre class="signature"><code><span class="token keyword">struct</span> <span class="token symbol">InputMediaVideo</span> <span class="token punctuation">{</span>
-<span class="token keyword">mut</span><span class="token punctuation">:</span>
-	file_name    <span class="token builtin">string</span> <span class="token punctuation">[</span>json<span class="token punctuation">:</span> <span class="token string">'-'</span><span class="token punctuation">]</span>
-	file_content <span class="token builtin">string</span> <span class="token punctuation">[</span>json<span class="token punctuation">:</span> <span class="token string">'-'</span><span class="token punctuation">;</span> str<span class="token punctuation">:</span> skip<span class="token punctuation">]</span>
 <span class="token keyword">pub</span> <span class="token keyword">mut</span><span class="token punctuation">:</span>
 	<span class="token comment">// type Type of the result, must be video</span>
 	@type <span class="token builtin">string</span>
 	<span class="token comment">// media File to send. Pass a file_id to send a file that exists on the Telegram servers (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass “attach://<file_attach_name>” to upload a new one using multipart/form-data under <file_attach_name> name. More information on Sending Files »</span>
-	media <span class="token builtin">string</span>
+	media InputFileOrStringType
 	<span class="token comment">// thumbnail Optional. Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data.</span>
 	<span class="token comment">// Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. More information on Sending Files »</span>
 	thumbnail InputFileOrStringType
@@ -5811,7 +5810,7 @@ The identifier of the selected user will be shared with the bot when the corresp
 
 </section>
 
-						<div class="footer">Powered by vdoc. Generated on: 20 Oct 2023 21:39:04</div>
+						<div class="footer">Powered by vdoc. Generated on: 20 Oct 2023 21:48:53</div>
 					</div>
 					<div class="doc-toc"><ul><li class="open"><a href="#readme_vtelegram">README</a></li>
 <li class="open"><a href="#Constants">Constants</a></li>
@@ -5839,12 +5838,27 @@ The identifier of the selected user will be shared with the bot when the corresp
 <li class="open"><a href="#start_polling">fn start_polling</a>        <ul>
 </ul>
 </li>
-<li class="open"><a href="#InputMedia">type InputMedia</a>        <ul>
+<li class="open"><a href="#[]InputMediaAnimation.add">type []InputMediaAnimation</a>        <ul>
+<li><a href="#[]InputMediaAnimation.add">fn add</a></li>
 </ul>
 </li>
-<li class="open"><a href="#SendMediaGroup[T].add">type SendMediaGroup[T]</a>        <ul>
-<li><a href="#SendMediaGroup[T].add">fn add</a></li>
-<li><a href="#SendMediaGroup[T].upload">fn upload</a></li>
+<li class="open"><a href="#[]InputMediaAudio.add">type []InputMediaAudio</a>        <ul>
+<li><a href="#[]InputMediaAudio.add">fn add</a></li>
+</ul>
+</li>
+<li class="open"><a href="#[]InputMediaDocument.add">type []InputMediaDocument</a>        <ul>
+<li><a href="#[]InputMediaDocument.add">fn add</a></li>
+</ul>
+</li>
+<li class="open"><a href="#[]InputMediaPhoto.add">type []InputMediaPhoto</a>        <ul>
+<li><a href="#[]InputMediaPhoto.add">fn add</a></li>
+</ul>
+</li>
+<li class="open"><a href="#[]InputMediaVideo.add">type []InputMediaVideo</a>        <ul>
+<li><a href="#[]InputMediaVideo.add">fn add</a></li>
+</ul>
+</li>
+<li class="open"><a href="#InputMedia">type InputMedia</a>        <ul>
 </ul>
 </li>
 <li class="open"><a href="#AddStickerToSet">struct AddStickerToSet</a>        <ul>
