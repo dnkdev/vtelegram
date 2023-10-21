@@ -151,7 +151,8 @@ pub fn InputMediaDocument.new(input InputMediaDocument) InputMediaDocument {
 	return input
 }
 
-// new_media_group create media group of type you want (media group can be 1 type only).
+// new_media_group create media group of type you want (media group can be 1 type only). 
+// `vtelegram.new_media_group[vtelegram.InputMediaDocument]()`
 [inline]
 pub fn new_media_group[T]() []T {
 	return []T{}

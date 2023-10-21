@@ -2,7 +2,7 @@
   <img src="https://raw.githubusercontent.com/dnkdev/vtelegram/master/VTelegram.svg">
 </div>
 
-<h1>VTelegram 0.10
+<h1>VTelegram 0.11
 <img align="right" style="margin-top:15px;" src="https://img.shields.io/static/v1?logo=telegram&label=Telegram Bot API&message=6.9&labelColor=ffffff&color=blue" href="https://core.telegram.org/bots/api">
 </h1>
 
@@ -46,7 +46,7 @@ import vtelegram
 - [x] multipart/form-data request
 - [x] Single files uploading
 - [x] MediaGroup upload and send
-- [ ] Sticker upload
+- [x] Sticker uploading, sticker set creation
 - [ ] Methods with `chat_id` field in the format `@username` (atm only in `i64` - unique id)
 - [ ] more
 

@@ -26,6 +26,9 @@ fn struct_to_map[T](params T) map[string]string {
 				data['media'] = json2.encode[[]InputMediaAudio](params.media)
 			}
 		}
+		$else $if field.name == 'stickers' {
+			data['stickers'] = json.encode(params.stickers)
+		}
 		$else {
 			data[field.name] =  params.$(field.name).str()
 		}
@@ -122,13 +125,10 @@ pub fn (mut b Bot) get_webhook_info(params GetWebhookInfo) !WebhookInfo {
     return return_data[WebhookInfo](resp)
 }
 
-[params]
-pub struct GetMe {
-}
 // get_me - getMe
 // A simple method for testing your bot's authentication token. Requires no parameters. Returns basic information about the bot in form of a User object.
-pub fn (mut b Bot) get_me(params GetMe) !User {
-    resp := b.api_request('getMe', json.encode(params))!
+pub fn (mut b Bot) get_me() !User {
+    resp := b.api_request('getMe', ' ')!
     // '
     return return_data[User](resp)
 }
@@ -1985,12 +1985,13 @@ pub fn (mut b Bot) delete_message(params DeleteMessage) !bool {
 
 [params]
 pub struct SendSticker {
+pub mut:
     // chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
     chat_id i64
     // message_thread_id Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
     message_thread_id int
     // sticker Sticker to send. Pass a file_id as String to send a file that exists on the Telegram servers (recommended), pass an HTTP URL as a String for Telegram to get a .WEBP file from the Internet, or upload a new one using multipart/form-data. More information on Sending Files »
-    sticker string
+    sticker InputFileOrStringType
     // emoji Optional Emoji associated with the sticker; only for just uploaded stickers
     emoji string
     // disable_notification Sends the message silently. Users will receive a notification with no sound.
@@ -2007,9 +2008,16 @@ pub struct SendSticker {
 // send_sticker - sendSticker
 // Use this method to send static .WEBP, animated .TGS, or video .WEBM stickers. On success, the sent Message is returned.
 pub fn (mut b Bot) send_sticker(params SendSticker) !Message {
-    resp := b.api_request('sendSticker', json.encode(params))!
-    // '
-    return return_data[Message](resp)
+	if params.sticker is InputFile {
+		files_to_send := prepare_files([params.sticker])
+		mut data := struct_to_map(params)
+		data['sticker'] = 'attach://${params.sticker.file_name}' as string
+		resp := b.api_multipart_form_request('sendSticker', data, files_to_send)!
+		return return_data[Message](resp)
+	} else {
+		resp := b.api_request('sendSticker', json.encode(params))!
+		return return_data[Message](resp)
+	}
 }
 
 [params]
@@ -2041,7 +2049,7 @@ pub fn (mut b Bot) get_custom_emoji_stickers(params GetCustomEmojiStickers) ![]s
 [params]
 pub struct UploadStickerFile {
     // user_id User identifier of sticker file owner
-    user_id int
+    user_id i64
     // sticker A file with the sticker in .WEBP, .PNG, .TGS, or .WEBM format. See https://core.telegram.org/stickers for technical requirements. More information on Sending Files »
     sticker InputFile
     // sticker_format Format of the sticker, must be one of “static”, “animated”, “video”
@@ -2050,15 +2058,17 @@ pub struct UploadStickerFile {
 // upload_sticker_file - uploadStickerFile
 // Use this method to upload a file with a sticker for later use in the createNewStickerSet and addStickerToSet methods (the file can be used multiple times). Returns the uploaded File on success.
 pub fn (mut b Bot) upload_sticker_file(params UploadStickerFile) !File {
-    resp := b.api_request('uploadStickerFile', json.encode(params))!
-    // '
-    return return_data[File](resp)
+	files_to_send := prepare_files([params.sticker])
+	mut data := struct_to_map(params)
+	data['sticker'] = 'attach://${params.sticker.file_name}' as string
+	resp := b.api_multipart_form_request('uploadStickerFile', data, files_to_send)!
+	return return_data[File](resp)
 }
 
 [params]
 pub struct CreateNewStickerSet {
     // user_id User identifier of created sticker set owner
-    user_id int
+    user_id i64
     // name Short name of sticker set, to be used in t.me/addstickers/ URLs (e.g., animals). Can contain only English letters, digits and underscores. Must begin with a letter, can't contain consecutive underscores and must end in "_by_<bot_username>". <bot_username> is case insensitive. 1-64 characters.
     name string 
     // title Sticker set title, 1-64 characters
@@ -2068,22 +2078,43 @@ pub struct CreateNewStickerSet {
     // sticker_format Format of stickers in the set, must be one of “static”, “animated”, “video”
     sticker_format string   
     // sticker_type Type of stickers in the set, pass “regular”, “mask”, or “custom_emoji”. By default, a regular sticker set is created.
-    sticker_type string // Optional
+    sticker_type string [omitempty] // Optional
     // needs_repainting Pass True if stickers in the sticker set must be repainted to the color of text when used in messages, the accent color if used as emoji status, white on chat photos, or another appropriate color based on context; for custom emoji sticker sets only
-    needs_repainting bool // Optional
+    needs_repainting bool [omitempty] // Optional 
 }
 // create_new_sticker_set - createNewStickerSet
 // Use this method to create a new sticker set owned by a user. The bot will be able to edit the sticker set thus created. You must use exactly one of the fields png_sticker, tgs_sticker, or webm_sticker. Returns True on success.
-pub fn (mut b Bot) create_new_sticker_set(params CreateNewStickerSet) !bool {
+pub fn (mut b Bot) create_new_sticker_set(params_ CreateNewStickerSet) !bool {
+	mut params := params_
+	mut is_multipart_form_req := false
+	for s in params.stickers {
+		if s.sticker is InputFile {
+			is_multipart_form_req = true
+			break
+		}
+	}
+	if is_multipart_form_req {
+		mut files := []InputFile{}
+		for mut s in params.stickers {
+			if mut s.sticker is InputFile {
+				files << s.sticker as InputFile
+				s.sticker = 'attach://${s.sticker.file_name}' as string
+			}
+		}
+		files_to_send := prepare_files(files)
+		mut data := struct_to_map(params)
+		resp := b.api_multipart_form_request('createNewStickerSet', data, files_to_send)!
+		return return_bool(resp)
+	}
     resp := b.api_request('createNewStickerSet', json.encode(params))!
-    // '
     return return_bool(resp)
 }
 
 [params]
 pub struct AddStickerToSet {
+pub mut:
     // user_id User identifier of sticker set owner
-    user_id int
+    user_id i64
     // name Sticker set name
     name string
     // sticker A JSON-serialized object with information about the added sticker. If exactly the same sticker had already been added to the set, then the set isn't changed.
@@ -2091,9 +2122,17 @@ pub struct AddStickerToSet {
 }
 // add_sticker_to_set - addStickerToSet
 // Use this method to add a new sticker to a set created by the bot. You must use exactly one of the fields png_sticker, tgs_sticker, or webm_sticker. Animated stickers can be added to animated sticker sets and only to them. Animated sticker sets can have up to 50 stickers. Static sticker sets can have up to 120 stickers. Returns True on success.
-pub fn (mut b Bot) add_sticker_to_set(params AddStickerToSet) !bool {
+pub fn (mut b Bot) add_sticker_to_set(params_ AddStickerToSet) !bool {
+	mut params := params_
+	if mut params.sticker.sticker is InputFile {
+		files_to_send := prepare_files([params.sticker.sticker as InputFile])
+		mut data := struct_to_map(params)
+		params.sticker.sticker = 'attach://${params.sticker.sticker.file_name}' as string
+		data['sticker'] = json.encode(params.sticker)
+		resp := b.api_multipart_form_request('addStickerToSet', data, files_to_send)!
+		return return_bool(resp)
+	}
     resp := b.api_request('addStickerToSet', json.encode(params))!
-    // '
     return return_bool(resp)
 }
 
