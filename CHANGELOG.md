@@ -1,4 +1,8 @@
-## v 0.10
+## v 0.11
+
+- Sticker to manage stickers, sticker sets...
+
+### v 0.10
 
 - Single file upload rework
 - Media Group upload rework

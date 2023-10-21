@@ -9,11 +9,11 @@ type InputFileOrStringType = InputFile | string
 // InputFile This object represents the contents of a file to be uploaded. Must be posted using multipart/form-data in the usual way that files are uploaded via the browser.
 pub struct InputFile {
 pub:
-	file_name    string
-	file_content string
+	file_name    string [json:'-']
+	file_content string [json:'-'; str:skip]
 }
 
-// InputFile.new - for thumbnail and single file uploading and sending with `send_document`, `send_photo`, `send_voice`, `send_video`, `send_video_note`, `send_animation`
+// InputFile.new - opens and reads the file, saves content for sending. Used wherever file uploading is required.
 [inline]
 pub fn InputFile.new(path string) !InputFile {
 	return InputFile{
