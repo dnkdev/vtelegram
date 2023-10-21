@@ -36,7 +36,7 @@
 						<div class="info">
 							<div class="module">src</div>
 							<div class="toggle-version-container">
-								<span> 561fd94</span>
+								<span> 48a1d6c</span>
 								<div
 									id="dark-mode-toggle"
 									role="switch"
@@ -70,7 +70,7 @@
 			<div class="title"><h1> vtelegram <a href="#readme_vtelegram">#</a></h1></div><div align="center">
   <img src="https://raw.githubusercontent.com/dnkdev/vtelegram/master/VTelegram.svg">
 </div>
-<h1>VTelegram 0.10
+<h1>VTelegram 0.11
 <img align="right" style="margin-top:15px;" src="https://img.shields.io/static/v1?logo=telegram&label=Telegram Bot API&message=6.9&labelColor=ffffff&color=blue" href="https://core.telegram.org/bots/api">
 </h1>
 <p>Library for building telegram bots in V language. <br><br>
@@ -104,7 +104,7 @@ import vtelegram
 <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled checked>multipart/form-data request</li>
 <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled checked>Single files uploading</li>
 <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled checked>MediaGroup upload and send</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled>Sticker upload</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled checked>Sticker uploading, sticker set creation</li>
 <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled>Methods with <code>chat_id</code> field in the format <code>@username</code> (atm only in <code>i64</code> - unique id)</li>
 <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled>more</li>
 </ul>
@@ -176,7 +176,7 @@ For example, set <code>[context: 'private']</code> specifies that your methods w
 </section>
 		<section id="new_media_group" class="doc-node">
 			<div class="title"><h2>fn new_media_group <a href="#new_media_group">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> new_media_group<span class="token punctuation">[</span><span class="token builtin">T</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">T</span></code></pre>
-<p>new_media_group create media group of type you want (media group can be 1 type only).</p>
+<p>new_media_group create media group of type you want (media group can be 1 type only).  <code>vtelegram.new_media_group[vtelegram.InputMediaDocument]()</code></p>
 
 </section>
 		<section id="new_reply_markup" class="doc-node">
@@ -230,8 +230,9 @@ For example, set <code>[context: 'private']</code> specifies that your methods w
 </section>
 		<section id="AddStickerToSet" class="doc-node">
 			<div class="title"><h2>struct AddStickerToSet <a href="#AddStickerToSet">#</a></h2></div><pre class="signature"><code><span class="token keyword">struct</span> <span class="token symbol">AddStickerToSet</span> <span class="token punctuation">{</span>
+<span class="token keyword">pub</span> <span class="token keyword">mut</span><span class="token punctuation">:</span>
 	<span class="token comment">// user_id User identifier of sticker set owner</span>
-	user_id <span class="token builtin">int</span>
+	user_id <span class="token builtin">i64</span>
 	<span class="token comment">// name Sticker set name</span>
 	name <span class="token builtin">string</span>
 	<span class="token comment">// sticker A JSON-serialized object with information about the added sticker. If exactly the same sticker had already been added to the set, then the set isn't changed.</span>
@@ -406,7 +407,7 @@ For example, set <code>[context: 'private']</code> specifies that your methods w
 
 </section>
 		<section id="Bot.add_sticker_to_set" class="doc-node">
-			<div class="title"><h2>fn (Bot) add_sticker_to_set <a href="#Bot.add_sticker_to_set">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">add_sticker_to_set</span><span class="token punctuation">(</span>params AddStickerToSet<span class="token punctuation">)</span> <span class="token operator">!</span><span class="token builtin">bool</span></code></pre>
+			<div class="title"><h2>fn (Bot) add_sticker_to_set <a href="#Bot.add_sticker_to_set">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">add_sticker_to_set</span><span class="token punctuation">(</span>params_ AddStickerToSet<span class="token punctuation">)</span> <span class="token operator">!</span><span class="token builtin">bool</span></code></pre>
 <p>add_sticker_to_set - addStickerToSet
 Use this method to add a new sticker to a set created by the bot. You must use exactly one of the fields png_sticker, tgs_sticker, or webm_sticker. Animated stickers can be added to animated sticker sets and only to them. Animated sticker sets can have up to 50 stickers. Static sticker sets can have up to 120 stickers. Returns True on success.</p>
 
@@ -513,7 +514,7 @@ Use this method to create a link for an invoice. Returns the created invoice lin
 
 </section>
 		<section id="Bot.create_new_sticker_set" class="doc-node">
-			<div class="title"><h2>fn (Bot) create_new_sticker_set <a href="#Bot.create_new_sticker_set">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">create_new_sticker_set</span><span class="token punctuation">(</span>params CreateNewStickerSet<span class="token punctuation">)</span> <span class="token operator">!</span><span class="token builtin">bool</span></code></pre>
+			<div class="title"><h2>fn (Bot) create_new_sticker_set <a href="#Bot.create_new_sticker_set">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">create_new_sticker_set</span><span class="token punctuation">(</span>params_ CreateNewStickerSet<span class="token punctuation">)</span> <span class="token operator">!</span><span class="token builtin">bool</span></code></pre>
 <p>create_new_sticker_set - createNewStickerSet
 Use this method to create a new sticker set owned by a user. The bot will be able to edit the sticker set thus created. You must use exactly one of the fields png_sticker, tgs_sticker, or webm_sticker. Returns True on success.</p>
 
@@ -697,7 +698,7 @@ Use this method to get data for high score tables. Will return the score of the 
 
 </section>
 		<section id="Bot.get_me" class="doc-node">
-			<div class="title"><h2>fn (Bot) get_me <a href="#Bot.get_me">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">get_me</span><span class="token punctuation">(</span>params GetMe<span class="token punctuation">)</span> <span class="token operator">!</span>User</code></pre>
+			<div class="title"><h2>fn (Bot) get_me <a href="#Bot.get_me">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">get_me</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">!</span>User</code></pre>
 <p>get_me - getMe
 A simple method for testing your bot's authentication token. Requires no parameters. Returns basic information about the bot in form of a User object.</p>
 
@@ -1933,7 +1934,7 @@ Use this method to upload a file with a sticker for later use in the createNewSt
 		<section id="CreateNewStickerSet" class="doc-node">
 			<div class="title"><h2>struct CreateNewStickerSet <a href="#CreateNewStickerSet">#</a></h2></div><pre class="signature"><code><span class="token keyword">struct</span> <span class="token symbol">CreateNewStickerSet</span> <span class="token punctuation">{</span>
 	<span class="token comment">// user_id User identifier of created sticker set owner</span>
-	user_id <span class="token builtin">int</span>
+	user_id <span class="token builtin">i64</span>
 	<span class="token comment">// name Short name of sticker set, to be used in t.me/addstickers/ URLs (e.g., animals). Can contain only English letters, digits and underscores. Must begin with a letter, can't contain consecutive underscores and must end in "_by_<bot_username>". <bot_username> is case insensitive. 1-64 characters.</span>
 	name <span class="token builtin">string</span>
 	<span class="token comment">// title Sticker set title, 1-64 characters</span>
@@ -1943,9 +1944,9 @@ Use this method to upload a file with a sticker for later use in the createNewSt
 	<span class="token comment">// sticker_format Format of stickers in the set, must be one of “static”, “animated”, “video”</span>
 	sticker_format <span class="token builtin">string</span>
 	<span class="token comment">// sticker_type Type of stickers in the set, pass “regular”, “mask”, or “custom_emoji”. By default, a regular sticker set is created.</span>
-	sticker_type <span class="token builtin">string</span> <span class="token comment">// Optional</span>
+	sticker_type <span class="token builtin">string</span> <span class="token punctuation">[</span>omitempty<span class="token punctuation">]</span> <span class="token comment">// Optional</span>
 	<span class="token comment">// needs_repainting Pass True if stickers in the sticker set must be repainted to the color of text when used in messages, the accent color if used as emoji status, white on chat photos, or another appropriate color based on context; for custom emoji sticker sets only</span>
-	needs_repainting <span class="token builtin">bool</span> <span class="token comment">// Optional</span>
+	needs_repainting <span class="token builtin">bool</span> <span class="token punctuation">[</span>omitempty<span class="token punctuation">]</span> <span class="token comment">// Optional</span>
 <span class="token punctuation">}</span></code></pre>
 
 
@@ -2469,12 +2470,6 @@ Use this method to upload a file with a sticker for later use in the createNewSt
 	message_id <span class="token builtin">int</span>
 	<span class="token comment">// inline_message_id Required if chat_id and message_id are not specified. Identifier of the inline message</span>
 	inline_message_id <span class="token builtin">string</span>
-<span class="token punctuation">}</span></code></pre>
-
-
-</section>
-		<section id="GetMe" class="doc-node">
-			<div class="title"><h2>struct GetMe <a href="#GetMe">#</a></h2></div><pre class="signature"><code><span class="token keyword">struct</span> <span class="token symbol">GetMe</span> <span class="token punctuation">{</span>
 <span class="token punctuation">}</span></code></pre>
 
 
@@ -3233,15 +3228,15 @@ Use this method to upload a file with a sticker for later use in the createNewSt
 		<section id="InputFile" class="doc-node">
 			<div class="title"><h2>struct InputFile <a href="#InputFile">#</a></h2></div><pre class="signature"><code><span class="token keyword">struct</span> <span class="token symbol">InputFile</span> <span class="token punctuation">{</span>
 <span class="token keyword">pub</span><span class="token punctuation">:</span>
-	file_name    <span class="token builtin">string</span>
-	file_content <span class="token builtin">string</span>
+	file_name    <span class="token builtin">string</span> <span class="token punctuation">[</span>json<span class="token punctuation">:</span> <span class="token string">'-'</span><span class="token punctuation">]</span>
+	file_content <span class="token builtin">string</span> <span class="token punctuation">[</span>json<span class="token punctuation">:</span> <span class="token string">'-'</span><span class="token punctuation">;</span> str<span class="token punctuation">:</span> skip<span class="token punctuation">]</span>
 <span class="token punctuation">}</span></code></pre>
 <p>InputFile This object represents the contents of a file to be uploaded. Must be posted using multipart/form-data in the usual way that files are uploaded via the browser.</p>
 
 </section>
 		<section id="InputFile.InputFile__static__new" class="doc-node">
 			<div class="title"><h2>fn (InputFile) InputFile__static__new <a href="#InputFile.InputFile__static__new">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> InputFile<span class="token punctuation">.</span><span class="token function">new</span><span class="token punctuation">(</span>path <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token operator">!</span>InputFile</code></pre>
-<p>InputFile.new - for thumbnail and single file uploading and sending with <code>send_document</code>, <code>send_photo</code>, <code>send_voice</code>, <code>send_video</code>, <code>send_video_note</code>, <code>send_animation</code></p>
+<p>InputFile.new - opens and reads the file, saves content for sending. Used wherever file uploading is required.</p>
 
 </section>
 		<section id="InputInvoiceMessageContent" class="doc-node">
@@ -3462,17 +3457,22 @@ Use this method to upload a file with a sticker for later use in the createNewSt
 </section>
 		<section id="InputSticker" class="doc-node">
 			<div class="title"><h2>struct InputSticker <a href="#InputSticker">#</a></h2></div><pre class="signature"><code><span class="token keyword">struct</span> <span class="token symbol">InputSticker</span> <span class="token punctuation">{</span>
-<span class="token keyword">pub</span><span class="token punctuation">:</span>
+<span class="token keyword">pub</span> <span class="token keyword">mut</span><span class="token punctuation">:</span>
 	<span class="token comment">// sticker The added sticker. Pass a file_id as a String to send a file that already exists on the Telegram servers, pass an HTTP URL as a String for Telegram to get a file from the Internet, or upload a new one using multipart/form-data. Animated and video stickers can't be uploaded via HTTP URL. More information on Sending Files »</span>
-	sticker <span class="token builtin">string</span>
+	sticker InputFileOrStringType
 	<span class="token comment">// emoji_list List of 1-20 emoji associated with the sticker</span>
 	emoji_list <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">string</span>
 	<span class="token comment">// mask_position Optional. Position where the mask should be placed on faces. For “mask” stickers only.</span>
-	mask_position MaskPosition
+	mask_position MaskPosition <span class="token punctuation">[</span>omitempty<span class="token punctuation">]</span>
 	<span class="token comment">// keywords Optional. List of 0-20 search keywords for the sticker with total length of up to 64 characters. For “regular” and “custom_emoji” stickers only.</span>
-	keywords <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">string</span>
+	keywords <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">string</span> <span class="token punctuation">[</span>omitempty<span class="token punctuation">]</span>
 <span class="token punctuation">}</span></code></pre>
 <p>InputSticker This object describes a sticker to be added to a sticker set.</p>
+
+</section>
+		<section id="InputSticker.InputSticker__static__new" class="doc-node">
+			<div class="title"><h2>fn (InputSticker) InputSticker__static__new <a href="#InputSticker.InputSticker__static__new">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> InputSticker<span class="token punctuation">.</span><span class="token function">new</span><span class="token punctuation">(</span>params InputSticker<span class="token punctuation">)</span> InputSticker</code></pre>
+
 
 </section>
 		<section id="InputTextMessageContent" class="doc-node">
@@ -3702,7 +3702,7 @@ The identifier of the selected user will be shared with the bot when the corresp
 </section>
 		<section id="MaskPosition" class="doc-node">
 			<div class="title"><h2>struct MaskPosition <a href="#MaskPosition">#</a></h2></div><pre class="signature"><code><span class="token keyword">struct</span> <span class="token symbol">MaskPosition</span> <span class="token punctuation">{</span>
-<span class="token keyword">pub</span><span class="token punctuation">:</span>
+<span class="token keyword">pub</span> <span class="token keyword">mut</span><span class="token punctuation">:</span>
 	<span class="token comment">// point The part of the face relative to which the mask should be placed. One of “forehead”, “eyes”, “mouth”, or “chin”.</span>
 	point <span class="token builtin">string</span>
 	<span class="token comment">// x_shift Shift by X-axis measured in widths of the mask scaled to the face size, from left to right. For example, choosing -1.0 will place mask just to the left of the default mask position.</span>
@@ -4869,12 +4869,13 @@ The identifier of the selected user will be shared with the bot when the corresp
 </section>
 		<section id="SendSticker" class="doc-node">
 			<div class="title"><h2>struct SendSticker <a href="#SendSticker">#</a></h2></div><pre class="signature"><code><span class="token keyword">struct</span> <span class="token symbol">SendSticker</span> <span class="token punctuation">{</span>
+<span class="token keyword">pub</span> <span class="token keyword">mut</span><span class="token punctuation">:</span>
 	<span class="token comment">// chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)</span>
 	chat_id <span class="token builtin">i64</span>
 	<span class="token comment">// message_thread_id Unique identifier for the target message thread (topic) of the forum; for forum supergroups only</span>
 	message_thread_id <span class="token builtin">int</span>
 	<span class="token comment">// sticker Sticker to send. Pass a file_id as String to send a file that exists on the Telegram servers (recommended), pass an HTTP URL as a String for Telegram to get a .WEBP file from the Internet, or upload a new one using multipart/form-data. More information on Sending Files »</span>
-	sticker <span class="token builtin">string</span>
+	sticker InputFileOrStringType
 	<span class="token comment">// emoji Optional Emoji associated with the sticker; only for just uploaded stickers</span>
 	emoji <span class="token builtin">string</span>
 	<span class="token comment">// disable_notification Sends the message silently. Users will receive a notification with no sound.</span>
@@ -5576,7 +5577,7 @@ The identifier of the selected user will be shared with the bot when the corresp
 		<section id="UploadStickerFile" class="doc-node">
 			<div class="title"><h2>struct UploadStickerFile <a href="#UploadStickerFile">#</a></h2></div><pre class="signature"><code><span class="token keyword">struct</span> <span class="token symbol">UploadStickerFile</span> <span class="token punctuation">{</span>
 	<span class="token comment">// user_id User identifier of sticker file owner</span>
-	user_id <span class="token builtin">int</span>
+	user_id <span class="token builtin">i64</span>
 	<span class="token comment">// sticker A file with the sticker in .WEBP, .PNG, .TGS, or .WEBM format. See https://core.telegram.org/stickers for technical requirements. More information on Sending Files »</span>
 	sticker InputFile
 	<span class="token comment">// sticker_format Format of the sticker, must be one of “static”, “animated”, “video”</span>
@@ -5810,7 +5811,7 @@ The identifier of the selected user will be shared with the bot when the corresp
 
 </section>
 
-						<div class="footer">Powered by vdoc. Generated on: 20 Oct 2023 21:48:53</div>
+						<div class="footer">Powered by vdoc. Generated on: 21 Oct 2023 13:01:21</div>
 					</div>
 					<div class="doc-toc"><ul><li class="open"><a href="#readme_vtelegram">README</a></li>
 <li class="open"><a href="#Constants">Constants</a></li>
@@ -6259,9 +6260,6 @@ The identifier of the selected user will be shared with the bot when the corresp
 <li class="open"><a href="#GetGameHighScores">struct GetGameHighScores</a>        <ul>
 </ul>
 </li>
-<li class="open"><a href="#GetMe">struct GetMe</a>        <ul>
-</ul>
-</li>
 <li class="open"><a href="#GetMyCommands">struct GetMyCommands</a>        <ul>
 </ul>
 </li>
@@ -6398,6 +6396,7 @@ The identifier of the selected user will be shared with the bot when the corresp
 </ul>
 </li>
 <li class="open"><a href="#InputSticker">struct InputSticker</a>        <ul>
+<li><a href="#InputSticker.InputSticker__static__new">fn InputSticker__static__new</a></li>
 </ul>
 </li>
 <li class="open"><a href="#InputTextMessageContent">struct InputTextMessageContent</a>        <ul>
