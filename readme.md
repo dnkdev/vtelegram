@@ -39,12 +39,11 @@ import vtelegram
 
 ## Roadmap
 
-- [x] All updates handling through attributes
+- [x] All updates handling using attributes
 - [x] Middlewares `Test`
 - [x] Context Filters
-- [x] multipart/form-data request
-- [x] Single files uploading
-- [x] MediaGroup upload and send
+- [x] Single files uploading and sending
+- [x] MediaGroup uploading and sending
 - [x] Sticker uploading, sticker set creation
 - [ ] WebHooks
 - [ ] Methods with `chat_id` field in the format `@username` (atm only in `i64` - unique id)
@@ -78,8 +77,8 @@ chat_join_request
 
 ### Context Filters and Middleware
 
-Context filters determine which update is relevant, works almost like an extension for handlers.<br>
-For example, set `[context: 'private']` specifies that your methods will handle updates only in private chats. You can set a context filter both on top of middleware and on top of the handling function. That way you can handle updates and build logic very flexible.
+Context filters determine which update is relevant.<br>
+For example, `[context: 'private']` specifies that your method will handle updates only in private chats. You can set a context filter both on top of middleware and on top of the handling function. That way you can handle updates and build logic very flexible.
 
 Update handling flow can be defined as follows: <br>
 
