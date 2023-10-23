@@ -17,13 +17,6 @@ pub mut:
 }
 
 [inline]
-pub fn InputSticker.new(params InputSticker) InputSticker{
+pub fn InputSticker.new(params InputSticker) InputSticker {
 	return params
 }
-
-// pub fn InputSticker.new(path string) !InputSticker {
-// 	return InputSticker {
-// 		sticker: InputFile.new(path)
-// 	}
-// }
-

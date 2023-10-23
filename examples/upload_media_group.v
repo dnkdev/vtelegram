@@ -11,7 +11,9 @@ fn (mut app App) send(result vt.Result) ! {
 	println('sending...')
 
 	mut mg := vt.new_media_group[vt.InputMediaDocument]()
-	mg.add(media: 'https://raw.githubusercontent.com/tpn/pdfs/master/C%20Cheat%20Sheet%20(ashlyn-black_c-reference).pdf')
+	mg.add(
+		media: 'https://raw.githubusercontent.com/tpn/pdfs/master/C%20Cheat%20Sheet%20(ashlyn-black_c-reference).pdf'
+	)
 	mg.add(media: 'https://raw.githubusercontent.com/tpn/pdfs/master/Compiler%20Design%20In%20C.pdf')
 	mg.add(media: 'https://raw.githubusercontent.com/tpn/pdfs/master/ChatGPT%20Cheat%20Sheet.pdf')
 	app.send_media_group(
@@ -19,15 +21,13 @@ fn (mut app App) send(result vt.Result) ! {
 		media: mg
 	)!
 
-	mut media_group := vt.new_media_group[vt.InputMediaDocument]()
+	mut mg2 := vt.new_media_group[vt.InputMediaDocument]()
 	doc1 := vt.InputFile.new('./VTelegram.svg')!
 
-	media_group.add(
+	mg2.add(
 		media: 'https://raw.githubusercontent.com/tpn/pdfs/master/A%20Compilation%20Target%20for%20Probabilistic%20Programming%20Languages%20-%202014%20(paige14).pdf'
 	)
-	media_group.add(
-		media: doc1
-	)
+	mg2.add(media: doc1)
 	app.send_media_group(
 		chat_id: result.update.message.chat.id
 		media: media_group

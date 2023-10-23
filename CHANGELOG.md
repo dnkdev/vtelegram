@@ -1,6 +1,6 @@
 ## v 0.11
 
-- Sticker to manage stickers, sticker sets...
+- Sticker manipulations/uploading...
 
 ### v 0.10
 

@@ -42,11 +42,11 @@ import vtelegram
 - [x] All updates handling through attributes
 - [x] Middlewares `Test`
 - [x] Context Filters
-- [ ] Separating one attribute values with comma `,`
 - [x] multipart/form-data request
 - [x] Single files uploading
 - [x] MediaGroup upload and send
 - [x] Sticker uploading, sticker set creation
+- [ ] WebHooks
 - [ ] Methods with `chat_id` field in the format `@username` (atm only in `i64` - unique id)
 - [ ] more
 
