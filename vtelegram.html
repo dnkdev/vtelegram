@@ -97,12 +97,11 @@ import vtelegram
 </code></pre>
 <h2>Roadmap</h2>
 <ul>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled checked>All updates handling through attributes</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled checked>All updates handling using attributes</li>
 <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled checked>Middlewares <code>Test</code></li>
 <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled checked>Context Filters</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled checked>multipart/form-data request</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled checked>Single files uploading</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled checked>MediaGroup upload and send</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled checked>Single files uploading and sending</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled checked>MediaGroup uploading and sending</li>
 <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled checked>Sticker uploading, sticker set creation</li>
 <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled>WebHooks</li>
 <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled>Methods with <code>chat_id</code> field in the format <code>@username</code> (atm only in <code>i64</code> - unique id)</li>
@@ -129,8 +128,8 @@ chat_member
 chat_join_request
 </code></pre>
 <h3>Context Filters and Middleware</h3>
-<p>Context filters determine which update is relevant, works almost like an extension for handlers.<br>
-For example, set <code>[context: 'private']</code> specifies that your methods will handle updates only in private chats. You can set a context filter both on top of middleware and on top of the handling function. That way you can handle updates and build logic very flexible.</p>
+<p>Context filters determine which update is relevant.<br>
+For example, <code>[context: 'private']</code> specifies that your method will handle updates only in private chats. You can set a context filter both on top of middleware and on top of the handling function. That way you can handle updates and build logic very flexible.</p>
 <p>Update handling flow can be defined as follows: <br></p>
 <pre><code>Getting update -&gt; Filters -&gt; Middleware -&gt; Filters -&gt; Your Handling Function
 </code></pre>
@@ -5811,7 +5810,7 @@ The identifier of the selected user will be shared with the bot when the corresp
 
 </section>
 
-						<div class="footer">Powered by vdoc. Generated on: 23 Oct 2023 11:03:40</div>
+						<div class="footer">Powered by vdoc. Generated on: 23 Oct 2023 11:10:20</div>
 					</div>
 					<div class="doc-toc"><ul><li class="open"><a href="#readme_vtelegram">README</a></li>
 <li class="open"><a href="#Constants">Constants</a></li>
