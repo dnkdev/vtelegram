@@ -30,7 +30,7 @@ fn (mut app App) send(result vt.Result) ! {
 	mg2.add(media: doc1)
 	app.send_media_group(
 		chat_id: result.update.message.chat.id
-		media: media_group
+		media: mg2
 	)!
 
 	mut mg_photo := vt.new_media_group[vt.InputMediaPhoto]()
