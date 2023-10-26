@@ -1,6 +1,14 @@
 ## v 0.11
 
 - Sticker manipulations/uploading...
+- `context` attribute values separating with comma `,`:
+```v
+[context: 'audio, private']
+[message]
+fn (mut app App) audio_messages_in_private_chats(vtelegram.Result) ! {
+    // handle all audio messages in private(bot) chat
+}
+```
 
 ### v 0.10
 

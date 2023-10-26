@@ -293,6 +293,7 @@ pub fn (mut b Bot) copy_message(params CopyMessage) !MessageId {
 
 [params]
 pub struct SendPhoto {
+pub:
     // chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
     chat_id i64
     // message_thread_id Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
@@ -338,6 +339,7 @@ pub fn (mut b Bot) send_photo(params SendPhoto) !Message {
 
 [params]
 pub struct SendAudio {
+pub:
     // chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
     chat_id i64
     // message_thread_id Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
@@ -394,6 +396,7 @@ pub fn (mut b Bot) send_audio(params SendAudio) !Message {
 
 [params]
 pub struct SendDocument {
+pub:
     // chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
     chat_id i64
     // message_thread_id Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
@@ -446,6 +449,7 @@ pub fn (mut b Bot) send_document(params SendDocument) !Message {
 
 [params]
 pub struct SendVideo {
+pub:
     // chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
     chat_id i64
     // message_thread_id Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
@@ -506,6 +510,7 @@ pub fn (mut b Bot) send_video(params SendVideo) !Message {
 
 [params]
 pub struct SendAnimation {
+pub:
     // chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
     chat_id i64
     // message_thread_id Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
@@ -564,6 +569,7 @@ pub fn (mut b Bot) send_animation(params SendAnimation) !Message {
 
 [params]
 pub struct SendVoice {
+pub:
     // chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
     chat_id i64
     // message_thread_id Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
@@ -609,6 +615,7 @@ pub fn (mut b Bot) send_voice(params SendVoice) !Message {
 
 [params]
 pub struct SendVideoNote {
+pub:
     // chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
     chat_id i64
     // message_thread_id Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
@@ -750,6 +757,7 @@ pub fn (mut b Bot) send_media_group[T](params_ SendMediaGroup[T]) ![]Message {
 
 [params]
 pub struct SendLocation {
+pub:
     // chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
     chat_id i64
     // message_thread_id Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
@@ -835,6 +843,7 @@ pub fn (mut b Bot) stop_message_live_location(params StopMessageLiveLocation) !M
 
 [params]
 pub struct SendVenue {
+pub:
     // chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
     chat_id i64
     // message_thread_id Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
@@ -876,6 +885,7 @@ pub fn (mut b Bot) send_venue(params SendVenue) !Message {
 
 [params]
 pub struct SendContact {
+pub:
     // chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
     chat_id i64
     // message_thread_id Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
@@ -909,6 +919,7 @@ pub fn (mut b Bot) send_contact(params SendContact) !Message {
 
 [params]
 pub struct SendPoll {
+pub:
     // chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
     chat_id i64
     // message_thread_id Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
@@ -958,6 +969,7 @@ pub fn (mut b Bot) send_poll(params SendPoll) !Message {
 
 [params]
 pub struct SendDice {
+pub:
     // chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
     chat_id i64
     // message_thread_id Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
@@ -2067,6 +2079,7 @@ pub fn (mut b Bot) upload_sticker_file(params UploadStickerFile) !File {
 
 [params]
 pub struct CreateNewStickerSet {
+pub:
     // user_id User identifier of created sticker set owner
     user_id i64
     // name Short name of sticker set, to be used in t.me/addstickers/ URLs (e.g., animals). Can contain only English letters, digits and underscores. Must begin with a letter, can't contain consecutive underscores and must end in "_by_<bot_username>". <bot_username> is case insensitive. 1-64 characters.

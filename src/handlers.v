@@ -18,37 +18,44 @@ const (
 		'chat_join_request',
 	]
 )
+
 fn is_handler_pass_filters(update Update, attrs []string) bool {
-	mut subs := map[string][]string
+	println('is_handler_pass_filters')
+	mut subs := map[string][]string{}
 	for attr in attrs {
 		a := attr.split(':') // [message: starts_with: value]
 		if a.len < 2 {
-			//passing = false
+			// passing = false
 			subs[attr] = ['']
 			continue
 		}
 		sub := a[0].trim_space()
 		mut value := a.last().trim_space()
-		if a.len == 3{
+		if a.len == 3 {
 			value = attr.all_after_first(':')
 		}
-		subs[sub] << value
-		if sub == 'context' {
+		if sub != 'context' {
+			subs[sub] << value
+		} else {
 			assert a.len >= 2, 'context attribute should contain value'
-			if !validate_filter(update, value) {
-				return false
+			vals := value.split(',')
+			for v in vals {
+				if !validate_filter(update, v.trim_indent()) {
+					return false
+				}
 			}
 		}
 	}
-	if process_handler(update, subs){
+	if process_handler(update, subs) {
 		return true
 	}
 	return false
 }
+
 fn is_handler_relate_to_type(update Update, attrs []string) bool {
-	for handler in handler_types {
-		if attrs.any(it.contains(handler)){
-			if validate_handler_type(update, handler){
+	for handler in vtelegram.handler_types {
+		if attrs.any(it.contains(handler)) {
+			if validate_handler_type(update, handler) {
 				return true
 			}
 		}
@@ -58,7 +65,9 @@ fn is_handler_relate_to_type(update Update, attrs []string) bool {
 
 fn process_handler(update Update, subs map[string][]string) bool {
 	for key, values in subs {
+		println('process ${key} - ${values}')
 		for value_ in values {
+			println('        ${value_}')
 			value := value_.trim_space()
 			if key == '' {
 				return false
@@ -70,7 +79,8 @@ fn process_handler(update Update, subs map[string][]string) bool {
 				'message' {
 					if value.contains('starts_with') {
 						val := value.split(':').last().trim_space()
-						if update.message.text.starts_with(val) || update.message.caption.starts_with(val){
+						if update.message.text.starts_with(val)
+							|| update.message.caption.starts_with(val) {
 							return true
 						}
 					} else if value.contains('contains') {
@@ -80,7 +90,8 @@ fn process_handler(update Update, subs map[string][]string) bool {
 						}
 					} else if value.contains('ends_with') {
 						val := value.split(':').last().trim_space()
-						if update.message.text.ends_with(val) || update.message.caption.ends_with(val) {
+						if update.message.text.ends_with(val)
+							|| update.message.caption.ends_with(val) {
 							return true
 						}
 					} else if update.message.text == value || update.message.caption == value {
@@ -110,60 +121,72 @@ fn process_handler(update Update, subs map[string][]string) bool {
 				'edited_message' {
 					if value.contains('starts_with') {
 						val := value.split(':').last().trim_space()
-						if update.edited_message.text.starts_with(val) || update.edited_message.caption.starts_with(val){
+						if update.edited_message.text.starts_with(val)
+							|| update.edited_message.caption.starts_with(val) {
 							return true
 						}
 					} else if value.contains('contains') {
 						val := value.split(':').last().trim_space()
-						if update.edited_message.text.contains(val) || update.edited_message.caption.contains(val) {
+						if update.edited_message.text.contains(val)
+							|| update.edited_message.caption.contains(val) {
 							return true
 						}
 					} else if value.contains('ends_with') {
 						val := value.split(':').last().trim_space()
-						if update.edited_message.text.ends_with(val) || update.edited_message.caption.ends_with(val) {
+						if update.edited_message.text.ends_with(val)
+							|| update.edited_message.caption.ends_with(val) {
 							return true
 						}
-					} else if update.edited_message.text == value || update.edited_message.caption == value {
+					} else if update.edited_message.text == value
+						|| update.edited_message.caption == value {
 						return true
 					}
 				}
 				'channel_post' {
 					if value.contains('starts_with') {
 						val := value.split(':').last().trim_space()
-						if update.channel_post.text.starts_with(val) || update.channel_post.caption.starts_with(val){
+						if update.channel_post.text.starts_with(val)
+							|| update.channel_post.caption.starts_with(val) {
 							return true
 						}
 					} else if value.contains('contains') {
 						val := value.split(':').last().trim_space()
-						if update.channel_post.text.contains(val) || update.channel_post.caption.contains(val) {
+						if update.channel_post.text.contains(val)
+							|| update.channel_post.caption.contains(val) {
 							return true
 						}
 					} else if value.contains('ends_with') {
 						val := value.split(':').last().trim_space()
-						if update.channel_post.text.ends_with(val) || update.channel_post.caption.ends_with(val) {
+						if update.channel_post.text.ends_with(val)
+							|| update.channel_post.caption.ends_with(val) {
 							return true
 						}
-					} else if update.channel_post.text == value || update.channel_post.caption == value {
+					} else if update.channel_post.text == value
+						|| update.channel_post.caption == value {
 						return true
 					}
 				}
 				'edited_channel_post' {
 					if value.contains('starts_with') {
 						val := value.split(':').last().trim_space()
-						if update.edited_channel_post.text.starts_with(val) || update.edited_channel_post.caption.starts_with(val){
+						if update.edited_channel_post.text.starts_with(val)
+							|| update.edited_channel_post.caption.starts_with(val) {
 							return true
 						}
 					} else if value.contains('contains') {
 						val := value.split(':').last().trim_space()
-						if update.edited_channel_post.text.contains(val) || update.edited_channel_post.caption.contains(val) {
+						if update.edited_channel_post.text.contains(val)
+							|| update.edited_channel_post.caption.contains(val) {
 							return true
 						}
 					} else if value.contains('ends_with') {
 						val := value.split(':').last().trim_space()
-						if update.edited_channel_post.text.ends_with(val) || update.edited_channel_post.caption.ends_with(val) {
+						if update.edited_channel_post.text.ends_with(val)
+							|| update.edited_channel_post.caption.ends_with(val) {
 							return true
 						}
-					} else if update.edited_channel_post.text == value || update.edited_channel_post.caption == value {
+					} else if update.edited_channel_post.text == value
+						|| update.edited_channel_post.caption == value {
 						return true
 					}
 				}
@@ -238,7 +261,7 @@ fn process_handler(update Update, subs map[string][]string) bool {
 fn validate_handler_type(update Update, key string) bool {
 	match key {
 		'message' {
-			if update.message.message_id != 0{
+			if update.message.message_id != 0 {
 				return true
 			}
 		}
