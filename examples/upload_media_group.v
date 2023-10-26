@@ -34,7 +34,7 @@ fn (mut app App) send(result vt.Result) ! {
 	)!
 
 	mut mg_photo := vt.new_media_group[vt.InputMediaPhoto]()
-	jpg := vt.InputFile.new('./examples/1.jpg')!
+	jpg := vt.InputFile.new('./examples/assets/1.jpg')!
 	mg_photo.add(media: jpg)
 	app.send_media_group(
 		chat_id: result.update.message.chat.id

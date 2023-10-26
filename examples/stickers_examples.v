@@ -11,7 +11,7 @@ const vmodules_dir = os.vmodules_dir()
 
 [message: '/send']
 fn (mut app App) send(result vt.Result) ! {
-	webp := vt.InputFile.new(vmodules_dir + '/vtelegram/examples/1.webp')!
+	webp := vt.InputFile.new(vmodules_dir + '/vtelegram/examples/assets/1.webp')!
 
 	// sendSticker examples
 	app.send_sticker(
@@ -49,7 +49,7 @@ fn (mut app App) send(result vt.Result) ! {
 	println('your sticker set available via link `t.me/addstickers/${sticker_set_name}`')
 
 	//
-	webp2 := vt.InputFile.new(vmodules_dir + '/vtelegram/examples/2.webp')!
+	webp2 := vt.InputFile.new(vmodules_dir + '/vtelegram/examples/assets/2.webp')!
 	sticker2 := vt.InputSticker.new(
 		sticker: webp2
 		emoji_list: ['❤️', '💟', '🤍']

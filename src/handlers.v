@@ -20,7 +20,6 @@ const (
 )
 
 fn is_handler_pass_filters(update Update, attrs []string) bool {
-	println('is_handler_pass_filters')
 	mut subs := map[string][]string{}
 	for attr in attrs {
 		a := attr.split(':') // [message: starts_with: value]
@@ -65,9 +64,7 @@ fn is_handler_relate_to_type(update Update, attrs []string) bool {
 
 fn process_handler(update Update, subs map[string][]string) bool {
 	for key, values in subs {
-		println('process ${key} - ${values}')
 		for value_ in values {
-			println('        ${value_}')
 			value := value_.trim_space()
 			if key == '' {
 				return false
