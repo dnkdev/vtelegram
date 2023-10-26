@@ -36,7 +36,7 @@
 						<div class="info">
 							<div class="module">src</div>
 							<div class="toggle-version-container">
-								<span> 8a8129c</span>
+								<span> d11db9a</span>
 								<div
 									id="dark-mode-toggle"
 									role="switch"
@@ -1932,6 +1932,7 @@ Use this method to upload a file with a sticker for later use in the createNewSt
 </section>
 		<section id="CreateNewStickerSet" class="doc-node">
 			<div class="title"><h2>struct CreateNewStickerSet <a href="#CreateNewStickerSet">#</a></h2></div><pre class="signature"><code><span class="token keyword">struct</span> <span class="token symbol">CreateNewStickerSet</span> <span class="token punctuation">{</span>
+<span class="token keyword">pub</span><span class="token punctuation">:</span>
 	<span class="token comment">// user_id User identifier of created sticker set owner</span>
 	user_id <span class="token builtin">i64</span>
 	<span class="token comment">// name Short name of sticker set, to be used in t.me/addstickers/ URLs (e.g., animals). Can contain only English letters, digits and underscores. Must begin with a letter, can't contain consecutive underscores and must end in "_by_<bot_username>". <bot_username> is case insensitive. 1-64 characters.</span>
@@ -4441,6 +4442,7 @@ The identifier of the selected user will be shared with the bot when the corresp
 </section>
 		<section id="SendAnimation" class="doc-node">
 			<div class="title"><h2>struct SendAnimation <a href="#SendAnimation">#</a></h2></div><pre class="signature"><code><span class="token keyword">struct</span> <span class="token symbol">SendAnimation</span> <span class="token punctuation">{</span>
+<span class="token keyword">pub</span><span class="token punctuation">:</span>
 	<span class="token comment">// chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)</span>
 	chat_id <span class="token builtin">i64</span>
 	<span class="token comment">// message_thread_id Unique identifier for the target message thread (topic) of the forum; for forum supergroups only</span>
@@ -4479,6 +4481,7 @@ The identifier of the selected user will be shared with the bot when the corresp
 </section>
 		<section id="SendAudio" class="doc-node">
 			<div class="title"><h2>struct SendAudio <a href="#SendAudio">#</a></h2></div><pre class="signature"><code><span class="token keyword">struct</span> <span class="token symbol">SendAudio</span> <span class="token punctuation">{</span>
+<span class="token keyword">pub</span><span class="token punctuation">:</span>
 	<span class="token comment">// chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)</span>
 	chat_id <span class="token builtin">i64</span>
 	<span class="token comment">// message_thread_id Unique identifier for the target message thread (topic) of the forum; for forum supergroups only</span>
@@ -4527,6 +4530,7 @@ The identifier of the selected user will be shared with the bot when the corresp
 </section>
 		<section id="SendContact" class="doc-node">
 			<div class="title"><h2>struct SendContact <a href="#SendContact">#</a></h2></div><pre class="signature"><code><span class="token keyword">struct</span> <span class="token symbol">SendContact</span> <span class="token punctuation">{</span>
+<span class="token keyword">pub</span><span class="token punctuation">:</span>
 	<span class="token comment">// chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)</span>
 	chat_id <span class="token builtin">i64</span>
 	<span class="token comment">// message_thread_id Unique identifier for the target message thread (topic) of the forum; for forum supergroups only</span>
@@ -4555,6 +4559,7 @@ The identifier of the selected user will be shared with the bot when the corresp
 </section>
 		<section id="SendDice" class="doc-node">
 			<div class="title"><h2>struct SendDice <a href="#SendDice">#</a></h2></div><pre class="signature"><code><span class="token keyword">struct</span> <span class="token symbol">SendDice</span> <span class="token punctuation">{</span>
+<span class="token keyword">pub</span><span class="token punctuation">:</span>
 	<span class="token comment">// chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)</span>
 	chat_id <span class="token builtin">i64</span>
 	<span class="token comment">// message_thread_id Unique identifier for the target message thread (topic) of the forum; for forum supergroups only</span>
@@ -4577,6 +4582,7 @@ The identifier of the selected user will be shared with the bot when the corresp
 </section>
 		<section id="SendDocument" class="doc-node">
 			<div class="title"><h2>struct SendDocument <a href="#SendDocument">#</a></h2></div><pre class="signature"><code><span class="token keyword">struct</span> <span class="token symbol">SendDocument</span> <span class="token punctuation">{</span>
+<span class="token keyword">pub</span><span class="token punctuation">:</span>
 	<span class="token comment">// chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)</span>
 	chat_id <span class="token builtin">i64</span>
 	<span class="token comment">// message_thread_id Unique identifier for the target message thread (topic) of the forum; for forum supergroups only</span>
@@ -4693,6 +4699,7 @@ The identifier of the selected user will be shared with the bot when the corresp
 </section>
 		<section id="SendLocation" class="doc-node">
 			<div class="title"><h2>struct SendLocation <a href="#SendLocation">#</a></h2></div><pre class="signature"><code><span class="token keyword">struct</span> <span class="token symbol">SendLocation</span> <span class="token punctuation">{</span>
+<span class="token keyword">pub</span><span class="token punctuation">:</span>
 	<span class="token comment">// chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)</span>
 	chat_id <span class="token builtin">i64</span>
 	<span class="token comment">// message_thread_id Unique identifier for the target message thread (topic) of the forum; for forum supergroups only</span>
@@ -4794,6 +4801,7 @@ The identifier of the selected user will be shared with the bot when the corresp
 </section>
 		<section id="SendPhoto" class="doc-node">
 			<div class="title"><h2>struct SendPhoto <a href="#SendPhoto">#</a></h2></div><pre class="signature"><code><span class="token keyword">struct</span> <span class="token symbol">SendPhoto</span> <span class="token punctuation">{</span>
+<span class="token keyword">pub</span><span class="token punctuation">:</span>
 	<span class="token comment">// chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)</span>
 	chat_id <span class="token builtin">i64</span>
 	<span class="token comment">// message_thread_id Unique identifier for the target message thread (topic) of the forum; for forum supergroups only</span>
@@ -4824,6 +4832,7 @@ The identifier of the selected user will be shared with the bot when the corresp
 </section>
 		<section id="SendPoll" class="doc-node">
 			<div class="title"><h2>struct SendPoll <a href="#SendPoll">#</a></h2></div><pre class="signature"><code><span class="token keyword">struct</span> <span class="token symbol">SendPoll</span> <span class="token punctuation">{</span>
+<span class="token keyword">pub</span><span class="token punctuation">:</span>
 	<span class="token comment">// chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)</span>
 	chat_id <span class="token builtin">i64</span>
 	<span class="token comment">// message_thread_id Unique identifier for the target message thread (topic) of the forum; for forum supergroups only</span>
@@ -4893,6 +4902,7 @@ The identifier of the selected user will be shared with the bot when the corresp
 </section>
 		<section id="SendVenue" class="doc-node">
 			<div class="title"><h2>struct SendVenue <a href="#SendVenue">#</a></h2></div><pre class="signature"><code><span class="token keyword">struct</span> <span class="token symbol">SendVenue</span> <span class="token punctuation">{</span>
+<span class="token keyword">pub</span><span class="token punctuation">:</span>
 	<span class="token comment">// chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)</span>
 	chat_id <span class="token builtin">i64</span>
 	<span class="token comment">// message_thread_id Unique identifier for the target message thread (topic) of the forum; for forum supergroups only</span>
@@ -4929,6 +4939,7 @@ The identifier of the selected user will be shared with the bot when the corresp
 </section>
 		<section id="SendVideo" class="doc-node">
 			<div class="title"><h2>struct SendVideo <a href="#SendVideo">#</a></h2></div><pre class="signature"><code><span class="token keyword">struct</span> <span class="token symbol">SendVideo</span> <span class="token punctuation">{</span>
+<span class="token keyword">pub</span><span class="token punctuation">:</span>
 	<span class="token comment">// chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)</span>
 	chat_id <span class="token builtin">i64</span>
 	<span class="token comment">// message_thread_id Unique identifier for the target message thread (topic) of the forum; for forum supergroups only</span>
@@ -4969,6 +4980,7 @@ The identifier of the selected user will be shared with the bot when the corresp
 </section>
 		<section id="SendVideoNote" class="doc-node">
 			<div class="title"><h2>struct SendVideoNote <a href="#SendVideoNote">#</a></h2></div><pre class="signature"><code><span class="token keyword">struct</span> <span class="token symbol">SendVideoNote</span> <span class="token punctuation">{</span>
+<span class="token keyword">pub</span><span class="token punctuation">:</span>
 	<span class="token comment">// chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)</span>
 	chat_id <span class="token builtin">i64</span>
 	<span class="token comment">// message_thread_id Unique identifier for the target message thread (topic) of the forum; for forum supergroups only</span>
@@ -4997,6 +5009,7 @@ The identifier of the selected user will be shared with the bot when the corresp
 </section>
 		<section id="SendVoice" class="doc-node">
 			<div class="title"><h2>struct SendVoice <a href="#SendVoice">#</a></h2></div><pre class="signature"><code><span class="token keyword">struct</span> <span class="token symbol">SendVoice</span> <span class="token punctuation">{</span>
+<span class="token keyword">pub</span><span class="token punctuation">:</span>
 	<span class="token comment">// chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)</span>
 	chat_id <span class="token builtin">i64</span>
 	<span class="token comment">// message_thread_id Unique identifier for the target message thread (topic) of the forum; for forum supergroups only</span>
@@ -5810,7 +5823,7 @@ The identifier of the selected user will be shared with the bot when the corresp
 
 </section>
 
-						<div class="footer">Powered by vdoc. Generated on: 23 Oct 2023 11:14:35</div>
+						<div class="footer">Powered by vdoc. Generated on: 26 Oct 2023 08:03:49</div>
 					</div>
 					<div class="doc-toc"><ul><li class="open"><a href="#readme_vtelegram">README</a></li>
 <li class="open"><a href="#Constants">Constants</a></li>
