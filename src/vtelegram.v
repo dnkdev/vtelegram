@@ -41,11 +41,7 @@ pub struct Regular {}
 // register_middleware synchronize fields with same name, middleware fields, which have `sync` attributes
 fn register_middleware[T, N](bot T, mut mw N) {
 	$for field in N.fields {
-		for attr in field.attrs {
-			if attr == 'sync' {
-				mw.$(field.name) = bot.$(field.name)
-			}
-		}
+		mw.$(field.name) = bot.$(field.name)
 	}
 }
 

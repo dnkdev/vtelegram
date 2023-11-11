@@ -90,4 +90,3 @@ For now middlewares can:
 
 - Prevent update for passing to handlers ( middleware methods must return bool, `false` for prevent update )
 - Transform update
-- Pass data in `map[string]string` type to handlers

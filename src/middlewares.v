@@ -1,46 +1,5 @@
 module vtelegram
 
-// get_middleware_data == middleware.data
-// Generic type function, to pass your middleware in function argument
-// get_middleware_data(your_middleware)
-pub fn get_middleware_data[T](middleware T) map[string]string {
-	$if T !is Regular {
-		$for field in T.fields { // compile time check if user middleware have 'data' field
-			$if field.is_map {
-				$if field.name == 'data' {
-					return middleware.$(field.name)
-				}
-			}
-		}
-	}
-	return map[string]string{}
-}
-
-// delete_middleware_data delete one key from data
-// delete_middleware_data(your_middleware, 'key')
-pub fn delete_middleware_data[T](mut middleware T, key string) {
-	middleware.data.delete(key)
-}
-
-// clear_middleware_data function for data manual clear
-// clear_middleware_data(your_middleware)
-pub fn clear_middleware_data[T](mut middleware T) {
-	middleware.data.clear()
-	// $for field in T.fields{
-	// 	if field.name == 'stash_data'{
-	// 		if middleware.stash_data{
-	// 			return
-	// 		}
-	// 		//middleware.data.clear()
-	// 		for k, _ in middleware.data {
-	// 			unsafe {
-	// 				middleware.data.delete(k)
-	// 			}
-	// 		}
-	// 	}
-	// }
-}
-
 fn is_middleware_relate_to_type(mut update Update, attrs []string) bool {
 	for handler in handler_types {
 		if attrs.any(it.contains(handler)) {

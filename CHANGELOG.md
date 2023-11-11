@@ -1,6 +1,6 @@
 ## v 0.11.1
 
-- synchronize specified fields with middleware and bot structs with `sync` attribute in middleware struct fields. Name of fields should match in both structs.
+- Middleware struct fields should match with bot struct fields! No option found for prevent the V compiler to limit field selection/checking in __compile time__. 
 
 ```v
 struct App{
@@ -8,7 +8,7 @@ struct App{
     log LogStruct
 }
 struct Middleware{
-    log LogStruct [sync]
+    log LogStruct
 }
 ```
 

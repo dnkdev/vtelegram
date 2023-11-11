@@ -5,8 +5,6 @@ import time
 pub struct Result {
 pub:
 	update Update
-pub mut:
-	data map[string]string
 }
 
 fn handle_update[T, N](mut app T, mut middleware N, update Update) {
@@ -21,7 +19,6 @@ fn handle_update[T, N](mut app T, mut middleware N, update Update) {
 
 	result := Result{
 		update: update_new
-		data: get_middleware_data(&middleware)
 	}
 	$for method in T.methods {
 		if method.attrs.len > 0 {
