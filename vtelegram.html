@@ -36,7 +36,7 @@
 						<div class="info">
 							<div class="module">src</div>
 							<div class="toggle-version-container">
-								<span> d11db9a</span>
+								<span> 44cf145</span>
 								<div
 									id="dark-mode-toggle"
 									role="switch"
@@ -73,46 +73,10 @@
 <h1>VTelegram 0.11
 <img align="right" style="margin-top:15px;" src="https://img.shields.io/static/v1?logo=telegram&label=Telegram Bot API&message=6.9&labelColor=ffffff&color=blue" href="https://core.telegram.org/bots/api">
 </h1>
-<p>Library for building telegram bots in V language. <br><br>
-<strong>Early stage</strong>. In some cases, it does what should.<br><br>
-All methods are in snake_case instead of camelCase: <code>send_message</code> instead of <code>sendMessage</code>.
-<br>
-You can get acquainted with the Telegram Bot API <a href="https://core.telegram.org/bots/api">here</a>.</p>
-<h2>Important Note</h2>
-<p>This library was primarily developed for personal use, and while it provides some functionality, it may lack comprehensive knowledge of best practices and advanced features. Additionally, it has not been tested in real-life high-pressure projects. However, this library may have further evolving, at the moment based on my needs and preferences.</p>
-<p>So to be transparent about the state of this library:</p>
-<ul>
-<li>The library may not follow best practices.</li>
-<li>Gaps in the features of the Telegram Bot API.</li>
-<li>Real-life high-pressure testing has not been conducted.</li>
-<li>It is worth consider the state of the V language</li>
-</ul>
-<p><b>* V language need to have proper concurrency in next 0.5 release to work smoothly... existed <code>spawn</code> is making lower level threads and overhead of them could lead to unexpected behavior.</b></p>
-<h3>Contributing</h3>
-<p>Contributions to this library are highly welcome. If you have suggestions for improvements, bug fixes, or additional features, please feel free to open an issue or submit a PR.</p>
-<h2>Installation</h2>
-<pre><code>v install https://github.com/dnkdev/vtelegram
+<p>Library for building telegram bots in V language. <br><br><strong>Early stage</strong>. In some cases, it does what should.<br><br>All methods are in snake_case instead of camelCase: <code>send_message</code> instead of <code>sendMessage</code>.<br>You can get acquainted with the Telegram Bot API <a href="https://core.telegram.org/bots/api">here</a>.</p><h2>Important Note</h2><p>This library was primarily developed for personal use, and while it provides some functionality, it may lack comprehensive knowledge of best practices and advanced features. Additionally, it has not been tested in real-life high-pressure projects. However, this library may have further evolving, at the moment based on my needs and preferences.</p><p>So to be transparent about the state of this library:</p><ul><li>The library may not follow best practices.</li><li>Gaps in the features of the Telegram Bot API.</li><li>Real-life high-pressure testing has not been conducted.</li><li>It is worth consider the state of the V language</li></ul><p><b>* V language need to have proper concurrency in next 0.5 release to work smoothly... existed <code>spawn</code> is making lower level threads and overhead of them could lead to unexpected behavior.</b></p><h3>Contributing</h3><p>Contributions to this library are highly welcome. If you have suggestions for improvements, bug fixes, or additional features, please feel free to open an issue or submit a PR.</p><h2>Installation</h2><pre><code>v install https://github.com/dnkdev/vtelegram
 
 import vtelegram
-</code></pre>
-<h2>Roadmap</h2>
-<ul>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled checked>All updates handling using attributes</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled checked>Middlewares <code>Test</code></li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled checked>Context Filters</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled checked>Single files uploading and sending</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled checked>MediaGroup uploading and sending</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled checked>Sticker uploading, sticker set creation</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled>WebHooks</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled>Methods with <code>chat_id</code> field in the format <code>@username</code> (atm only in <code>i64</code> - unique id)</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled>more</li>
-</ul>
-<h2>Quick start</h2>
-<p><a href="https://github.com/dnkdev/vtelegram/tree/master/examples">Examples</a> of vtelegram use.<br>
-<a href="https://github.com/dnkdev/vtelegram/wiki/Tutorials">Tutorials</a> on wiki page, with a bit broader explanation of key features.</p>
-<h3>Handler attributes</h3>
-<p>Handlers are your <em>methods</em> which are marked with the attributes which are listed below to indicate which update your method will handle.</p>
-<pre><code class="language-v">message
+</code></pre><h2>Roadmap</h2><ul><li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled checked>All updates handling using attributes</li><li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled checked>Middlewares <code>Test</code></li><li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled checked>Context Filters</li><li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled checked>Single files uploading and sending</li><li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled checked>MediaGroup uploading and sending</li><li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled checked>Sticker uploading, sticker set creation</li><li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled>WebHooks</li><li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled>Methods with <code>chat_id</code> field in the format <code>@username</code> (atm only in <code>i64</code> - unique id)</li><li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled>more</li></ul><h2>Quick start</h2><p><a href="https://github.com/dnkdev/vtelegram/tree/master/examples">Examples</a> of vtelegram use.<br><a href="https://github.com/dnkdev/vtelegram/wiki/Tutorials">Tutorials</a> on wiki page, with a bit broader explanation of key features.</p><h3>Handler attributes</h3><p>Handlers are your <em>methods</em> which are marked with the attributes which are listed below to indicate which update your method will handle.</p><pre><code class="language-v">message
 edited_message
 channel_post
 edited_channel_post
@@ -125,20 +89,7 @@ poll
 poll_answer
 my_chat_member
 chat_member
-chat_join_request
-</code></pre>
-<h3>Context Filters and Middleware</h3>
-<p>Context filters determine which update is relevant.<br>
-For example, <code>[context: 'private']</code> specifies that your method will handle updates only in private chats. You can set a context filter both on top of middleware and on top of the handling function. That way you can handle updates and build logic very flexible.</p>
-<p>Update handling flow can be defined as follows: <br></p>
-<pre><code>Getting update -&gt; Filters -&gt; Middleware -&gt; Filters -&gt; Your Handling Function
-</code></pre>
-<p>For now middlewares can:</p>
-<ul>
-<li>Prevent update for passing to handlers ( middleware methods must return bool, <code>false</code> for prevent update )</li>
-<li>Transform update</li>
-<li>Pass data in <code>map[string]string</code> type to handlers</li>
-</ul>
+chat_join_request</code></pre><h3>Context Filters and Middleware</h3><p>Context filters determine which update is relevant.<br>For example, <code>[context: 'private']</code> specifies that your method will handle updates only in private chats. You can set a context filter both on top of middleware and on top of the handling function. That way you can handle updates and build logic very flexible.</p><p>Update handling flow can be defined as follows: <br></p><pre><code>Getting update <span class="token operator">-</span><span class="token operator">&</span>gt<span class="token punctuation">;</span> Filters <span class="token operator">-</span><span class="token operator">&</span>gt<span class="token punctuation">;</span> Middleware <span class="token operator">-</span><span class="token operator">&</span>gt<span class="token punctuation">;</span> Filters <span class="token operator">-</span><span class="token operator">&</span>gt<span class="token punctuation">;</span> Your Handling Function</code></pre><p>For now middlewares can:</p><ul><li>Prevent update for passing to handlers ( middleware methods must return bool, <code>false</code> for prevent update )</li><li>Transform update</li><li>Pass data in <code>map[string]string</code> type to handlers</li></ul>
 
 </section>
 
@@ -407,39 +358,32 @@ For example, <code>[context: 'private']</code> specifies that your method will h
 </section>
 		<section id="Bot.add_sticker_to_set" class="doc-node">
 			<div class="title"><h2>fn (Bot) add_sticker_to_set <a href="#Bot.add_sticker_to_set">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">add_sticker_to_set</span><span class="token punctuation">(</span>params_ AddStickerToSet<span class="token punctuation">)</span> <span class="token operator">!</span><span class="token builtin">bool</span></code></pre>
-<p>add_sticker_to_set - addStickerToSet
-Use this method to add a new sticker to a set created by the bot. You must use exactly one of the fields png_sticker, tgs_sticker, or webm_sticker. Animated stickers can be added to animated sticker sets and only to them. Animated sticker sets can have up to 50 stickers. Static sticker sets can have up to 120 stickers. Returns True on success.</p>
+<p>add_sticker_to_set - addStickerToSetUse this method to add a new sticker to a set created by the bot. You must use exactly one of the fields png_sticker, tgs_sticker, or webm_sticker. Animated stickers can be added to animated sticker sets and only to them. Animated sticker sets can have up to 50 stickers. Static sticker sets can have up to 120 stickers. Returns True on success.</p>
 
 </section>
 		<section id="Bot.answer_callback_query" class="doc-node">
 			<div class="title"><h2>fn (Bot) answer_callback_query <a href="#Bot.answer_callback_query">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">answer_callback_query</span><span class="token punctuation">(</span>params AnswerCallbackQuery<span class="token punctuation">)</span> <span class="token operator">!</span><span class="token builtin">bool</span></code></pre>
-<p>answer_callback_query - answerCallbackQuery
-Use this method to send answers to callback queries sent from inline keyboards. The answer will be displayed to the user as a notification at the top of the chat screen or as an alert. On success, True is returned.</p>
+<p>answer_callback_query - answerCallbackQueryUse this method to send answers to callback queries sent from inline keyboards. The answer will be displayed to the user as a notification at the top of the chat screen or as an alert. On success, True is returned.</p>
 
 </section>
 		<section id="Bot.answer_inline_query" class="doc-node">
 			<div class="title"><h2>fn (Bot) answer_inline_query <a href="#Bot.answer_inline_query">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">answer_inline_query</span><span class="token punctuation">(</span>params AnswerInlineQuery<span class="token punctuation">)</span> <span class="token operator">!</span><span class="token builtin">bool</span></code></pre>
-<p>answer_inline_query - answerInlineQuery
-Use this method to send answers to an inline query. On success, True is returned.<br>
-No more than 50 results per query are allowed.</p>
+<p>answer_inline_query - answerInlineQueryUse this method to send answers to an inline query. On success, True is returned.<br />No more than 50 results per query are allowed.</p>
 
 </section>
 		<section id="Bot.answer_pre_checkout_query" class="doc-node">
 			<div class="title"><h2>fn (Bot) answer_pre_checkout_query <a href="#Bot.answer_pre_checkout_query">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">answer_pre_checkout_query</span><span class="token punctuation">(</span>params AnswerPreCheckoutQuery<span class="token punctuation">)</span> <span class="token operator">!</span><span class="token builtin">bool</span></code></pre>
-<p>answer_pre_checkout_query - answerPreCheckoutQuery
-Once the user has confirmed their payment and shipping details, the Bot API sends the final confirmation in the form of an Update with the field pre_checkout_query. Use this method to respond to such pre-checkout queries. On success, True is returned. Note: The Bot API must receive an answer within 10 seconds after the pre-checkout query was sent.</p>
+<p>answer_pre_checkout_query - answerPreCheckoutQueryOnce the user has confirmed their payment and shipping details, the Bot API sends the final confirmation in the form of an Update with the field pre_checkout_query. Use this method to respond to such pre-checkout queries. On success, True is returned. Note: The Bot API must receive an answer within 10 seconds after the pre-checkout query was sent.</p>
 
 </section>
 		<section id="Bot.answer_shipping_query" class="doc-node">
 			<div class="title"><h2>fn (Bot) answer_shipping_query <a href="#Bot.answer_shipping_query">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">answer_shipping_query</span><span class="token punctuation">(</span>params AnswerShippingQuery<span class="token punctuation">)</span> <span class="token operator">!</span><span class="token builtin">bool</span></code></pre>
-<p>answer_shipping_query - answerShippingQuery
-If you sent an invoice requesting a shipping address and the parameter is_flexible was specified, the Bot API will send an Update with a shipping_query field to the bot. Use this method to reply to shipping queries. On success, True is returned.</p>
+<p>answer_shipping_query - answerShippingQueryIf you sent an invoice requesting a shipping address and the parameter is_flexible was specified, the Bot API will send an Update with a shipping_query field to the bot. Use this method to reply to shipping queries. On success, True is returned.</p>
 
 </section>
 		<section id="Bot.answer_web_app_query" class="doc-node">
 			<div class="title"><h2>fn (Bot) answer_web_app_query <a href="#Bot.answer_web_app_query">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">answer_web_app_query</span><span class="token punctuation">(</span>params AnswerWebAppQuery<span class="token punctuation">)</span> <span class="token operator">!</span>SentWebAppMessage</code></pre>
-<p>answer_web_app_query - answerWebAppQuery
-Use this method to set the result of an interaction with a Web App and send a corresponding message on behalf of the user to the chat from which the query originated. On success, a SentWebAppMessage object is returned.</p>
+<p>answer_web_app_query - answerWebAppQueryUse this method to set the result of an interaction with a Web App and send a corresponding message on behalf of the user to the chat from which the query originated. On success, a SentWebAppMessage object is returned.</p>
 
 </section>
 		<section id="Bot.api_multipart_form_request" class="doc-node">
@@ -454,644 +398,527 @@ Use this method to set the result of an interaction with a Web App and send a co
 </section>
 		<section id="Bot.approve_chat_join_request" class="doc-node">
 			<div class="title"><h2>fn (Bot) approve_chat_join_request <a href="#Bot.approve_chat_join_request">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">approve_chat_join_request</span><span class="token punctuation">(</span>params ApproveChatJoinRequest<span class="token punctuation">)</span> <span class="token operator">!</span><span class="token builtin">bool</span></code></pre>
-<p>approve_chat_join_request - approveChatJoinRequest
-Use this method to approve a chat join request. The bot must be an administrator in the chat for this to work and must have the can_invite_users administrator right. Returns True on success.</p>
+<p>approve_chat_join_request - approveChatJoinRequestUse this method to approve a chat join request. The bot must be an administrator in the chat for this to work and must have the can_invite_users administrator right. Returns True on success.</p>
 
 </section>
 		<section id="Bot.ban_chat_member" class="doc-node">
 			<div class="title"><h2>fn (Bot) ban_chat_member <a href="#Bot.ban_chat_member">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">ban_chat_member</span><span class="token punctuation">(</span>params BanChatMember<span class="token punctuation">)</span> <span class="token operator">!</span><span class="token builtin">bool</span></code></pre>
-<p>ban_chat_member - banChatMember
-Use this method to ban a user in a group, a supergroup or a channel. In the case of supergroups and channels, the user will not be able to return to the chat on their own using invite links, etc., unless unbanned first. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns True on success.</p>
+<p>ban_chat_member - banChatMemberUse this method to ban a user in a group, a supergroup or a channel. In the case of supergroups and channels, the user will not be able to return to the chat on their own using invite links, etc., unless unbanned first. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns True on success.</p>
 
 </section>
 		<section id="Bot.ban_chat_sender_chat" class="doc-node">
 			<div class="title"><h2>fn (Bot) ban_chat_sender_chat <a href="#Bot.ban_chat_sender_chat">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">ban_chat_sender_chat</span><span class="token punctuation">(</span>params BanChatSenderChat<span class="token punctuation">)</span> <span class="token operator">!</span><span class="token builtin">bool</span></code></pre>
-<p>ban_chat_sender_chat - banChatSenderChat
-Use this method to ban a channel chat in a supergroup or a channel. Until the chat is unbanned, the owner of the banned chat won't be able to send messages on behalf of any of their channels. The bot must be an administrator in the supergroup or channel for this to work and must have the appropriate administrator rights. Returns True on success.</p>
+<p>ban_chat_sender_chat - banChatSenderChatUse this method to ban a channel chat in a supergroup or a channel. Until the chat is unbanned, the owner of the banned chat won't be able to send messages on behalf of any of their channels. The bot must be an administrator in the supergroup or channel for this to work and must have the appropriate administrator rights. Returns True on success.</p>
 
 </section>
 		<section id="Bot.close" class="doc-node">
 			<div class="title"><h2>fn (Bot) close <a href="#Bot.close">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">close</span><span class="token punctuation">(</span>params Close<span class="token punctuation">)</span> <span class="token operator">!</span><span class="token builtin">bool</span></code></pre>
-<p>close - close
-Use this method to close the bot instance before moving it from one local server to another. You need to delete the webhook before calling this method to ensure that the bot isn't launched again after server restart. The method will return error 429 in the first 10 minutes after the bot is launched. Returns True on success. Requires no parameters.</p>
+<p>close - closeUse this method to close the bot instance before moving it from one local server to another. You need to delete the webhook before calling this method to ensure that the bot isn't launched again after server restart. The method will return error 429 in the first 10 minutes after the bot is launched. Returns True on success. Requires no parameters.</p>
 
 </section>
 		<section id="Bot.close_forum_topic" class="doc-node">
 			<div class="title"><h2>fn (Bot) close_forum_topic <a href="#Bot.close_forum_topic">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">close_forum_topic</span><span class="token punctuation">(</span>params CloseForumTopic<span class="token punctuation">)</span> <span class="token operator">!</span><span class="token builtin">bool</span></code></pre>
-<p>close_forum_topic - closeForumTopic
-Use this method to close an open topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the can_manage_topics administrator rights, unless it is the creator of the topic. Returns True on success.</p>
+<p>close_forum_topic - closeForumTopicUse this method to close an open topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the can_manage_topics administrator rights, unless it is the creator of the topic. Returns True on success.</p>
 
 </section>
 		<section id="Bot.close_general_forum_topic" class="doc-node">
 			<div class="title"><h2>fn (Bot) close_general_forum_topic <a href="#Bot.close_general_forum_topic">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">close_general_forum_topic</span><span class="token punctuation">(</span>params CloseGeneralForumTopic<span class="token punctuation">)</span> <span class="token operator">!</span><span class="token builtin">bool</span></code></pre>
-<p>close_general_forum_topic - closeGeneralForumTopic
-Use this method to close an open 'General' topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the can_manage_topics administrator rights. Returns True on success.</p>
+<p>close_general_forum_topic - closeGeneralForumTopicUse this method to close an open 'General' topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the can_manage_topics administrator rights. Returns True on success.</p>
 
 </section>
 		<section id="Bot.copy_message" class="doc-node">
 			<div class="title"><h2>fn (Bot) copy_message <a href="#Bot.copy_message">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">copy_message</span><span class="token punctuation">(</span>params CopyMessage<span class="token punctuation">)</span> <span class="token operator">!</span>MessageId</code></pre>
-<p>copy_message - copyMessage
-Use this method to copy messages of any kind. Service messages and invoice messages can't be copied. A quiz poll can be copied only if the value of the field correct_option_id is known to the bot. The method is analogous to the method forwardMessage, but the copied message doesn't have a link to the original message. Returns the MessageId of the sent message on success.</p>
+<p>copy_message - copyMessageUse this method to copy messages of any kind. Service messages and invoice messages can't be copied. A quiz poll can be copied only if the value of the field correct_option_id is known to the bot. The method is analogous to the method forwardMessage, but the copied message doesn't have a link to the original message. Returns the MessageId of the sent message on success.</p>
 
 </section>
 		<section id="Bot.create_chat_invite_link" class="doc-node">
 			<div class="title"><h2>fn (Bot) create_chat_invite_link <a href="#Bot.create_chat_invite_link">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">create_chat_invite_link</span><span class="token punctuation">(</span>params CreateChatInviteLink<span class="token punctuation">)</span> <span class="token operator">!</span>ChatInviteLink</code></pre>
-<p>create_chat_invite_link - createChatInviteLink
-Use this method to create an additional invite link for a chat. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. The link can be revoked using the method revokeChatInviteLink. Returns the new invite link as ChatInviteLink object.</p>
+<p>create_chat_invite_link - createChatInviteLinkUse this method to create an additional invite link for a chat. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. The link can be revoked using the method revokeChatInviteLink. Returns the new invite link as ChatInviteLink object.</p>
 
 </section>
 		<section id="Bot.create_forum_topic" class="doc-node">
 			<div class="title"><h2>fn (Bot) create_forum_topic <a href="#Bot.create_forum_topic">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">create_forum_topic</span><span class="token punctuation">(</span>params CreateForumTopic<span class="token punctuation">)</span> <span class="token operator">!</span>ForumTopic</code></pre>
-<p>create_forum_topic - createForumTopic
-Use this method to create a topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the can_manage_topics administrator rights. Returns information about the created topic as a ForumTopic object.</p>
+<p>create_forum_topic - createForumTopicUse this method to create a topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the can_manage_topics administrator rights. Returns information about the created topic as a ForumTopic object.</p>
 
 </section>
 		<section id="Bot.create_invoice_link" class="doc-node">
 			<div class="title"><h2>fn (Bot) create_invoice_link <a href="#Bot.create_invoice_link">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">create_invoice_link</span><span class="token punctuation">(</span>params CreateInvoiceLink<span class="token punctuation">)</span> <span class="token operator">!</span><span class="token builtin">string</span></code></pre>
-<p>create_invoice_link - createInvoiceLink
-Use this method to create a link for an invoice. Returns the created invoice link as String on success.</p>
+<p>create_invoice_link - createInvoiceLinkUse this method to create a link for an invoice. Returns the created invoice link as String on success.</p>
 
 </section>
 		<section id="Bot.create_new_sticker_set" class="doc-node">
 			<div class="title"><h2>fn (Bot) create_new_sticker_set <a href="#Bot.create_new_sticker_set">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">create_new_sticker_set</span><span class="token punctuation">(</span>params_ CreateNewStickerSet<span class="token punctuation">)</span> <span class="token operator">!</span><span class="token builtin">bool</span></code></pre>
-<p>create_new_sticker_set - createNewStickerSet
-Use this method to create a new sticker set owned by a user. The bot will be able to edit the sticker set thus created. You must use exactly one of the fields png_sticker, tgs_sticker, or webm_sticker. Returns True on success.</p>
+<p>create_new_sticker_set - createNewStickerSetUse this method to create a new sticker set owned by a user. The bot will be able to edit the sticker set thus created. You must use exactly one of the fields png_sticker, tgs_sticker, or webm_sticker. Returns True on success.</p>
 
 </section>
 		<section id="Bot.decline_chat_join_request" class="doc-node">
 			<div class="title"><h2>fn (Bot) decline_chat_join_request <a href="#Bot.decline_chat_join_request">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">decline_chat_join_request</span><span class="token punctuation">(</span>params DeclineChatJoinRequest<span class="token punctuation">)</span> <span class="token operator">!</span><span class="token builtin">bool</span></code></pre>
-<p>decline_chat_join_request - declineChatJoinRequest
-Use this method to decline a chat join request. The bot must be an administrator in the chat for this to work and must have the can_invite_users administrator right. Returns True on success.</p>
+<p>decline_chat_join_request - declineChatJoinRequestUse this method to decline a chat join request. The bot must be an administrator in the chat for this to work and must have the can_invite_users administrator right. Returns True on success.</p>
 
 </section>
 		<section id="Bot.delete_chat_photo" class="doc-node">
 			<div class="title"><h2>fn (Bot) delete_chat_photo <a href="#Bot.delete_chat_photo">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">delete_chat_photo</span><span class="token punctuation">(</span>params DeleteChatPhoto<span class="token punctuation">)</span> <span class="token operator">!</span><span class="token builtin">bool</span></code></pre>
-<p>delete_chat_photo - deleteChatPhoto
-Use this method to delete a chat photo. Photos can't be changed for private chats. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns True on success.</p>
+<p>delete_chat_photo - deleteChatPhotoUse this method to delete a chat photo. Photos can't be changed for private chats. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns True on success.</p>
 
 </section>
 		<section id="Bot.delete_chat_sticker_set" class="doc-node">
 			<div class="title"><h2>fn (Bot) delete_chat_sticker_set <a href="#Bot.delete_chat_sticker_set">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">delete_chat_sticker_set</span><span class="token punctuation">(</span>params DeleteChatStickerSet<span class="token punctuation">)</span> <span class="token operator">!</span><span class="token builtin">bool</span></code></pre>
-<p>delete_chat_sticker_set - deleteChatStickerSet
-Use this method to delete a group sticker set from a supergroup. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Use the field can_set_sticker_set optionally returned in getChat requests to check if the bot can use this method. Returns True on success.</p>
+<p>delete_chat_sticker_set - deleteChatStickerSetUse this method to delete a group sticker set from a supergroup. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Use the field can_set_sticker_set optionally returned in getChat requests to check if the bot can use this method. Returns True on success.</p>
 
 </section>
 		<section id="Bot.delete_forum_topic" class="doc-node">
 			<div class="title"><h2>fn (Bot) delete_forum_topic <a href="#Bot.delete_forum_topic">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">delete_forum_topic</span><span class="token punctuation">(</span>params DeleteForumTopic<span class="token punctuation">)</span> <span class="token operator">!</span><span class="token builtin">bool</span></code></pre>
-<p>delete_forum_topic - deleteForumTopic
-Use this method to delete a forum topic along with all its messages in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the can_delete_messages administrator rights. Returns True on success.</p>
+<p>delete_forum_topic - deleteForumTopicUse this method to delete a forum topic along with all its messages in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the can_delete_messages administrator rights. Returns True on success.</p>
 
 </section>
 		<section id="Bot.delete_message" class="doc-node">
 			<div class="title"><h2>fn (Bot) delete_message <a href="#Bot.delete_message">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">delete_message</span><span class="token punctuation">(</span>params DeleteMessage<span class="token punctuation">)</span> <span class="token operator">!</span><span class="token builtin">bool</span></code></pre>
-<p>delete_message - deleteMessage Use this method to delete a message, including service messages, with the following limitations:</p>
-<ul>
-<li>A message can only be deleted if it was sent less than 48 hours ago.</li>
-<li>Service messages about a supergroup, channel, or forum topic creation can't be deleted.</li>
-<li>A dice message in a private chat can only be deleted if it was sent more than 24 hours ago.</li>
-<li>Bots can delete outgoing messages in private chats, groups, and supergroups.</li>
-<li>Bots can delete incoming messages in private chats.</li>
-<li>Bots granted can_post_messages permissions can delete outgoing messages in channels.</li>
-<li>If the bot is an administrator of a group, it can delete any message there.</li>
-<li>If the bot has can_delete_messages permission in a supergroup or a channel, it can delete any message there.
-Returns True on success.</li>
-</ul>
+<p>delete_message - deleteMessage Use this method to delete a message, including service messages, with the following limitations:</p><ul><li>A message can only be deleted if it was sent less than 48 hours ago.</li><li>Service messages about a supergroup, channel, or forum topic creation can't be deleted.</li><li>A dice message in a private chat can only be deleted if it was sent more than 24 hours ago.</li><li>Bots can delete outgoing messages in private chats, groups, and supergroups.</li><li>Bots can delete incoming messages in private chats.</li><li>Bots granted can_post_messages permissions can delete outgoing messages in channels.</li><li>If the bot is an administrator of a group, it can delete any message there.</li><li>If the bot has can_delete_messages permission in a supergroup or a channel, it can delete any message there.Returns True on success.</li></ul>
 
 </section>
 		<section id="Bot.delete_my_commands" class="doc-node">
 			<div class="title"><h2>fn (Bot) delete_my_commands <a href="#Bot.delete_my_commands">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">delete_my_commands</span><span class="token punctuation">(</span>params DeleteMyCommands<span class="token punctuation">)</span> <span class="token operator">!</span><span class="token builtin">bool</span></code></pre>
-<p>delete_my_commands - deleteMyCommands
-Use this method to delete the list of the bot's commands for the given scope and user language. After deletion, higher level commands will be shown to affected users. Returns True on success.</p>
+<p>delete_my_commands - deleteMyCommandsUse this method to delete the list of the bot's commands for the given scope and user language. After deletion, higher level commands will be shown to affected users. Returns True on success.</p>
 
 </section>
 		<section id="Bot.delete_sticker_from_set" class="doc-node">
 			<div class="title"><h2>fn (Bot) delete_sticker_from_set <a href="#Bot.delete_sticker_from_set">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">delete_sticker_from_set</span><span class="token punctuation">(</span>params DeleteStickerFromSet<span class="token punctuation">)</span> <span class="token operator">!</span><span class="token builtin">bool</span></code></pre>
-<p>delete_sticker_from_set - deleteStickerFromSet
-Use this method to delete a sticker from a set created by the bot. Returns True on success.</p>
+<p>delete_sticker_from_set - deleteStickerFromSetUse this method to delete a sticker from a set created by the bot. Returns True on success.</p>
 
 </section>
 		<section id="Bot.delete_sticker_set" class="doc-node">
 			<div class="title"><h2>fn (Bot) delete_sticker_set <a href="#Bot.delete_sticker_set">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">delete_sticker_set</span><span class="token punctuation">(</span>params DeleteStickerSet<span class="token punctuation">)</span> <span class="token operator">!</span><span class="token builtin">bool</span></code></pre>
-<p>delete_sticker_set - deleteStickerSet
-Use this method to delete a sticker set that was created by the bot. Returns True on success.</p>
+<p>delete_sticker_set - deleteStickerSetUse this method to delete a sticker set that was created by the bot. Returns True on success.</p>
 
 </section>
 		<section id="Bot.delete_webhook" class="doc-node">
 			<div class="title"><h2>fn (Bot) delete_webhook <a href="#Bot.delete_webhook">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">delete_webhook</span><span class="token punctuation">(</span>params DeleteWebhook<span class="token punctuation">)</span> <span class="token operator">!</span><span class="token builtin">bool</span></code></pre>
-<p>delete_webhook - deleteWebhook
-Use this method to remove webhook integration if you decide to switch back to getUpdates. Returns True on success.</p>
+<p>delete_webhook - deleteWebhookUse this method to remove webhook integration if you decide to switch back to getUpdates. Returns True on success.</p>
 
 </section>
 		<section id="Bot.edit_chat_invite_link" class="doc-node">
 			<div class="title"><h2>fn (Bot) edit_chat_invite_link <a href="#Bot.edit_chat_invite_link">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">edit_chat_invite_link</span><span class="token punctuation">(</span>params EditChatInviteLink<span class="token punctuation">)</span> <span class="token operator">!</span>ChatInviteLink</code></pre>
-<p>edit_chat_invite_link - editChatInviteLink
-Use this method to edit a non-primary invite link created by the bot. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns the edited invite link as a ChatInviteLink object.</p>
+<p>edit_chat_invite_link - editChatInviteLinkUse this method to edit a non-primary invite link created by the bot. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns the edited invite link as a ChatInviteLink object.</p>
 
 </section>
 		<section id="Bot.edit_forum_topic" class="doc-node">
 			<div class="title"><h2>fn (Bot) edit_forum_topic <a href="#Bot.edit_forum_topic">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">edit_forum_topic</span><span class="token punctuation">(</span>params EditForumTopic<span class="token punctuation">)</span> <span class="token operator">!</span><span class="token builtin">bool</span></code></pre>
-<p>edit_forum_topic - editForumTopic
-Use this method to edit name and icon of a topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have can_manage_topics administrator rights, unless it is the creator of the topic. Returns True on success.</p>
+<p>edit_forum_topic - editForumTopicUse this method to edit name and icon of a topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have can_manage_topics administrator rights, unless it is the creator of the topic. Returns True on success.</p>
 
 </section>
 		<section id="Bot.edit_general_forum_topic" class="doc-node">
 			<div class="title"><h2>fn (Bot) edit_general_forum_topic <a href="#Bot.edit_general_forum_topic">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">edit_general_forum_topic</span><span class="token punctuation">(</span>params EditGeneralForumTopic<span class="token punctuation">)</span> <span class="token operator">!</span><span class="token builtin">bool</span></code></pre>
-<p>edit_general_forum_topic - editGeneralForumTopic
-Use this method to edit the name of the 'General' topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have can_manage_topics administrator rights. Returns True on success.</p>
+<p>edit_general_forum_topic - editGeneralForumTopicUse this method to edit the name of the 'General' topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have can_manage_topics administrator rights. Returns True on success.</p>
 
 </section>
 		<section id="Bot.edit_message_caption" class="doc-node">
 			<div class="title"><h2>fn (Bot) edit_message_caption <a href="#Bot.edit_message_caption">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">edit_message_caption</span><span class="token punctuation">(</span>params EditMessageCaption<span class="token punctuation">)</span> <span class="token operator">!</span>Message</code></pre>
-<p>edit_message_caption - editMessageCaption
-Use this method to edit captions of messages. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned.</p>
+<p>edit_message_caption - editMessageCaptionUse this method to edit captions of messages. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned.</p>
 
 </section>
 		<section id="Bot.edit_message_live_location" class="doc-node">
 			<div class="title"><h2>fn (Bot) edit_message_live_location <a href="#Bot.edit_message_live_location">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">edit_message_live_location</span><span class="token punctuation">(</span>params EditMessageLiveLocation<span class="token punctuation">)</span> <span class="token operator">!</span>Message</code></pre>
-<p>edit_message_live_location - editMessageLiveLocation
-Use this method to edit live location messages. A location can be edited until its live_period expires or editing is explicitly disabled by a call to stopMessageLiveLocation. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned.</p>
+<p>edit_message_live_location - editMessageLiveLocationUse this method to edit live location messages. A location can be edited until its live_period expires or editing is explicitly disabled by a call to stopMessageLiveLocation. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned.</p>
 
 </section>
 		<section id="Bot.edit_message_media" class="doc-node">
 			<div class="title"><h2>fn (Bot) edit_message_media <a href="#Bot.edit_message_media">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">edit_message_media</span><span class="token punctuation">(</span>params EditMessageMedia<span class="token punctuation">)</span> <span class="token operator">!</span>Message</code></pre>
-<p>edit_message_media - editMessageMedia
-Use this method to edit animation, audio, document, photo, or video messages. If a message is part of a message album, then it can be edited only to an audio for audio albums, only to a document for document albums and to a photo or a video otherwise. When an inline message is edited, a new file can't be uploaded; use a previously uploaded file via its file_id or specify a URL. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned.</p>
+<p>edit_message_media - editMessageMediaUse this method to edit animation, audio, document, photo, or video messages. If a message is part of a message album, then it can be edited only to an audio for audio albums, only to a document for document albums and to a photo or a video otherwise. When an inline message is edited, a new file can't be uploaded; use a previously uploaded file via its file_id or specify a URL. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned.</p>
 
 </section>
 		<section id="Bot.edit_message_reply_markup" class="doc-node">
 			<div class="title"><h2>fn (Bot) edit_message_reply_markup <a href="#Bot.edit_message_reply_markup">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">edit_message_reply_markup</span><span class="token punctuation">(</span>params EditMessageReplyMarkup<span class="token punctuation">)</span> <span class="token operator">!</span>Message</code></pre>
-<p>edit_message_reply_markup - editMessageReplyMarkup
-Use this method to edit only the reply markup of messages. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned.</p>
+<p>edit_message_reply_markup - editMessageReplyMarkupUse this method to edit only the reply markup of messages. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned.</p>
 
 </section>
 		<section id="Bot.edit_message_text" class="doc-node">
 			<div class="title"><h2>fn (Bot) edit_message_text <a href="#Bot.edit_message_text">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">edit_message_text</span><span class="token punctuation">(</span>params EditMessageText<span class="token punctuation">)</span> <span class="token operator">!</span>Message</code></pre>
-<p>edit_message_text - editMessageText
-Use this method to edit text and game messages. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned.</p>
+<p>edit_message_text - editMessageTextUse this method to edit text and game messages. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned.</p>
 
 </section>
 		<section id="Bot.export_chat_invite_link" class="doc-node">
 			<div class="title"><h2>fn (Bot) export_chat_invite_link <a href="#Bot.export_chat_invite_link">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">export_chat_invite_link</span><span class="token punctuation">(</span>params ExportChatInviteLink<span class="token punctuation">)</span> <span class="token operator">!</span><span class="token builtin">string</span></code></pre>
-<p>export_chat_invite_link - exportChatInviteLink
-Use this method to generate a new primary invite link for a chat; any previously generated primary link is revoked. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns the new invite link as String on success.</p>
+<p>export_chat_invite_link - exportChatInviteLinkUse this method to generate a new primary invite link for a chat; any previously generated primary link is revoked. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns the new invite link as String on success.</p>
 
 </section>
 		<section id="Bot.forward_message" class="doc-node">
 			<div class="title"><h2>fn (Bot) forward_message <a href="#Bot.forward_message">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">forward_message</span><span class="token punctuation">(</span>params ForwardMessage<span class="token punctuation">)</span> <span class="token operator">!</span>Message</code></pre>
-<p>forward_message - forwardMessage
-Use this method to forward messages of any kind. Service messages can't be forwarded. On success, the sent Message is returned.</p>
+<p>forward_message - forwardMessageUse this method to forward messages of any kind. Service messages can't be forwarded. On success, the sent Message is returned.</p>
 
 </section>
 		<section id="Bot.get_chat" class="doc-node">
 			<div class="title"><h2>fn (Bot) get_chat <a href="#Bot.get_chat">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">get_chat</span><span class="token punctuation">(</span>params GetChat<span class="token punctuation">)</span> <span class="token operator">!</span>Chat</code></pre>
-<p>get_chat - getChat
-Use this method to get up to date information about the chat (current name of the user for one-on-one conversations, current username of a user, group or channel, etc.). Returns a Chat object on success.</p>
+<p>get_chat - getChatUse this method to get up to date information about the chat (current name of the user for one-on-one conversations, current username of a user, group or channel, etc.). Returns a Chat object on success.</p>
 
 </section>
 		<section id="Bot.get_chat_administrators" class="doc-node">
 			<div class="title"><h2>fn (Bot) get_chat_administrators <a href="#Bot.get_chat_administrators">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">get_chat_administrators</span><span class="token punctuation">(</span>params GetChatAdministrators<span class="token punctuation">)</span> <span class="token operator">!</span><span class="token punctuation">[</span><span class="token punctuation">]</span>ChatMember</code></pre>
-<p>get_chat_administrators - getChatAdministrators
-Use this method to get a list of administrators in a chat, which aren't bots. Returns an Array of ChatMember objects.</p>
+<p>get_chat_administrators - getChatAdministratorsUse this method to get a list of administrators in a chat, which aren't bots. Returns an Array of ChatMember objects.</p>
 
 </section>
 		<section id="Bot.get_chat_member" class="doc-node">
 			<div class="title"><h2>fn (Bot) get_chat_member <a href="#Bot.get_chat_member">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">get_chat_member</span><span class="token punctuation">(</span>params GetChatMember<span class="token punctuation">)</span> <span class="token operator">!</span>ChatMember</code></pre>
-<p>get_chat_member - getChatMember
-Use this method to get information about a member of a chat. The method is guaranteed to work only if the bot is an administrator in the chat. Returns a ChatMember object on success.</p>
+<p>get_chat_member - getChatMemberUse this method to get information about a member of a chat. The method is guaranteed to work only if the bot is an administrator in the chat. Returns a ChatMember object on success.</p>
 
 </section>
 		<section id="Bot.get_chat_member_count" class="doc-node">
 			<div class="title"><h2>fn (Bot) get_chat_member_count <a href="#Bot.get_chat_member_count">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">get_chat_member_count</span><span class="token punctuation">(</span>params GetChatMemberCount<span class="token punctuation">)</span> <span class="token operator">!</span><span class="token builtin">int</span></code></pre>
-<p>get_chat_member_count - getChatMemberCount
-Use this method to get the number of members in a chat. Returns Int on success.</p>
+<p>get_chat_member_count - getChatMemberCountUse this method to get the number of members in a chat. Returns Int on success.</p>
 
 </section>
 		<section id="Bot.get_chat_menu_button" class="doc-node">
 			<div class="title"><h2>fn (Bot) get_chat_menu_button <a href="#Bot.get_chat_menu_button">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">get_chat_menu_button</span><span class="token punctuation">(</span>params GetChatMenuButton<span class="token punctuation">)</span> <span class="token operator">!</span>MenuButton</code></pre>
-<p>get_chat_menu_button - getChatMenuButton
-Use this method to get the current value of the bot's menu button in a private chat, or the default menu button. Returns MenuButton on success.</p>
+<p>get_chat_menu_button - getChatMenuButtonUse this method to get the current value of the bot's menu button in a private chat, or the default menu button. Returns MenuButton on success.</p>
 
 </section>
 		<section id="Bot.get_custom_emoji_stickers" class="doc-node">
 			<div class="title"><h2>fn (Bot) get_custom_emoji_stickers <a href="#Bot.get_custom_emoji_stickers">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">get_custom_emoji_stickers</span><span class="token punctuation">(</span>params GetCustomEmojiStickers<span class="token punctuation">)</span> <span class="token operator">!</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">string</span></code></pre>
-<p>get_custom_emoji_stickers - getCustomEmojiStickers
-Use this method to get information about custom emoji stickers by their identifiers. Returns an Array of Sticker objects.</p>
+<p>get_custom_emoji_stickers - getCustomEmojiStickersUse this method to get information about custom emoji stickers by their identifiers. Returns an Array of Sticker objects.</p>
 
 </section>
 		<section id="Bot.get_file" class="doc-node">
 			<div class="title"><h2>fn (Bot) get_file <a href="#Bot.get_file">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">get_file</span><span class="token punctuation">(</span>params GetFile<span class="token punctuation">)</span> <span class="token operator">!</span>File</code></pre>
-<p>get_file - getFile
-Use this method to get basic information about a file and prepare it for downloading. For the moment, bots can download files of up to 20MB in size. On success, a File object is returned. The file can then be downloaded via the link <a href="https://api.telegram.org/file/bot">https://api.telegram.org/file/bot</a>&lt;token&gt;/&lt;file_path&gt;, where &lt;file_path&gt; is taken from the response. It is guaranteed that the link will be valid for at least 1 hour. When the link expires, a new one can be requested by calling getFile again.</p>
+<p>get_file - getFileUse this method to get basic information about a file and prepare it for downloading. For the moment, bots can download files of up to 20MB in size. On success, a File object is returned. The file can then be downloaded via the link <a href="https://api.telegram.org/file/bot">https://api.telegram.org/file/bot</a><token>/<file_path>, where <file_path> is taken from the response. It is guaranteed that the link will be valid for at least 1 hour. When the link expires, a new one can be requested by calling getFile again.</p>
 
 </section>
 		<section id="Bot.get_forum_topic_icon_stickers" class="doc-node">
 			<div class="title"><h2>fn (Bot) get_forum_topic_icon_stickers <a href="#Bot.get_forum_topic_icon_stickers">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">get_forum_topic_icon_stickers</span><span class="token punctuation">(</span>params GetForumTopicIconStickers<span class="token punctuation">)</span> <span class="token operator">!</span><span class="token punctuation">[</span><span class="token punctuation">]</span>Sticker</code></pre>
-<p>get_forum_topic_icon_stickers - getForumTopicIconStickers
-Use this method to get custom emoji stickers, which can be used as a forum topic icon by any user. Requires no parameters. Returns an Array of Sticker objects.</p>
+<p>get_forum_topic_icon_stickers - getForumTopicIconStickersUse this method to get custom emoji stickers, which can be used as a forum topic icon by any user. Requires no parameters. Returns an Array of Sticker objects.</p>
 
 </section>
 		<section id="Bot.get_game_high_scores" class="doc-node">
 			<div class="title"><h2>fn (Bot) get_game_high_scores <a href="#Bot.get_game_high_scores">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">get_game_high_scores</span><span class="token punctuation">(</span>params GetGameHighScores<span class="token punctuation">)</span> <span class="token operator">!</span><span class="token punctuation">[</span><span class="token punctuation">]</span>GameHighScore</code></pre>
-<p>get_game_high_scores - getGameHighScores
-Use this method to get data for high score tables. Will return the score of the specified user and several of their neighbors in a game. Returns an Array of GameHighScore objects.</p>
+<p>get_game_high_scores - getGameHighScoresUse this method to get data for high score tables. Will return the score of the specified user and several of their neighbors in a game. Returns an Array of GameHighScore objects.</p>
 
 </section>
 		<section id="Bot.get_me" class="doc-node">
 			<div class="title"><h2>fn (Bot) get_me <a href="#Bot.get_me">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">get_me</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">!</span>User</code></pre>
-<p>get_me - getMe
-A simple method for testing your bot's authentication token. Requires no parameters. Returns basic information about the bot in form of a User object.</p>
+<p>get_me - getMeA simple method for testing your bot's authentication token. Requires no parameters. Returns basic information about the bot in form of a User object.</p>
 
 </section>
 		<section id="Bot.get_my_commands" class="doc-node">
 			<div class="title"><h2>fn (Bot) get_my_commands <a href="#Bot.get_my_commands">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">get_my_commands</span><span class="token punctuation">(</span>params GetMyCommands<span class="token punctuation">)</span> <span class="token operator">!</span><span class="token punctuation">[</span><span class="token punctuation">]</span>BotCommand</code></pre>
-<p>get_my_commands - getMyCommands
-Use this method to get the current list of the bot's commands for the given scope and user language. Returns an Array of BotCommand objects. If commands aren't set, an empty list is returned.</p>
+<p>get_my_commands - getMyCommandsUse this method to get the current list of the bot's commands for the given scope and user language. Returns an Array of BotCommand objects. If commands aren't set, an empty list is returned.</p>
 
 </section>
 		<section id="Bot.get_my_default_administrator_rights" class="doc-node">
 			<div class="title"><h2>fn (Bot) get_my_default_administrator_rights <a href="#Bot.get_my_default_administrator_rights">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">get_my_default_administrator_rights</span><span class="token punctuation">(</span>params GetMyDefaultAdministratorRights<span class="token punctuation">)</span> <span class="token operator">!</span>ChatAdministratorRights</code></pre>
-<p>get_my_default_administrator_rights - getMyDefaultAdministratorRights
-Use this method to get the current default administrator rights of the bot. Returns ChatAdministratorRights on success.</p>
+<p>get_my_default_administrator_rights - getMyDefaultAdministratorRightsUse this method to get the current default administrator rights of the bot. Returns ChatAdministratorRights on success.</p>
 
 </section>
 		<section id="Bot.get_my_description" class="doc-node">
 			<div class="title"><h2>fn (Bot) get_my_description <a href="#Bot.get_my_description">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">get_my_description</span><span class="token punctuation">(</span>params GetMyDescription<span class="token punctuation">)</span> <span class="token operator">!</span>BotDescription</code></pre>
-<p>get_my_description - getMyDescription
-Use this method to get the current bot description for the given user language. Returns BotDescription on success.</p>
+<p>get_my_description - getMyDescriptionUse this method to get the current bot description for the given user language. Returns BotDescription on success.</p>
 
 </section>
 		<section id="Bot.get_my_name" class="doc-node">
 			<div class="title"><h2>fn (Bot) get_my_name <a href="#Bot.get_my_name">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">get_my_name</span><span class="token punctuation">(</span>params GetMyName<span class="token punctuation">)</span> <span class="token operator">!</span><span class="token punctuation">[</span><span class="token punctuation">]</span>BotName</code></pre>
-<p>get_my_name - getMyName
-Use this method to get the current bot name for the given user language. Returns BotName on success.</p>
+<p>get_my_name - getMyNameUse this method to get the current bot name for the given user language. Returns BotName on success.</p>
 
 </section>
 		<section id="Bot.get_my_short_description" class="doc-node">
 			<div class="title"><h2>fn (Bot) get_my_short_description <a href="#Bot.get_my_short_description">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">get_my_short_description</span><span class="token punctuation">(</span>params GetMyShortDescription<span class="token punctuation">)</span> <span class="token operator">!</span>BotShortDescription</code></pre>
-<p>get_my_short_description - getMyShortDescription
-Use this method to get the current bot short description for the given user language. Returns BotShortDescription on success.</p>
+<p>get_my_short_description - getMyShortDescriptionUse this method to get the current bot short description for the given user language. Returns BotShortDescription on success.</p>
 
 </section>
 		<section id="Bot.get_sticker_set" class="doc-node">
 			<div class="title"><h2>fn (Bot) get_sticker_set <a href="#Bot.get_sticker_set">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">get_sticker_set</span><span class="token punctuation">(</span>params GetStickerSet<span class="token punctuation">)</span> <span class="token operator">!</span>StickerSet</code></pre>
-<p>get_sticker_set - getStickerSet
-Use this method to get a sticker set. On success, a StickerSet object is returned.</p>
+<p>get_sticker_set - getStickerSetUse this method to get a sticker set. On success, a StickerSet object is returned.</p>
 
 </section>
 		<section id="Bot.get_updates" class="doc-node">
 			<div class="title"><h2>fn (Bot) get_updates <a href="#Bot.get_updates">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">get_updates</span><span class="token punctuation">(</span>params GetUpdates<span class="token punctuation">)</span> <span class="token operator">!</span><span class="token punctuation">[</span><span class="token punctuation">]</span>Update</code></pre>
-<p>get_updates - getUpdates
-Use this method to receive incoming updates using long polling (wiki). Returns an Array of Update objects.</p>
+<p>get_updates - getUpdatesUse this method to receive incoming updates using long polling (wiki). Returns an Array of Update objects.</p>
 
 </section>
 		<section id="Bot.get_user_profile_photos" class="doc-node">
 			<div class="title"><h2>fn (Bot) get_user_profile_photos <a href="#Bot.get_user_profile_photos">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">get_user_profile_photos</span><span class="token punctuation">(</span>params GetUserProfilePhotos<span class="token punctuation">)</span> <span class="token operator">!</span>UserProfilePhotos</code></pre>
-<p>get_user_profile_photos - getUserProfilePhotos
-Use this method to get a list of profile pictures for a user. Returns a UserProfilePhotos object.</p>
+<p>get_user_profile_photos - getUserProfilePhotosUse this method to get a list of profile pictures for a user. Returns a UserProfilePhotos object.</p>
 
 </section>
 		<section id="Bot.get_webhook_info" class="doc-node">
 			<div class="title"><h2>fn (Bot) get_webhook_info <a href="#Bot.get_webhook_info">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">get_webhook_info</span><span class="token punctuation">(</span>params GetWebhookInfo<span class="token punctuation">)</span> <span class="token operator">!</span>WebhookInfo</code></pre>
-<p>get_webhook_info - getWebhookInfo
-Use this method to get current webhook status. Requires no parameters. On success, returns a WebhookInfo object. If the bot is using getUpdates, will return an object with the url field empty.</p>
+<p>get_webhook_info - getWebhookInfoUse this method to get current webhook status. Requires no parameters. On success, returns a WebhookInfo object. If the bot is using getUpdates, will return an object with the url field empty.</p>
 
 </section>
 		<section id="Bot.hide_general_forum_topic" class="doc-node">
 			<div class="title"><h2>fn (Bot) hide_general_forum_topic <a href="#Bot.hide_general_forum_topic">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">hide_general_forum_topic</span><span class="token punctuation">(</span>params HideGeneralForumTopic<span class="token punctuation">)</span> <span class="token operator">!</span><span class="token builtin">bool</span></code></pre>
-<p>hide_general_forum_topic - hideGeneralForumTopic
-Use this method to hide the 'General' topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the can_manage_topics administrator rights. The topic will be automatically closed if it was open. Returns True on success.</p>
+<p>hide_general_forum_topic - hideGeneralForumTopicUse this method to hide the 'General' topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the can_manage_topics administrator rights. The topic will be automatically closed if it was open. Returns True on success.</p>
 
 </section>
 		<section id="Bot.leave_chat" class="doc-node">
 			<div class="title"><h2>fn (Bot) leave_chat <a href="#Bot.leave_chat">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">leave_chat</span><span class="token punctuation">(</span>params LeaveChat<span class="token punctuation">)</span> <span class="token operator">!</span><span class="token builtin">bool</span></code></pre>
-<p>leave_chat - leaveChat
-Use this method for your bot to leave a group, supergroup or channel. Returns True on success.</p>
+<p>leave_chat - leaveChatUse this method for your bot to leave a group, supergroup or channel. Returns True on success.</p>
 
 </section>
 		<section id="Bot.log_out" class="doc-node">
 			<div class="title"><h2>fn (Bot) log_out <a href="#Bot.log_out">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">log_out</span><span class="token punctuation">(</span>params LogOut<span class="token punctuation">)</span> <span class="token operator">!</span><span class="token builtin">bool</span></code></pre>
-<p>log_out - logOut
-Use this method to log out from the cloud Bot API server before launching the bot locally. You must log out the bot before running it locally, otherwise there is no guarantee that the bot will receive updates. After a successful call, you can immediately log in on a local server, but will not be able to log in back to the cloud Bot API server for 10 minutes. Returns True on success. Requires no parameters.</p>
+<p>log_out - logOutUse this method to log out from the cloud Bot API server before launching the bot locally. You must log out the bot before running it locally, otherwise there is no guarantee that the bot will receive updates. After a successful call, you can immediately log in on a local server, but will not be able to log in back to the cloud Bot API server for 10 minutes. Returns True on success. Requires no parameters.</p>
 
 </section>
 		<section id="Bot.pin_chat_message" class="doc-node">
 			<div class="title"><h2>fn (Bot) pin_chat_message <a href="#Bot.pin_chat_message">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">pin_chat_message</span><span class="token punctuation">(</span>params PinChatMessage<span class="token punctuation">)</span> <span class="token operator">!</span><span class="token builtin">bool</span></code></pre>
-<p>pin_chat_message - pinChatMessage
-Use this method to add a message to the list of pinned messages in a chat. If the chat is not a private chat, the bot must be an administrator in the chat for this to work and must have the 'can_pin_messages' administrator right in a supergroup or 'can_edit_messages' administrator right in a channel. Returns True on success.</p>
+<p>pin_chat_message - pinChatMessageUse this method to add a message to the list of pinned messages in a chat. If the chat is not a private chat, the bot must be an administrator in the chat for this to work and must have the 'can_pin_messages' administrator right in a supergroup or 'can_edit_messages' administrator right in a channel. Returns True on success.</p>
 
 </section>
 		<section id="Bot.promote_chat_member" class="doc-node">
 			<div class="title"><h2>fn (Bot) promote_chat_member <a href="#Bot.promote_chat_member">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">promote_chat_member</span><span class="token punctuation">(</span>params PromoteChatMember<span class="token punctuation">)</span> <span class="token operator">!</span><span class="token builtin">bool</span></code></pre>
-<p>promote_chat_member - promoteChatMember
-Use this method to promote or demote a user in a supergroup or a channel. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Pass False for all boolean parameters to demote a user. Returns True on success.</p>
+<p>promote_chat_member - promoteChatMemberUse this method to promote or demote a user in a supergroup or a channel. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Pass False for all boolean parameters to demote a user. Returns True on success.</p>
 
 </section>
 		<section id="Bot.reopen_forum_topic" class="doc-node">
 			<div class="title"><h2>fn (Bot) reopen_forum_topic <a href="#Bot.reopen_forum_topic">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">reopen_forum_topic</span><span class="token punctuation">(</span>params ReopenForumTopic<span class="token punctuation">)</span> <span class="token operator">!</span><span class="token builtin">bool</span></code></pre>
-<p>reopen_forum_topic - reopenForumTopic
-Use this method to reopen a closed topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the can_manage_topics administrator rights, unless it is the creator of the topic. Returns True on success.</p>
+<p>reopen_forum_topic - reopenForumTopicUse this method to reopen a closed topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the can_manage_topics administrator rights, unless it is the creator of the topic. Returns True on success.</p>
 
 </section>
 		<section id="Bot.reopen_general_forum_topic" class="doc-node">
 			<div class="title"><h2>fn (Bot) reopen_general_forum_topic <a href="#Bot.reopen_general_forum_topic">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">reopen_general_forum_topic</span><span class="token punctuation">(</span>params ReopenGeneralForumTopic<span class="token punctuation">)</span> <span class="token operator">!</span><span class="token builtin">bool</span></code></pre>
-<p>reopen_general_forum_topic - reopenGeneralForumTopic
-Use this method to reopen a closed 'General' topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the can_manage_topics administrator rights. The topic will be automatically unhidden if it was hidden. Returns True on success.</p>
+<p>reopen_general_forum_topic - reopenGeneralForumTopicUse this method to reopen a closed 'General' topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the can_manage_topics administrator rights. The topic will be automatically unhidden if it was hidden. Returns True on success.</p>
 
 </section>
 		<section id="Bot.restrict_chat_member" class="doc-node">
 			<div class="title"><h2>fn (Bot) restrict_chat_member <a href="#Bot.restrict_chat_member">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">restrict_chat_member</span><span class="token punctuation">(</span>params RestrictChatMember<span class="token punctuation">)</span> <span class="token operator">!</span><span class="token builtin">bool</span></code></pre>
-<p>restrict_chat_member - restrictChatMember
-Use this method to restrict a user in a supergroup. The bot must be an administrator in the supergroup for this to work and must have the appropriate administrator rights. Pass True for all permissions to lift restrictions from a user. Returns True on success.</p>
+<p>restrict_chat_member - restrictChatMemberUse this method to restrict a user in a supergroup. The bot must be an administrator in the supergroup for this to work and must have the appropriate administrator rights. Pass True for all permissions to lift restrictions from a user. Returns True on success.</p>
 
 </section>
 		<section id="Bot.revoke_chat_invite_link" class="doc-node">
 			<div class="title"><h2>fn (Bot) revoke_chat_invite_link <a href="#Bot.revoke_chat_invite_link">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">revoke_chat_invite_link</span><span class="token punctuation">(</span>params RevokeChatInviteLink<span class="token punctuation">)</span> <span class="token operator">!</span>ChatInviteLink</code></pre>
-<p>revoke_chat_invite_link - revokeChatInviteLink
-Use this method to revoke an invite link created by the bot. If the primary link is revoked, a new link is automatically generated. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns the revoked invite link as ChatInviteLink object.</p>
+<p>revoke_chat_invite_link - revokeChatInviteLinkUse this method to revoke an invite link created by the bot. If the primary link is revoked, a new link is automatically generated. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns the revoked invite link as ChatInviteLink object.</p>
 
 </section>
 		<section id="Bot.send_animation" class="doc-node">
 			<div class="title"><h2>fn (Bot) send_animation <a href="#Bot.send_animation">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">send_animation</span><span class="token punctuation">(</span>params SendAnimation<span class="token punctuation">)</span> <span class="token operator">!</span>Message</code></pre>
-<p>send_animation - sendAnimation
-Use this method to send animation files (GIF or H.264/MPEG-4 AVC video without sound). On success, the sent Message is returned. Bots can currently send animation files of up to 50 MB in size, this limit may be changed in the future.</p>
+<p>send_animation - sendAnimationUse this method to send animation files (GIF or H.264/MPEG-4 AVC video without sound). On success, the sent Message is returned. Bots can currently send animation files of up to 50 MB in size, this limit may be changed in the future.</p>
 
 </section>
 		<section id="Bot.send_audio" class="doc-node">
 			<div class="title"><h2>fn (Bot) send_audio <a href="#Bot.send_audio">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">send_audio</span><span class="token punctuation">(</span>params SendAudio<span class="token punctuation">)</span> <span class="token operator">!</span>Message</code></pre>
-<p>send_audio - sendAudio
-Use this method to send audio files, if you want Telegram clients to display them in the music player. Your audio must be in the .MP3 or .M4A format. On success, the sent Message is returned. Bots can currently send audio files of up to 50 MB in size, this limit may be changed in the future.</p>
+<p>send_audio - sendAudioUse this method to send audio files, if you want Telegram clients to display them in the music player. Your audio must be in the .MP3 or .M4A format. On success, the sent Message is returned. Bots can currently send audio files of up to 50 MB in size, this limit may be changed in the future.</p>
 
 </section>
 		<section id="Bot.send_chat_action" class="doc-node">
 			<div class="title"><h2>fn (Bot) send_chat_action <a href="#Bot.send_chat_action">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">send_chat_action</span><span class="token punctuation">(</span>params SendChatAction<span class="token punctuation">)</span> <span class="token operator">!</span><span class="token builtin">bool</span></code></pre>
-<p>send_chat_action - sendChatAction
-Use this method when you need to tell the user that something is happening on the bot's side. The status is set for 5 seconds or less (when a message arrives from your bot, Telegram clients clear its typing status). Returns True on success.</p>
+<p>send_chat_action - sendChatActionUse this method when you need to tell the user that something is happening on the bot's side. The status is set for 5 seconds or less (when a message arrives from your bot, Telegram clients clear its typing status). Returns True on success.</p>
 
 </section>
 		<section id="Bot.send_contact" class="doc-node">
 			<div class="title"><h2>fn (Bot) send_contact <a href="#Bot.send_contact">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">send_contact</span><span class="token punctuation">(</span>params SendContact<span class="token punctuation">)</span> <span class="token operator">!</span>Message</code></pre>
-<p>send_contact - sendContact
-Use this method to send phone contacts. On success, the sent Message is returned.</p>
+<p>send_contact - sendContactUse this method to send phone contacts. On success, the sent Message is returned.</p>
 
 </section>
 		<section id="Bot.send_dice" class="doc-node">
 			<div class="title"><h2>fn (Bot) send_dice <a href="#Bot.send_dice">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">send_dice</span><span class="token punctuation">(</span>params SendDice<span class="token punctuation">)</span> <span class="token operator">!</span>Message</code></pre>
-<p>send_dice - sendDice
-Use this method to send an animated emoji that will display a random value. On success, the sent Message is returned.</p>
+<p>send_dice - sendDiceUse this method to send an animated emoji that will display a random value. On success, the sent Message is returned.</p>
 
 </section>
 		<section id="Bot.send_document" class="doc-node">
 			<div class="title"><h2>fn (Bot) send_document <a href="#Bot.send_document">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">send_document</span><span class="token punctuation">(</span>params SendDocument<span class="token punctuation">)</span> <span class="token operator">!</span>Message</code></pre>
-<p>send_document - sendDocument
-Use this method to send general files. On success, the sent Message is returned. Bots can currently send files of any type of up to 50 MB in size, this limit may be changed in the future.</p>
+<p>send_document - sendDocumentUse this method to send general files. On success, the sent Message is returned. Bots can currently send files of any type of up to 50 MB in size, this limit may be changed in the future.</p>
 
 </section>
 		<section id="Bot.send_game" class="doc-node">
 			<div class="title"><h2>fn (Bot) send_game <a href="#Bot.send_game">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">send_game</span><span class="token punctuation">(</span>params SendGame<span class="token punctuation">)</span> <span class="token operator">!</span>Message</code></pre>
-<p>send_game - sendGame
-Use this method to send a game. On success, the sent Message is returned.</p>
+<p>send_game - sendGameUse this method to send a game. On success, the sent Message is returned.</p>
 
 </section>
 		<section id="Bot.send_invoice" class="doc-node">
 			<div class="title"><h2>fn (Bot) send_invoice <a href="#Bot.send_invoice">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">send_invoice</span><span class="token punctuation">(</span>params SendInvoice<span class="token punctuation">)</span> <span class="token operator">!</span>Message</code></pre>
-<p>send_invoice - sendInvoice
-Use this method to send invoices. On success, the sent Message is returned.</p>
+<p>send_invoice - sendInvoiceUse this method to send invoices. On success, the sent Message is returned.</p>
 
 </section>
 		<section id="Bot.send_location" class="doc-node">
 			<div class="title"><h2>fn (Bot) send_location <a href="#Bot.send_location">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">send_location</span><span class="token punctuation">(</span>params SendLocation<span class="token punctuation">)</span> <span class="token operator">!</span>Message</code></pre>
-<p>send_location - sendLocation
-Use this method to send point on the map. On success, the sent Message is returned.</p>
+<p>send_location - sendLocationUse this method to send point on the map. On success, the sent Message is returned.</p>
 
 </section>
 		<section id="Bot.send_media_group" class="doc-node">
 			<div class="title"><h2>fn (Bot) send_media_group <a href="#Bot.send_media_group">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> send_media_group<span class="token punctuation">[</span><span class="token builtin">T</span><span class="token punctuation">]</span><span class="token punctuation">(</span>params_ SendMediaGroup<span class="token punctuation">[</span><span class="token builtin">T</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">!</span><span class="token punctuation">[</span><span class="token punctuation">]</span>Message</code></pre>
-<p>send_media_group - sendMediaGroup
-TODO: Known bug: if files have same name, then multipart-form request won't be able to parse files properly.<br>
-avoid files with one name or there need to make a fix in building a query (prepare_files func 'files[KEY]' and 'attach://KEY' string in query should match).<br>
-Use this method to send a group of photos, videos, documents or audios as an album. Documents and audio files can be only grouped in an album with messages of the same type. On success, an array of Messages that were sent is returned.</p>
+<p>send_media_group - sendMediaGroupTODO: Known bug: if files have same name, then multipart-form request won't be able to parse files properly.<br />avoid files with one name or there need to make a fix in building a query (prepare_files func 'files[KEY]' and 'attach://KEY' string in query should match).<br />Use this method to send a group of photos, videos, documents or audios as an album. Documents and audio files can be only grouped in an album with messages of the same type. On success, an array of Messages that were sent is returned.</p>
 
 </section>
 		<section id="Bot.send_message" class="doc-node">
 			<div class="title"><h2>fn (Bot) send_message <a href="#Bot.send_message">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">send_message</span><span class="token punctuation">(</span>params SendMessage<span class="token punctuation">)</span> <span class="token operator">!</span>Message</code></pre>
-<p>send_message - sendMessage
-Use this method to send text messages. On success, the sent Message is returned.</p>
+<p>send_message - sendMessageUse this method to send text messages. On success, the sent Message is returned.</p>
 
 </section>
 		<section id="Bot.send_photo" class="doc-node">
 			<div class="title"><h2>fn (Bot) send_photo <a href="#Bot.send_photo">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">send_photo</span><span class="token punctuation">(</span>params SendPhoto<span class="token punctuation">)</span> <span class="token operator">!</span>Message</code></pre>
-<p>send_photo - sendPhoto
-Use this method to send photos. On success, the sent Message is returned.</p>
+<p>send_photo - sendPhotoUse this method to send photos. On success, the sent Message is returned.</p>
 
 </section>
 		<section id="Bot.send_poll" class="doc-node">
 			<div class="title"><h2>fn (Bot) send_poll <a href="#Bot.send_poll">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">send_poll</span><span class="token punctuation">(</span>params SendPoll<span class="token punctuation">)</span> <span class="token operator">!</span>Message</code></pre>
-<p>send_poll - sendPoll
-Use this method to send a native poll. On success, the sent Message is returned.</p>
+<p>send_poll - sendPollUse this method to send a native poll. On success, the sent Message is returned.</p>
 
 </section>
 		<section id="Bot.send_sticker" class="doc-node">
 			<div class="title"><h2>fn (Bot) send_sticker <a href="#Bot.send_sticker">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">send_sticker</span><span class="token punctuation">(</span>params SendSticker<span class="token punctuation">)</span> <span class="token operator">!</span>Message</code></pre>
-<p>send_sticker - sendSticker
-Use this method to send static .WEBP, animated .TGS, or video .WEBM stickers. On success, the sent Message is returned.</p>
+<p>send_sticker - sendStickerUse this method to send static .WEBP, animated .TGS, or video .WEBM stickers. On success, the sent Message is returned.</p>
 
 </section>
 		<section id="Bot.send_venue" class="doc-node">
 			<div class="title"><h2>fn (Bot) send_venue <a href="#Bot.send_venue">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">send_venue</span><span class="token punctuation">(</span>params SendVenue<span class="token punctuation">)</span> <span class="token operator">!</span>Message</code></pre>
-<p>send_venue - sendVenue
-Use this method to send information about a venue. On success, the sent Message is returned.</p>
+<p>send_venue - sendVenueUse this method to send information about a venue. On success, the sent Message is returned.</p>
 
 </section>
 		<section id="Bot.send_video" class="doc-node">
 			<div class="title"><h2>fn (Bot) send_video <a href="#Bot.send_video">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">send_video</span><span class="token punctuation">(</span>params SendVideo<span class="token punctuation">)</span> <span class="token operator">!</span>Message</code></pre>
-<p>send_video - sendVideo
-Use this method to send video files, Telegram clients support MPEG4 videos (other formats may be sent as Document). On success, the sent Message is returned. Bots can currently send video files of up to 50 MB in size, this limit may be changed in the future.</p>
+<p>send_video - sendVideoUse this method to send video files, Telegram clients support MPEG4 videos (other formats may be sent as Document). On success, the sent Message is returned. Bots can currently send video files of up to 50 MB in size, this limit may be changed in the future.</p>
 
 </section>
 		<section id="Bot.send_video_note" class="doc-node">
 			<div class="title"><h2>fn (Bot) send_video_note <a href="#Bot.send_video_note">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">send_video_note</span><span class="token punctuation">(</span>params SendVideoNote<span class="token punctuation">)</span> <span class="token operator">!</span>Message</code></pre>
-<p>send_video_note - sendVideoNote
-As of v.4.0, Telegram clients support rounded square MPEG4 videos of up to 1 minute long. Use this method to send video messages. On success, the sent Message is returned.</p>
+<p>send_video_note - sendVideoNoteAs of v.4.0, Telegram clients support rounded square MPEG4 videos of up to 1 minute long. Use this method to send video messages. On success, the sent Message is returned.</p>
 
 </section>
 		<section id="Bot.send_voice" class="doc-node">
 			<div class="title"><h2>fn (Bot) send_voice <a href="#Bot.send_voice">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">send_voice</span><span class="token punctuation">(</span>params SendVoice<span class="token punctuation">)</span> <span class="token operator">!</span>Message</code></pre>
-<p>send_voice - sendVoice
-Use this method to send audio files, if you want Telegram clients to display the file as a playable voice message. For this to work, your audio must be in an .OGG file encoded with OPUS (other formats may be sent as Audio or Document). On success, the sent Message is returned. Bots can currently send voice messages of up to 50 MB in size, this limit may be changed in the future.</p>
+<p>send_voice - sendVoiceUse this method to send audio files, if you want Telegram clients to display the file as a playable voice message. For this to work, your audio must be in an .OGG file encoded with OPUS (other formats may be sent as Audio or Document). On success, the sent Message is returned. Bots can currently send voice messages of up to 50 MB in size, this limit may be changed in the future.</p>
 
 </section>
 		<section id="Bot.set_chat_administrator_custom_title" class="doc-node">
 			<div class="title"><h2>fn (Bot) set_chat_administrator_custom_title <a href="#Bot.set_chat_administrator_custom_title">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">set_chat_administrator_custom_title</span><span class="token punctuation">(</span>params SetChatAdministratorCustomTitle<span class="token punctuation">)</span> <span class="token operator">!</span><span class="token builtin">bool</span></code></pre>
-<p>set_chat_administrator_custom_title - setChatAdministratorCustomTitle
-Use this method to set a custom title for an administrator in a supergroup promoted by the bot. Returns True on success.</p>
+<p>set_chat_administrator_custom_title - setChatAdministratorCustomTitleUse this method to set a custom title for an administrator in a supergroup promoted by the bot. Returns True on success.</p>
 
 </section>
 		<section id="Bot.set_chat_description" class="doc-node">
 			<div class="title"><h2>fn (Bot) set_chat_description <a href="#Bot.set_chat_description">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">set_chat_description</span><span class="token punctuation">(</span>params SetChatDescription<span class="token punctuation">)</span> <span class="token operator">!</span><span class="token builtin">bool</span></code></pre>
-<p>set_chat_description - setChatDescription
-Use this method to change the description of a group, a supergroup or a channel. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns True on success.</p>
+<p>set_chat_description - setChatDescriptionUse this method to change the description of a group, a supergroup or a channel. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns True on success.</p>
 
 </section>
 		<section id="Bot.set_chat_menu_button" class="doc-node">
 			<div class="title"><h2>fn (Bot) set_chat_menu_button <a href="#Bot.set_chat_menu_button">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">set_chat_menu_button</span><span class="token punctuation">(</span>params SetChatMenuButton<span class="token punctuation">)</span> <span class="token operator">!</span><span class="token builtin">bool</span></code></pre>
-<p>set_chat_menu_button - setChatMenuButton
-Use this method to change the bot's menu button in a private chat, or the default menu button. Returns True on success.</p>
+<p>set_chat_menu_button - setChatMenuButtonUse this method to change the bot's menu button in a private chat, or the default menu button. Returns True on success.</p>
 
 </section>
 		<section id="Bot.set_chat_permissions" class="doc-node">
 			<div class="title"><h2>fn (Bot) set_chat_permissions <a href="#Bot.set_chat_permissions">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">set_chat_permissions</span><span class="token punctuation">(</span>params SetChatPermissions<span class="token punctuation">)</span> <span class="token operator">!</span><span class="token builtin">bool</span></code></pre>
-<p>set_chat_permissions - setChatPermissions
-Use this method to set default chat permissions for all members. The bot must be an administrator in the group or a supergroup for this to work and must have the can_restrict_members administrator rights. Returns True on success.</p>
+<p>set_chat_permissions - setChatPermissionsUse this method to set default chat permissions for all members. The bot must be an administrator in the group or a supergroup for this to work and must have the can_restrict_members administrator rights. Returns True on success.</p>
 
 </section>
 		<section id="Bot.set_chat_photo" class="doc-node">
 			<div class="title"><h2>fn (Bot) set_chat_photo <a href="#Bot.set_chat_photo">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">set_chat_photo</span><span class="token punctuation">(</span>params SetChatPhoto<span class="token punctuation">)</span> <span class="token operator">!</span><span class="token builtin">bool</span></code></pre>
-<p>set_chat_photo - setChatPhoto
-Use this method to set a new profile photo for the chat. Photos can't be changed for private chats. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns True on success.</p>
+<p>set_chat_photo - setChatPhotoUse this method to set a new profile photo for the chat. Photos can't be changed for private chats. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns True on success.</p>
 
 </section>
 		<section id="Bot.set_chat_sticker_set" class="doc-node">
 			<div class="title"><h2>fn (Bot) set_chat_sticker_set <a href="#Bot.set_chat_sticker_set">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">set_chat_sticker_set</span><span class="token punctuation">(</span>params SetChatStickerSet<span class="token punctuation">)</span> <span class="token operator">!</span><span class="token builtin">bool</span></code></pre>
-<p>set_chat_sticker_set - setChatStickerSet
-Use this method to set a new group sticker set for a supergroup. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Use the field can_set_sticker_set optionally returned in getChat requests to check if the bot can use this method. Returns True on success.</p>
+<p>set_chat_sticker_set - setChatStickerSetUse this method to set a new group sticker set for a supergroup. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Use the field can_set_sticker_set optionally returned in getChat requests to check if the bot can use this method. Returns True on success.</p>
 
 </section>
 		<section id="Bot.set_chat_title" class="doc-node">
 			<div class="title"><h2>fn (Bot) set_chat_title <a href="#Bot.set_chat_title">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">set_chat_title</span><span class="token punctuation">(</span>params SetChatTitle<span class="token punctuation">)</span> <span class="token operator">!</span><span class="token builtin">bool</span></code></pre>
-<p>set_chat_title - setChatTitle
-Use this method to change the title of a chat. Titles can't be changed for private chats. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns True on success.</p>
+<p>set_chat_title - setChatTitleUse this method to change the title of a chat. Titles can't be changed for private chats. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns True on success.</p>
 
 </section>
 		<section id="Bot.set_custom_emoji_sticker_set_thumbnail" class="doc-node">
 			<div class="title"><h2>fn (Bot) set_custom_emoji_sticker_set_thumbnail <a href="#Bot.set_custom_emoji_sticker_set_thumbnail">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">set_custom_emoji_sticker_set_thumbnail</span><span class="token punctuation">(</span>params SetCustomEmojiStickerSetThumbnail<span class="token punctuation">)</span> <span class="token operator">!</span><span class="token builtin">bool</span></code></pre>
-<p>set_custom_emoji_sticker_set_thumbnail - setCustomEmojiStickerSetThumbnail
-Use this method to set the thumbnail of a custom emoji sticker set. Returns True on success.</p>
+<p>set_custom_emoji_sticker_set_thumbnail - setCustomEmojiStickerSetThumbnailUse this method to set the thumbnail of a custom emoji sticker set. Returns True on success.</p>
 
 </section>
 		<section id="Bot.set_game_score" class="doc-node">
 			<div class="title"><h2>fn (Bot) set_game_score <a href="#Bot.set_game_score">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">set_game_score</span><span class="token punctuation">(</span>params SetGameScore<span class="token punctuation">)</span> <span class="token operator">!</span>Message</code></pre>
-<p>set_game_score - setGameScore
-Use this method to set the score of the specified user in a game message. On success, if the message is not an inline message, the Message is returned, otherwise True is returned. Returns an error, if the new score is not greater than the user's current score in the chat and force is False.</p>
+<p>set_game_score - setGameScoreUse this method to set the score of the specified user in a game message. On success, if the message is not an inline message, the Message is returned, otherwise True is returned. Returns an error, if the new score is not greater than the user's current score in the chat and force is False.</p>
 
 </section>
 		<section id="Bot.set_my_commands" class="doc-node">
 			<div class="title"><h2>fn (Bot) set_my_commands <a href="#Bot.set_my_commands">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">set_my_commands</span><span class="token punctuation">(</span>params SetMyCommands<span class="token punctuation">)</span> <span class="token operator">!</span><span class="token builtin">bool</span></code></pre>
-<p>set_my_commands - setMyCommands
-Use this method to change the list of the bot's commands. See this manual for more details about bot commands. Returns True on success.</p>
+<p>set_my_commands - setMyCommandsUse this method to change the list of the bot's commands. See this manual for more details about bot commands. Returns True on success.</p>
 
 </section>
 		<section id="Bot.set_my_default_administrator_rights" class="doc-node">
 			<div class="title"><h2>fn (Bot) set_my_default_administrator_rights <a href="#Bot.set_my_default_administrator_rights">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">set_my_default_administrator_rights</span><span class="token punctuation">(</span>params SetMyDefaultAdministratorRights<span class="token punctuation">)</span> <span class="token operator">!</span><span class="token builtin">bool</span></code></pre>
-<p>set_my_default_administrator_rights - setMyDefaultAdministratorRights
-Use this method to change the default administrator rights requested by the bot when it's added as an administrator to groups or channels. These rights will be suggested to users, but they are are free to modify the list before adding the bot. Returns True on success.</p>
+<p>set_my_default_administrator_rights - setMyDefaultAdministratorRightsUse this method to change the default administrator rights requested by the bot when it's added as an administrator to groups or channels. These rights will be suggested to users, but they are are free to modify the list before adding the bot. Returns True on success.</p>
 
 </section>
 		<section id="Bot.set_my_description" class="doc-node">
 			<div class="title"><h2>fn (Bot) set_my_description <a href="#Bot.set_my_description">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">set_my_description</span><span class="token punctuation">(</span>params SetMyDescription<span class="token punctuation">)</span> <span class="token operator">!</span><span class="token builtin">bool</span></code></pre>
-<p>set_my_description - setMyDescription
-Use this method to change the bot's description, which is shown in the chat with the bot if the chat is empty. Returns True on success.</p>
+<p>set_my_description - setMyDescriptionUse this method to change the bot's description, which is shown in the chat with the bot if the chat is empty. Returns True on success.</p>
 
 </section>
 		<section id="Bot.set_my_name" class="doc-node">
 			<div class="title"><h2>fn (Bot) set_my_name <a href="#Bot.set_my_name">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">set_my_name</span><span class="token punctuation">(</span>params SetMyName<span class="token punctuation">)</span> <span class="token operator">!</span><span class="token builtin">bool</span></code></pre>
-<p>set_my_name - setMyName
-Use this method to change the bot's name. Returns True on success.</p>
+<p>set_my_name - setMyNameUse this method to change the bot's name. Returns True on success.</p>
 
 </section>
 		<section id="Bot.set_my_short_description" class="doc-node">
 			<div class="title"><h2>fn (Bot) set_my_short_description <a href="#Bot.set_my_short_description">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">set_my_short_description</span><span class="token punctuation">(</span>params SetMyShortDescription<span class="token punctuation">)</span> <span class="token operator">!</span><span class="token builtin">bool</span></code></pre>
-<p>set_my_short_description - setMyShortDescription
-Use this method to change the bot's short description, which is shown on the bot's profile page and is sent together with the link when users share the bot. Returns True on success.</p>
+<p>set_my_short_description - setMyShortDescriptionUse this method to change the bot's short description, which is shown on the bot's profile page and is sent together with the link when users share the bot. Returns True on success.</p>
 
 </section>
 		<section id="Bot.set_passport_data_errors" class="doc-node">
 			<div class="title"><h2>fn (Bot) set_passport_data_errors <a href="#Bot.set_passport_data_errors">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">set_passport_data_errors</span><span class="token punctuation">(</span>params SetPassportDataErrors<span class="token punctuation">)</span> <span class="token operator">!</span><span class="token builtin">bool</span></code></pre>
-<p>set_passport_data_errors - setPassportDataErrors
-Informs a user that some of the Telegram Passport elements they provided contains errors. The user will not be able to re-submit their Passport to you until the errors are fixed (the contents of the field for which you returned the error must change). Returns True on success.</p>
+<p>set_passport_data_errors - setPassportDataErrorsInforms a user that some of the Telegram Passport elements they provided contains errors. The user will not be able to re-submit their Passport to you until the errors are fixed (the contents of the field for which you returned the error must change). Returns True on success.</p>
 
 </section>
 		<section id="Bot.set_sticker_emoji_list" class="doc-node">
 			<div class="title"><h2>fn (Bot) set_sticker_emoji_list <a href="#Bot.set_sticker_emoji_list">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">set_sticker_emoji_list</span><span class="token punctuation">(</span>params SetStickerEmojiList<span class="token punctuation">)</span> <span class="token operator">!</span><span class="token builtin">bool</span></code></pre>
-<p>set_sticker_emoji_list - setStickerEmojiList
-Use this method to change the list of emoji assigned to a regular or custom emoji sticker. The sticker must belong to a sticker set created by the bot. Returns True on success.</p>
+<p>set_sticker_emoji_list - setStickerEmojiListUse this method to change the list of emoji assigned to a regular or custom emoji sticker. The sticker must belong to a sticker set created by the bot. Returns True on success.</p>
 
 </section>
 		<section id="Bot.set_sticker_keywords" class="doc-node">
 			<div class="title"><h2>fn (Bot) set_sticker_keywords <a href="#Bot.set_sticker_keywords">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">set_sticker_keywords</span><span class="token punctuation">(</span>params SetStickerKeywords<span class="token punctuation">)</span> <span class="token operator">!</span><span class="token builtin">bool</span></code></pre>
-<p>set_sticker_keywords - setStickerKeywords
-Use this method to change search keywords assigned to a regular or custom emoji sticker. The sticker must belong to a sticker set created by the bot. Returns True on success.</p>
+<p>set_sticker_keywords - setStickerKeywordsUse this method to change search keywords assigned to a regular or custom emoji sticker. The sticker must belong to a sticker set created by the bot. Returns True on success.</p>
 
 </section>
 		<section id="Bot.set_sticker_mask_position" class="doc-node">
 			<div class="title"><h2>fn (Bot) set_sticker_mask_position <a href="#Bot.set_sticker_mask_position">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">set_sticker_mask_position</span><span class="token punctuation">(</span>params SetStickerMaskPosition<span class="token punctuation">)</span> <span class="token operator">!</span><span class="token builtin">bool</span></code></pre>
-<p>set_sticker_mask_position - setStickerMaskPosition
-Use this method to change the mask position of a mask sticker. The sticker must belong to a sticker set that was created by the bot. Returns True on success.</p>
+<p>set_sticker_mask_position - setStickerMaskPositionUse this method to change the mask position of a mask sticker. The sticker must belong to a sticker set that was created by the bot. Returns True on success.</p>
 
 </section>
 		<section id="Bot.set_sticker_position_in_set" class="doc-node">
 			<div class="title"><h2>fn (Bot) set_sticker_position_in_set <a href="#Bot.set_sticker_position_in_set">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">set_sticker_position_in_set</span><span class="token punctuation">(</span>params SetStickerPositionInSet<span class="token punctuation">)</span> <span class="token operator">!</span><span class="token builtin">bool</span></code></pre>
-<p>set_sticker_position_in_set - setStickerPositionInSet
-Use this method to move a sticker in a set created by the bot to a specific position. Returns True on success.</p>
+<p>set_sticker_position_in_set - setStickerPositionInSetUse this method to move a sticker in a set created by the bot to a specific position. Returns True on success.</p>
 
 </section>
 		<section id="Bot.set_sticker_set_thumbnail" class="doc-node">
 			<div class="title"><h2>fn (Bot) set_sticker_set_thumbnail <a href="#Bot.set_sticker_set_thumbnail">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">set_sticker_set_thumbnail</span><span class="token punctuation">(</span>params SetStickerSetThumbnail<span class="token punctuation">)</span> <span class="token operator">!</span><span class="token builtin">bool</span></code></pre>
-<p>set_sticker_set_thumbnail - setStickerSetThumbnail
-Use this method to set the thumbnail of a sticker set. Animated thumbnails can be set for animated sticker sets only. Video thumbnails can be set only for video sticker sets only. Returns True on success.</p>
+<p>set_sticker_set_thumbnail - setStickerSetThumbnailUse this method to set the thumbnail of a sticker set. Animated thumbnails can be set for animated sticker sets only. Video thumbnails can be set only for video sticker sets only. Returns True on success.</p>
 
 </section>
 		<section id="Bot.set_sticker_set_title" class="doc-node">
 			<div class="title"><h2>fn (Bot) set_sticker_set_title <a href="#Bot.set_sticker_set_title">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">set_sticker_set_title</span><span class="token punctuation">(</span>params SetStickerSetTitle<span class="token punctuation">)</span> <span class="token operator">!</span><span class="token builtin">bool</span></code></pre>
-<p>set_sticker_set_title - setStickerSetTitle
-Use this method to set the title of a created sticker set. Returns True on success.</p>
+<p>set_sticker_set_title - setStickerSetTitleUse this method to set the title of a created sticker set. Returns True on success.</p>
 
 </section>
 		<section id="Bot.set_webhook" class="doc-node">
 			<div class="title"><h2>fn (Bot) set_webhook <a href="#Bot.set_webhook">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">set_webhook</span><span class="token punctuation">(</span>params SetWebhook<span class="token punctuation">)</span> <span class="token operator">!</span><span class="token builtin">bool</span></code></pre>
-<p>set_webhook - setWebhook
-Use this method to specify a URL and receive incoming updates via an outgoing webhook. Whenever there is an update for the bot, we will send an HTTPS POST request to the specified URL, containing a JSON-serialized Update. In case of an unsuccessful request, we will give up after a reasonable amount of attempts. Returns True on success.</p>
+<p>set_webhook - setWebhookUse this method to specify a URL and receive incoming updates via an outgoing webhook. Whenever there is an update for the bot, we will send an HTTPS POST request to the specified URL, containing a JSON-serialized Update. In case of an unsuccessful request, we will give up after a reasonable amount of attempts. Returns True on success.</p>
 
 </section>
 		<section id="Bot.stop_message_live_location" class="doc-node">
 			<div class="title"><h2>fn (Bot) stop_message_live_location <a href="#Bot.stop_message_live_location">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">stop_message_live_location</span><span class="token punctuation">(</span>params StopMessageLiveLocation<span class="token punctuation">)</span> <span class="token operator">!</span>Message</code></pre>
-<p>stop_message_live_location - stopMessageLiveLocation
-Use this method to stop updating a live location message before live_period expires. On success, if the message is not an inline message, the edited Message is returned, otherwise True is returned.</p>
+<p>stop_message_live_location - stopMessageLiveLocationUse this method to stop updating a live location message before live_period expires. On success, if the message is not an inline message, the edited Message is returned, otherwise True is returned.</p>
 
 </section>
 		<section id="Bot.stop_poll" class="doc-node">
 			<div class="title"><h2>fn (Bot) stop_poll <a href="#Bot.stop_poll">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">stop_poll</span><span class="token punctuation">(</span>params StopPoll<span class="token punctuation">)</span> <span class="token operator">!</span>Poll</code></pre>
-<p>stop_poll - stopPoll
-Use this method to stop a poll which was sent by the bot. On success, the stopped Poll is returned.</p>
+<p>stop_poll - stopPollUse this method to stop a poll which was sent by the bot. On success, the stopped Poll is returned.</p>
 
 </section>
 		<section id="Bot.unban_chat_member" class="doc-node">
 			<div class="title"><h2>fn (Bot) unban_chat_member <a href="#Bot.unban_chat_member">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">unban_chat_member</span><span class="token punctuation">(</span>params UnbanChatMember<span class="token punctuation">)</span> <span class="token operator">!</span><span class="token builtin">bool</span></code></pre>
-<p>unban_chat_member - unbanChatMember
-Use this method to unban a previously banned user in a supergroup or channel. The user will not return to the group or channel automatically, but will be able to join via link, etc. The bot must be an administrator for this to work. By default, this method guarantees that after the call the user is not a member of the chat, but will be able to join it. So if the user is a member of the chat they will also be removed from the chat. If you don't want this, use the parameter only_if_banned. Returns True on success.</p>
+<p>unban_chat_member - unbanChatMemberUse this method to unban a previously banned user in a supergroup or channel. The user will not return to the group or channel automatically, but will be able to join via link, etc. The bot must be an administrator for this to work. By default, this method guarantees that after the call the user is not a member of the chat, but will be able to join it. So if the user is a member of the chat they will also be removed from the chat. If you don't want this, use the parameter only_if_banned. Returns True on success.</p>
 
 </section>
 		<section id="Bot.unban_chat_sender_chat" class="doc-node">
 			<div class="title"><h2>fn (Bot) unban_chat_sender_chat <a href="#Bot.unban_chat_sender_chat">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">unban_chat_sender_chat</span><span class="token punctuation">(</span>params UnbanChatSenderChat<span class="token punctuation">)</span> <span class="token operator">!</span><span class="token builtin">bool</span></code></pre>
-<p>unban_chat_sender_chat - unbanChatSenderChat
-Use this method to unban a previously banned channel chat in a supergroup or channel. The bot must be an administrator for this to work and must have the appropriate administrator rights. Returns True on success.</p>
+<p>unban_chat_sender_chat - unbanChatSenderChatUse this method to unban a previously banned channel chat in a supergroup or channel. The bot must be an administrator for this to work and must have the appropriate administrator rights. Returns True on success.</p>
 
 </section>
 		<section id="Bot.unhide_general_forum_topic" class="doc-node">
 			<div class="title"><h2>fn (Bot) unhide_general_forum_topic <a href="#Bot.unhide_general_forum_topic">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">unhide_general_forum_topic</span><span class="token punctuation">(</span>params UnhideGeneralForumTopic<span class="token punctuation">)</span> <span class="token operator">!</span><span class="token builtin">bool</span></code></pre>
-<p>unhide_general_forum_topic - unhideGeneralForumTopic
-Use this method to unhide the 'General' topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the can_manage_topics administrator rights. Returns True on success.</p>
+<p>unhide_general_forum_topic - unhideGeneralForumTopicUse this method to unhide the 'General' topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the can_manage_topics administrator rights. Returns True on success.</p>
 
 </section>
 		<section id="Bot.unpin_all_chat_messages" class="doc-node">
 			<div class="title"><h2>fn (Bot) unpin_all_chat_messages <a href="#Bot.unpin_all_chat_messages">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">unpin_all_chat_messages</span><span class="token punctuation">(</span>params UnpinAllChatMessages<span class="token punctuation">)</span> <span class="token operator">!</span><span class="token builtin">bool</span></code></pre>
-<p>unpin_all_chat_messages - unpinAllChatMessages
-Use this method to clear the list of pinned messages in a chat. If the chat is not a private chat, the bot must be an administrator in the chat for this to work and must have the 'can_pin_messages' administrator right in a supergroup or 'can_edit_messages' administrator right in a channel. Returns True on success.</p>
+<p>unpin_all_chat_messages - unpinAllChatMessagesUse this method to clear the list of pinned messages in a chat. If the chat is not a private chat, the bot must be an administrator in the chat for this to work and must have the 'can_pin_messages' administrator right in a supergroup or 'can_edit_messages' administrator right in a channel. Returns True on success.</p>
 
 </section>
 		<section id="Bot.unpin_all_forum_topic_messages" class="doc-node">
 			<div class="title"><h2>fn (Bot) unpin_all_forum_topic_messages <a href="#Bot.unpin_all_forum_topic_messages">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">unpin_all_forum_topic_messages</span><span class="token punctuation">(</span>params UnpinAllForumTopicMessages<span class="token punctuation">)</span> <span class="token operator">!</span><span class="token builtin">bool</span></code></pre>
-<p>unpin_all_forum_topic_messages - unpinAllForumTopicMessages
-Use this method to clear the list of pinned messages in a forum topic. The bot must be an administrator in the chat for this to work and must have the can_pin_messages administrator right in the supergroup. Returns True on success.</p>
+<p>unpin_all_forum_topic_messages - unpinAllForumTopicMessagesUse this method to clear the list of pinned messages in a forum topic. The bot must be an administrator in the chat for this to work and must have the can_pin_messages administrator right in the supergroup. Returns True on success.</p>
 
 </section>
 		<section id="Bot.unpin_all_general_forum_topic_messages" class="doc-node">
@@ -1101,14 +928,12 @@ Use this method to clear the list of pinned messages in a forum topic. The bot m
 </section>
 		<section id="Bot.unpin_chat_message" class="doc-node">
 			<div class="title"><h2>fn (Bot) unpin_chat_message <a href="#Bot.unpin_chat_message">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">unpin_chat_message</span><span class="token punctuation">(</span>params UnpinChatMessage<span class="token punctuation">)</span> <span class="token operator">!</span><span class="token builtin">bool</span></code></pre>
-<p>unpin_chat_message - unpinChatMessage
-Use this method to remove a message from the list of pinned messages in a chat. If the chat is not a private chat, the bot must be an administrator in the chat for this to work and must have the 'can_pin_messages' administrator right in a supergroup or 'can_edit_messages' administrator right in a channel. Returns True on success.</p>
+<p>unpin_chat_message - unpinChatMessageUse this method to remove a message from the list of pinned messages in a chat. If the chat is not a private chat, the bot must be an administrator in the chat for this to work and must have the 'can_pin_messages' administrator right in a supergroup or 'can_edit_messages' administrator right in a channel. Returns True on success.</p>
 
 </section>
 		<section id="Bot.upload_sticker_file" class="doc-node">
 			<div class="title"><h2>fn (Bot) upload_sticker_file <a href="#Bot.upload_sticker_file">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> b Bot<span class="token punctuation">)</span> <span class="token function">upload_sticker_file</span><span class="token punctuation">(</span>params UploadStickerFile<span class="token punctuation">)</span> <span class="token operator">!</span>File</code></pre>
-<p>upload_sticker_file - uploadStickerFile
-Use this method to upload a file with a sticker for later use in the createNewStickerSet and addStickerToSet methods (the file can be used multiple times). Returns the uploaded File on success.</p>
+<p>upload_sticker_file - uploadStickerFileUse this method to upload a file with a sticker for later use in the createNewStickerSet and addStickerToSet methods (the file can be used multiple times). Returns the uploaded File on success.</p>
 
 </section>
 		<section id="BotCommand" class="doc-node">
@@ -2259,7 +2084,7 @@ Use this method to upload a file with a sticker for later use in the createNewSt
 	<span class="token comment">// file_path Optional. File path. Use https://api.telegram.org/file/bot<token>/<file_path> to get the file.</span>
 	file_path <span class="token builtin">string</span>
 <span class="token punctuation">}</span></code></pre>
-<p>File This object represents a file ready to be downloaded. The file can be downloaded via the link <a href="https://api.telegram.org/file/bot">https://api.telegram.org/file/bot</a>&lt;token&gt;/&lt;file_path&gt;. It is guaranteed that the link will be valid for at least 1 hour. When the link expires, a new one can be requested by calling getFile.</p>
+<p>File This object represents a file ready to be downloaded. The file can be downloaded via the link <a href="https://api.telegram.org/file/bot">https://api.telegram.org/file/bot</a><token>/<file_path>. It is guaranteed that the link will be valid for at least 1 hour. When the link expires, a new one can be requested by calling getFile.</p>
 
 </section>
 		<section id="ForceReply" class="doc-node">
@@ -3601,8 +3426,7 @@ Use this method to upload a file with a sticker for later use in the createNewSt
 	<span class="token comment">// bot_is_member Optional. Pass True to request a chat with the bot as a member. Otherwise, no additional restrictions are applied.</span>
 	bot_is_member <span class="token builtin">bool</span>
 <span class="token punctuation">}</span></code></pre>
-<p>KeyboardButtonRequestChat This object defines the criteria used to request a suitable chat.<br>
-The identifier of the selected chat will be shared with the bot when the corresponding button is pressed.</p>
+<p>KeyboardButtonRequestChat This object defines the criteria used to request a suitable chat.<br />The identifier of the selected chat will be shared with the bot when the corresponding button is pressed.</p>
 
 </section>
 		<section id="KeyboardButtonRequestUser" class="doc-node">
@@ -3615,8 +3439,7 @@ The identifier of the selected chat will be shared with the bot when the corresp
 	<span class="token comment">// user_is_premium Optional. Pass True to request a premium user, pass False to request a non-premium user. If not specified, no additional restrictions are applied.</span>
 	user_is_premium <span class="token builtin">bool</span>
 <span class="token punctuation">}</span></code></pre>
-<p>KeyboardButtonRequestUser This object defines the criteria used to request a suitable user.<br>
-The identifier of the selected user will be shared with the bot when the corresponding button is pressed.</p>
+<p>KeyboardButtonRequestUser This object defines the criteria used to request a suitable user.<br />The identifier of the selected user will be shared with the bot when the corresponding button is pressed.</p>
 
 </section>
 		<section id="LabeledPrice" class="doc-node">
@@ -5823,7 +5646,7 @@ The identifier of the selected user will be shared with the bot when the corresp
 
 </section>
 
-						<div class="footer">Powered by vdoc. Generated on: 26 Oct 2023 08:14:42</div>
+						<div class="footer">Powered by vdoc. Generated on: 11 Nov 2023 12:03:19</div>
 					</div>
 					<div class="doc-toc"><ul><li class="open"><a href="#readme_vtelegram">README</a></li>
 <li class="open"><a href="#Constants">Constants</a></li>

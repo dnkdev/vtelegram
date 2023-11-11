@@ -36,7 +36,7 @@
 						<div class="info">
 							<div class="module">src</div>
 							<div class="toggle-version-container">
-								<span> d11db9a</span>
+								<span> 44cf145</span>
 								<div
 									id="dark-mode-toggle"
 									role="switch"
@@ -73,46 +73,10 @@
 <h1>VTelegram 0.11
 <img align="right" style="margin-top:15px;" src="https://img.shields.io/static/v1?logo=telegram&label=Telegram Bot API&message=6.9&labelColor=ffffff&color=blue" href="https://core.telegram.org/bots/api">
 </h1>
-<p>Library for building telegram bots in V language. <br><br>
-<strong>Early stage</strong>. In some cases, it does what should.<br><br>
-All methods are in snake_case instead of camelCase: <code>send_message</code> instead of <code>sendMessage</code>.
-<br>
-You can get acquainted with the Telegram Bot API <a href="https://core.telegram.org/bots/api">here</a>.</p>
-<h2>Important Note</h2>
-<p>This library was primarily developed for personal use, and while it provides some functionality, it may lack comprehensive knowledge of best practices and advanced features. Additionally, it has not been tested in real-life high-pressure projects. However, this library may have further evolving, at the moment based on my needs and preferences.</p>
-<p>So to be transparent about the state of this library:</p>
-<ul>
-<li>The library may not follow best practices.</li>
-<li>Gaps in the features of the Telegram Bot API.</li>
-<li>Real-life high-pressure testing has not been conducted.</li>
-<li>It is worth consider the state of the V language</li>
-</ul>
-<p><b>* V language need to have proper concurrency in next 0.5 release to work smoothly... existed <code>spawn</code> is making lower level threads and overhead of them could lead to unexpected behavior.</b></p>
-<h3>Contributing</h3>
-<p>Contributions to this library are highly welcome. If you have suggestions for improvements, bug fixes, or additional features, please feel free to open an issue or submit a PR.</p>
-<h2>Installation</h2>
-<pre><code>v install https://github.com/dnkdev/vtelegram
+<p>Library for building telegram bots in V language. <br><br><strong>Early stage</strong>. In some cases, it does what should.<br><br>All methods are in snake_case instead of camelCase: <code>send_message</code> instead of <code>sendMessage</code>.<br>You can get acquainted with the Telegram Bot API <a href="https://core.telegram.org/bots/api">here</a>.</p><h2>Important Note</h2><p>This library was primarily developed for personal use, and while it provides some functionality, it may lack comprehensive knowledge of best practices and advanced features. Additionally, it has not been tested in real-life high-pressure projects. However, this library may have further evolving, at the moment based on my needs and preferences.</p><p>So to be transparent about the state of this library:</p><ul><li>The library may not follow best practices.</li><li>Gaps in the features of the Telegram Bot API.</li><li>Real-life high-pressure testing has not been conducted.</li><li>It is worth consider the state of the V language</li></ul><p><b>* V language need to have proper concurrency in next 0.5 release to work smoothly... existed <code>spawn</code> is making lower level threads and overhead of them could lead to unexpected behavior.</b></p><h3>Contributing</h3><p>Contributions to this library are highly welcome. If you have suggestions for improvements, bug fixes, or additional features, please feel free to open an issue or submit a PR.</p><h2>Installation</h2><pre><code>v install https://github.com/dnkdev/vtelegram
 
 import vtelegram
-</code></pre>
-<h2>Roadmap</h2>
-<ul>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled checked>All updates handling using attributes</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled checked>Middlewares <code>Test</code></li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled checked>Context Filters</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled checked>Single files uploading and sending</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled checked>MediaGroup uploading and sending</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled checked>Sticker uploading, sticker set creation</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled>WebHooks</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled>Methods with <code>chat_id</code> field in the format <code>@username</code> (atm only in <code>i64</code> - unique id)</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled>more</li>
-</ul>
-<h2>Quick start</h2>
-<p><a href="https://github.com/dnkdev/vtelegram/tree/master/examples">Examples</a> of vtelegram use.<br>
-<a href="https://github.com/dnkdev/vtelegram/wiki/Tutorials">Tutorials</a> on wiki page, with a bit broader explanation of key features.</p>
-<h3>Handler attributes</h3>
-<p>Handlers are your <em>methods</em> which are marked with the attributes which are listed below to indicate which update your method will handle.</p>
-<pre><code class="language-v">message
+</code></pre><h2>Roadmap</h2><ul><li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled checked>All updates handling using attributes</li><li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled checked>Middlewares <code>Test</code></li><li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled checked>Context Filters</li><li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled checked>Single files uploading and sending</li><li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled checked>MediaGroup uploading and sending</li><li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled checked>Sticker uploading, sticker set creation</li><li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled>WebHooks</li><li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled>Methods with <code>chat_id</code> field in the format <code>@username</code> (atm only in <code>i64</code> - unique id)</li><li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled>more</li></ul><h2>Quick start</h2><p><a href="https://github.com/dnkdev/vtelegram/tree/master/examples">Examples</a> of vtelegram use.<br><a href="https://github.com/dnkdev/vtelegram/wiki/Tutorials">Tutorials</a> on wiki page, with a bit broader explanation of key features.</p><h3>Handler attributes</h3><p>Handlers are your <em>methods</em> which are marked with the attributes which are listed below to indicate which update your method will handle.</p><pre><code class="language-v">message
 edited_message
 channel_post
 edited_channel_post
@@ -125,25 +89,12 @@ poll
 poll_answer
 my_chat_member
 chat_member
-chat_join_request
-</code></pre>
-<h3>Context Filters and Middleware</h3>
-<p>Context filters determine which update is relevant.<br>
-For example, <code>[context: 'private']</code> specifies that your method will handle updates only in private chats. You can set a context filter both on top of middleware and on top of the handling function. That way you can handle updates and build logic very flexible.</p>
-<p>Update handling flow can be defined as follows: <br></p>
-<pre><code>Getting update -&gt; Filters -&gt; Middleware -&gt; Filters -&gt; Your Handling Function
-</code></pre>
-<p>For now middlewares can:</p>
-<ul>
-<li>Prevent update for passing to handlers ( middleware methods must return bool, <code>false</code> for prevent update )</li>
-<li>Transform update</li>
-<li>Pass data in <code>map[string]string</code> type to handlers</li>
-</ul>
+chat_join_request</code></pre><h3>Context Filters and Middleware</h3><p>Context filters determine which update is relevant.<br>For example, <code>[context: 'private']</code> specifies that your method will handle updates only in private chats. You can set a context filter both on top of middleware and on top of the handling function. That way you can handle updates and build logic very flexible.</p><p>Update handling flow can be defined as follows: <br></p><pre><code>Getting update <span class="token operator">-</span><span class="token operator">&</span>gt<span class="token punctuation">;</span> Filters <span class="token operator">-</span><span class="token operator">&</span>gt<span class="token punctuation">;</span> Middleware <span class="token operator">-</span><span class="token operator">&</span>gt<span class="token punctuation">;</span> Filters <span class="token operator">-</span><span class="token operator">&</span>gt<span class="token punctuation">;</span> Your Handling Function</code></pre><p>For now middlewares can:</p><ul><li>Prevent update for passing to handlers ( middleware methods must return bool, <code>false</code> for prevent update )</li><li>Transform update</li><li>Pass data in <code>map[string]string</code> type to handlers</li></ul>
 
 </section>
 
 
-						<div class="footer">Powered by vdoc. Generated on: 26 Oct 2023 08:14:42</div>
+						<div class="footer">Powered by vdoc. Generated on: 11 Nov 2023 12:03:19</div>
 					</div>
 					
 				</div>
