@@ -1,4 +1,28 @@
-## v 0.11
+## v 0.11.1
+
+- synchronize specified fields with middleware and bot structs with `sync` attribute in middleware struct fields. Name of fields should match in both structs.
+
+```v
+struct App{
+    vtelegram.Bot
+    log LogStruct
+}
+struct Middleware{
+    log LogStruct [sync]
+}
+```
+
+- fix the creation of middleware and bot methods, which aren't a update handlers 
+```v
+fn (mut app App) print_hello(name string) {
+    println('hello ${name}')
+}
+fn (mut mw Middleware) print_hello(name string) {
+    println('hello ${name}')
+}
+```
+
+### v 0.11
 
 - Sticker manipulations/uploading...
 - `context` attribute values separating with comma `,`:

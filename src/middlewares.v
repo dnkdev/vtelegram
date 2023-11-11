@@ -5,9 +5,9 @@ module vtelegram
 // get_middleware_data(your_middleware)
 pub fn get_middleware_data[T](middleware T) map[string]string {
 	$if T !is Regular {
-		$for field in T.fields{ // compile time check if user middleware have 'data' field
+		$for field in T.fields { // compile time check if user middleware have 'data' field
 			$if field.is_map {
-				$if field.name == 'data'{
+				$if field.name == 'data' {
 					return middleware.$(field.name)
 				}
 			}
@@ -18,13 +18,13 @@ pub fn get_middleware_data[T](middleware T) map[string]string {
 
 // delete_middleware_data delete one key from data
 // delete_middleware_data(your_middleware, 'key')
-pub fn delete_middleware_data[T](mut middleware &T, key string){
+pub fn delete_middleware_data[T](mut middleware T, key string) {
 	middleware.data.delete(key)
 }
 
 // clear_middleware_data function for data manual clear
 // clear_middleware_data(your_middleware)
-pub fn clear_middleware_data[T](mut middleware &T){
+pub fn clear_middleware_data[T](mut middleware T) {
 	middleware.data.clear()
 	// $for field in T.fields{
 	// 	if field.name == 'stash_data'{
@@ -43,12 +43,11 @@ pub fn clear_middleware_data[T](mut middleware &T){
 
 fn is_middleware_relate_to_type(mut update Update, attrs []string) bool {
 	for handler in handler_types {
-		if attrs.any(it.contains(handler)){
-			if validate_handler_type(update, handler){
+		if attrs.any(it.contains(handler)) {
+			if validate_handler_type(update, handler) {
 				return true
-			}
-			else {
-				//passing = false
+			} else {
+				// passing = false
 				continue
 			}
 		}
@@ -64,7 +63,7 @@ fn is_middleware_pass_filters(mut update Update, attrs []string) bool {
 		}
 		sub := a[0].trim_space()
 		value := a.last().trim_space()
-		
+
 		// context filters
 		if sub == 'context' {
 			if !validate_filter(update, value) {
@@ -75,19 +74,19 @@ fn is_middleware_pass_filters(mut update Update, attrs []string) bool {
 	return true
 }
 
-fn aggregate_middlewares[T](mut middleware T, mut update Update) bool{
+fn aggregate_middlewares[T](mut middleware T, mut update Update) bool {
 	$for method in T.methods {
 		if method.attrs.len > 0 {
-
-			if is_middleware_relate_to_type(mut update,method.attrs){
-				if is_middleware_pass_filters(mut update, method.attrs){
-					res := middleware.$method(mut update)
-					if res.str() == 'false'{
-						return false
+			$if method.args[0].typ is Update {
+				if is_middleware_relate_to_type(mut update, method.attrs) {
+					if is_middleware_pass_filters(mut update, method.attrs) {
+						res := middleware.$method(mut update)
+						if res.str() == 'false' {
+							return false
+						}
 					}
 				}
 			}
-
 		}
 	}
 	return true

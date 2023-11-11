@@ -38,10 +38,13 @@ pub struct PollingConfig[T] {
 
 pub struct Regular {}
 
-fn register_middleware_db[T, N](bot T, mut mw N) {
+// register_middleware synchronize fields with same name, middleware fields, which have `sync` attributes
+fn register_middleware[T, N](bot T, mut mw N) {
 	$for field in N.fields {
-		$if field.name == 'db' {
-			mw.$(field.name) = bot.$(field.name)
+		for attr in field.attrs {
+			if attr == 'sync' {
+				mw.$(field.name) = bot.$(field.name)
+			}
 		}
 	}
 }
@@ -49,7 +52,7 @@ fn register_middleware_db[T, N](bot T, mut mw N) {
 pub fn start_polling[T, N](mut bot T, args N) {
 	println('${time.now()} Starting bot...')
 	mut middleware := args.middleware_
-	register_middleware_db(bot, mut &middleware)
+	register_middleware(bot, mut &middleware)
 	for {
 		updates := bot.get_updates(
 			offset: bot.offset
