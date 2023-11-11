@@ -36,7 +36,7 @@
 						<div class="info">
 							<div class="module">src</div>
 							<div class="toggle-version-container">
-								<span> 44cf145</span>
+								<span> a741050</span>
 								<div
 									id="dark-mode-toggle"
 									role="switch"
@@ -89,7 +89,7 @@ poll
 poll_answer
 my_chat_member
 chat_member
-chat_join_request</code></pre><h3>Context Filters and Middleware</h3><p>Context filters determine which update is relevant.<br>For example, <code>[context: 'private']</code> specifies that your method will handle updates only in private chats. You can set a context filter both on top of middleware and on top of the handling function. That way you can handle updates and build logic very flexible.</p><p>Update handling flow can be defined as follows: <br></p><pre><code>Getting update <span class="token operator">-</span><span class="token operator">&</span>gt<span class="token punctuation">;</span> Filters <span class="token operator">-</span><span class="token operator">&</span>gt<span class="token punctuation">;</span> Middleware <span class="token operator">-</span><span class="token operator">&</span>gt<span class="token punctuation">;</span> Filters <span class="token operator">-</span><span class="token operator">&</span>gt<span class="token punctuation">;</span> Your Handling Function</code></pre><p>For now middlewares can:</p><ul><li>Prevent update for passing to handlers ( middleware methods must return bool, <code>false</code> for prevent update )</li><li>Transform update</li><li>Pass data in <code>map[string]string</code> type to handlers</li></ul>
+chat_join_request</code></pre><h3>Context Filters and Middleware</h3><p>Context filters determine which update is relevant.<br>For example, <code>[context: 'private']</code> specifies that your method will handle updates only in private chats. You can set a context filter both on top of middleware and on top of the handling function. That way you can handle updates and build logic very flexible.</p><p>Update handling flow can be defined as follows: <br></p><pre><code>Getting update <span class="token operator">-</span><span class="token operator">&</span>gt<span class="token punctuation">;</span> Filters <span class="token operator">-</span><span class="token operator">&</span>gt<span class="token punctuation">;</span> Middleware <span class="token operator">-</span><span class="token operator">&</span>gt<span class="token punctuation">;</span> Filters <span class="token operator">-</span><span class="token operator">&</span>gt<span class="token punctuation">;</span> Your Handling Function</code></pre><p>For now middlewares can:</p><ul><li>Prevent update for passing to handlers ( middleware methods must return bool, <code>false</code> for prevent update )</li><li>Transform update</li></ul>
 
 </section>
 
@@ -102,21 +102,6 @@ chat_join_request</code></pre><h3>Context Filters and Middleware</h3><p>Context 
 	endpoint <span class="token operator">=</span> <span class="token string">'https://api.telegram.org/bot'</span>
 <span class="token punctuation">)</span></code></pre>
 
-
-</section>
-		<section id="clear_middleware_data" class="doc-node">
-			<div class="title"><h2>fn clear_middleware_data <a href="#clear_middleware_data">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> clear_middleware_data<span class="token punctuation">[</span><span class="token builtin">T</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token keyword">mut</span> middleware <span class="token builtin">T</span><span class="token punctuation">)</span></code></pre>
-<p>clear_middleware_data function for data manual clear clear_middleware_data(your_middleware)</p>
-
-</section>
-		<section id="delete_middleware_data" class="doc-node">
-			<div class="title"><h2>fn delete_middleware_data <a href="#delete_middleware_data">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> delete_middleware_data<span class="token punctuation">[</span><span class="token builtin">T</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token keyword">mut</span> middleware <span class="token builtin">T</span><span class="token punctuation">,</span> key <span class="token builtin">string</span><span class="token punctuation">)</span></code></pre>
-<p>delete_middleware_data delete one key from data delete_middleware_data(your_middleware, 'key')</p>
-
-</section>
-		<section id="get_middleware_data" class="doc-node">
-			<div class="title"><h2>fn get_middleware_data <a href="#get_middleware_data">#</a></h2></div><pre class="signature"><code><span class="token keyword">fn</span> get_middleware_data<span class="token punctuation">[</span><span class="token builtin">T</span><span class="token punctuation">]</span><span class="token punctuation">(</span>middleware <span class="token builtin">T</span><span class="token punctuation">)</span> <span class="token builtin">map</span><span class="token punctuation">[</span><span class="token builtin">string</span><span class="token punctuation">]</span><span class="token builtin">string</span></code></pre>
-<p>get_middleware_data == middleware.data Generic type function, to pass your middleware in function argument get_middleware_data(your_middleware)</p>
 
 </section>
 		<section id="new_inline_button" class="doc-node">
@@ -4247,8 +4232,6 @@ chat_join_request</code></pre><h3>Context Filters and Middleware</h3><p>Context 
 			<div class="title"><h2>struct Result <a href="#Result">#</a></h2></div><pre class="signature"><code><span class="token keyword">struct</span> <span class="token symbol">Result</span> <span class="token punctuation">{</span>
 <span class="token keyword">pub</span><span class="token punctuation">:</span>
 	update Update
-<span class="token keyword">pub</span> <span class="token keyword">mut</span><span class="token punctuation">:</span>
-	data <span class="token builtin">map</span><span class="token punctuation">[</span><span class="token builtin">string</span><span class="token punctuation">]</span><span class="token builtin">string</span>
 <span class="token punctuation">}</span></code></pre>
 
 
@@ -5646,19 +5629,10 @@ chat_join_request</code></pre><h3>Context Filters and Middleware</h3><p>Context 
 
 </section>
 
-						<div class="footer">Powered by vdoc. Generated on: 11 Nov 2023 12:03:19</div>
+						<div class="footer">Powered by vdoc. Generated on: 11 Nov 2023 13:22:15</div>
 					</div>
 					<div class="doc-toc"><ul><li class="open"><a href="#readme_vtelegram">README</a></li>
 <li class="open"><a href="#Constants">Constants</a></li>
-<li class="open"><a href="#clear_middleware_data">fn clear_middleware_data</a>        <ul>
-</ul>
-</li>
-<li class="open"><a href="#delete_middleware_data">fn delete_middleware_data</a>        <ul>
-</ul>
-</li>
-<li class="open"><a href="#get_middleware_data">fn get_middleware_data</a>        <ul>
-</ul>
-</li>
 <li class="open"><a href="#new_inline_button">fn new_inline_button</a>        <ul>
 </ul>
 </li>

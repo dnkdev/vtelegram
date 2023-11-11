@@ -36,7 +36,7 @@
 						<div class="info">
 							<div class="module">src</div>
 							<div class="toggle-version-container">
-								<span> 44cf145</span>
+								<span> a741050</span>
 								<div
 									id="dark-mode-toggle"
 									role="switch"
@@ -89,12 +89,12 @@ poll
 poll_answer
 my_chat_member
 chat_member
-chat_join_request</code></pre><h3>Context Filters and Middleware</h3><p>Context filters determine which update is relevant.<br>For example, <code>[context: 'private']</code> specifies that your method will handle updates only in private chats. You can set a context filter both on top of middleware and on top of the handling function. That way you can handle updates and build logic very flexible.</p><p>Update handling flow can be defined as follows: <br></p><pre><code>Getting update <span class="token operator">-</span><span class="token operator">&</span>gt<span class="token punctuation">;</span> Filters <span class="token operator">-</span><span class="token operator">&</span>gt<span class="token punctuation">;</span> Middleware <span class="token operator">-</span><span class="token operator">&</span>gt<span class="token punctuation">;</span> Filters <span class="token operator">-</span><span class="token operator">&</span>gt<span class="token punctuation">;</span> Your Handling Function</code></pre><p>For now middlewares can:</p><ul><li>Prevent update for passing to handlers ( middleware methods must return bool, <code>false</code> for prevent update )</li><li>Transform update</li><li>Pass data in <code>map[string]string</code> type to handlers</li></ul>
+chat_join_request</code></pre><h3>Context Filters and Middleware</h3><p>Context filters determine which update is relevant.<br>For example, <code>[context: 'private']</code> specifies that your method will handle updates only in private chats. You can set a context filter both on top of middleware and on top of the handling function. That way you can handle updates and build logic very flexible.</p><p>Update handling flow can be defined as follows: <br></p><pre><code>Getting update <span class="token operator">-</span><span class="token operator">&</span>gt<span class="token punctuation">;</span> Filters <span class="token operator">-</span><span class="token operator">&</span>gt<span class="token punctuation">;</span> Middleware <span class="token operator">-</span><span class="token operator">&</span>gt<span class="token punctuation">;</span> Filters <span class="token operator">-</span><span class="token operator">&</span>gt<span class="token punctuation">;</span> Your Handling Function</code></pre><p>For now middlewares can:</p><ul><li>Prevent update for passing to handlers ( middleware methods must return bool, <code>false</code> for prevent update )</li><li>Transform update</li></ul>
 
 </section>
 
 
-						<div class="footer">Powered by vdoc. Generated on: 11 Nov 2023 12:03:19</div>
+						<div class="footer">Powered by vdoc. Generated on: 11 Nov 2023 13:22:15</div>
 					</div>
 					
 				</div>
